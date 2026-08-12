@@ -1,0 +1,46 @@
+{
+  "id": "listing_reversal",
+  "canonical_name": "Listing Reversal",
+  "aliases": [],
+  "family": "event",
+  "markets": [
+    "crypto_spot",
+    "crypto_perp"
+  ],
+  "asset_direction": "long_short",
+  "execution_scope": "executable",
+  "timeframes": [
+    "unknown"
+  ],
+  "sources": [
+    {
+      "source_type": "original_observation",
+      "title": "Initial autotrade-lab strategy catalog",
+      "author_or_handle": "autotrade-lab",
+      "url": "local://catalog/listing_reversal",
+      "published_at": null,
+      "accessed_at": "2026-08-12",
+      "language": "en",
+      "claim_summary": "Post-listing excess reverses",
+      "verbatim_excerpt": null
+    }
+  ],
+  "hypothesis": "Post-listing excess reverses",
+  "entry_rule": "unknown: recover and register an exact rule before backtesting",
+  "exit_rule": "unknown: recover and register an exact rule before backtesting",
+  "sizing_rule": "unknown: define exposure, leverage, and portfolio limits before backtesting",
+  "required_data": [
+    "unknown: determine in LUNA-202 data audit"
+  ],
+  "execution_assumptions": [
+    "no live order",
+    "fees and slippage must be specified before evaluation"
+  ],
+  "variants": [],
+  "ambiguities": [
+    "Initial catalog records family-level hypotheses only.",
+    "liquidity",
+    "selection bias"
+  ],
+  "status": "planned"
+}
