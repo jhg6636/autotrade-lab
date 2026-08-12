@@ -1,0 +1,33 @@
+{
+  "id": "original_gap_fade",
+  "canonical_name": "Large opening gap fade",
+  "aliases": ["gap reversal"],
+  "family": "event",
+  "markets": ["kr_equity"],
+  "asset_direction": "long_only",
+  "execution_scope": "executable",
+  "target_exposure": {"minimum": 0, "maximum": 1},
+  "timeframes": ["one_minute", "daily"],
+  "sources": [
+    {
+      "source_type": "original_observation",
+      "title": "Notebook observation: large gaps sometimes retrace",
+      "author_or_handle": "autotrade-lab",
+      "url": "local://observation/large-gap-fade-001",
+      "published_at": null,
+      "accessed_at": "2026-08-12",
+      "language": "ko",
+      "claim_summary": "A large downward opening gap in a liquid stock may partially retrace during the session.",
+      "verbatim_excerpt": null
+    }
+  ],
+  "hypothesis": "A sufficiently large downward opening gap in a liquid Korean stock may partially retrace intraday.",
+  "entry_rule": "Buy only after a downward gap exceeds the configured threshold and a post-open reversal confirmation occurs.",
+  "exit_rule": "Exit at the session close, a predefined retracement target, or a protective stop.",
+  "sizing_rule": "Risk a fixed fraction of capital per signal with a maximum notional cap.",
+  "required_data": ["one_minute_ohlcv", "daily_ohlcv", "krx_calendar", "price_limits"],
+  "execution_assumptions": ["long-only", "no fill before the confirmation bar", "price limits are enforced"],
+  "variants": [{"id": "open_to_close", "description": "Hold from the first eligible minute until the closing auction."}],
+  "ambiguities": ["The gap threshold, confirmation definition, target, and stop require a pre-registered parameter choice."],
+  "status": "hypothesis"
+}

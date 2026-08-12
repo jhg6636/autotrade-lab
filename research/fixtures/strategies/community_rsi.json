@@ -1,0 +1,32 @@
+{
+  "id": "community_rsi",
+  "canonical_name": "Simple RSI oversold bounce",
+  "aliases": ["RSI reversal"],
+  "family": "mean_reversion",
+  "markets": ["multi_asset"],
+  "asset_direction": "long_only",
+  "execution_scope": "executable",
+  "timeframes": ["daily"],
+  "sources": [
+    {
+      "source_type": "community_post",
+      "title": "Simple RSI Strategy - Rule Based Higher Timeframe Trading",
+      "author_or_handle": "EdgeLab",
+      "url": "https://www.tradingview.com/script/kxT5f5rq-Simple-RSI-Strategy-Rule-Based-Higher-Timeframe-Trading/",
+      "published_at": "2026-01-08",
+      "accessed_at": "2026-08-12",
+      "language": "en",
+      "claim_summary": "The public script buys when RSI reaches 30 and exits when RSI reaches 40.",
+      "verbatim_excerpt": null
+    }
+  ],
+  "hypothesis": "A liquid instrument with an unusually low RSI may experience short-horizon mean reversion.",
+  "entry_rule": "Buy at the next open when RSI(14) is below 30.",
+  "exit_rule": "Sell when RSI returns to 40.",
+  "sizing_rule": "Use one full long position; portfolio-level limits are not specified by the source.",
+  "required_data": ["daily_ohlcv", "adjusted_close"],
+  "execution_assumptions": ["long-only cash equity", "next-open fill"],
+  "variants": [],
+  "ambiguities": ["The source does not define a universal asset universe or portfolio-level sizing rule."],
+  "status": "hypothesis"
+}
