@@ -1,0 +1,31 @@
+{
+  "id": "community_rsi",
+  "canonical_name": "RSI oversold bounce",
+  "aliases": ["RSI reversal"],
+  "family": "mean_reversion",
+  "markets": ["kr_etf"],
+  "asset_direction": "long_only",
+  "timeframes": ["daily"],
+  "sources": [
+    {
+      "source_type": "community_post",
+      "title": "Oversold ETF bounce idea",
+      "author_or_handle": "example_trader",
+      "url": "https://example.com/community/oversold-etf",
+      "published_at": null,
+      "accessed_at": "2026-08-12",
+      "language": "en",
+      "claim_summary": "Buying a liquid ETF after a low RSI reading may capture a short rebound.",
+      "verbatim_excerpt": null
+    }
+  ],
+  "hypothesis": "A liquid ETF with an unusually low RSI may experience short-horizon mean reversion.",
+  "entry_rule": "Buy at the next open when RSI(14) is below 30.",
+  "exit_rule": "Sell at the close when RSI(14) returns above 50 or after ten sessions.",
+  "sizing_rule": "Allocate equal capital to qualifying ETFs, capped at 25 percent per instrument.",
+  "required_data": ["daily_ohlcv", "adjusted_close"],
+  "execution_assumptions": ["long-only cash equity", "next-open fill"],
+  "variants": [],
+  "ambiguities": ["The source does not define a universe or whether RSI uses adjusted or raw prices."],
+  "status": "hypothesis"
+}

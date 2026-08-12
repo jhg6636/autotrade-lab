@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhg6636/autotrade-lab/schema/strategy.schema.json",
+  "title": "Flat strategy hypothesis record",
+  "description": "A source-neutral, falsifiable trading strategy hypothesis.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "canonical_name", "aliases", "family", "markets", "asset_direction",
+    "timeframes", "sources", "hypothesis", "entry_rule", "exit_rule", "sizing_rule",
+    "required_data", "execution_assumptions", "variants", "ambiguities", "status"
+  ],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_]{2,63}$"},
+    "canonical_name": {"type": "string", "minLength": 1},
+    "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "family": {"type": "string", "minLength": 1},
+    "markets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/market"}, "uniqueItems": true},
+    "asset_direction": {"type": "string", "enum": ["long_only", "long_short", "delta_neutral", "market_making", "directionless"]},
+    "timeframes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source"}},
+    "hypothesis": {"type": "string", "minLength": 1},
+    "entry_rule": {"type": "string", "minLength": 1},
+    "exit_rule": {"type": "string", "minLength": 1},
+    "sizing_rule": {"type": "string", "minLength": 1},
+    "required_data": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "execution_assumptions": {"type": "array", "items": {"type": "string"}},
+    "variants": {"type": "array", "items": {"$ref": "#/$defs/variant"}},
+    "ambiguities": {"type": "array", "items": {"type": "string"}},
+    "status": {"type": "string", "enum": ["hypothesis", "baseline_ready", "planned", "implemented", "blocked", "out_of_scope"]},
+    "target_exposure": {"$ref": "#/$defs/exposure"},
+    "implementation": {"$ref": "#/$defs/implementation"}
+  },
+  "$defs": {
+    "market": {"type": "string", "enum": ["kr_equity", "kr_etf", "crypto_spot", "crypto_perp", "us_equity", "multi_asset"]},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_type", "title", "author_or_handle", "url", "accessed_at", "language", "claim_summary"],
+      "properties": {
+        "source_type": {"type": "string", "enum": ["academic_paper", "book", "institutional_research", "broker_material", "exchange_documentation", "code", "community_post", "video", "blog", "interview", "original_observation", "other"]},
+        "title": {"type": "string", "minLength": 1},
+        "author_or_handle": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "minLength": 1},
+        "published_at": {"type": ["string", "null"]},
+        "accessed_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+        "language": {"type": "string", "minLength": 2},
+        "claim_summary": {"type": "string", "minLength": 1},
+        "verbatim_excerpt": {"type": ["string", "null"]}
+      }
+    },
+    "variant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "description"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "description": {"type": "string", "minLength": 1}}
+    },
+    "implementation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "symbol"],
+      "properties": {"path": {"type": "string", "minLength": 1}, "symbol": {"type": "string", "minLength": 1}}
+    },
+    "exposure": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minimum", "maximum"],
+      "properties": {
+        "minimum": {"type": "number", "minimum": -1, "maximum": 1},
+        "maximum": {"type": "number", "minimum": -1, "maximum": 1}
+      }
+    }
+  }
+}

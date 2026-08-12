@@ -1,0 +1,31 @@
+{
+  "id": "academic_momentum",
+  "canonical_name": "Time-series momentum",
+  "aliases": ["trend following", "TSMOM"],
+  "family": "trend",
+  "markets": ["crypto_spot"],
+  "asset_direction": "long_short",
+  "timeframes": ["daily"],
+  "sources": [
+    {
+      "source_type": "academic_paper",
+      "title": "Time Series Momentum",
+      "author_or_handle": "Moskowitz, Ooi, Pedersen",
+      "url": "https://www.nber.org/papers/w16491",
+      "published_at": "2012-11-01",
+      "accessed_at": "2026-08-12",
+      "language": "en",
+      "claim_summary": "Past excess returns can predict the direction of a diversified futures position.",
+      "verbatim_excerpt": null
+    }
+  ],
+  "hypothesis": "An instrument with positive trailing return may continue trending over the next holding period.",
+  "entry_rule": "At the close, enter long when trailing return is positive and short when it is negative.",
+  "exit_rule": "Rebalance at the next scheduled daily close or when the signal changes sign.",
+  "sizing_rule": "Equal risk contribution across instruments, capped at one unit of exposure.",
+  "required_data": ["daily_ohlcv", "trading_calendar"],
+  "execution_assumptions": ["signal executes on the next bar", "fees and slippage are modeled"],
+  "variants": [{"id": "three_month", "description": "Use a three-month trailing return instead of twelve months."}],
+  "ambiguities": ["The original study uses multiple futures markets and portfolio normalization details must be selected."],
+  "status": "hypothesis"
+}
