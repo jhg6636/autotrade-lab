@@ -7,8 +7,8 @@
 - Sources added: none; fixtures use one academic URL, one community-style URL, and one local original observation as provenance examples
 - Files changed: JSON Schema, three strategy fixtures, research validator package, research validation tests
 - Commands run: `.venv/bin/pytest -q`; `.venv/bin/ruff format .`; `.venv/bin/ruff check .`; `git diff --check`
-- Test results: 20 passed; Ruff clean; diff check clean
-- Assumptions: JSON Schema is the interchange contract; the runtime validator intentionally uses only the standard library
+- Test results: 22 passed after first-review corrections; Ruff clean; diff check clean
+- Assumptions: JSON Schema is the single interchange and runtime-validation contract; context-only records may preserve Korean short-sale literature while executable Korean stock/ETF records remain long-only
 - Ambiguities preserved: source claims, strategy universe, exact parameters, and execution details remain explicit text/ambiguity fields
 - Blockers: none
 - Recommended next task: user review at Gate A; if approved, run LUNA-002 and LUNA-003

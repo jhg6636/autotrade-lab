@@ -5,6 +5,7 @@
   "family": "trend",
   "markets": ["crypto_spot"],
   "asset_direction": "long_short",
+  "execution_scope": "executable",
   "timeframes": ["daily"],
   "sources": [
     {
