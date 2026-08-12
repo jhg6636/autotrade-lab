@@ -92,7 +92,9 @@ def test_committed_canonical_records_and_index_are_consistent(tmp_path):
             continue
         path = Path(__file__).parents[1] / implementation["path"]
         assert path.is_file(), record["id"]
-        module_name = implementation["path"].removeprefix("src/").removesuffix(".py").replace("/", ".")
+        module_name = (
+            implementation["path"].removeprefix("src/").removesuffix(".py").replace("/", ".")
+        )
         assert hasattr(importlib.import_module(module_name), implementation["symbol"]), record["id"]
 
 
