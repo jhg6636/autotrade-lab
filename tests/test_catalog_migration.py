@@ -1,4 +1,5 @@
 import csv
+import importlib
 import importlib.util
 import json
 from pathlib import Path
@@ -29,10 +30,10 @@ def test_catalog_migration_is_complete_and_valid(tmp_path):
 def test_catalog_migration_is_deterministic(tmp_path):
     output = tmp_path / "strategies"
     index = tmp_path / "strategy_index.csv"
-    generate(output, index)
+    generate(output, index, force=True)
     first = {path.name: path.read_text(encoding="utf-8") for path in output.glob("*.json")}
     first_index = index.read_text(encoding="utf-8")
-    generate(output, index)
+    generate(output, index, force=True)
     assert first == {path.name: path.read_text(encoding="utf-8") for path in output.glob("*.json")}
     assert first_index == index.read_text(encoding="utf-8")
 
@@ -51,4 +52,19 @@ def test_implemented_entries_link_to_code(tmp_path):
     implemented = [spec.key for spec in CATALOG if spec.status == "implemented"]
     for key in implemented:
         record = json.loads((output / f"{key}.json").read_text(encoding="utf-8"))
-        assert record["implementation"]["path"].startswith("src/autotrade_lab/")
+        implementation = record["implementation"]
+        path = Path(__file__).parents[1] / implementation["path"]
+        assert path.is_file()
+        module_name = (
+            implementation["path"].removeprefix("src/").removesuffix(".py").replace("/", ".")
+        )
+        assert hasattr(importlib.import_module(module_name), implementation["symbol"])
+
+
+def test_migration_refuses_to_overwrite_canonical_records(tmp_path):
+    import pytest
+
+    output = tmp_path / "strategies"
+    generate(output, tmp_path / "index.csv")
+    with pytest.raises(FileExistsError, match="canonical strategy records"):
+        generate(output, tmp_path / "index.csv")

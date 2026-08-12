@@ -8,8 +8,37 @@
     "crypto_spot",
     "crypto_perp"
   ],
-  "asset_direction": "long_only",
+  "asset_direction": "mixed",
   "execution_scope": "executable",
+  "applications": [
+    {
+      "market": "kr_equity",
+      "asset_direction": "long_only",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    {
+      "market": "crypto_spot",
+      "asset_direction": "long_short",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": -1,
+        "maximum": 1
+      }
+    },
+    {
+      "market": "crypto_perp",
+      "asset_direction": "long_short",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": -1,
+        "maximum": 1
+      }
+    }
+  ],
   "timeframes": [
     "unknown"
   ],
@@ -45,6 +74,8 @@
   "status": "implemented",
   "implementation": {
     "path": "src/autotrade_lab/portfolio_strategies.py",
-    "symbol": "pairs_zscore"
+    "symbol": "pairs_zscore",
+    "coverage": "signal_only",
+    "notes": "Produces a spread z-score, not tradable pair weights."
   }
 }

@@ -8,6 +8,17 @@
   ],
   "asset_direction": "long_only",
   "execution_scope": "executable",
+  "applications": [
+    {
+      "market": "kr_etf",
+      "asset_direction": "long_only",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": 0,
+        "maximum": 1
+      }
+    }
+  ],
   "timeframes": [
     "unknown"
   ],
@@ -43,6 +54,8 @@
   "status": "implemented",
   "implementation": {
     "path": "src/autotrade_lab/portfolio_strategies.py",
-    "symbol": "DualMomentum"
+    "symbol": "DualMomentum",
+    "coverage": "portfolio_weights",
+    "notes": "Weight generator; execution remains external."
   }
 }

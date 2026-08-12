@@ -55,6 +55,15 @@ def validate_strategy_record(record: dict[str, Any]) -> dict[str, Any]:
     exposure = record.get("target_exposure")
     if exposure and exposure["minimum"] > exposure["maximum"]:
         _fail("$.target_exposure", "minimum cannot exceed maximum")
+    application_markets = [application["market"] for application in record["applications"]]
+    if len(application_markets) != len(set(application_markets)):
+        _fail("$.applications", "must contain at most one application per market")
+    if set(application_markets) != set(record["markets"]):
+        _fail("$.applications", "markets must exactly match the top-level markets summary")
+    for index, application in enumerate(record["applications"]):
+        exposure = application["target_exposure"]
+        if exposure["minimum"] > exposure["maximum"]:
+            _fail(f"$.applications[{index}].target_exposure", "minimum cannot exceed maximum")
     return record
 
 

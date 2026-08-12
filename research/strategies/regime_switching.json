@@ -8,6 +8,17 @@
   ],
   "asset_direction": "directionless",
   "execution_scope": "executable",
+  "applications": [
+    {
+      "market": "multi_asset",
+      "asset_direction": "directionless",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": 0,
+        "maximum": 1
+      }
+    }
+  ],
   "timeframes": [
     "unknown"
   ],

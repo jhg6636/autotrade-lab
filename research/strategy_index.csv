@@ -1,19 +1,19 @@
 id,canonical_name,family,markets,asset_direction,execution_scope,status
 buy_hold,Buy Hold,benchmark,multi_asset,directionless,executable,implemented
-ma_cross,Ma Cross,trend,kr_etf;crypto_spot;crypto_perp,long_only,executable,implemented
-donchian,Donchian,trend,kr_etf;crypto_spot;crypto_perp,long_only,executable,implemented
-ts_momentum,Ts Momentum,trend,kr_etf;crypto_spot;crypto_perp,long_only,executable,implemented
-cross_sectional_momentum,Cross Sectional Momentum,momentum,kr_equity;crypto_spot;crypto_perp,long_only,executable,implemented
+ma_cross,Ma Cross,trend,kr_etf;crypto_spot;crypto_perp,mixed,executable,implemented
+donchian,Donchian,trend,kr_etf;crypto_spot;crypto_perp,mixed,executable,implemented
+ts_momentum,Ts Momentum,trend,kr_etf;crypto_spot;crypto_perp,mixed,executable,implemented
+cross_sectional_momentum,Cross Sectional Momentum,momentum,kr_equity;crypto_spot;crypto_perp,mixed,executable,implemented
 dual_momentum,Dual Momentum,momentum,kr_etf,long_only,executable,implemented
-rsi_reversion,Rsi Reversion,mean_reversion,kr_equity;crypto_spot;crypto_perp,long_only,executable,implemented
+rsi_reversion,Rsi Reversion,mean_reversion,kr_equity;crypto_spot;crypto_perp,mixed,executable,implemented
 bollinger_reversion,Bollinger Reversion,mean_reversion,multi_asset,directionless,executable,implemented
 overnight_gap_fade,Overnight Gap Fade,mean_reversion,kr_equity,long_only,executable,implemented
-pairs_distance,Pairs Distance,stat_arb,kr_equity;crypto_spot;crypto_perp,long_only,executable,implemented
-cointegration_spread,Cointegration Spread,stat_arb,kr_equity;crypto_spot;crypto_perp,long_only,executable,planned
-pca_residual,Pca Residual,stat_arb,kr_equity;crypto_spot;crypto_perp,long_only,executable,planned
-volatility_breakout,Volatility Breakout,breakout,kr_equity;crypto_spot;crypto_perp,long_only,executable,implemented
+pairs_distance,Pairs Distance,stat_arb,kr_equity;crypto_spot;crypto_perp,mixed,executable,implemented
+cointegration_spread,Cointegration Spread,stat_arb,kr_equity;crypto_spot;crypto_perp,mixed,executable,planned
+pca_residual,Pca Residual,stat_arb,kr_equity;crypto_spot;crypto_perp,mixed,executable,planned
+volatility_breakout,Volatility Breakout,breakout,kr_equity;crypto_spot;crypto_perp,mixed,executable,implemented
 volume_momentum,Volume Momentum,microstructure,multi_asset,directionless,executable,implemented
-vwap_reversion,Vwap Reversion,microstructure,kr_equity;crypto_spot;crypto_perp,long_only,executable,planned
+vwap_reversion,Vwap Reversion,microstructure,kr_equity;crypto_spot;crypto_perp,mixed,executable,planned
 orderbook_imbalance,Orderbook Imbalance,microstructure,crypto_spot;crypto_perp,long_short,executable,planned
 market_making,Market Making,market_making,crypto_spot;crypto_perp,long_short,executable,planned
 listing_reversal,Listing Reversal,event,crypto_spot;crypto_perp,long_short,executable,planned
@@ -28,7 +28,7 @@ cross_exchange_spread,Cross Exchange Spread,arbitrage,crypto_spot;crypto_perp,lo
 low_volatility,Low Volatility,factor,kr_equity,long_only,executable,planned
 value_quality,Value Quality,factor,kr_equity,long_only,executable,planned
 small_cap,Small Cap,factor,kr_equity,long_only,executable,planned
-risk_parity,Risk Parity,allocation,kr_etf;crypto_spot;crypto_perp,long_only,executable,implemented
+risk_parity,Risk Parity,allocation,kr_etf;crypto_spot;crypto_perp,mixed,executable,implemented
 volatility_target,Volatility Target,allocation,multi_asset,directionless,executable,implemented
 trend_reversion_ensemble,Trend Reversion Ensemble,ensemble,multi_asset,directionless,executable,planned
 regime_switching,Regime Switching,ensemble,multi_asset,directionless,executable,planned

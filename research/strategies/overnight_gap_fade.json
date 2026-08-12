@@ -8,6 +8,17 @@
   ],
   "asset_direction": "long_only",
   "execution_scope": "executable",
+  "applications": [
+    {
+      "market": "kr_equity",
+      "asset_direction": "long_only",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": 0,
+        "maximum": 1
+      }
+    }
+  ],
   "timeframes": [
     "unknown"
   ],
@@ -43,6 +54,8 @@
   "status": "implemented",
   "implementation": {
     "path": "src/autotrade_lab/strategies.py",
-    "symbol": "GapFade"
+    "symbol": "GapFade",
+    "coverage": "strategy_target",
+    "notes": "Complete baseline target generator."
   }
 }

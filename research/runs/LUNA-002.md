@@ -5,10 +5,12 @@
 - Started/finished at (KST): 2026-08-12 / 2026-08-12
 - Inputs inspected: `src/autotrade_lab/catalog.py`, LUNA-001 schema and validator, `docs/RESEARCH_PROTOCOL.md`
 - Sources added: none; each migrated record points to the initial local catalog provenance
-- Files changed: 35 JSON strategy records, deterministic CSV index, migration generator, migration tests
-- Commands run: `.venv/bin/python research/migrate_catalog.py`; `.venv/bin/pytest -q`; `.venv/bin/ruff format .`; `.venv/bin/ruff check .`; `git diff --check`
-- Test results: 26 passed; Ruff clean; diff check clean
+- Files changed: 35 JSON strategy records, deterministic CSV index, schema/validator, migration generator, migration tests, research data README
+- Review corrections: protected canonical JSON from accidental migration overwrite; represented mixed-market constraints per market; classified implementation coverage instead of treating every code link as complete; verified implementation paths and symbols
+- Commands run: `.venv/bin/python research/migrate_catalog.py --force`; `.venv/bin/pytest -q`; `.venv/bin/ruff format .`; `.venv/bin/ruff check .`; `git diff --check`
+- Test results: 27 passed; Ruff clean; diff check clean
 - Assumptions: `crypto` maps to both `crypto_spot` and `crypto_perp`; `all` maps to `multi_asset`; unimplemented rules remain explicit unknowns
 - Ambiguities preserved: initial catalog family hypotheses do not define exact entry, exit, sizing, timeframe, or required fields
+- Remaining limitation: implementation coverage is structural metadata, not evidence of profitability or live-trading readiness
 - Blockers: none
 - Recommended next task: LUNA-003 duplicate/variant/related-to mechanics after review

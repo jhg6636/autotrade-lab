@@ -38,14 +38,14 @@ def test_source_type_does_not_change_validation():
 
 def test_korean_stock_negative_direction_is_rejected():
     record = read("original_gap_fade.json")
-    record["asset_direction"] = "long_short"
+    record["applications"][0]["asset_direction"] = "long_short"
     with pytest.raises(StrategyRecordError, match="asset_direction"):
         validate_strategy_record(record)
 
 
 def test_korean_stock_negative_target_exposure_is_rejected():
     record = read("original_gap_fade.json")
-    record["target_exposure"] = {"minimum": -1, "maximum": 1}
+    record["applications"][0]["target_exposure"] = {"minimum": -1, "maximum": 1}
     with pytest.raises(StrategyRecordError, match="target_exposure.minimum"):
         validate_strategy_record(record)
 
@@ -53,8 +53,9 @@ def test_korean_stock_negative_target_exposure_is_rejected():
 def test_korean_short_is_allowed_as_context_only():
     record = read("original_gap_fade.json")
     record["execution_scope"] = "context_only"
-    record["asset_direction"] = "long_short"
-    record["target_exposure"] = {"minimum": -1, "maximum": 1}
+    record["applications"][0]["execution_scope"] = "context_only"
+    record["applications"][0]["asset_direction"] = "long_short"
+    record["applications"][0]["target_exposure"] = {"minimum": -1, "maximum": 1}
     assert validate_strategy_record(record)["execution_scope"] == "context_only"
 
 
