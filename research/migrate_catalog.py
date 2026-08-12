@@ -8,12 +8,12 @@ of being invented. This is a one-time bootstrap tool; JSON records become canoni
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 from pathlib import Path
 
 from autotrade_lab.catalog import CATALOG
 from autotrade_lab.research.validation import validate_strategy_record
+from research.build_strategy_index import build_index
 
 ROOT = Path(__file__).parents[1]
 DEFAULT_OUTPUT = ROOT / "research" / "strategies"
@@ -218,23 +218,7 @@ def generate(
         (output_dir / f"{record['id']}.json").write_text(
             json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
-    rows = [
-        {
-            "id": record["id"],
-            "canonical_name": record["canonical_name"],
-            "family": record["family"],
-            "markets": ";".join(record["markets"]),
-            "asset_direction": record["asset_direction"],
-            "execution_scope": record["execution_scope"],
-            "status": record["status"],
-        }
-        for record in records
-    ]
-    index_path.parent.mkdir(parents=True, exist_ok=True)
-    with index_path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(rows)
+    build_index(output_dir, index_path)
     return len(records)
 
 

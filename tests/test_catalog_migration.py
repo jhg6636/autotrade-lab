@@ -4,8 +4,11 @@ import importlib.util
 import json
 from pathlib import Path
 
+import pytest
+
 from autotrade_lab.catalog import CATALOG
 from autotrade_lab.research.validation import load_strategy_record
+from research.build_strategy_index import build_index
 
 _MODULE_PATH = Path(__file__).parents[1] / "research" / "migrate_catalog.py"
 _SPEC = importlib.util.spec_from_file_location("catalog_migration", _MODULE_PATH)
@@ -62,9 +65,41 @@ def test_implemented_entries_link_to_code(tmp_path):
 
 
 def test_migration_refuses_to_overwrite_canonical_records(tmp_path):
-    import pytest
-
     output = tmp_path / "strategies"
     generate(output, tmp_path / "index.csv")
     with pytest.raises(FileExistsError, match="canonical strategy records"):
         generate(output, tmp_path / "index.csv")
+
+
+CANONICAL = Path(__file__).parents[1] / "research" / "strategies"
+CANONICAL_INDEX = Path(__file__).parents[1] / "research" / "strategy_index.csv"
+
+
+def test_committed_canonical_records_and_index_are_consistent(tmp_path):
+    paths = sorted(CANONICAL.glob("*.json"))
+    assert paths
+    records = [load_strategy_record(path) for path in paths]
+    assert len({record["id"] for record in records}) == len(records)
+    assert len({record["canonical_name"] for record in records}) == len(records)
+    assert {path.stem for path in paths} == {record["id"] for record in records}
+
+    regenerated = tmp_path / "strategy_index.csv"
+    assert build_index(CANONICAL, regenerated) == len(records)
+    assert regenerated.read_bytes() == CANONICAL_INDEX.read_bytes()
+    for record in records:
+        implementation = record.get("implementation")
+        if not implementation:
+            continue
+        path = Path(__file__).parents[1] / implementation["path"]
+        assert path.is_file(), record["id"]
+        module_name = implementation["path"].removeprefix("src/").removesuffix(".py").replace("/", ".")
+        assert hasattr(importlib.import_module(module_name), implementation["symbol"]), record["id"]
+
+
+def test_index_builder_rejects_filename_id_mismatch(tmp_path):
+    output = tmp_path / "strategies"
+    output.mkdir()
+    source = next(CANONICAL.glob("*.json"))
+    (output / "wrong_name.json").write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+    with pytest.raises(ValueError, match="filename stem"):
+        build_index(output, tmp_path / "index.csv")

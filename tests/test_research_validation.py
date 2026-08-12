@@ -53,10 +53,25 @@ def test_korean_stock_negative_target_exposure_is_rejected():
 def test_korean_short_is_allowed_as_context_only():
     record = read("original_gap_fade.json")
     record["execution_scope"] = "context_only"
+    record["asset_direction"] = "long_short"
     record["applications"][0]["execution_scope"] = "context_only"
     record["applications"][0]["asset_direction"] = "long_short"
     record["applications"][0]["target_exposure"] = {"minimum": -1, "maximum": 1}
     assert validate_strategy_record(record)["execution_scope"] == "context_only"
+
+
+def test_summary_direction_must_match_applications():
+    record = read("academic_momentum.json")
+    record["asset_direction"] = "directionless"
+    with pytest.raises(StrategyRecordError, match=r"\$\.asset_direction"):
+        validate_strategy_record(record)
+
+
+def test_summary_scope_must_match_applications():
+    record = read("academic_momentum.json")
+    record["execution_scope"] = "context_only"
+    with pytest.raises(StrategyRecordError, match=r"\$\.execution_scope"):
+        validate_strategy_record(record)
 
 
 def test_invalid_calendar_date_is_rejected():

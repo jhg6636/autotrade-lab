@@ -64,6 +64,20 @@ def validate_strategy_record(record: dict[str, Any]) -> dict[str, Any]:
         exposure = application["target_exposure"]
         if exposure["minimum"] > exposure["maximum"]:
             _fail(f"$.applications[{index}].target_exposure", "minimum cannot exceed maximum")
+    directions = {application["asset_direction"] for application in record["applications"]}
+    expected_direction = directions.pop() if len(directions) == 1 else "mixed"
+    if record["asset_direction"] != expected_direction:
+        _fail(
+            "$.asset_direction",
+            f"must summarize applications as {expected_direction!r}",
+        )
+    scopes = {application["execution_scope"] for application in record["applications"]}
+    expected_scope = "executable" if "executable" in scopes else "context_only"
+    if record["execution_scope"] != expected_scope:
+        _fail(
+            "$.execution_scope",
+            f"must summarize applications as {expected_scope!r}",
+        )
     return record
 
 
