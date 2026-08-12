@@ -1,9 +1,10 @@
 # Strategy research catalog
 
-The executable registry is `autotrade_lab.catalog.CATALOG`. A row marked **implemented**
-means only that a reproducible baseline signal exists. It does not mean the strategy is
-profitable. Every candidate must pass walk-forward and paper-trading gates after fees,
-slippage, taxes, funding, borrow, latency, and failed fills.
+The executable registry is `autotrade_lab.catalog.CATALOG`. Before data collection, all
+candidate methods have equal hypothesis standing. Academic publication, citations, popularity,
+or an anonymous origin neither promotes nor demotes an idea. A row marked **implemented**
+means only that a reproducible baseline signal exists; other statuses describe code progress,
+not evidentiary rank. Every candidate later faces the same execution-aware tests.
 
 ## Families covered
 
@@ -35,6 +36,10 @@ slippage, taxes, funding, borrow, latency, and failed fills.
   collateral, liquidation, caps, and funding timing must be simulated.
 - Short-horizon OHLCV/ML signals often disappear after costs. Failed experiments remain in
   the registry to prevent repeated data mining.
+
+These observations are context, not a pre-backtest ranking. A community heuristic and a
+peer-reviewed rule enter the experiment queue on equal terms when both can be specified without
+ambiguity. Provenance remains attached so results can later be audited and independently traced.
 
 ## Promotion gate
 

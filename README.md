@@ -16,9 +16,10 @@ and live execution so a promising backtest cannot accidentally become a real ord
 - Fail-closed live-trading guard and portfolio-level risk checks
 - KRX equities/ETFs through Toss Securities and crypto spot/perpetual instrument models
 
-The catalog intentionally contains `planned` and `research_only` candidates. “Apply every
-method” means every credible method is tracked and can be compared under the same protocol;
-it does not mean deploying unvalidated strategies with real money.
+Before historical data is collected, every idea is treated as an equal `hypothesis` regardless
+of whether it came from a journal, a trader, a community post, source code, or a video. Source
+type is provenance metadata, not a quality score. Catalog status describes implementation
+progress only; promotion happens later through the same data and execution-aware tests.
 
 ## Quick start
 
@@ -65,4 +66,5 @@ tests/
 - Paper trade before real capital. Live adapters require two explicit environment settings;
   broker credentials belong only in local environment variables or a secret manager.
 
-See [the strategy catalog](docs/RESEARCH_CATALOG.md) for the roadmap and evidence.
+See [the research protocol](docs/RESEARCH_PROTOCOL.md) and
+[strategy catalog](docs/RESEARCH_CATALOG.md) for the roadmap.

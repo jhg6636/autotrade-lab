@@ -1,6 +1,7 @@
 # Sources
 
-Sources were checked on 2026-08-12. They are starting points, not claims of future profit.
+Sources were checked on 2026-08-12. This file records provenance without ranking source types.
+Nothing here is treated as evidence of future profit before common-data validation.
 
 ## Broker and exchange APIs
 
