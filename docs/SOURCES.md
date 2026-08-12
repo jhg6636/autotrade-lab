@@ -4,8 +4,6 @@ Sources were checked on 2026-08-12. They are starting points, not claims of futu
 
 ## Broker and exchange APIs
 
-- [KIS Developers](https://apiportal.koreainvestment.com/)
-- [KIS official Open Trading API examples](https://github.com/koreainvestment/open-trading-api)
 - [Toss Securities Open API](https://home.tossinvest.com/ko/open-api)
 - [Toss Securities developer guide](https://developers.tossinvest.com/docs)
 - [Upbit rate limits](https://global-docs.upbit.com/reference/rate-limits)

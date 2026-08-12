@@ -12,9 +12,9 @@ and live execution so a promising backtest cannot accidentally become a real ord
 - 35 strategy hypotheses catalogued across 13 families
 - 9 executable single-instrument and 5 portfolio/pairs/carry baseline strategies
 - A look-ahead-safe vector backtester with fees, slippage, turnover, drawdown, and Sharpe
-- Common broker boundary for KIS, Toss Securities, Binance/Upbit-compatible transports
+- Common broker boundary for Toss Securities and Binance/Upbit-compatible transports
 - Fail-closed live-trading guard and portfolio-level risk checks
-- KRX equities/ETFs and crypto spot/perpetual instrument model
+- KRX equities/ETFs through Toss Securities and crypto spot/perpetual instrument models
 
 The catalog intentionally contains `planned` and `research_only` candidates. “Apply every
 method” means every credible method is tracked and can be compared under the same protocol;
