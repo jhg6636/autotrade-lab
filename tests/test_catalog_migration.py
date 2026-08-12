@@ -8,7 +8,6 @@ import pytest
 
 from autotrade_lab.catalog import CATALOG
 from autotrade_lab.research.validation import load_strategy_record
-from research.build_strategy_index import build_index
 
 _MODULE_PATH = Path(__file__).parents[1] / "research" / "migrate_catalog.py"
 _SPEC = importlib.util.spec_from_file_location("catalog_migration", _MODULE_PATH)
@@ -16,6 +15,7 @@ assert _SPEC and _SPEC.loader
 _MODULE = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(_MODULE)
 generate = _MODULE.generate
+build_index = _MODULE.build_index
 
 
 def test_catalog_migration_is_complete_and_valid(tmp_path):

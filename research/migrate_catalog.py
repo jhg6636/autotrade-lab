@@ -8,16 +8,24 @@ of being invented. This is a one-time bootstrap tool; JSON records become canoni
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 from pathlib import Path
 
 from autotrade_lab.catalog import CATALOG
 from autotrade_lab.research.validation import validate_strategy_record
-from research.build_strategy_index import build_index
 
 ROOT = Path(__file__).parents[1]
 DEFAULT_OUTPUT = ROOT / "research" / "strategies"
 DEFAULT_INDEX = ROOT / "research" / "strategy_index.csv"
+
+_INDEX_SPEC = importlib.util.spec_from_file_location(
+    "strategy_index_builder", Path(__file__).with_name("build_strategy_index.py")
+)
+assert _INDEX_SPEC and _INDEX_SPEC.loader
+_INDEX_MODULE = importlib.util.module_from_spec(_INDEX_SPEC)
+_INDEX_SPEC.loader.exec_module(_INDEX_MODULE)
+build_index = _INDEX_MODULE.build_index
 IMPLEMENTATIONS = {
     "buy_hold": (
         "src/autotrade_lab/strategies.py",
