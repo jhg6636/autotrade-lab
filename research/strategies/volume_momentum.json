@@ -1,0 +1,61 @@
+{
+  "id": "volume_momentum",
+  "canonical_name": "Volume Momentum",
+  "aliases": [],
+  "family": "microstructure",
+  "markets": [
+    "multi_asset"
+  ],
+  "asset_direction": "directionless",
+  "execution_scope": "executable",
+  "applications": [
+    {
+      "market": "multi_asset",
+      "asset_direction": "directionless",
+      "execution_scope": "executable",
+      "target_exposure": {
+        "minimum": 0,
+        "maximum": 1
+      }
+    }
+  ],
+  "timeframes": [
+    "unknown"
+  ],
+  "sources": [
+    {
+      "source_type": "original_observation",
+      "title": "Initial autotrade-lab strategy catalog",
+      "author_or_handle": "autotrade-lab",
+      "url": "local://catalog/volume_momentum",
+      "published_at": null,
+      "accessed_at": "2026-08-12",
+      "language": "en",
+      "claim_summary": "Volume confirms informed moves",
+      "verbatim_excerpt": null
+    }
+  ],
+  "hypothesis": "Volume confirms informed moves",
+  "entry_rule": "unknown: recover and register an exact rule before backtesting",
+  "exit_rule": "unknown: recover and register an exact rule before backtesting",
+  "sizing_rule": "unknown: define exposure, leverage, and portfolio limits before backtesting",
+  "required_data": [
+    "unknown: determine in LUNA-202 data audit"
+  ],
+  "execution_assumptions": [
+    "no live order",
+    "fees and slippage must be specified before evaluation"
+  ],
+  "variants": [],
+  "ambiguities": [
+    "Initial catalog records family-level hypotheses only.",
+    "volume anomaly"
+  ],
+  "status": "implemented",
+  "implementation": {
+    "path": "src/autotrade_lab/strategies.py",
+    "symbol": "VolumeMomentum",
+    "coverage": "strategy_target",
+    "notes": "Complete baseline target generator."
+  }
+}
