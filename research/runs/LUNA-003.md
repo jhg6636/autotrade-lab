@@ -1,7 +1,7 @@
 # LUNA-003 run report
 
 - Starting commit: `2b3840b` (local `main`, matching `origin/main` at task start)
-- Finished commit: `ad5c696`
+- Finished commit: implementation commit containing this report
 - Started/finished at (KST): 2026-08-13 / 2026-08-13
 - Inputs inspected: `README.md`, `docs/RESEARCH_PROTOCOL.md`, `docs/LUNA_EXECUTION_PLAN.md`, LUNA-001 schema and fixtures
 - Sources added: none; no new strategy research or source collection performed

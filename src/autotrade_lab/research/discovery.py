@@ -18,6 +18,8 @@ FINGERPRINT_FIELDS = (
     "entry_rule",
     "exit_rule",
     "sizing_rule",
+    "execution_assumptions",
+    "application_execution_scope",
 )
 
 
@@ -40,6 +42,10 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
         "entry_rule": _normalize(record.get("entry_rule", "")),
         "exit_rule": _normalize(record.get("exit_rule", "")),
         "sizing_rule": _normalize(record.get("sizing_rule", "")),
+        "execution_assumptions": _normalize(record.get("execution_assumptions", [])),
+        "application_execution_scope": _normalize(
+            [application.get("execution_scope") for application in record.get("applications", [])]
+        ),
     }
 
 
@@ -76,7 +82,9 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
             "relation": "variant_of",
             "action": "preserve_variant",
             "reasons": _field_reasons(
-                left_fp, right_fp, ("entry_rule", "exit_rule", "sizing_rule")
+                left_fp,
+                right_fp,
+                tuple(field for field in FINGERPRINT_FIELDS if field not in stable),
             ),
         }
     if set(left.get("markets", [])) & set(right.get("markets", [])):

@@ -34,6 +34,19 @@ def test_parameter_change_is_preserved_as_variant():
     assert suggestion["reasons"] == [{"field": "sizing_rule", "reason": "normalized value differs"}]
 
 
+def test_execution_change_is_preserved_as_variant():
+    left = record("academic_momentum.json")
+    right = copy.deepcopy(left)
+    right["id"] = "academic_momentum_execution_variant"
+    right["execution_assumptions"] = ["paper execution only"]
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "variant_of"
+    assert suggestion["action"] == "preserve_variant"
+    assert suggestion["reasons"] == [
+        {"field": "execution_assumptions", "reason": "normalized value differs"}
+    ]
+
+
 def test_merely_related_strategy_is_not_mergeable():
     left = record("academic_momentum.json")
     right = record("community_rsi.json")
