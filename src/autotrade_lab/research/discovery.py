@@ -111,8 +111,15 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
             )
 
         entry_relation, exit_relation = operand_relation(entry), operand_relation(exit_)
+        entry_side = (
+            "long"
+            if re.search(r"enter\s+long|go\s+long", entry)
+            else "short"
+            if re.search(r"enter\s+short|go\s+short", entry)
+            else "unspecified"
+        )
         return (
-            f"moving_average_crossover:{entry_polarity}:{exit_polarity}:{entry_relation}:{exit_relation}"
+            f"moving_average_crossover:{entry_polarity}:{exit_polarity}:{entry_relation}:{exit_relation}:{entry_side}"
             if entry_polarity and exit_polarity and entry_relation and exit_relation
             else None
         )
@@ -132,8 +139,15 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
             if re.search(r"oversold|below", exit_)
             else None
         )
+        entry_side = (
+            "long"
+            if re.search(r"enter\s+long|go\s+long", entry)
+            else "short"
+            if re.search(r"enter\s+short|go\s+short", entry)
+            else "unspecified"
+        )
         return (
-            f"rsi_threshold:{entry_polarity}:{exit_polarity}"
+            f"rsi_threshold:{entry_polarity}:{exit_polarity}:{entry_side}"
             if entry_polarity and exit_polarity
             else None
         )
