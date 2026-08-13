@@ -44,7 +44,10 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
         "sizing_rule": _normalize(record.get("sizing_rule", "")),
         "execution_assumptions": _normalize(record.get("execution_assumptions", [])),
         "application_execution_scope": _normalize(
-            [application.get("execution_scope") for application in record.get("applications", [])]
+            sorted(
+                (application.get("market"), application.get("execution_scope"))
+                for application in record.get("applications", [])
+            )
         ),
     }
 

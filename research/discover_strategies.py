@@ -8,7 +8,7 @@ from pathlib import Path
 from autotrade_lab.research.discovery import run_dry_run
 
 ROOT = Path(__file__).parents[1]
-DEFAULT_INPUT = ROOT / "research" / "fixtures" / "strategies"
+DEFAULT_INPUT = ROOT / "research" / "strategies"
 DEFAULT_REPORT = ROOT / "research" / "runs" / "LUNA-003-dry-run.json"
 
 

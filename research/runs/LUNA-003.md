@@ -1,13 +1,13 @@
 # LUNA-003 run report
 
-- Starting commit: `2b3840b` (local `main`, matching `origin/main` at task start)
+- Starting commit: `d901ed1` (`origin/main` after LUNA-002 merge)
 - Finished commit: implementation commit containing this report
 - Started/finished at (KST): 2026-08-13 / 2026-08-13
 - Inputs inspected: `README.md`, `docs/RESEARCH_PROTOCOL.md`, `docs/LUNA_EXECUTION_PLAN.md`, LUNA-001 schema and fixtures
 - Sources added: none; no new strategy research or source collection performed
 - Files changed: normalized discovery fingerprint/comparison module, dry-run CLI/report, tests
 - Commands run: `.venv/bin/pytest -q`; `.venv/bin/ruff check .`; `.venv/bin/ruff format --check .`; `git diff --check`; `.venv/bin/python research/discover_strategies.py`
-- Test results: 27 passed; Ruff check clean; Ruff format check clean; diff check clean; no `research/strategies/*.json` changed
+- Test results: 38 passed; Ruff check clean; Ruff format check clean; diff check clean; dry-run read 35 canonical records; no `research/strategies/*.json` changed
 - Assumptions: `signal_inputs` uses an optional record field and falls back to `required_data`; identical normalized fingerprints are duplicate candidates; same market/timeframe/signal inputs with rule differences are variants; overlapping markets with other differences are merely related
 - Ambiguities preserved: semantic equivalence beyond normalized text requires review; no automatic merge or source mutation is attempted
 - Blockers: remote fetch/push and Draft PR creation may require GitHub authentication/network access

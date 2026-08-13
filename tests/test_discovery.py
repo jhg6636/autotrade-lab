@@ -47,6 +47,26 @@ def test_execution_change_is_preserved_as_variant():
     ]
 
 
+def test_market_execution_scope_swap_is_preserved_as_variant():
+    left = record("academic_momentum.json")
+    left["markets"] = ["crypto_spot", "crypto_perp"]
+    left["applications"].append(
+        {
+            "market": "crypto_perp",
+            "asset_direction": "long_short",
+            "execution_scope": "context_only",
+            "target_exposure": {"minimum": -1, "maximum": 1},
+        }
+    )
+    right = copy.deepcopy(left)
+    right["id"] = "academic_momentum_scope_swap"
+    right["applications"][0]["execution_scope"] = "context_only"
+    right["applications"][1]["execution_scope"] = "executable"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "variant_of"
+    assert {reason["field"] for reason in suggestion["reasons"]} == {"application_execution_scope"}
+
+
 def test_merely_related_strategy_is_not_mergeable():
     left = record("academic_momentum.json")
     right = record("community_rsi.json")
