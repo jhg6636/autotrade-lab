@@ -1,0 +1,11 @@
+{
+  "mode": "dry_run",
+  "input_dir": "/Users/jhg/autotrade-lab/research/fixtures/strategies",
+  "record_ids": [
+    "academic_momentum",
+    "community_rsi",
+    "original_gap_fade"
+  ],
+  "suggestions": [],
+  "automatic_merge": false
+}
