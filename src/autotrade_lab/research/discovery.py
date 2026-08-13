@@ -82,6 +82,10 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
     """Classify one pair, returning a suggestion with field-level reasons when related."""
     left_fp, right_fp = fingerprint(left), fingerprint(right)
     ids = (left["id"], right["id"])
+    shared_markets = bool(set(left.get("markets", [])) & set(right.get("markets", [])))
+    shared_family = bool(left.get("family")) and left.get("family") == right.get("family")
+    if not shared_markets and not shared_family:
+        return None
     incomplete_fields = [
         field
         for field in MECHANISM_FIELDS
@@ -113,7 +117,13 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
             ],
         }
     stable = ("markets", "timeframes", "signal_inputs")
-    if all(left_fp[field] == right_fp[field] for field in stable):
+    same_mechanism = (
+        shared_family
+        and all(left_fp[field] == right_fp[field] for field in stable)
+        and left_fp["entry_rule"] == right_fp["entry_rule"]
+        and left_fp["exit_rule"] == right_fp["exit_rule"]
+    )
+    if same_mechanism:
         return {
             "left_id": ids[0],
             "right_id": ids[1],
@@ -125,7 +135,7 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
                 tuple(field for field in FINGERPRINT_FIELDS if field not in stable),
             ),
         }
-    if set(left.get("markets", [])) & set(right.get("markets", [])):
+    if shared_markets or shared_family:
         return {
             "left_id": ids[0],
             "right_id": ids[1],

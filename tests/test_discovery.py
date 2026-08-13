@@ -59,6 +59,24 @@ def test_execution_change_is_preserved_as_variant():
     ]
 
 
+def test_different_entry_exit_mechanism_is_not_variant():
+    left = record("academic_momentum.json")
+    left["required_data"] = ["close", "volume"]
+    left["entry_rule"] = "enter on moving average crossover"
+    left["exit_rule"] = "exit on moving average crossover"
+    right = copy.deepcopy(left)
+    right["id"] = "academic_rsi_mechanism"
+    right["entry_rule"] = "enter when RSI crosses threshold"
+    right["exit_rule"] = "exit when RSI crosses threshold"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "related_to"
+    assert suggestion["relation"] != "variant_of"
+    assert {reason["field"] for reason in suggestion["reasons"]} >= {
+        "entry_rule",
+        "exit_rule",
+    }
+
+
 def test_market_execution_scope_swap_is_preserved_as_variant():
     left = record("academic_momentum.json")
     left["required_data"] = ["close", "volume"]
@@ -97,6 +115,13 @@ def test_unknown_placeholders_are_insufficient_not_duplicates():
         "exit_rule",
         "sizing_rule",
     }
+
+
+def test_disjoint_placeholder_records_are_not_candidates():
+    canonical = Path(__file__).parents[1] / "research" / "strategies"
+    left = load_strategy_record(canonical / "cash_and_carry.json")
+    right = load_strategy_record(canonical / "buy_hold.json")
+    assert compare_records(left, right) is None
 
 
 def test_merely_related_strategy_is_not_mergeable():
