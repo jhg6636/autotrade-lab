@@ -77,6 +77,39 @@ def test_different_entry_exit_mechanism_is_not_variant():
     }
 
 
+def test_sma_parameter_change_is_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "trend"
+    left["required_data"] = ["close"]
+    left["entry_rule"] = "enter on SMA(20) crossing above SMA(50)"
+    left["exit_rule"] = "exit on SMA(20) crossing below SMA(50)"
+    right = copy.deepcopy(left)
+    right["id"] = "sma_50_200_variant"
+    right["entry_rule"] = "enter on SMA(50) crossing above SMA(200)"
+    right["exit_rule"] = "exit on SMA(50) crossing below SMA(200)"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "variant_of"
+    assert {reason["field"] for reason in suggestion["reasons"]} >= {
+        "entry_rule",
+        "exit_rule",
+    }
+
+
+def test_sma_vs_rsi_mechanism_is_not_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "trend"
+    left["required_data"] = ["close"]
+    left["entry_rule"] = "enter on SMA(20) crossing above SMA(50)"
+    left["exit_rule"] = "exit on SMA(20) crossing below SMA(50)"
+    right = copy.deepcopy(left)
+    right["id"] = "rsi_threshold_mechanism"
+    right["entry_rule"] = "enter when RSI crosses above 70 threshold"
+    right["exit_rule"] = "exit when RSI crosses below 30 threshold"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "related_to"
+    assert suggestion["relation"] != "variant_of"
+
+
 def test_market_execution_scope_swap_is_preserved_as_variant():
     left = record("academic_momentum.json")
     left["required_data"] = ["close", "volume"]

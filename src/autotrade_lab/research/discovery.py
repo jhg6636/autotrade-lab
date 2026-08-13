@@ -20,6 +20,7 @@ FINGERPRINT_FIELDS = (
     "sizing_rule",
     "execution_assumptions",
     "application_execution_scope",
+    "mechanism_identity",
 )
 MECHANISM_FIELDS = (
     "signal_inputs",
@@ -58,6 +59,7 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
         "entry_rule": _normalize(record.get("entry_rule", "")),
         "exit_rule": _normalize(record.get("exit_rule", "")),
         "sizing_rule": _normalize(record.get("sizing_rule", "")),
+        "mechanism_identity": _mechanism_identity(record),
         "execution_assumptions": _normalize(record.get("execution_assumptions", [])),
         "application_execution_scope": _normalize(
             sorted(
@@ -66,6 +68,22 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
             )
         ),
     }
+
+
+def _mechanism_identity(record: dict[str, Any]) -> str | None:
+    """Recognize a small explicit template vocabulary; return None when unrecognized."""
+    text = " ".join(_normalize(record.get(field, "")) for field in ("entry_rule", "exit_rule"))
+    if re.search(r"\b(?:sma|moving average|moving-average)\b", text) and re.search(
+        r"\bcross(?:es|over|ed|ing)?\b|crossover", text
+    ):
+        return "moving_average_crossover"
+    if re.search(r"\brsi\b", text) and re.search(r"threshold|cross", text):
+        return "rsi_threshold"
+    if "bollinger" in text and re.search(r"band|mean reversion|reversion", text):
+        return "bollinger_reversion"
+    if "donchian" in text and re.search(r"breakout|channel", text):
+        return "donchian_breakout"
+    return None
 
 
 def _field_reasons(
@@ -120,8 +138,14 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
     same_mechanism = (
         shared_family
         and all(left_fp[field] == right_fp[field] for field in stable)
-        and left_fp["entry_rule"] == right_fp["entry_rule"]
-        and left_fp["exit_rule"] == right_fp["exit_rule"]
+        and (
+            left_fp["entry_rule"] == right_fp["entry_rule"]
+            and left_fp["exit_rule"] == right_fp["exit_rule"]
+            or (
+                left_fp["mechanism_identity"] is not None
+                and left_fp["mechanism_identity"] == right_fp["mechanism_identity"]
+            )
+        )
     )
     if same_mechanism:
         return {
