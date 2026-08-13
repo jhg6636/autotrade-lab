@@ -2,7 +2,7 @@ import copy
 import json
 from pathlib import Path
 
-from autotrade_lab.research.discovery import compare_records, discover, fingerprint
+from autotrade_lab.research.discovery import compare_records, discover, fingerprint, run_dry_run
 from autotrade_lab.research.validation import load_strategy_record
 
 FIXTURES = Path(__file__).parents[1] / "research" / "fixtures" / "strategies"
@@ -14,6 +14,10 @@ def record(name: str) -> dict:
 
 def test_exact_repost_is_duplicate_source_candidate():
     left = record("academic_momentum.json")
+    left["required_data"] = ["close", "volume"]
+    left["entry_rule"] = "enter when momentum exceeds threshold"
+    left["exit_rule"] = "exit when momentum reverses"
+    left["sizing_rule"] = "equal risk"
     right = copy.deepcopy(left)
     right["id"] = "academic_momentum_repost"
     right["sources"][0]["title"] = "Reposted claim"
@@ -25,9 +29,13 @@ def test_exact_repost_is_duplicate_source_candidate():
 
 def test_parameter_change_is_preserved_as_variant():
     left = record("academic_momentum.json")
+    left["required_data"] = ["close", "volume"]
+    left["entry_rule"] = "enter when momentum exceeds threshold"
+    left["exit_rule"] = "exit when momentum reverses"
+    left["sizing_rule"] = "equal risk"
     right = copy.deepcopy(left)
     right["id"] = "academic_momentum_variant"
-    right["sizing_rule"] = "equal risk"
+    right["sizing_rule"] = "volatility target"
     suggestion = compare_records(left, right)
     assert suggestion["relation"] == "variant_of"
     assert suggestion["action"] == "preserve_variant"
@@ -36,6 +44,10 @@ def test_parameter_change_is_preserved_as_variant():
 
 def test_execution_change_is_preserved_as_variant():
     left = record("academic_momentum.json")
+    left["required_data"] = ["close", "volume"]
+    left["entry_rule"] = "enter when momentum exceeds threshold"
+    left["exit_rule"] = "exit when momentum reverses"
+    left["sizing_rule"] = "equal risk"
     right = copy.deepcopy(left)
     right["id"] = "academic_momentum_execution_variant"
     right["execution_assumptions"] = ["paper execution only"]
@@ -49,6 +61,10 @@ def test_execution_change_is_preserved_as_variant():
 
 def test_market_execution_scope_swap_is_preserved_as_variant():
     left = record("academic_momentum.json")
+    left["required_data"] = ["close", "volume"]
+    left["entry_rule"] = "enter when momentum exceeds threshold"
+    left["exit_rule"] = "exit when momentum reverses"
+    left["sizing_rule"] = "equal risk"
     left["markets"] = ["crypto_spot", "crypto_perp"]
     left["applications"].append(
         {
@@ -65,6 +81,22 @@ def test_market_execution_scope_swap_is_preserved_as_variant():
     suggestion = compare_records(left, right)
     assert suggestion["relation"] == "variant_of"
     assert {reason["field"] for reason in suggestion["reasons"]} == {"application_execution_scope"}
+
+
+def test_unknown_placeholders_are_insufficient_not_duplicates():
+    canonical = Path(__file__).parents[1] / "research" / "strategies"
+    left = load_strategy_record(canonical / "cash_and_carry.json")
+    right = copy.deepcopy(left)
+    right["id"] = "cash_and_carry_unknown_repost"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "insufficient_information"
+    assert suggestion["action"] == "no_merge"
+    assert {reason["field"] for reason in suggestion["reasons"]} == {
+        "signal_inputs",
+        "entry_rule",
+        "exit_rule",
+        "sizing_rule",
+    }
 
 
 def test_merely_related_strategy_is_not_mergeable():
@@ -87,6 +119,13 @@ def test_dry_run_report_does_not_modify_records(tmp_path):
     assert before == {
         path.name: path.read_text(encoding="utf-8") for path in FIXTURES.glob("*.json")
     }
+
+
+def test_canonical_report_uses_repo_relative_input_dir():
+    canonical = Path(__file__).parents[1] / "research" / "strategies"
+    report = run_dry_run(canonical)
+    assert report["input_dir"] == "research/strategies"
+    assert len(report["record_ids"]) == 35
 
 
 def test_discovery_order_is_deterministic():

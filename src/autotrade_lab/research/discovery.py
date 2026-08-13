@@ -21,6 +21,12 @@ FINGERPRINT_FIELDS = (
     "execution_assumptions",
     "application_execution_scope",
 )
+MECHANISM_FIELDS = (
+    "signal_inputs",
+    "entry_rule",
+    "exit_rule",
+    "sizing_rule",
+)
 
 
 def _normalize(value: Any) -> Any:
@@ -31,6 +37,16 @@ def _normalize(value: Any) -> Any:
     if isinstance(value, dict):
         return tuple((key, _normalize(value[key])) for key in sorted(value))
     return value
+
+
+def _contains_placeholder(value: Any) -> bool:
+    if isinstance(value, str):
+        return value == "unknown" or value.startswith("unknown:")
+    if isinstance(value, (list, tuple)):
+        return any(_contains_placeholder(item) for item in value)
+    if isinstance(value, dict):
+        return any(_contains_placeholder(item) for item in value.values())
+    return False
 
 
 def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
@@ -66,6 +82,25 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
     """Classify one pair, returning a suggestion with field-level reasons when related."""
     left_fp, right_fp = fingerprint(left), fingerprint(right)
     ids = (left["id"], right["id"])
+    incomplete_fields = [
+        field
+        for field in MECHANISM_FIELDS
+        if _contains_placeholder(left_fp[field]) or _contains_placeholder(right_fp[field])
+    ]
+    if incomplete_fields:
+        return {
+            "left_id": ids[0],
+            "right_id": ids[1],
+            "relation": "insufficient_information",
+            "action": "no_merge",
+            "reasons": [
+                {
+                    "field": field,
+                    "reason": "unknown or placeholder value prevents reliable comparison",
+                }
+                for field in incomplete_fields
+            ],
+        }
     if left_fp == right_fp:
         return {
             "left_id": ids[0],
@@ -118,7 +153,9 @@ def run_dry_run(input_dir: str | Path, report_path: str | Path | None = None) ->
     records = [load_strategy_record(path) for path in sorted(directory.glob("*.json"))]
     report = {
         "mode": "dry_run",
-        "input_dir": str(directory),
+        "input_dir": "research/strategies"
+        if directory == Path(__file__).parents[3] / "research" / "strategies"
+        else str(directory),
         "record_ids": [record["id"] for record in records],
         "suggestions": discover(records),
         "automatic_merge": False,
