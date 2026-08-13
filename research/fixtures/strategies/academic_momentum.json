@@ -6,6 +6,7 @@
   "markets": ["crypto_spot"],
   "asset_direction": "long_short",
   "execution_scope": "executable",
+  "applications": [{"market": "crypto_spot", "asset_direction": "long_short", "execution_scope": "executable", "target_exposure": {"minimum": -1, "maximum": 1}}],
   "timeframes": ["daily"],
   "sources": [
     {

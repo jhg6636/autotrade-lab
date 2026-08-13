@@ -1,1 +1,1 @@
-"""Research maintenance scripts and canonical source records."""
+"""Canonical strategy research data and maintenance tools."""
