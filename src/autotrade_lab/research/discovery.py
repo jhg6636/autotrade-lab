@@ -20,6 +20,8 @@ FINGERPRINT_FIELDS = (
     "sizing_rule",
     "execution_assumptions",
     "application_execution_scope",
+    "asset_direction",
+    "target_exposure_profile",
     "mechanism_identity",
 )
 MECHANISM_FIELDS = (
@@ -67,6 +69,20 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
                 for application in record.get("applications", [])
             )
         ),
+        "asset_direction": _normalize(record.get("asset_direction")),
+        "target_exposure_profile": _normalize(
+            {
+                "top_level": record.get("target_exposure"),
+                "applications": [
+                    {
+                        "market": application.get("market"),
+                        "asset_direction": application.get("asset_direction"),
+                        "target_exposure": application.get("target_exposure"),
+                    }
+                    for application in record.get("applications", [])
+                ],
+            }
+        ),
     }
 
 
@@ -79,9 +95,25 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
         entry, exit_ = record.get("entry_rule", "").lower(), record.get("exit_rule", "").lower()
         entry_polarity = "above" if "above" in entry else "below" if "below" in entry else None
         exit_polarity = "above" if "above" in exit_ else "below" if "below" in exit_ else None
+
+        def operand_relation(rule: str) -> str | None:
+            operands = [
+                int(value) for value in re.findall(r"(?:sma|moving average)[^0-9]*(\d+)", rule)
+            ]
+            if len(operands) < 2:
+                return None
+            return (
+                "first_shorter"
+                if operands[0] < operands[1]
+                else "first_longer"
+                if operands[0] > operands[1]
+                else "equal"
+            )
+
+        entry_relation, exit_relation = operand_relation(entry), operand_relation(exit_)
         return (
-            f"moving_average_crossover:{entry_polarity}:{exit_polarity}"
-            if entry_polarity and exit_polarity
+            f"moving_average_crossover:{entry_polarity}:{exit_polarity}:{entry_relation}:{exit_relation}"
+            if entry_polarity and exit_polarity and entry_relation and exit_relation
             else None
         )
     if re.search(r"\brsi\b", text) and re.search(r"threshold|cross", text):

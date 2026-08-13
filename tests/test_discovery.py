@@ -124,6 +124,38 @@ def test_inverted_sma_polarity_is_not_variant():
     assert suggestion["relation"] == "related_to"
 
 
+def test_sma_operand_order_is_not_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "trend"
+    left["required_data"] = ["close"]
+    left["entry_rule"] = "enter on SMA(20) crossing above SMA(50)"
+    left["exit_rule"] = "exit on SMA(20) crossing below SMA(50)"
+    right = copy.deepcopy(left)
+    right["id"] = "sma_operand_order"
+    right["entry_rule"] = "enter on SMA(50) crossing above SMA(20)"
+    right["exit_rule"] = "exit on SMA(50) crossing below SMA(20)"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "related_to"
+
+
+def test_trade_direction_profile_is_variant_reason():
+    left = record("academic_momentum.json")
+    left["required_data"] = ["close"]
+    left["entry_rule"] = "enter when momentum exceeds threshold"
+    left["exit_rule"] = "exit when momentum reverses"
+    right = copy.deepcopy(left)
+    right["id"] = "academic_long_only_variant"
+    right["asset_direction"] = "long_only"
+    right["applications"][0]["asset_direction"] = "long_only"
+    right["applications"][0]["target_exposure"] = {"minimum": 0, "maximum": 1}
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "variant_of"
+    assert any(
+        reason["field"] in {"asset_direction", "target_exposure_profile"}
+        for reason in suggestion["reasons"]
+    )
+
+
 def test_rsi_direction_reversal_is_not_variant():
     left = record("community_rsi.json")
     left["family"] = "mean_reversion"
