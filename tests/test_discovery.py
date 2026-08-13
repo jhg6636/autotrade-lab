@@ -110,6 +110,34 @@ def test_sma_vs_rsi_mechanism_is_not_variant():
     assert suggestion["relation"] != "variant_of"
 
 
+def test_inverted_sma_polarity_is_not_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "trend"
+    left["required_data"] = ["close"]
+    left["entry_rule"] = "enter on SMA(20) crossing above SMA(50)"
+    left["exit_rule"] = "exit on SMA(20) crossing below SMA(50)"
+    right = copy.deepcopy(left)
+    right["id"] = "sma_inverted_polarity"
+    right["entry_rule"] = "enter on SMA(20) crossing below SMA(50)"
+    right["exit_rule"] = "exit on SMA(20) crossing above SMA(50)"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "related_to"
+
+
+def test_rsi_direction_reversal_is_not_variant():
+    left = record("community_rsi.json")
+    left["family"] = "mean_reversion"
+    left["required_data"] = ["close"]
+    left["entry_rule"] = "enter long when RSI is below oversold threshold"
+    left["exit_rule"] = "exit when RSI is above overbought threshold"
+    right = copy.deepcopy(left)
+    right["id"] = "rsi_direction_reversal"
+    right["entry_rule"] = "enter short when RSI is above overbought threshold"
+    right["exit_rule"] = "exit when RSI is below oversold threshold"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "related_to"
+
+
 def test_market_execution_scope_swap_is_preserved_as_variant():
     left = record("academic_momentum.json")
     left["required_data"] = ["close", "volume"]

@@ -76,13 +76,39 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
     if re.search(r"\b(?:sma|moving average|moving-average)\b", text) and re.search(
         r"\bcross(?:es|over|ed|ing)?\b|crossover", text
     ):
-        return "moving_average_crossover"
+        entry, exit_ = record.get("entry_rule", "").lower(), record.get("exit_rule", "").lower()
+        entry_polarity = "above" if "above" in entry else "below" if "below" in entry else None
+        exit_polarity = "above" if "above" in exit_ else "below" if "below" in exit_ else None
+        return (
+            f"moving_average_crossover:{entry_polarity}:{exit_polarity}"
+            if entry_polarity and exit_polarity
+            else None
+        )
     if re.search(r"\brsi\b", text) and re.search(r"threshold|cross", text):
-        return "rsi_threshold"
+        entry, exit_ = record.get("entry_rule", "").lower(), record.get("exit_rule", "").lower()
+        entry_polarity = (
+            "above"
+            if re.search(r"overbought|above", entry)
+            else "below"
+            if re.search(r"oversold|below", entry)
+            else None
+        )
+        exit_polarity = (
+            "above"
+            if re.search(r"overbought|above", exit_)
+            else "below"
+            if re.search(r"oversold|below", exit_)
+            else None
+        )
+        return (
+            f"rsi_threshold:{entry_polarity}:{exit_polarity}"
+            if entry_polarity and exit_polarity
+            else None
+        )
     if "bollinger" in text and re.search(r"band|mean reversion|reversion", text):
-        return "bollinger_reversion"
+        return None
     if "donchian" in text and re.search(r"breakout|channel", text):
-        return "donchian_breakout"
+        return None
     return None
 
 
