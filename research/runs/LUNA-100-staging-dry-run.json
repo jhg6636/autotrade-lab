@@ -1,0 +1,252 @@
+{
+  "automatic_merge": false,
+  "canonical_records_modified": false,
+  "counts": {
+    "execution_audit": 0,
+    "hypotheses": 5,
+    "inaccessible": 0,
+    "relations": 0,
+    "sources": 5,
+    "suggestions": 10
+  },
+  "mode": "staging_dry_run",
+  "staging_dir": "research/staging/fixtures/luna-101",
+  "suggestions": [
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_001",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_candidate_002"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_001",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_candidate_003"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_001",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_candidate_004"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_001",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_candidate_005"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_002",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_candidate_003"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_002",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_candidate_004"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_002",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_candidate_005"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_003",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_candidate_004"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_003",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_candidate_005"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_candidate_004",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_candidate_005"
+    }
+  ]
+}

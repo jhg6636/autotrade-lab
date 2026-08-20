@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhg6636/autotrade-lab/schema/relation.schema.json",
+  "title": "Staging relation suggestion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["relation_id", "left_hypothesis_id", "right_hypothesis_id", "relation", "action", "reasons", "status"],
+  "properties": {
+    "relation_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$"},
+    "left_hypothesis_id": {"type": "string"},
+    "right_hypothesis_id": {"type": "string"},
+    "relation": {"enum": ["duplicate", "variant_of", "related_to", "insufficient_information"]},
+    "action": {"enum": ["source_candidate", "preserve_variant", "no_merge"]},
+    "reasons": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["field", "reason"], "properties": {"field": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1}}}},
+    "status": {"const": "suggestion"}
+  }
+}

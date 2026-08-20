@@ -3,13 +3,14 @@
 ## Scope and stop gate
 
 This is a preparation artifact only. No paper, replication, source, or strategy record is
-collected in this task. Execution may begin only after user approval and must stop when any
-required detail is inaccessible, paywalled, ambiguous, or not falsifiable. No credentials,
+collected in this task. Execution may begin only after user approval. A source-level detail that
+is inaccessible, paywalled, ambiguous, or not falsifiable is recorded as incomplete/inaccessible
+and collection continues; only a system-wide blocker stops the task. No credentials,
 paywall bypass, paid dataset, ranking, evidence score, backtest, optimization, or strategy code
 is allowed.
 
 Starting commit: `396356f` (`origin/main`, latest known remote main at preparation time).
-Finished commit: `c503cd5`.
+Finished commit: `1f58125`.
 
 ## Collection target
 
@@ -99,6 +100,7 @@ canonical data.
 ## Acceptance and blockers
 
 Acceptance requires the targets, source fields, relation report, and validation checks above.
-Paywalled or inaccessible details remain explicitly inaccessible. The smallest next action for
-an access blocker is to ask the user whether an openly retrievable alternate version is allowed;
-never bypass access controls or infer missing rules.
+Paywalled or inaccessible details remain explicitly inaccessible and do not stop the whole run.
+The smallest next action is to record that source and continue; only a system-wide validator,
+storage, authorization, or collection-runner blocker stops the task. Never bypass access controls
+or infer missing rules.

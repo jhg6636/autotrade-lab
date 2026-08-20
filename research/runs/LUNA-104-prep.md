@@ -5,10 +5,11 @@
 This is a preparation artifact only. No Korean-market source, strategy, or canonical JSON record
 is collected or changed here. Execution requires user approval. Never bypass a paywall, request
 credentials, place an order, call a private API, backtest, optimize, rank, or assign evidence
-scores. Stop when a rule or market detail is inaccessible or not falsifiable.
+scores. A source-level rule or market detail that is inaccessible or not falsifiable is recorded
+as incomplete/inaccessible and collection continues; only a system-wide blocker stops the task.
 
 Starting commit: `396356f` (`origin/main`, latest known remote main at preparation time).
-Finished commit: `c503cd5`.
+Finished commit: `1f58125`.
 
 ## Collection target
 
@@ -105,6 +106,6 @@ file is modified by this preparation task.
 
 Acceptance requires 80 usable sources, 30 hypotheses/variants, Korean metadata retention, a
 long-only execution audit, and unresolved-access reports. Paywalled or bypass-restricted material
-is recorded as inaccessible and excluded from exact-rule counts. The smallest next action for an
-access blocker is to identify an openly accessible metadata or author version, subject to user
-approval; do not guess missing rules.
+is recorded as inaccessible and excluded from exact-rule counts while collection continues. The
+smallest next action is to log the source and continue; only a system-wide validator, storage,
+authorization, or collection-runner blocker stops the task. Do not guess missing rules.

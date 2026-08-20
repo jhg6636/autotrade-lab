@@ -1,0 +1,1 @@
+{"audit_id":"bad_audit","hypothesis_id":"missing","market":"kr_equity","execution_scope":"executable","asset_direction":"long_short","target_exposure":{"minimum":-1,"maximum":1},"timeframes":["hourly"],"outcome":"ready_for_data"}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhg6636/autotrade-lab/schema/execution_audit.schema.json",
+  "title": "Korean execution audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["audit_id", "hypothesis_id", "market", "execution_scope", "asset_direction", "target_exposure", "timeframes", "outcome"],
+  "properties": {
+    "audit_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$"},
+    "hypothesis_id": {"type": "string"},
+    "market": {"enum": ["kr_equity", "kr_etf"]},
+    "execution_scope": {"enum": ["executable", "context_only"]},
+    "asset_direction": {"enum": ["long_only", "long_short", "delta_neutral", "market_making", "directionless"]},
+    "target_exposure": {"type": "object", "additionalProperties": false, "required": ["minimum", "maximum"], "properties": {"minimum": {"type": "number", "minimum": -1, "maximum": 1}, "maximum": {"type": "number", "minimum": -1, "maximum": 1}}},
+    "timeframes": {"type": "array", "minItems": 1, "items": {"enum": ["daily", "one_minute"]}},
+    "outcome": {"enum": ["ready_for_data", "needs_external_data", "ambiguous_rule", "out_of_scope", "blocked"]}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhg6636/autotrade-lab/schema/inaccessible.schema.json",
+  "title": "Inaccessible source detail",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_id", "url", "reason", "attempted_at", "status"],
+  "properties": {
+    "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$"},
+    "url": {"type": "string", "format": "uri"},
+    "reason": {"type": "string", "minLength": 1},
+    "attempted_at": {"type": "string", "format": "date"},
+    "status": {"const": "inaccessible"}
+  }
+}
