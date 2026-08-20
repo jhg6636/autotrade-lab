@@ -9,7 +9,7 @@ scores. A source-level rule or market detail that is inaccessible or not falsifi
 as incomplete/inaccessible and collection continues; only a system-wide blocker stops the task.
 
 Starting commit: `396356f` (`origin/main`, latest known remote main at preparation time).
-Finished commit: `1f58125`.
+Finished commit: `19f49d5`.
 
 ## Collection target
 
