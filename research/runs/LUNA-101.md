@@ -17,7 +17,7 @@
 | Batch | PR | Sources inspected | Usable sources | Usable hypotheses | Result |
 | --- | --- | ---: | ---: | ---: | --- |
 | Reviewed pilot baseline | [#5](https://github.com/jhg6636/autotrade-lab/pull/5) | 5 | 1 | 1 | accepted baseline |
-| LUNA-101-01 | [Draft #10](https://github.com/jhg6636/autotrade-lab/pull/10) | 9 new source records / 8 hypotheses | 1 | 1 | Eight NBER records plus one separate NBER Reporter provenance record; Reporter rule usable, remaining records incomplete |
+| LUNA-101-01 | [#10 merged](https://github.com/jhg6636/autotrade-lab/pull/10) | 9 new source records / 8 hypotheses | 1 | 1 | Eight NBER records plus one separate NBER Reporter provenance record; Reporter rule usable, remaining records incomplete |
 
 ## Preserved blockers and ambiguities
 
@@ -34,5 +34,6 @@
 
 ## Next batch
 
-Next batch should continue from the latest integration branch, inspect at most 20 new unique public
-academic, replication, or robustness candidates, and preserve any truthful shortfall.
+Run `LUNA-101-02` from the latest integration branch. Inspect at most 20 new unique public
+academic, replication, or robustness candidates and preserve any truthful shortfall. Open its
+Draft sub-PR against `integration/LUNA-101-academic-discovery`.
