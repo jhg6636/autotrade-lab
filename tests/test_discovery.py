@@ -116,6 +116,48 @@ def test_tsmom_lookback_variant_is_variant_despite_signal_inputs():
     }
 
 
+def test_tsmom_weighted_parameter_variants_are_variants():
+    left = record("academic_momentum.json")
+    left["family"] = "time_series_momentum"
+    left["required_data"] = ["252-day return", "60-day EWMA volatility"]
+    left["signal_inputs"] = ["252-day return", "60-day EWMA volatility"]
+    left["entry_rule"] = "Set next-day position X=sgn(r[t-252,t])"
+    left["exit_rule"] = "A sign change in X closes or reverses the next-day position"
+    weighted = copy.deepcopy(left)
+    weighted["id"] = "tsmom_weighted_variant"
+    weighted["required_data"] = ["21-day return", "252-day return", "60-day EWMA volatility"]
+    weighted["signal_inputs"] = list(weighted["required_data"])
+    weighted["entry_rule"] = "Set next-day target X=(1-w)sgn(r[t-252,t])+w*sgn(r[t-21,t])"
+    fast = copy.deepcopy(weighted)
+    fast["id"] = "tsmom_fast_weight_variant"
+    fast["required_data"] = ["21-day return", "60-day EWMA volatility"]
+    fast["signal_inputs"] = list(fast["required_data"])
+    fast["entry_rule"] = "Set next-day target X=sgn(r[t-21,t])"
+
+    assert compare_records(left, weighted)["relation"] == "variant_of"
+    assert compare_records(weighted, fast)["relation"] == "variant_of"
+
+
+def test_tsmom_negative_sgn_polarity_is_related_not_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "time_series_momentum"
+    left["required_data"] = ["252-day return", "60-day EWMA volatility"]
+    left["signal_inputs"] = ["252-day return", "60-day EWMA volatility"]
+    left["entry_rule"] = "Set next-day position X=sgn(r[t-252,t])"
+    left["exit_rule"] = "A sign change in X closes or reverses the next-day position"
+    right = copy.deepcopy(left)
+    right["id"] = "tsmom_negative_sgn"
+    right["entry_rule"] = "Set next-day position X=-sgn(r[t-252,t])"
+
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "related_to"
+    assert suggestion["action"] == "no_merge"
+    assert {reason["field"] for reason in suggestion["reasons"]} >= {
+        "entry_rule",
+        "mechanism_identity",
+    }
+
+
 def test_sma_vs_rsi_mechanism_is_not_variant():
     left = record("academic_momentum.json")
     left["family"] = "trend"

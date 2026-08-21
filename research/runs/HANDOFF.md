@@ -22,12 +22,13 @@ promote canonical records, call Toss, use credentials, or place orders during th
 ## Current repository state
 
 - Working branch: `agent/LUNA-101-02-academic-batch`
-- Last reviewed research commit: `66a3708` (`LUNA-101-02: fix TSMOM variants and counts`)
+- Last coordinator-reviewed research commit: `66a3708` (`LUNA-101-02: fix TSMOM variants and counts`)
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Matching remote batch branch: `origin/agent/LUNA-101-02-academic-batch`
+- Remote batch branch: `origin/agent/LUNA-101-02-academic-batch`; the polarity/count rework is
+  intentionally unpushed pending independent coordinator review
 - Draft batch PR: `#11`, targeting `integration/LUNA-101-academic-discovery`
 - Umbrella PR: `#8` targeting `main`
-- Worktree at last review: clean
+- Executor worktree: clean after the implementation commit; coordinator review pending
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -40,26 +41,26 @@ Current aggregate:
 - hypotheses: 22 total, 5 usable, 17 incomplete, 0 inaccessible;
 - suggestions: 91.
 
-## Open review findings
+## Resolved findings and executor verification
 
-1. `src/autotrade_lab/research/discovery.py` recognizes any TSMOM/`sgn(...)` rule as the same
-   mechanism without preserving signal polarity. A direct check classified
-   `X=sgn(r[t-252,t])` and `X=-sgn(r[t-252,t])` as `variant_of`; the latter must be a different
-   mechanism/`related_to`. Add polarity/formula-direction identity and a negative regression test.
-2. LUNA-101-02 added 6 source records and 9 hypothesis records (collection hypotheses increased
-   from 13 to 22), but `research/runs/LUNA-101.md` says 6 hypotheses.
-3. `research/runs/LUNA-101-02.md` says four remaining candidates are incomplete; there are five
-   non-TSMOM candidates plus the incomplete learned CPD/DMN hypothesis. Its usable-hypothesis list
-   also omits the `w=0.5` and `w=1` variants.
-
-Existing checks pass (`67 passed`, Ruff/format/diff clean, deterministic aggregate), but they do
-not cover the polarity counterexample. The batch is not merge-ready while these findings remain.
+- TSMOM identity now recognizes only explicit, uniformly signed `X=…sgn(…)` formulas. Positive
+  lookback and weight variants retain `variant_of`; the direct `X=-sgn(r[t-252,t])` counterexample
+  is covered as `related_to`. Unsupported or mixed formulas receive no inferred TSMOM identity.
+- LUNA-101-02's documented delta is corrected to 6 source records and 9 hypothesis records. The
+  five non-TSMOM candidates plus the learned CPD/DMN record are incomplete; the usable additions
+  are the classical, `w=0.5`, and `w=1` TSMOM hypotheses alongside the two pre-batch usable
+  hypotheses.
+- The committed aggregate was regenerated twice and was byte-identical (SHA-256
+  `a1f871213f33fa220e412d0ef20c81c30db381340f570708479814dffa73569c`): 20 sources (3 usable,
+  17 incomplete), 22 hypotheses (5 usable, 17 incomplete), and 91 suggestions. All three intended
+  TSMOM pairs are `variant_of`.
+- `.venv/bin/pytest -q` passed (`69 passed`); Ruff check and format check, `git diff --check`,
+  and the canonical diff against `integration/LUNA-101-academic-discovery` are clean.
+- The batch remains not merge-ready pending independent coordinator review.
 
 ## Next action
 
-Implement the three open findings on the current batch branch, add both positive parameter-variant
-and negative polarity-reversal tests, regenerate the aggregate twice, update this handoff to the
-new commit and resolved state, then run independent coordinator review before push/PR creation.
+Independently review the LUNA-101-02 polarity/count rework before any push or merge.
 
 ## Resume instruction
 

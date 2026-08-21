@@ -90,7 +90,8 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
     """Recognize a small explicit template vocabulary; return None when unrecognized."""
     text = " ".join(_normalize(record.get(field, "")) for field in ("entry_rule", "exit_rule"))
     if re.search(r"\b(?:tsmom|time[ -]?series momentum)\b|\bsgn\s*\(", text):
-        return "time_series_momentum"
+        polarity = _tsmom_signal_polarity(_normalize(record.get("entry_rule", "")))
+        return f"time_series_momentum:{polarity}" if polarity is not None else None
     if re.search(r"\b(?:sma|moving average|moving-average)\b", text) and re.search(
         r"\bcross(?:es|over|ed|ing)?\b|crossover", text
     ):
@@ -160,6 +161,32 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
     return None
 
 
+def _tsmom_signal_polarity(text: str) -> str | None:
+    """Return the uniform sign direction of a recognized TSMOM ``X=…sgn(…)`` rule.
+
+    Lookback and nonnegative-weight changes remain parameter variants, but a sign reversal
+    changes the signal direction.  Do not infer an identity for mixed or unsupported formulas.
+    """
+    assignment = re.search(r"\bx\s*=\s*", text)
+    if assignment is None:
+        return None
+    formula = re.sub(r"\s+", "", text[assignment.end() :])
+    term = r"[+-]?(?:(?:\d+(?:\.\d+)?|w|\(1-w\))\*?)?sgn\([^()]+\)"
+    match = re.match(rf"(?P<expression>{term}(?:[+-]{term})*)", formula)
+    if match is None:
+        return None
+    remainder = formula[match.end() :]
+    if remainder and not re.match(r"(?:[.;:]|using|for|with|where)", remainder):
+        return None
+    term_signs = [
+        signed_term[0] if signed_term.startswith(("+", "-")) else "+"
+        for signed_term in re.findall(term, match.group("expression"))
+    ]
+    if not term_signs or len(set(term_signs)) != 1:
+        return None
+    return "positive" if term_signs[0] == "+" else "negative"
+
+
 def _field_reasons(
     left: dict[str, Any], right: dict[str, Any], fields: tuple[str, ...]
 ) -> list[dict[str, Any]]:
@@ -210,8 +237,9 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
         }
     stable = ("markets", "timeframes", "signal_inputs")
     tsmom_variant = (
-        left_fp["mechanism_identity"] == "time_series_momentum"
-        and right_fp["mechanism_identity"] == "time_series_momentum"
+        left_fp["mechanism_identity"] is not None
+        and left_fp["mechanism_identity"] == right_fp["mechanism_identity"]
+        and left_fp["mechanism_identity"].startswith("time_series_momentum:")
     )
     same_mechanism = (
         shared_family

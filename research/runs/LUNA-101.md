@@ -18,7 +18,7 @@
 | --- | --- | ---: | ---: | ---: | --- |
 | Reviewed pilot baseline | [#5](https://github.com/jhg6636/autotrade-lab/pull/5) | 5 | 1 | 1 | accepted baseline |
 | LUNA-101-01 | [#10 merged](https://github.com/jhg6636/autotrade-lab/pull/10) | 9 new source records / 8 hypotheses | 1 | 1 | Eight NBER records plus one separate NBER Reporter provenance record; Reporter rule usable, remaining records incomplete |
-| LUNA-101-02 | [#11 Draft](https://github.com/jhg6636/autotrade-lab/pull/11) | 6 new source records / 6 hypotheses | 1 | 3 | Six public arXiv candidates appended; classical and intermediate TSMOM rules are usable, learned policy remains incomplete |
+| LUNA-101-02 | [#11 Draft](https://github.com/jhg6636/autotrade-lab/pull/11) | 6 new source records / 9 hypotheses | 1 | 3 | Six public arXiv candidates appended; classical, w=0.5, and w=1 TSMOM rules are usable; five non-TSMOM candidates plus the learned CPD/DMN record remain incomplete |
 
 ## Preserved blockers and ambiguities
 
