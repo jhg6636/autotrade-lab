@@ -273,19 +273,51 @@
       "left_id": "academic_hypothesis_crypto_rl_overfit_220905559",
       "reasons": [
         {
+          "field": "markets",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
         },
         {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
         },
         {
           "field": "sizing_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "application_execution_scope",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "asset_direction",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
         }
       ],
-      "relation": "insufficient_information",
+      "relation": "related_to",
       "right_id": "academic_hypothesis_deep_rl_trading_191110107"
     },
     {
@@ -293,15 +325,7 @@
       "left_id": "academic_hypothesis_crypto_rl_overfit_220905559",
       "reasons": [
         {
-          "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
-          "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
@@ -313,19 +337,35 @@
       "left_id": "academic_hypothesis_crypto_rl_overfit_220905559",
       "reasons": [
         {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
         },
         {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
         },
         {
           "field": "sizing_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
         }
       ],
-      "relation": "insufficient_information",
+      "relation": "related_to",
       "right_id": "academic_hypothesis_sentiment_crypto_250816378"
     },
     {
@@ -333,19 +373,31 @@
       "left_id": "academic_hypothesis_currency_momentum_w16942",
       "reasons": [
         {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
         },
         {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
         },
         {
           "field": "sizing_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
         }
       ],
-      "relation": "insufficient_information",
+      "relation": "related_to",
       "right_id": "academic_hypothesis_deep_rl_trading_191110107"
     },
     {
@@ -353,15 +405,7 @@
       "left_id": "academic_hypothesis_currency_momentum_w16942",
       "reasons": [
         {
-          "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
-          "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
@@ -373,15 +417,7 @@
       "left_id": "academic_hypothesis_currency_momentum_w16942",
       "reasons": [
         {
-          "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
-          "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
@@ -433,15 +469,7 @@
       "left_id": "academic_hypothesis_deep_rl_trading_191110107",
       "reasons": [
         {
-          "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
-          "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
@@ -453,15 +481,7 @@
       "left_id": "academic_hypothesis_deep_rl_trading_191110107",
       "reasons": [
         {
-          "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
-          "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
@@ -993,15 +1013,7 @@
       "left_id": "academic_hypothesis_momentum_design_210101006",
       "reasons": [
         {
-          "field": "entry_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
           "field": "exit_rule",
-          "reason": "unknown or placeholder value prevents reliable comparison"
-        },
-        {
-          "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
