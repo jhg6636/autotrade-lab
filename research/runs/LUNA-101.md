@@ -5,8 +5,8 @@
 - Draft umbrella PR: [#8](https://github.com/jhg6636/autotrade-lab/pull/8)
 - Baseline commit: `6dcd9ef` (`main` after LUNA-100-3-1)
 - Target: 80 usable sources and 30 usable distinct hypotheses or explicit variants
-- Current usable sources: 1
-- Current usable hypotheses/variants: 1
+- Current usable sources: 2
+- Current usable hypotheses/variants: 2
 - Incomplete sources: 12
 - Inaccessible sources: 0
 - Canonical records modified: false
