@@ -148,6 +148,20 @@ def test_duplicate_and_dangling_references_are_rejected(tmp_path):
         load_jsonl(tmp_path / "sources.jsonl", "sources")
 
 
+def test_duplicate_source_urls_are_rejected_at_aggregate_boundary(tmp_path):
+    source = json.loads((LUNA101 / "sources.jsonl").read_text().splitlines()[0])
+    duplicate = dict(source)
+    duplicate["source_id"] = "synthetic_source_other"
+    (tmp_path / "sources.jsonl").write_text(
+        json.dumps(source) + "\n" + json.dumps(duplicate) + "\n"
+    )
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["source_ids"] = [source["source_id"]]
+    (tmp_path / "hypotheses.jsonl").write_text(json.dumps(candidate) + "\n")
+    with pytest.raises(StagingValidationError, match="duplicate URL"):
+        aggregate(tmp_path)
+
+
 def test_adapter_rejects_dangling_source_reference():
     candidate = load_jsonl(LUNA101 / "hypotheses.jsonl", "hypotheses")[0]
     with pytest.raises(StagingValidationError, match="dangling source_ids"):
