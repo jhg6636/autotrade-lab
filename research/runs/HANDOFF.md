@@ -22,13 +22,13 @@ promote canonical records, call Toss, use credentials, or place orders during th
 ## Current repository state
 
 - Working branch: `agent/LUNA-101-02-academic-batch`
-- Last coordinator-reviewed research commit: `66a3708` (`LUNA-101-02: fix TSMOM variants and counts`)
+- Last coordinator-reviewed research commit: `63be5be` (`LUNA-101-02: constrain TSMOM formula parsing`)
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote batch branch: `origin/agent/LUNA-101-02-academic-batch`; the polarity/count rework is
-  intentionally unpushed pending independent coordinator review
+- Remote batch branch: `origin/agent/LUNA-101-02-academic-batch`; reviewed local commits are ready
+  to push to Draft PR `#11`
 - Draft batch PR: `#11`, targeting `integration/LUNA-101-academic-discovery`
 - Umbrella PR: `#8` targeting `main`
-- Executor worktree: clean after the implementation commit; coordinator review pending
+- Coordinator-reviewed worktree: clean before this handoff update
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -61,11 +61,16 @@ Current aggregate:
   coefficients and explicit double negation.
 - `.venv/bin/pytest -q` passed (`72 passed`); Ruff check and format check, `git diff --check`,
   and the canonical diff against `integration/LUNA-101-academic-discovery` are clean.
-- The batch remains not merge-ready pending independent coordinator re-review.
+- Independent coordinator re-review passed at `63be5be`. It repeated all mandated checks and
+  adversarially verified positive lookback/weight variants, outer and inner polarity reversal,
+  negative coefficients, double negation, mixed signs, unsupported `sgn` arguments, and vague
+  TSMOM text.
 
 ## Next action
 
-Independently re-review the LUNA-101-02 constrained TSMOM formula parsing before any push or merge.
+Push the reviewed commits to Draft PR `#11`, verify its exact base/head and required checks, then
+merge the batch into `integration/LUNA-101-academic-discovery` if the PR remains conflict-free and
+green. Update this handoff to the integration commit and the next bounded batch afterward.
 
 ## Resume instruction
 
