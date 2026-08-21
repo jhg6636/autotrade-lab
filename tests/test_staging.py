@@ -13,6 +13,8 @@ from autotrade_lab.research.staging import (
 ROOT = Path(__file__).parents[1]
 LUNA101 = ROOT / "research" / "staging" / "fixtures" / "luna-101"
 LUNA104 = ROOT / "research" / "staging" / "fixtures" / "luna-104"
+PILOT101 = ROOT / "research" / "staging" / "pilot" / "luna-101"
+PILOT104 = ROOT / "research" / "staging" / "pilot" / "luna-104"
 
 
 def test_synthetic_lanes_have_five_source_and_candidate_records():
@@ -52,6 +54,21 @@ def test_korean_pilot_passes_long_only_and_timeframe_rules():
     report = aggregate(LUNA104)
     assert report["counts"]["sources"]["total"] == 5
     assert report["counts"]["hypotheses"]["total"] == 5
+
+
+def test_public_pilot_preserves_arxiv_scenario_and_krx_delisting_inputs():
+    academic = load_jsonl(PILOT101 / "hypotheses.jsonl", "hypotheses")[-1]
+    assert academic["markets"] == ["crypto_perp"]
+    assert academic["asset_direction"] == "long_short"
+    assert "three-month formation" in academic["entry_rule"]
+    assert "2-standard-deviation" in academic["entry_rule"]
+    assert "1 standard deviation" in academic["exit_rule"]
+    korean = load_jsonl(PILOT104 / "hypotheses.jsonl", "hypotheses")[-1]
+    assert korean["required_data"] == [
+        "ETF 1좌당 NAV 일간수익률",
+        "기초지수 일간수익률",
+        "3개월 상관계수",
+    ]
 
 
 def test_missing_required_jsonl_file_is_rejected(tmp_path):
