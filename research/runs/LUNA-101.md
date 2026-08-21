@@ -17,7 +17,7 @@
 | Batch | PR | Sources inspected | Usable sources | Usable hypotheses | Result |
 | --- | --- | ---: | ---: | ---: | --- |
 | Reviewed pilot baseline | [#5](https://github.com/jhg6636/autotrade-lab/pull/5) | 5 | 1 | 1 | accepted baseline |
-| LUNA-101-01 | Draft sub-PR pending | 9 new source records / 8 hypotheses | 1 | 1 | Eight NBER records plus one separate NBER Reporter provenance record; Reporter rule usable, remaining records incomplete |
+| LUNA-101-01 | [Draft #10](https://github.com/jhg6636/autotrade-lab/pull/10) | 9 new source records / 8 hypotheses | 1 | 1 | Eight NBER records plus one separate NBER Reporter provenance record; Reporter rule usable, remaining records incomplete |
 
 ## Preserved blockers and ambiguities
 
