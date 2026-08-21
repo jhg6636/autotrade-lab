@@ -88,7 +88,7 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
             raise StagingValidationError(
                 f"{kind}:{line}:$.status: usable record has unknown fields: {', '.join(missing)}"
             )
-        if any("unverified" not in claim.lower() for claim in record["claimed_results"]):
+        if any("unverified" not in claim.lower() for claim in record.get("claimed_results", [])):
             raise StagingValidationError(
                 f"{kind}:{line}:$.claimed_results: every claimed result must be labelled unverified"
             )

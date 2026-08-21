@@ -80,6 +80,16 @@ def test_claimed_results_must_be_unverified(tmp_path):
         aggregate(tmp_path)
 
 
+def test_usable_hypothesis_without_optional_claimed_results_is_valid(tmp_path):
+    source = json.loads((LUNA101 / "sources.jsonl").read_text().splitlines()[0])
+    (tmp_path / "sources.jsonl").write_text(json.dumps(source) + "\n")
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate.pop("claimed_results")
+    (tmp_path / "hypotheses.jsonl").write_text(json.dumps(candidate) + "\n")
+    report = aggregate(tmp_path)
+    assert report["counts"]["hypotheses"]["usable"] == 1
+
+
 def test_application_summary_mismatch_is_rejected(tmp_path):
     source = json.loads((LUNA101 / "sources.jsonl").read_text().splitlines()[0])
     (tmp_path / "sources.jsonl").write_text(json.dumps(source) + "\n")
