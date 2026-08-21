@@ -65,8 +65,12 @@ def test_public_pilot_preserves_arxiv_scenario_and_krx_delisting_inputs():
     assert academic["markets"] == ["crypto_perp"]
     assert academic["asset_direction"] == "long_short"
     assert "three-month formation" in academic["entry_rule"]
+    assert "lambda=theta_hat" in academic["entry_rule"]
+    assert "N_SMA=2/lambda-1" in academic["entry_rule"]
     assert "Z[t-2] < -2 and Z[t-1] > -2" in academic["entry_rule"]
+    assert "Z[t-2] > +2 and Z[t-1] < +2" in academic["entry_rule"]
     assert "Z[t-2] > -1 and Z[t-1] < -1" in academic["exit_rule"]
+    assert "Z[t-2] < +1 and Z[t-1] > +1" in academic["exit_rule"]
     korean = next(
         item
         for item in load_jsonl(PILOT104 / "hypotheses.jsonl", "hypotheses")
