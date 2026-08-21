@@ -43,9 +43,11 @@ Current aggregate:
 
 ## Resolved findings and executor verification
 
-- TSMOM identity now recognizes only explicit, uniformly signed `X=…sgn(…)` formulas. Positive
-  lookback and weight variants retain `variant_of`; the direct `X=-sgn(r[t-252,t])` counterexample
-  is covered as `related_to`. Unsupported or mixed formulas receive no inferred TSMOM identity.
+- TSMOM identity now recognizes only explicit, uniformly signed `X=…sgn(±r[t-lookback,t])`
+  formulas. Positive lookback and weight variants retain `variant_of`; direct outer- and
+  inner-negation counterexamples are `related_to`. Outer and inner signs are combined, so an
+  explicitly double-negated return remains positive. Unsupported, non-return, or mixed formulas
+  receive no inferred TSMOM identity.
 - LUNA-101-02's documented delta is corrected to 6 source records and 9 hypothesis records. The
   five non-TSMOM candidates plus the learned CPD/DMN record are incomplete; the usable additions
   are the classical, `w=0.5`, and `w=1` TSMOM hypotheses alongside the two pre-batch usable
@@ -54,13 +56,16 @@ Current aggregate:
   `a1f871213f33fa220e412d0ef20c81c30db381340f570708479814dffa73569c`): 20 sources (3 usable,
   17 incomplete), 22 hypotheses (5 usable, 17 incomplete), and 91 suggestions. All three intended
   TSMOM pairs are `variant_of`.
-- `.venv/bin/pytest -q` passed (`69 passed`); Ruff check and format check, `git diff --check`,
+- Coordinator review found and this follow-up closes two bypasses: inner-negated returns and
+  arbitrary non-return `sgn` arguments. Regression coverage also verifies negative numeric
+  coefficients and explicit double negation.
+- `.venv/bin/pytest -q` passed (`72 passed`); Ruff check and format check, `git diff --check`,
   and the canonical diff against `integration/LUNA-101-academic-discovery` are clean.
-- The batch remains not merge-ready pending independent coordinator review.
+- The batch remains not merge-ready pending independent coordinator re-review.
 
 ## Next action
 
-Independently review the LUNA-101-02 polarity/count rework before any push or merge.
+Independently re-review the LUNA-101-02 constrained TSMOM formula parsing before any push or merge.
 
 ## Resume instruction
 

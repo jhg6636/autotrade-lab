@@ -158,6 +158,62 @@ def test_tsmom_negative_sgn_polarity_is_related_not_variant():
     }
 
 
+def test_tsmom_inner_negated_return_is_related_not_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "time_series_momentum"
+    left["required_data"] = ["252-day return", "60-day EWMA volatility"]
+    left["signal_inputs"] = ["252-day return", "60-day EWMA volatility"]
+    left["entry_rule"] = "Set next-day position X=sgn(r[t-252,t])"
+    left["exit_rule"] = "A sign change in X closes or reverses the next-day position"
+    right = copy.deepcopy(left)
+    right["id"] = "tsmom_inner_negative_sgn"
+    right["entry_rule"] = "Set next-day position X=sgn(-r[t-252,t])"
+
+    suggestion = compare_records(left, right)
+    assert fingerprint(right)["mechanism_identity"] == "time_series_momentum:negative"
+    assert suggestion["relation"] == "related_to"
+    assert suggestion["action"] == "no_merge"
+
+
+def test_tsmom_negative_coefficient_is_related_not_variant():
+    left = record("academic_momentum.json")
+    left["family"] = "time_series_momentum"
+    left["required_data"] = ["252-day return", "60-day EWMA volatility"]
+    left["signal_inputs"] = ["252-day return", "60-day EWMA volatility"]
+    left["entry_rule"] = "Set next-day position X=sgn(r[t-252,t])"
+    left["exit_rule"] = "A sign change in X closes or reverses the next-day position"
+    right = copy.deepcopy(left)
+    right["id"] = "tsmom_negative_coefficient"
+    right["entry_rule"] = "Set next-day position X=-0.5*sgn(r[t-252,t])"
+
+    suggestion = compare_records(left, right)
+    assert fingerprint(right)["mechanism_identity"] == "time_series_momentum:negative"
+    assert suggestion["relation"] == "related_to"
+
+    double_negative = copy.deepcopy(right)
+    double_negative["id"] = "tsmom_double_negative_coefficient"
+    double_negative["entry_rule"] = "Set next-day position X=-0.5*sgn(-r[t-252,t])"
+    assert fingerprint(double_negative)["mechanism_identity"] == "time_series_momentum:positive"
+    assert compare_records(left, double_negative)["relation"] == "variant_of"
+
+
+def test_tsmom_non_return_sgn_expression_is_unrecognized():
+    left = record("academic_momentum.json")
+    left["family"] = "time_series_momentum"
+    left["required_data"] = ["252-day return", "60-day EWMA volatility"]
+    left["signal_inputs"] = ["252-day return", "60-day EWMA volatility"]
+    left["entry_rule"] = "Set next-day position X=sgn(r[t-252,t])"
+    left["exit_rule"] = "A sign change in X closes or reverses the next-day position"
+    right = copy.deepcopy(left)
+    right["id"] = "tsmom_price_difference"
+    right["entry_rule"] = "Set next-day position X=sgn(price[t]-price[t-1])"
+
+    suggestion = compare_records(left, right)
+    assert fingerprint(right)["mechanism_identity"] is None
+    assert suggestion["relation"] == "related_to"
+    assert suggestion["action"] == "no_merge"
+
+
 def test_sma_vs_rsi_mechanism_is_not_variant():
     left = record("academic_momentum.json")
     left["family"] = "trend"

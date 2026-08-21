@@ -164,27 +164,33 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
 def _tsmom_signal_polarity(text: str) -> str | None:
     """Return the uniform sign direction of a recognized TSMOM ``X=…sgn(…)`` rule.
 
-    Lookback and nonnegative-weight changes remain parameter variants, but a sign reversal
-    changes the signal direction.  Do not infer an identity for mixed or unsupported formulas.
+    Recognized terms use the explicit ``r[t-lookback,t]`` notation only. Lookback and
+    nonnegative-weight changes remain parameter variants, but either outer or inner sign reversal
+    changes the signal direction. Do not infer an identity for mixed or unsupported formulas.
     """
     assignment = re.search(r"\bx\s*=\s*", text)
     if assignment is None:
         return None
     formula = re.sub(r"\s+", "", text[assignment.end() :])
-    term = r"[+-]?(?:(?:\d+(?:\.\d+)?|w|\(1-w\))\*?)?sgn\([^()]+\)"
-    match = re.match(rf"(?P<expression>{term}(?:[+-]{term})*)", formula)
+    return_sign = r"(?:(?:\d+(?:\.\d+)?|w|\(1-w\))\*?)?sgn\([+-]?r\[t-\d+,t\]\)"
+    term = rf"[+-]?{return_sign}"
+    match = re.match(rf"(?P<expression>{term}(?:[+-]{return_sign})*)", formula)
     if match is None:
         return None
     remainder = formula[match.end() :]
     if remainder and not re.match(r"(?:[.;:]|using|for|with|where)", remainder):
         return None
-    term_signs = [
-        signed_term[0] if signed_term.startswith(("+", "-")) else "+"
-        for signed_term in re.findall(term, match.group("expression"))
-    ]
+    signed_term = re.compile(
+        r"(?P<outer>[+-])?(?:(?:\d+(?:\.\d+)?|w|\(1-w\))\*?)?"
+        r"sgn\((?P<inner>[+-])?r\[t-\d+,t\]\)"
+    )
+    term_signs = []
+    for signed_match in signed_term.finditer(match.group("expression")):
+        outer, inner = signed_match.group("outer"), signed_match.group("inner")
+        term_signs.append("negative" if (outer == "-") != (inner == "-") else "positive")
     if not term_signs or len(set(term_signs)) != 1:
         return None
-    return "positive" if term_signs[0] == "+" else "negative"
+    return term_signs[0]
 
 
 def _field_reasons(
