@@ -51,8 +51,13 @@ src/autotrade_lab/
   risk.py        pre-trade portfolio limits
   strategies.py executable signal baselines
 docs/
+  AGENT_WORKFLOW.md
+  DISCOVERY_PR_WORKFLOW.md
   RESEARCH_CATALOG.md
+  RESEARCH_PROTOCOL.md
   SOURCES.md
+research/runs/
+  HANDOFF.md    active objective and cross-device resume state
 tests/
 ```
 
@@ -66,5 +71,7 @@ tests/
 - Paper trade before real capital. Live adapters require two explicit environment settings;
   broker credentials belong only in local environment variables or a secret manager.
 
-See [the research protocol](docs/RESEARCH_PROTOCOL.md) and
-[strategy catalog](docs/RESEARCH_CATALOG.md) for the roadmap.
+Agents and contributors should start with [AGENTS.md](AGENTS.md) and the
+[active handoff](research/runs/HANDOFF.md). See [the research protocol](docs/RESEARCH_PROTOCOL.md),
+[agent workflow](docs/AGENT_WORKFLOW.md), and [strategy catalog](docs/RESEARCH_CATALOG.md) for the
+roadmap and operating constraints.

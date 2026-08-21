@@ -2,10 +2,10 @@
   "automatic_merge": false,
   "canonical_records_modified": false,
   "completion": {
-    "usable_hypotheses": 2,
+    "usable_hypotheses": 5,
     "usable_hypothesis_target": 30,
     "usable_source_target": 80,
-    "usable_sources": 2
+    "usable_sources": 3
   },
   "counts": {
     "execution_audit": {
@@ -17,10 +17,10 @@
     },
     "hypotheses": {
       "inaccessible": 0,
-      "incomplete": 11,
+      "incomplete": 17,
       "other": 0,
-      "total": 13,
-      "usable": 2
+      "total": 22,
+      "usable": 5
     },
     "inaccessible": {
       "inaccessible": 0,
@@ -38,12 +38,12 @@
     },
     "sources": {
       "inaccessible": 0,
-      "incomplete": 12,
+      "incomplete": 17,
       "other": 0,
-      "total": 14,
-      "usable": 2
+      "total": 20,
+      "usable": 3
     },
-    "suggestions": 47
+    "suggestions": 91
   },
   "mode": "staging_dry_run",
   "staging_dir": "research/staging/collection/luna-101",
@@ -107,6 +107,26 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_momentum_crashes_w20660"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_design_210101006"
     },
     {
       "action": "no_merge",
@@ -250,6 +270,162 @@
     },
     {
       "action": "no_merge",
+      "left_id": "academic_hypothesis_crypto_rl_overfit_220905559",
+      "reasons": [
+        {
+          "field": "markets",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "application_execution_scope",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "asset_direction",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_deep_rl_trading_191110107"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_crypto_rl_overfit_220905559",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_transformer_211208534"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_crypto_rl_overfit_220905559",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_sentiment_crypto_250816378"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_deep_rl_trading_191110107"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_design_210101006"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_transformer_211208534"
+    },
+    {
+      "action": "no_merge",
       "left_id": "academic_hypothesis_currency_momentum_w16942",
       "reasons": [
         {
@@ -267,6 +443,314 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_rebels_conformists_w7835"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_design_210101006"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_transformer_211208534"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_rebels_conformists_w7835"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
     },
     {
       "action": "no_merge",
@@ -326,6 +810,26 @@
         }
       ],
       "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_design_210101006"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
       "right_id": "academic_hypothesis_momentum_strategies_w5375"
     },
     {
@@ -586,6 +1090,26 @@
         }
       ],
       "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_design_210101006"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
       "right_id": "academic_hypothesis_momentum_strategies_w5375"
     },
     {
@@ -690,6 +1214,146 @@
     },
     {
       "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_strategies_w5375"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_transformer_211208534"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_rebels_conformists_w7835"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
       "left_id": "academic_hypothesis_momentum_strategies_w5375",
       "reasons": [
         {
@@ -790,6 +1454,74 @@
     },
     {
       "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_rebels_conformists_w7835"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
       "left_id": "academic_hypothesis_monetary_momentum_w24748",
       "reasons": [
         {
@@ -927,6 +1659,182 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "mechanism_identity",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
     },
     {
       "action": "no_merge",
@@ -987,6 +1895,70 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "preserve_variant",
+      "left_id": "academic_hypothesis_tsmom_baseline_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "variant_of",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "preserve_variant",
+      "left_id": "academic_hypothesis_tsmom_baseline_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "variant_of",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "preserve_variant",
+      "left_id": "academic_hypothesis_tsmom_intermediate_05_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "variant_of",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
     }
   ]
 }

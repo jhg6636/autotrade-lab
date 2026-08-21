@@ -63,7 +63,7 @@ intended future broker boundary, but collection does not call Toss or use creden
 
 ## Batch acceptance and merge authority
 
-Before a batch PR is merged into its integration branch, Luna must verify:
+Before a batch PR is merged into its integration branch, the assigned executor must verify:
 
 - schema and reference validation passes;
 - exact source URLs and IDs are unique;
@@ -74,10 +74,12 @@ Before a batch PR is merged into its integration branch, Luna must verify:
   changed;
 - the PR base is the correct integration branch and the umbrella tracker is updated.
 
-Luna may merge a batch PR into its integration branch when every check passes and there is no
-ambiguous scope decision. Luna must stop for Sol review if a source requires inferred rules, a
-relation is materially ambiguous, a constraint would change, or a batch touches canonical data.
-The integration branch must never be merged automatically into `main`.
+The coordinator independently inspects the diff and adversarial cases after executor checks pass.
+The coordinator may merge a batch PR into its integration branch when every check passes and there
+is no ambiguous scope decision. The executor must stop for coordinator review if a source requires
+inferred rules, a relation is materially ambiguous, a constraint would change, or a batch touches
+canonical data. A collector must never self-approve or merge its own batch. The integration branch
+must never be merged automatically into `main`.
 
 ## Umbrella completion
 
