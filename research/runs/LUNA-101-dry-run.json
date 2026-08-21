@@ -2,10 +2,10 @@
   "automatic_merge": false,
   "canonical_records_modified": false,
   "completion": {
-    "usable_hypotheses": 1,
+    "usable_hypotheses": 2,
     "usable_hypothesis_target": 30,
     "usable_source_target": 80,
-    "usable_sources": 1
+    "usable_sources": 2
   },
   "counts": {
     "execution_audit": {
@@ -17,10 +17,10 @@
     },
     "hypotheses": {
       "inaccessible": 0,
-      "incomplete": 4,
+      "incomplete": 11,
       "other": 0,
-      "total": 5,
-      "usable": 1
+      "total": 13,
+      "usable": 2
     },
     "inaccessible": {
       "inaccessible": 0,
@@ -38,16 +38,196 @@
     },
     "sources": {
       "inaccessible": 0,
-      "incomplete": 4,
+      "incomplete": 11,
       "other": 0,
-      "total": 5,
-      "usable": 1
+      "total": 13,
+      "usable": 2
     },
-    "suggestions": 7
+    "suggestions": 47
   },
   "mode": "staging_dry_run",
   "staging_dir": "research/staging/collection/luna-101",
   "suggestions": [
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_disposition_momentum_w8734"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_model_momentum_w16747"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_crashes_w20660"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_strategies_w5375"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_monetary_momentum_w24748"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_pairs_w7032"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_bad_news_momentum_w6553",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
     {
       "action": "no_merge",
       "left_id": "academic_hypothesis_cointegration_pairs_210910662",
@@ -67,6 +247,26 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_pairs_w7032"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_rebels_conformists_w7835"
     },
     {
       "action": "no_merge",
@@ -106,11 +306,211 @@
         }
       ],
       "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_crashes_w20660"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_strategies_w5375"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_monetary_momentum_w24748"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
       "right_id": "academic_hypothesis_pairs_w7032"
     },
     {
       "action": "no_merge",
       "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_disposition_momentum_w8734",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_model_momentum_w16747",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_crashes_w20660"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_model_momentum_w16747",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_strategies_w5375"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_model_momentum_w16747",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_monetary_momentum_w24748"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_model_momentum_w16747",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_pairs_w7032"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_model_momentum_w16747",
       "reasons": [
         {
           "field": "entry_rule",
@@ -146,11 +546,331 @@
         }
       ],
       "relation": "insufficient_information",
-      "right_id": "academic_hypothesis_pairs_w7032"
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
     },
     {
       "action": "no_merge",
       "left_id": "academic_hypothesis_model_momentum_w16747",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_momentum_strategies_w5375"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_monetary_momentum_w24748"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_pairs_w7032"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_crashes_w20660",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_strategies_w5375",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_monetary_momentum_w24748"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_strategies_w5375",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_pairs_w7032"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_strategies_w5375",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_strategies_w5375",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_strategies_w5375",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_monetary_momentum_w24748",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_pairs_w7032"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_monetary_momentum_w24748",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_monetary_momentum_w24748",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_monetary_momentum_w24748",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_pairs_w7032",
       "reasons": [
         {
           "field": "entry_rule",
@@ -186,7 +906,87 @@
         }
       ],
       "relation": "insufficient_information",
-      "right_id": "academic_hypothesis_ssrn_momentum_166840"
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_pairs_w7032",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_ssrn_momentum_166840",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tail_risk_momentum_w18169"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_ssrn_momentum_166840",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_tail_risk_momentum_w18169",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_victorian_momentum_w14500"
     }
   ]
 }
