@@ -13,6 +13,8 @@ from autotrade_lab.research.staging import (
 ROOT = Path(__file__).parents[1]
 LUNA101 = ROOT / "research" / "staging" / "fixtures" / "luna-101"
 LUNA104 = ROOT / "research" / "staging" / "fixtures" / "luna-104"
+PILOT101 = ROOT / "research" / "staging" / "pilot" / "luna-101"
+PILOT104 = ROOT / "research" / "staging" / "pilot" / "luna-104"
 
 
 def test_synthetic_lanes_have_five_source_and_candidate_records():
@@ -52,6 +54,47 @@ def test_korean_pilot_passes_long_only_and_timeframe_rules():
     report = aggregate(LUNA104)
     assert report["counts"]["sources"]["total"] == 5
     assert report["counts"]["hypotheses"]["total"] == 5
+
+
+def test_public_pilot_preserves_arxiv_scenario_and_krx_delisting_inputs():
+    academic = next(
+        item
+        for item in load_jsonl(PILOT101 / "hypotheses.jsonl", "hypotheses")
+        if item["hypothesis_id"] == "academic_hypothesis_cointegration_pairs_210910662"
+    )
+    assert academic["markets"] == ["crypto_perp"]
+    assert academic["asset_direction"] == "long_short"
+    assert "three-month formation" in academic["entry_rule"]
+    assert "lambda=theta_hat" in academic["entry_rule"]
+    assert "N_SMA=2/lambda-1" in academic["entry_rule"]
+    assert "Z[t-2] < -2 and Z[t-1] > -2" in academic["entry_rule"]
+    assert "Z[t-2] > +2 and Z[t-1] < +2" in academic["entry_rule"]
+    assert "Z[t-2] > -1 and Z[t-1] < -1" in academic["exit_rule"]
+    assert "Z[t-2] < +1 and Z[t-1] > +1" in academic["exit_rule"]
+    korean = next(
+        item
+        for item in load_jsonl(PILOT104 / "hypotheses.jsonl", "hypotheses")
+        if item["hypothesis_id"] == "korean_hypothesis_etf_disclosure"
+    )
+    assert korean["required_data"] == [
+        "ETF 1좌당 NAV 일간수익률",
+        "기초지수 일간수익률",
+        "3개월 상관계수",
+    ]
+
+
+def test_duplicate_source_urls_are_rejected_at_aggregate_boundary(tmp_path):
+    source = json.loads((LUNA101 / "sources.jsonl").read_text().splitlines()[0])
+    duplicate = dict(source)
+    duplicate["source_id"] = "synthetic_source_other"
+    (tmp_path / "sources.jsonl").write_text(
+        json.dumps(source) + "\n" + json.dumps(duplicate) + "\n"
+    )
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["source_ids"] = [source["source_id"]]
+    (tmp_path / "hypotheses.jsonl").write_text(json.dumps(candidate) + "\n")
+    with pytest.raises(StagingValidationError, match="duplicate URL"):
+        aggregate(tmp_path)
 
 
 def test_missing_required_jsonl_file_is_rejected(tmp_path):

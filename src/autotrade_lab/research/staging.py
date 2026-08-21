@@ -217,6 +217,14 @@ def aggregate(staging_dir: str | Path) -> dict[str, Any]:
     inaccessible = load_jsonl(directory / "inaccessible.jsonl", "inaccessible")
     relations = load_jsonl(directory / "relations.jsonl", "relations")
     audits = load_jsonl(directory / "execution_audit.jsonl", "execution_audit")
+    source_urls: dict[str, str] = {}
+    for source in sources:
+        url = source["url"]
+        if url in source_urls:
+            raise StagingValidationError(
+                f"sources: duplicate URL {url!r} for {source_urls[url]!r} and {source['source_id']!r}"
+            )
+        source_urls[url] = source["source_id"]
     source_ids = {item["source_id"] for item in sources}
     hypothesis_ids = {item["hypothesis_id"] for item in hypotheses}
     for item in inaccessible:
