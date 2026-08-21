@@ -95,6 +95,27 @@ def test_sma_parameter_change_is_variant():
     }
 
 
+def test_tsmom_lookback_variant_is_variant_despite_signal_inputs():
+    left = record("academic_momentum.json")
+    left["family"] = "time_series_momentum"
+    left["required_data"] = ["252-day return", "60-day EWMA volatility"]
+    left["signal_inputs"] = ["252-day return", "60-day EWMA volatility"]
+    left["entry_rule"] = "Set next-day position X=sgn(r[t-252,t])"
+    left["exit_rule"] = "A sign change in X closes or reverses the next-day position"
+    right = copy.deepcopy(left)
+    right["id"] = "tsmom_21_day_variant"
+    right["required_data"] = ["21-day return", "60-day EWMA volatility"]
+    right["signal_inputs"] = ["21-day return", "60-day EWMA volatility"]
+    right["entry_rule"] = "Set next-day position X=sgn(r[t-21,t])"
+    suggestion = compare_records(left, right)
+    assert suggestion["relation"] == "variant_of"
+    assert suggestion["action"] == "preserve_variant"
+    assert {reason["field"] for reason in suggestion["reasons"]} >= {
+        "signal_inputs",
+        "entry_rule",
+    }
+
+
 def test_sma_vs_rsi_mechanism_is_not_variant():
     left = record("academic_momentum.json")
     left["family"] = "trend"

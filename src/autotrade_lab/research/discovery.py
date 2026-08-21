@@ -89,6 +89,8 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
 def _mechanism_identity(record: dict[str, Any]) -> str | None:
     """Recognize a small explicit template vocabulary; return None when unrecognized."""
     text = " ".join(_normalize(record.get(field, "")) for field in ("entry_rule", "exit_rule"))
+    if re.search(r"\b(?:tsmom|time[ -]?series momentum)\b|\bsgn\s*\(", text):
+        return "time_series_momentum"
     if re.search(r"\b(?:sma|moving average|moving-average)\b", text) and re.search(
         r"\bcross(?:es|over|ed|ing)?\b|crossover", text
     ):
@@ -207,9 +209,14 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
             ],
         }
     stable = ("markets", "timeframes", "signal_inputs")
+    tsmom_variant = (
+        left_fp["mechanism_identity"] == "time_series_momentum"
+        and right_fp["mechanism_identity"] == "time_series_momentum"
+    )
     same_mechanism = (
         shared_family
-        and all(left_fp[field] == right_fp[field] for field in stable)
+        and all(left_fp[field] == right_fp[field] for field in ("markets", "timeframes"))
+        and (tsmom_variant or left_fp["signal_inputs"] == right_fp["signal_inputs"])
         and (
             left_fp["entry_rule"] == right_fp["entry_rule"]
             and left_fp["exit_rule"] == right_fp["exit_rule"]
@@ -228,7 +235,11 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
             "reasons": _field_reasons(
                 left_fp,
                 right_fp,
-                tuple(field for field in FINGERPRINT_FIELDS if field not in stable),
+                tuple(
+                    field
+                    for field in FINGERPRINT_FIELDS
+                    if field not in (("markets", "timeframes") if tsmom_variant else stable)
+                ),
             ),
         }
     if shared_markets or shared_family:
