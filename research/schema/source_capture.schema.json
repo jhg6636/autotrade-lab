@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhg6636/autotrade-lab/schema/source_capture.schema.json",
+  "title": "Staging source capture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_id", "title", "author_or_handle", "url", "accessed_at", "language", "source_type", "claim_summary", "status", "entry_rule", "exit_rule", "sizing_rule", "universe", "timeframes", "required_data", "ambiguities", "claimed_results"],
+  "properties": {
+    "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$"},
+    "title": {"type": "string", "minLength": 1},
+    "author_or_handle": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "format": "uri", "minLength": 1},
+    "published_at": {"oneOf": [{"type": "string", "format": "date"}, {"type": "null"}]},
+    "accessed_at": {"type": "string", "format": "date"},
+    "language": {"type": "string", "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"},
+    "source_type": {"type": "string", "enum": ["academic_paper", "replication_paper", "journal_article", "nber", "ssrn", "arxiv", "riss", "dbpia", "kci", "finance_society", "krx", "kcmi", "dart_study", "korean_blog", "korean_community", "broker_material", "other"]},
+    "claim_summary": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "enum": ["usable", "incomplete", "inaccessible"]},
+    "entry_rule": {"type": "string", "minLength": 1},
+    "exit_rule": {"type": "string", "minLength": 1},
+    "sizing_rule": {"type": "string", "minLength": 1},
+    "universe": {"type": "string", "minLength": 1},
+    "timeframes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "required_data": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "ambiguities": {"type": "array", "items": {"type": "string"}},
+    "claimed_results": {"type": "array", "items": {"type": "string"}},
+    "inaccessible_reason": {"type": "string", "minLength": 1}
+  }
+}
