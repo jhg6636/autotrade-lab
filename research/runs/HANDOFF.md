@@ -23,13 +23,13 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 - Working branch: `agent/LUNA-101-03-academic-batch`
 - Starting integration commit: `d2484fd` (merge of reviewed LUNA-101-02 PR `#11`)
-- Last coordinator-reviewed research content: LUNA-101-02 through `63be5be`
+- Last coordinator-reviewed research content: LUNA-101-02 through `63be5be`; LUNA-101-03 normalization awaits independent review
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Remote LUNA-101-03 batch branch/PR: not created yet
 - Previous batch PR: `#11`, merged as integration commit `d2484fd`
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through LUNA-101-02
-- Worktree: clean before LUNA-101-03 initialization edits
+- Worktree: LUNA-101-03 normalized evidence batch pending independent review
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -38,9 +38,9 @@ rewrite this handoff merely to embed its own commit hash.
 
 Current aggregate:
 
-- sources: 20 total, 3 usable, 17 incomplete, 0 inaccessible;
-- hypotheses: 22 total, 5 usable, 17 incomplete, 0 inaccessible;
-- suggestions: 91.
+- sources: 40 total, 6 usable, 34 incomplete, 0 inaccessible;
+- hypotheses: 45 total, 11 usable, 34 incomplete, 0 inaccessible;
+- suggestions: 459.
 
 ## Recent completed review
 
@@ -72,16 +72,22 @@ The LUNA-101 completion target remains unmet.
 
 ## Current batch scope
 
-LUNA-101-03 may inspect at most 20 new unique public academic, replication, or robustness sources.
-It should aim for eight usable sources and five usable hypotheses or explicit variants without
-inventing missing rules. Collection first produces source-evidence packets; an implementer then
-normalizes records, statuses, relations, counts, and reports for coordinator review.
+LUNA-101-03 admitted exactly 20 audited public full-text inputs, adding 20 source records
+(3 usable, 17 incomplete) and 23 source-linked hypotheses (6 usable, 17 incomplete). The
+collector disclosed six trend overflow discovery leads after opening 26 candidates total; the
+Valeyre exploratory paper and five rejected leads are excluded from every record, count, and
+status decision. Duplicate/repost and alternate URLs are excluded. No ranking, evidence score,
+backtest, strategy code, canonical promotion, or automatic relation merge occurred.
+
+The aggregate was regenerated twice and byte-identical at SHA-256
+`c06d4bbb546d45c365ac8891b28106d296a332e645954581ac4311d91633e556`. It retains
+`automatic_merge=false` and `canonical_records_modified=false`. The collection target remains
+short by 74 usable sources and 19 usable hypotheses/variants; all local missing-rule and
+conflicting-threshold cases remain incomplete.
 
 ## Next action
 
-Dispatch a collector to retrieve and transcribe evidence packets for up to 20 new unique public
-LUNA-101-03 sources. Check every URL against the existing source ledger, require full-text evidence
-for usable rules, and do not edit staging records or decide promotion status in the collector step.
+Independent coordinator review before any push, PR, or merge.
 
 ## Resume instruction
 
