@@ -48,8 +48,23 @@ def _id_field(kind: str) -> str:
     }[kind]
 
 
-def _unknown(value: Any) -> bool:
-    return isinstance(value, str) and (value == "unknown" or value.startswith("unknown:"))
+def _contains_unknown(value: Any) -> bool:
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        return normalized == "unknown" or normalized.startswith("unknown:")
+    if isinstance(value, list):
+        return any(_contains_unknown(item) for item in value)
+    if isinstance(value, dict):
+        return any(_contains_unknown(item) for item in value.values())
+    return False
+
+
+def _status_counts(records: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {"total": len(records), "usable": 0, "incomplete": 0, "inaccessible": 0, "other": 0}
+    for record in records:
+        status = record.get("status")
+        counts[status if status in {"usable", "incomplete", "inaccessible"} else "other"] += 1
+    return counts
 
 
 def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[str, Any]:
@@ -67,10 +82,15 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
             if kind == "sources"
             else ("entry_rule", "exit_rule", "sizing_rule", "hypothesis")
         )
-        missing = [field for field in fields if _unknown(record[field])]
+        extra_fields = ("required_data", "timeframes")
+        missing = [field for field in (*fields, *extra_fields) if _contains_unknown(record[field])]
         if missing:
             raise StagingValidationError(
                 f"{kind}:{line}:$.status: usable record has unknown fields: {', '.join(missing)}"
+            )
+        if any("unverified" not in claim.lower() for claim in record["claimed_results"]):
+            raise StagingValidationError(
+                f"{kind}:{line}:$.claimed_results: every claimed result must be labelled unverified"
             )
     if (
         kind == "sources"
@@ -93,6 +113,18 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
             raise StagingValidationError(
                 f"{kind}:{line}:$.applications: minimum exposure exceeds maximum"
             )
+        directions = {application["asset_direction"] for application in record["applications"]}
+        expected_direction = directions.pop() if len(directions) == 1 else "mixed"
+        if record["asset_direction"] != expected_direction:
+            raise StagingValidationError(
+                f"{kind}:{line}:$.asset_direction: must summarize applications as {expected_direction!r}"
+            )
+        scopes = {application["execution_scope"] for application in record["applications"]}
+        expected_scope = "executable" if "executable" in scopes else "context_only"
+        if record["execution_scope"] != expected_scope:
+            raise StagingValidationError(
+                f"{kind}:{line}:$.execution_scope: must summarize applications as {expected_scope!r}"
+            )
         for application in record["applications"]:
             if (
                 application["market"] in {"kr_equity", "kr_etf"}
@@ -105,7 +137,12 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
                 raise StagingValidationError(
                     f"{kind}:{line}:$.applications: Korean executable application must be long_only with nonnegative exposure"
                 )
-        if record["execution_scope"] == "executable" and markets & {"kr_equity", "kr_etf"}:
+        executable_kr = any(
+            application["market"] in {"kr_equity", "kr_etf"}
+            and application["execution_scope"] == "executable"
+            for application in record["applications"]
+        )
+        if executable_kr:
             invalid = set(record["timeframes"]) - {"daily", "one_minute"}
             if invalid:
                 raise StagingValidationError(
@@ -172,6 +209,9 @@ def candidate_to_strategy_record(candidate: dict[str, Any], source_ids: set[str]
 
 def aggregate(staging_dir: str | Path) -> dict[str, Any]:
     directory = Path(staging_dir)
+    for required in ("sources.jsonl", "hypotheses.jsonl"):
+        if not (directory / required).is_file():
+            raise StagingValidationError(f"staging: required file missing: {required}")
     sources = load_jsonl(directory / "sources.jsonl", "sources")
     hypotheses = load_jsonl(directory / "hypotheses.jsonl", "hypotheses")
     inaccessible = load_jsonl(directory / "inaccessible.jsonl", "inaccessible")
@@ -201,12 +241,20 @@ def aggregate(staging_dir: str | Path) -> dict[str, Any]:
         "mode": "staging_dry_run",
         "staging_dir": str(directory),
         "counts": {
-            "sources": len(sources),
-            "hypotheses": len(hypotheses),
-            "inaccessible": len(inaccessible),
-            "relations": len(relations),
-            "execution_audit": len(audits),
+            "sources": _status_counts(sources),
+            "hypotheses": _status_counts(hypotheses),
+            "inaccessible": _status_counts(inaccessible),
+            "relations": _status_counts(relations),
+            "execution_audit": _status_counts(audits),
             "suggestions": len(suggestions),
+        },
+        "completion": {
+            "usable_source_target": 80,
+            "usable_hypothesis_target": 30,
+            "usable_sources": len([record for record in sources if record["status"] == "usable"]),
+            "usable_hypotheses": len(
+                [record for record in hypotheses if record["status"] == "usable"]
+            ),
         },
         "suggestions": suggestions,
         "automatic_merge": False,

@@ -1,12 +1,48 @@
 {
   "automatic_merge": false,
   "canonical_records_modified": false,
+  "completion": {
+    "usable_hypotheses": 4,
+    "usable_hypothesis_target": 30,
+    "usable_source_target": 80,
+    "usable_sources": 4
+  },
   "counts": {
-    "execution_audit": 0,
-    "hypotheses": 5,
-    "inaccessible": 0,
-    "relations": 0,
-    "sources": 5,
+    "execution_audit": {
+      "inaccessible": 0,
+      "incomplete": 0,
+      "other": 0,
+      "total": 0,
+      "usable": 0
+    },
+    "hypotheses": {
+      "inaccessible": 1,
+      "incomplete": 0,
+      "other": 0,
+      "total": 5,
+      "usable": 4
+    },
+    "inaccessible": {
+      "inaccessible": 0,
+      "incomplete": 0,
+      "other": 0,
+      "total": 0,
+      "usable": 0
+    },
+    "relations": {
+      "inaccessible": 0,
+      "incomplete": 0,
+      "other": 0,
+      "total": 0,
+      "usable": 0
+    },
+    "sources": {
+      "inaccessible": 1,
+      "incomplete": 0,
+      "other": 0,
+      "total": 5,
+      "usable": 4
+    },
     "suggestions": 10
   },
   "mode": "staging_dry_run",
