@@ -2,7 +2,7 @@
   "automatic_merge": false,
   "canonical_records_modified": false,
   "completion": {
-    "usable_hypotheses": 2,
+    "usable_hypotheses": 3,
     "usable_hypothesis_target": 30,
     "usable_source_target": 80,
     "usable_sources": 2
@@ -17,10 +17,10 @@
     },
     "hypotheses": {
       "inaccessible": 0,
-      "incomplete": 17,
+      "incomplete": 19,
       "other": 0,
-      "total": 19,
-      "usable": 2
+      "total": 22,
+      "usable": 3
     },
     "inaccessible": {
       "inaccessible": 0,
@@ -43,7 +43,7 @@
       "total": 20,
       "usable": 2
     },
-    "suggestions": 70
+    "suggestions": 91
   },
   "mode": "staging_dry_run",
   "staging_dir": "research/staging/collection/luna-101",
@@ -478,6 +478,102 @@
     },
     {
       "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_currency_momentum_w16942",
+      "reasons": [
+        {
+          "field": "timeframes",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
       "left_id": "academic_hypothesis_deep_rl_trading_191110107",
       "reasons": [
         {
@@ -547,6 +643,90 @@
       ],
       "relation": "related_to",
       "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_deep_rl_trading_191110107",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
     },
     {
       "action": "no_merge",
@@ -1097,6 +1277,42 @@
       "left_id": "academic_hypothesis_momentum_design_210101006",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_design_210101006",
+      "reasons": [
+        {
           "field": "entry_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         },
@@ -1243,6 +1459,42 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_slow_momentum_reversion_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_momentum_transformer_211208534",
+      "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
     },
     {
       "action": "no_merge",
@@ -1406,6 +1658,150 @@
     },
     {
       "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_rebels_conformists_w7835",
+      "reasons": [
+        {
+          "field": "entry_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        }
+      ],
+      "relation": "insufficient_information",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_baseline_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
       "left_id": "academic_hypothesis_ssrn_momentum_166840",
       "reasons": [
         {
@@ -1463,6 +1859,74 @@
       ],
       "relation": "insufficient_information",
       "right_id": "academic_hypothesis_victorian_momentum_w14500"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_tsmom_baseline_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_05_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_tsmom_baseline_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
+    },
+    {
+      "action": "no_merge",
+      "left_id": "academic_hypothesis_tsmom_intermediate_05_210513727",
+      "reasons": [
+        {
+          "field": "signal_inputs",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "entry_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "exit_rule",
+          "reason": "normalized value differs"
+        }
+      ],
+      "relation": "related_to",
+      "right_id": "academic_hypothesis_tsmom_intermediate_1_210513727"
     }
   ]
 }
