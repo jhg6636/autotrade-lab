@@ -17,20 +17,20 @@
 | Batch | PR | Sources inspected | Usable sources | Usable hypotheses | Result |
 | --- | --- | ---: | ---: | ---: | --- |
 | Reviewed pilot baseline | [#5](https://github.com/jhg6636/autotrade-lab/pull/5) | 5 | 1 | 1 | accepted baseline |
-| LUNA-101-01 | Draft sub-PR pending | 8 new | 0 | 0 | Eight public NBER candidates appended; exact rules remain underspecified and are retained as incomplete |
+| LUNA-101-01 | Draft sub-PR pending | 9 new source records / 8 hypotheses | 1 | 1 | Eight NBER records plus one separate NBER Reporter provenance record; Reporter rule usable, remaining records incomplete |
 
 ## Preserved blockers and ambiguities
 
-- Four public landing-page records do not expose complete entry, exit, and sizing rules. They
-  remain incomplete and do not count toward the completion target.
+- Twelve source records do not expose complete entry, exit, and sizing rules. They remain
+  incomplete and do not count toward the completion target.
 - The usable arXiv record is a context-only BitMEX Scenario 1 ADF variant; exact fees and residual
   rounding remain unspecified.
 - No source rule may be reconstructed from a title, abstract, chart, or claimed result.
-- Batch LUNA-101-01 inspected eight new unique public NBER records (w20660, w5375, w24748,
-  w7835, w14500, w6553, w16942, w18169). Their abstracts/landing pages describe empirical,
-  theoretical, or robustness findings but do not state complete entry, exit, and sizing rules;
-  all eight source and hypothesis records remain `incomplete` and do not count toward usable
-  targets. No ranking or evidence score was assigned.
+- Batch LUNA-101-01 inspected eight new unique NBER records (w20660, w5375, w24748, w7835,
+  w14500, w6553, w16942, w18169) plus one separate NBER Reporter source. The Reporter source
+  supports one usable monthly currency-momentum hypothesis; the paper landing source w16942
+  remains separate and incomplete. The other records remain incomplete. No ranking or evidence
+  score was assigned.
 
 ## Next batch
 
