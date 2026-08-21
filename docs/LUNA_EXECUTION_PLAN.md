@@ -10,14 +10,16 @@ dataset, accept a license, publish credentials, or change repository visibility.
 
 For every task Luna must:
 
-1. start from the latest `main` and record the starting commit;
+1. start from the latest `main` and record the starting commit, except a Stage 1 batch that must
+   start from the latest lane integration branch under `docs/DISCOVERY_PR_WORKFLOW.md`;
 2. read `README.md`, `docs/RESEARCH_PROTOCOL.md`, and this file;
-3. create a branch named `agent/<task-id>-<short-name>`;
+3. create a branch named `agent/<task-id>-<short-name>`; Stage 1 batch IDs include a two-digit
+   batch number;
 4. make only changes required by that task;
 5. add or update tests for executable code;
 6. run `.venv/bin/pytest -q`, `.venv/bin/ruff check .`, and `git diff --check`;
 7. write `research/runs/<task-id>.md` using the run-report template below;
-8. commit with `<task-id>: <outcome>` and open a draft PR;
+8. commit with `<task-id>: <outcome>` and open a draft PR against the task's required base;
 9. stop at a decision gate instead of silently expanding scope.
 
 If a required command, credential, paid source, ambiguous license, or user decision blocks the
@@ -147,6 +149,10 @@ No bulk research begins before Gate A approval.
 Run the following tasks independently after Gate A. Each task gathers ideas but does not rank,
 backtest, or implement them. Every collected claim must link to a retrievable source or be marked
 as an original observation.
+
+LUNA-101 and LUNA-104 use the integration-branch, Draft umbrella PR, bounded-batch, counting, and
+merge rules in `docs/DISCOVERY_PR_WORKFLOW.md`. Their batch PRs target the lane integration branch,
+not `main`; only the completed umbrella PR targets `main`.
 
 ### LUNA-101: Academic and replication discovery
 
