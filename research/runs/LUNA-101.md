@@ -1,7 +1,7 @@
 # LUNA-101 umbrella tracker
 
 - Integration branch: `integration/LUNA-101-academic-discovery`
-- Draft umbrella PR: pending creation
+- Draft umbrella PR: [#8](https://github.com/jhg6636/autotrade-lab/pull/8)
 - Baseline commit: `6dcd9ef` (`main` after LUNA-100-3-1)
 - Target: 80 usable sources and 30 usable distinct hypotheses or explicit variants
 - Current usable sources: 1
