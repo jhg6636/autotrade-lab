@@ -21,14 +21,15 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-02-academic-batch`
-- Last coordinator-reviewed research commit: `63be5be` (`LUNA-101-02: constrain TSMOM formula parsing`)
+- Working branch: `agent/LUNA-101-03-academic-batch`
+- Starting integration commit: `d2484fd` (merge of reviewed LUNA-101-02 PR `#11`)
+- Last coordinator-reviewed research content: LUNA-101-02 through `63be5be`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote batch branch: `origin/agent/LUNA-101-02-academic-batch`; reviewed local commits are ready
-  to push to Draft PR `#11`
-- Draft batch PR: `#11`, targeting `integration/LUNA-101-academic-discovery`
+- Remote LUNA-101-03 batch branch/PR: not created yet
+- Previous batch PR: `#11`, merged as integration commit `d2484fd`
 - Umbrella PR: `#8` targeting `main`
-- Coordinator-reviewed worktree: clean before this handoff update
+- Umbrella PR body: synchronized through LUNA-101-02
+- Worktree: clean before LUNA-101-03 initialization edits
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -41,7 +42,7 @@ Current aggregate:
 - hypotheses: 22 total, 5 usable, 17 incomplete, 0 inaccessible;
 - suggestions: 91.
 
-## Resolved findings and executor verification
+## Recent completed review
 
 - TSMOM identity now recognizes only explicit, uniformly signed `X=…sgn(±r[t-lookback,t])`
   formulas. Positive lookback and weight variants retain `variant_of`; direct outer- and
@@ -66,11 +67,21 @@ Current aggregate:
   negative coefficients, double negation, mixed signs, unsupported `sgn` arguments, and vague
   TSMOM text.
 
+PR `#11` was mergeable/clean with no review threads and was merged into the integration branch.
+The LUNA-101 completion target remains unmet.
+
+## Current batch scope
+
+LUNA-101-03 may inspect at most 20 new unique public academic, replication, or robustness sources.
+It should aim for eight usable sources and five usable hypotheses or explicit variants without
+inventing missing rules. Collection first produces source-evidence packets; an implementer then
+normalizes records, statuses, relations, counts, and reports for coordinator review.
+
 ## Next action
 
-Push the reviewed commits to Draft PR `#11`, verify its exact base/head and required checks, then
-merge the batch into `integration/LUNA-101-academic-discovery` if the PR remains conflict-free and
-green. Update this handoff to the integration commit and the next bounded batch afterward.
+Dispatch a collector to retrieve and transcribe evidence packets for up to 20 new unique public
+LUNA-101-03 sources. Check every URL against the existing source ledger, require full-text evidence
+for usable rules, and do not edit staging records or decide promotion status in the collector step.
 
 ## Resume instruction
 
