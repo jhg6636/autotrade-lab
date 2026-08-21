@@ -13,8 +13,17 @@ from autotrade_lab.research.staging import (
 ROOT = Path(__file__).parents[1]
 LUNA101 = ROOT / "research" / "staging" / "fixtures" / "luna-101"
 LUNA104 = ROOT / "research" / "staging" / "fixtures" / "luna-104"
-PILOT101 = ROOT / "research" / "staging" / "pilot" / "luna-101"
-PILOT104 = ROOT / "research" / "staging" / "pilot" / "luna-104"
+
+
+def public_lane_path(lane: str, root: Path = ROOT) -> Path:
+    collection = root / "research" / "staging" / "collection" / lane
+    if collection.exists():
+        return collection
+    return root / "research" / "staging" / "pilot" / lane
+
+
+PUBLIC101 = public_lane_path("luna-101")
+PUBLIC104 = public_lane_path("luna-104")
 
 
 def test_synthetic_lanes_have_five_source_and_candidate_records():
@@ -22,6 +31,16 @@ def test_synthetic_lanes_have_five_source_and_candidate_records():
     assert len(load_jsonl(LUNA101 / "hypotheses.jsonl", "hypotheses")) == 5
     assert len(load_jsonl(LUNA104 / "sources.jsonl", "sources")) == 5
     assert len(load_jsonl(LUNA104 / "hypotheses.jsonl", "hypotheses")) == 5
+
+
+def test_public_lane_prefers_collection_after_integration_initialization(tmp_path):
+    pilot = tmp_path / "research" / "staging" / "pilot" / "luna-101"
+    pilot.mkdir(parents=True)
+    assert public_lane_path("luna-101", tmp_path) == pilot
+
+    collection = tmp_path / "research" / "staging" / "collection" / "luna-101"
+    collection.mkdir(parents=True)
+    assert public_lane_path("luna-101", tmp_path) == collection
 
 
 def test_aggregate_is_deterministic_and_non_mutating(tmp_path):
@@ -56,10 +75,10 @@ def test_korean_pilot_passes_long_only_and_timeframe_rules():
     assert report["counts"]["hypotheses"]["total"] == 5
 
 
-def test_public_pilot_preserves_arxiv_scenario_and_krx_delisting_inputs():
+def test_public_source_baseline_preserves_arxiv_scenario_and_krx_delisting_inputs():
     academic = next(
         item
-        for item in load_jsonl(PILOT101 / "hypotheses.jsonl", "hypotheses")
+        for item in load_jsonl(PUBLIC101 / "hypotheses.jsonl", "hypotheses")
         if item["hypothesis_id"] == "academic_hypothesis_cointegration_pairs_210910662"
     )
     assert academic["markets"] == ["crypto_perp"]
@@ -73,7 +92,7 @@ def test_public_pilot_preserves_arxiv_scenario_and_krx_delisting_inputs():
     assert "Z[t-2] < +1 and Z[t-1] > +1" in academic["exit_rule"]
     korean = next(
         item
-        for item in load_jsonl(PILOT104 / "hypotheses.jsonl", "hypotheses")
+        for item in load_jsonl(PUBLIC104 / "hypotheses.jsonl", "hypotheses")
         if item["hypothesis_id"] == "korean_hypothesis_etf_disclosure"
     )
     assert korean["required_data"] == [
