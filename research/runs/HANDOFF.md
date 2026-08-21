@@ -24,7 +24,8 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Working branch: `agent/LUNA-101-02-academic-batch`
 - Last reviewed research commit: `66a3708` (`LUNA-101-02: fix TSMOM variants and counts`)
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Matching remote batch branch/PR: not found at the last read-only check
+- Matching remote batch branch: `origin/agent/LUNA-101-02-academic-batch`
+- Draft batch PR: `#11`, targeting `integration/LUNA-101-academic-discovery`
 - Umbrella PR: `#8` targeting `main`
 - Worktree at last review: clean
 - Canonical strategy/index modified: false
