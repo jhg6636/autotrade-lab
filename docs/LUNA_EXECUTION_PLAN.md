@@ -1,14 +1,16 @@
-# Luna execution plan
+# LUNA task execution plan
 
-This document is an executable backlog for Luna. Luna must work on one task ID at a time,
-respect dependencies, preserve every source without ranking it, and stop at the stated gates.
-Unless a task explicitly says otherwise, Luna may edit the repository, run local tests, and use
-public read-only web sources. Luna must never place a real order, enable live trading, purchase a
-dataset, accept a license, publish credentials, or change repository visibility.
+`LUNA-*` is the historical task namespace, not a requirement that the Luna model execute every
+task. The coordinator assigns collector and implementer roles under `docs/AGENT_WORKFLOW.md`.
+The assigned executor must work on one task ID at a time, respect dependencies, preserve every
+source without ranking it, and stop at the stated gates. Unless a task explicitly says otherwise,
+the executor may edit the repository, run local tests, and use public read-only web sources. It
+must never place a real order, enable live trading, purchase a dataset, accept a license, publish
+credentials, or change repository visibility.
 
 ## Global operating contract
 
-For every task Luna must:
+For every task the assigned executor must:
 
 1. start from the latest `main` and record the starting commit, except a Stage 1 batch that must
    start from the latest lane integration branch under `docs/DISCOVERY_PR_WORKFLOW.md`;
@@ -23,7 +25,7 @@ For every task Luna must:
 9. stop at a decision gate instead of silently expanding scope.
 
 If a required command, credential, paid source, ambiguous license, or user decision blocks the
-task, Luna records the exact blocker and the smallest next action. It must not invent data or
+task, the executor records the exact blocker and the smallest next action. It must not invent data or
 silently substitute a different dataset.
 
 ## Required run report
