@@ -25,11 +25,11 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Starting integration commit: `d2484fd` (merge of reviewed LUNA-101-02 PR `#11`)
 - Last coordinator-reviewed research content: LUNA-101-03 through `e0fe32b`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote LUNA-101-03 batch branch/PR: not created yet
+- Remote LUNA-101-03 batch branch/PR: pushed; Draft PR `#12`
 - Previous batch PR: `#11`, merged as integration commit `d2484fd`
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through LUNA-101-02
-- Worktree: LUNA-101-03 normalized evidence batch approved locally; publication pending
+- Worktree: LUNA-101-03 normalized evidence batch approved locally and published to Draft PR `#12`
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -98,8 +98,7 @@ diff.
 
 ## Next action
 
-Push the reviewed batch branch and open its PR against
-`integration/LUNA-101-academic-discovery`.
+Verify PR `#12` checks, review threads, exact base/head, and mergeability before marking it ready.
 
 ## Resume instruction
 
