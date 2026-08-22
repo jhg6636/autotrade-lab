@@ -73,11 +73,13 @@ The LUNA-101 completion target remains unmet.
 ## Current batch scope
 
 LUNA-101-03 admitted exactly 20 audited public full-text inputs, adding 20 source records
-(3 usable, 17 incomplete) and 23 source-linked hypotheses (6 usable, 17 incomplete). The
-collector disclosed six trend overflow discovery leads after opening 26 candidates total; the
-Valeyre exploratory paper and five rejected leads are excluded from every record, count, and
-status decision. Duplicate/repost and alternate URLs are excluded. No ranking, evidence score,
-backtest, strategy code, canonical promotion, or automatic relation merge occurred.
+(3 usable, 17 incomplete) and 23 source-linked hypotheses (6 usable, 17 incomplete). The trend
+lane inspected 16 unique candidates, of which it opened 11 full texts (the ten admitted packets
+and Valeyre); five other trend leads lacked retrievable rule-bearing full text. The reversion lane
+inspected ten admitted candidates, so the lanes inspected 26 candidates total. Valeyre and the
+five rejected trend leads are six overflow leads excluded from every record, count, and status
+decision. Duplicate/repost and alternate URLs are excluded. No ranking, evidence score, backtest,
+strategy code, canonical promotion, or automatic relation merge occurred.
 
 The aggregate was regenerated twice and byte-identical at SHA-256
 `c06d4bbb546d45c365ac8891b28106d296a332e645954581ac4311d91633e556`. It retains
