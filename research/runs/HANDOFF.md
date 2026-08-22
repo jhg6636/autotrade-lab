@@ -21,15 +21,15 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-03-academic-batch`
-- Starting integration commit: `d2484fd` (merge of reviewed LUNA-101-02 PR `#11`)
+- Working branch: `agent/LUNA-101-04-academic-batch`
+- Starting integration commit: `dd20330` (merge of reviewed LUNA-101-03 PR `#12`)
 - Last coordinator-reviewed research content: LUNA-101-03 through `e0fe32b`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote LUNA-101-03 batch branch/PR: pushed; Draft PR `#12`
-- Previous batch PR: `#11`, merged as integration commit `d2484fd`
+- Remote LUNA-101-03 batch branch/PR: PR `#12`, merged as integration commit `dd20330`
+- Previous batch PR: `#12`, merged as integration commit `dd20330`
 - Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through LUNA-101-02
-- Worktree: LUNA-101-03 normalized evidence batch approved locally and published to Draft PR `#12`
+- Umbrella PR body: synchronized through merged LUNA-101-03
+- Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -70,7 +70,7 @@ Current aggregate:
 PR `#11` was mergeable/clean with no review threads and was merged into the integration branch.
 The LUNA-101 completion target remains unmet.
 
-## Current batch scope
+## Most recent completed batch
 
 LUNA-101-03 admitted exactly 20 audited public full-text inputs, adding 20 source records
 (3 usable, 17 incomplete) and 23 source-linked hypotheses (6 usable, 17 incomplete). The trend
@@ -96,9 +96,18 @@ re-review. Independent validation passed with 72 tests, clean Ruff/format/diff c
 append-only deltas of 20 sources and 23 hypotheses, a byte-identical aggregate, and no canonical
 diff.
 
+## Current batch scope
+
+LUNA-101-04 starts from integration commit `dd20330` and permits at most 20 new unique candidates
+across two disjoint ten-candidate lanes. Candidate discovery prefers public rule-bearing full text
+with explicit entry, exit/rebalance, sizing, universe, and timing to improve usable yield, but the
+pool remains flat and source-neutral. Collectors transcribe evidence and ambiguities only; final
+status and variant decisions remain with the implementer and coordinator. The exact lane contract,
+packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`.
+
 ## Next action
 
-Verify PR `#12` checks, review threads, exact base/head, and mergeability before marking it ready.
+Run the two bounded LUNA-101-04 evidence lanes defined in `research/runs/LUNA-101-04.md`.
 
 ## Resume instruction
 
