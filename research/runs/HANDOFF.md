@@ -23,13 +23,13 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 - Working branch: `agent/LUNA-101-03-academic-batch`
 - Starting integration commit: `d2484fd` (merge of reviewed LUNA-101-02 PR `#11`)
-- Last coordinator-reviewed research content: LUNA-101-02 through `63be5be`; LUNA-101-03 normalization awaits independent review
+- Last coordinator-reviewed research content: LUNA-101-03 through `e0fe32b`
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Remote LUNA-101-03 batch branch/PR: not created yet
 - Previous batch PR: `#11`, merged as integration commit `d2484fd`
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through LUNA-101-02
-- Worktree: LUNA-101-03 normalized evidence batch pending independent review
+- Worktree: LUNA-101-03 normalized evidence batch approved locally; publication pending
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 
@@ -87,9 +87,19 @@ The aggregate was regenerated twice and byte-identical at SHA-256
 short by 74 usable sources and 19 usable hypotheses/variants; all local missing-rule and
 conflicting-threshold cases remain incomplete.
 
+Coordinator review inspected all 20 appended source records and 23 appended hypotheses against
+the two evidence artifacts. It corrected the Moreira–Muir universe label from an ambiguous
+`French market` phrase to the Ken French factor set and corrected the collection disclosure to
+trend 16 inspected/11 full texts opened plus reversion 10 inspected. Direction, polarity,
+timeframe, sizing, status, source references, explicit variants, and relation suggestions passed
+re-review. Independent validation passed with 72 tests, clean Ruff/format/diff checks,
+append-only deltas of 20 sources and 23 hypotheses, a byte-identical aggregate, and no canonical
+diff.
+
 ## Next action
 
-Independent coordinator review before any push, PR, or merge.
+Push the reviewed batch branch and open its PR against
+`integration/LUNA-101-academic-discovery`.
 
 ## Resume instruction
 
