@@ -38,9 +38,9 @@ rewrite this handoff merely to embed its own commit hash.
 
 Current aggregate:
 
-- sources: 40 total, 6 usable, 34 incomplete, 0 inaccessible;
-- hypotheses: 45 total, 11 usable, 34 incomplete, 0 inaccessible;
-- suggestions: 459.
+- sources: 60 total, 20 usable, 39 incomplete, 1 inaccessible;
+- hypotheses: 67 total, 27 usable, 40 incomplete, 0 inaccessible;
+- suggestions: 1,101.
 
 ## Recent completed review
 
@@ -96,6 +96,16 @@ re-review. Independent validation passed with 72 tests, clean Ruff/format/diff c
 append-only deltas of 20 sources and 23 hypotheses, a byte-identical aggregate, and no canonical
 diff.
 
+## Most recent normalized batch
+
+LUNA-101-04 normalized exactly 20 collector-inspected packets at validator-fix base `8a981bc`: 20
+source records (14 usable, 5 incomplete, 1 inaccessible) and 22 hypotheses (16 usable, 6
+incomplete). The AER Halloween record is inaccessible because its complimentary full-text PDF was
+blocked by a Cloudflare challenge; no Sell-in-May rule was inferred. International seasonality and
+the index-weight event study remain incomplete. Aggregate reruns were byte-identical at SHA-256
+`cf8c65b6c11c174406d2f6f3aaa1ddae748743baed6192e01ca0aa814c28cdbd`. No coordinator approval,
+push, PR, merge, ranking, backtest, canonical promotion, Toss access, or orders occurred.
+
 ## Current batch scope
 
 LUNA-101-04 starts from integration commit `dd20330` and permits at most 20 new unique candidates
@@ -107,7 +117,7 @@ packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`
 
 ## Next action
 
-Run the two bounded LUNA-101-04 evidence lanes defined in `research/runs/LUNA-101-04.md`.
+Independently review LUNA-101-04 normalized records, source linkage, polarity/exposure, and generated relation suggestions before any PR action.
 
 ## Resume instruction
 
