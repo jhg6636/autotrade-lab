@@ -1,6 +1,6 @@
 # Active research handoff
 
-Last updated: 2026-08-21 KST
+Last updated: 2026-08-24 KST
 
 ## Active objective
 
@@ -21,16 +21,15 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-04-academic-batch`
-- Starting integration commit: `dd20330` (merge of reviewed LUNA-101-03 PR `#12`)
-- Last coordinator-reviewed research content: LUNA-101-03 through `e0fe32b`
+- Working branch: `agent/LUNA-101-05-rule-implementation-batch`
+- Starting integration commit: `5a7d7e7` (merge of reviewed LUNA-101-04 PR `#13`)
+- Last coordinator-reviewed research content: LUNA-101-04 through `f73180a`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote LUNA-101-03 batch branch/PR: PR `#12`, merged as integration commit `dd20330`
-- Previous batch PR: `#12`, merged as integration commit `dd20330`
-- Current batch PR: `#13`, open against `integration/LUNA-101-academic-discovery`
+- Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
+- Current batch PR: none; LUNA-101-05 collection initialized
 - Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through merged LUNA-101-03
-- Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
+- Umbrella PR body: synchronized through merged LUNA-101-04
+- Worktree: LUNA-101-05 batch branch initialized from reviewed integration
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -112,22 +111,22 @@ the index-weight event study remain incomplete. Aggregate reruns were byte-ident
 at `960806a` added only schema/validator leverage safety support. Normalization semantic correction
 `491997c` fixed merger exposure/sizing selection and finite-set status policy; Chinese J/K is
 incomplete. Final semantic correction `493d55b` and independent coordinator reruns passed with 79
-tests and clean Ruff/format/diff checks. No push, PR, merge, ranking, backtest, canonical promotion,
-Toss access, or orders occurred.
+tests and clean Ruff/format/diff checks. PR `#13` passed remote checks and merged into integration as
+`5a7d7e7`. No ranking, backtest, canonical promotion, Toss access, or orders occurred.
 
 ## Current batch scope
 
-LUNA-101-04 starts from integration commit `dd20330` and permits at most 20 new unique candidates
-across two disjoint ten-candidate lanes. Candidate discovery prefers public rule-bearing full text
-with explicit entry, exit/rebalance, sizing, universe, and timing to improve usable yield, but the
-pool remains flat and source-neutral. Collectors transcribe evidence and ambiguities only; final
-status and variant decisions remain with the implementer and coordinator. The exact lane contract,
-packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`.
+LUNA-101-05 starts from integration commit `5a7d7e7` and permits at most 20 new unique candidates
+across two disjoint ten-candidate lanes. One lane covers public replication or version-pinned
+research implementations; the other covers fixed-rule public academic artifacts. Selection may
+favor deterministic rule-bearing evidence to improve usable yield, but the pool remains flat and
+source-neutral. Collectors transcribe evidence and ambiguities only; final status and variant
+decisions remain with the implementer and coordinator. The exact contract is in
+`research/runs/LUNA-101-05.md`.
 
 ## Next action
 
-Verify PR `#13` checks and review state on the current head, then merge it to
-`integration/LUNA-101-academic-discovery` if it remains clean.
+Run the two bounded LUNA-101-05 evidence lanes defined in `research/runs/LUNA-101-05.md`.
 
 ## Resume instruction
 
