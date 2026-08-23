@@ -43,7 +43,7 @@ rewrite this handoff merely to embed its own commit hash.
 Current aggregate:
 
 - sources: 60 total, 20 usable, 39 incomplete, 1 inaccessible;
-- hypotheses: 67 total, 27 usable, 40 incomplete, 0 inaccessible;
+- hypotheses: 67 total, 26 usable, 41 incomplete, 0 inaccessible;
 - suggestions: 1,101.
 
 ## Recent completed review
@@ -107,7 +107,9 @@ source records (14 usable, 5 incomplete, 1 inaccessible) and 22 hypotheses (16 u
 incomplete). The AER Halloween record is inaccessible because its complimentary full-text PDF was
 blocked by a Cloudflare challenge; no Sell-in-May rule was inferred. International seasonality and
 the index-weight event study remain incomplete. Aggregate reruns were byte-identical at SHA-256
-`cf8c65b6c11c174406d2f6f3aaa1ddae748743baed6192e01ca0aa814c28cdbd`. No coordinator approval,
+`add856dcc7e5a64f62618d14bf0ceba56ccb7b71938183fc845ceeefef685a9f`. A coordinator correction
+at `960806a` fixed context-only leverage semantics, merger exposure/sizing selection, and finite-set
+status policy; Chinese J/K is incomplete. No coordinator approval,
 push, PR, merge, ranking, backtest, canonical promotion, Toss access, or orders occurred.
 
 ## Current batch scope

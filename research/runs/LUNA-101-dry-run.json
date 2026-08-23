@@ -2,7 +2,7 @@
   "automatic_merge": false,
   "canonical_records_modified": false,
   "completion": {
-    "usable_hypotheses": 27,
+    "usable_hypotheses": 26,
     "usable_hypothesis_target": 30,
     "usable_source_target": 80,
     "usable_sources": 20
@@ -17,10 +17,10 @@
     },
     "hypotheses": {
       "inaccessible": 0,
-      "incomplete": 40,
+      "incomplete": 41,
       "other": 0,
       "total": 67,
-      "usable": 27
+      "usable": 26
     },
     "inaccessible": {
       "inaccessible": 1,
@@ -966,7 +966,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -1823,6 +1823,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -2070,7 +2074,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -2326,6 +2330,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -2610,6 +2618,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -3282,7 +3294,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -4714,7 +4726,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -4958,6 +4970,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -5250,6 +5266,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -5890,7 +5910,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -6830,7 +6850,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -7730,7 +7750,7 @@
         }
       ],
       "relation": "insufficient_information",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -8430,7 +8450,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -9290,7 +9310,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -10170,7 +10190,7 @@
         }
       ],
       "relation": "related_to",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -11026,7 +11046,7 @@
         }
       ],
       "relation": "insufficient_information",
-      "right_id": "academic_hyp_rfs_fx_carry_momentum_2024"
+      "right_id": "academic_hyp_rfs_fx_carry_2024"
     },
     {
       "action": "no_merge",
@@ -11858,7 +11878,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -11878,7 +11898,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -11902,7 +11922,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -11930,7 +11950,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -11958,7 +11978,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -11990,7 +12010,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12030,7 +12050,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -12058,7 +12078,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12090,7 +12110,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -12118,7 +12138,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12154,7 +12174,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -12186,7 +12206,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12218,7 +12238,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "sizing_rule",
@@ -12230,7 +12250,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -12266,7 +12286,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "exit_rule",
@@ -12278,7 +12298,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "exit_rule",
@@ -12290,7 +12310,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12322,7 +12342,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "entry_rule",
@@ -12338,7 +12358,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "sizing_rule",
@@ -12350,7 +12370,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12382,7 +12402,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "entry_rule",
@@ -12402,7 +12422,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12434,7 +12454,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "entry_rule",
@@ -12450,7 +12470,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -12482,7 +12502,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -12514,7 +12534,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12550,7 +12570,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12586,7 +12606,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -12622,7 +12642,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_rfs_fx_carry_momentum_2024",
+      "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
           "field": "timeframes",
@@ -13450,6 +13470,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -13470,6 +13494,10 @@
         },
         {
           "field": "exit_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "sizing_rule",
           "reason": "normalized value differs"
         },
         {
@@ -13906,6 +13934,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
