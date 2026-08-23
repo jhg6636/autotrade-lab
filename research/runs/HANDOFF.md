@@ -32,10 +32,10 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
-- Pending independent review: the staging hypothesis validator now records context-only leveraged
-  exposures faithfully while continuing to reject Korean executable applications that are not
-  long-only, have negative minimum exposure, or exceed maximum exposure `1`. This isolated
-  correction contains no research-data normalization.
+- Coordinator review passed after `493d55b`: the staging validator records context-only leverage
+  while Korean executable applications remain long-only, nonnegative, and capped at exposure `1`.
+  The normalized records, direction/polarity/exposure, source links, finite parameter sets, generated
+  suggestions, append-only deltas, deterministic report, and canonical isolation passed review.
 
 The checked-out `git rev-parse HEAD` is authoritative for the current documentation commit; do not
 rewrite this handoff merely to embed its own commit hash.
@@ -103,15 +103,16 @@ diff.
 ## Most recent normalized batch
 
 LUNA-101-04 normalized exactly 20 collector-inspected packets at validator-fix base `8a981bc`: 20
-source records (14 usable, 5 incomplete, 1 inaccessible) and 22 hypotheses (16 usable, 6
+source records (14 usable, 5 incomplete, 1 inaccessible) and 22 hypotheses (15 usable, 7
 incomplete). The AER Halloween record is inaccessible because its complimentary full-text PDF was
 blocked by a Cloudflare challenge; no Sell-in-May rule was inferred. International seasonality and
 the index-weight event study remain incomplete. Aggregate reruns were byte-identical at SHA-256
-`add856dcc7e5a64f62618d14bf0ceba56ccb7b71938183fc845ceeefef685a9f`. A coordinator correction
+`50e02941abfe7ca2fc063a5490cde05a8a8333b5b5ce693d6fcfa1f5e4c38572`. A coordinator correction
 at `960806a` added only schema/validator leverage safety support. Normalization semantic correction
 `491997c` fixed merger exposure/sizing selection and finite-set status policy; Chinese J/K is
-incomplete. No coordinator approval,
-push, PR, merge, ranking, backtest, canonical promotion, Toss access, or orders occurred.
+incomplete. Final semantic correction `493d55b` and independent coordinator reruns passed with 79
+tests and clean Ruff/format/diff checks. No push, PR, merge, ranking, backtest, canonical promotion,
+Toss access, or orders occurred.
 
 ## Current batch scope
 
@@ -124,8 +125,8 @@ packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`
 
 ## Next action
 
-Independently review LUNA-101-04 normalized records, source linkage, polarity/exposure, and generated
-relation suggestions before any PR action.
+Push `agent/LUNA-101-04-academic-batch`, open a PR to
+`integration/LUNA-101-academic-discovery`, and verify remote checks before merge.
 
 ## Resume instruction
 
