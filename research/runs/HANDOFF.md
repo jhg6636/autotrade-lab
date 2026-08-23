@@ -21,26 +21,31 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-03-academic-batch`
-- Starting integration commit: `d2484fd` (merge of reviewed LUNA-101-02 PR `#11`)
+- Working branch: `agent/LUNA-101-04-academic-batch`
+- Starting integration commit: `dd20330` (merge of reviewed LUNA-101-03 PR `#12`)
 - Last coordinator-reviewed research content: LUNA-101-03 through `e0fe32b`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote LUNA-101-03 batch branch/PR: pushed; Draft PR `#12`
-- Previous batch PR: `#11`, merged as integration commit `d2484fd`
+- Remote LUNA-101-03 batch branch/PR: PR `#12`, merged as integration commit `dd20330`
+- Previous batch PR: `#12`, merged as integration commit `dd20330`
+- Current batch PR: `#13`, open against `integration/LUNA-101-academic-discovery`
 - Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through LUNA-101-02
-- Worktree: LUNA-101-03 normalized evidence batch approved locally and published to Draft PR `#12`
+- Umbrella PR body: synchronized through merged LUNA-101-03
+- Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
+- Coordinator review passed after `493d55b`: the staging validator records context-only leverage
+  while Korean executable applications remain long-only, nonnegative, and capped at exposure `1`.
+  The normalized records, direction/polarity/exposure, source links, finite parameter sets, generated
+  suggestions, append-only deltas, deterministic report, and canonical isolation passed review.
 
 The checked-out `git rev-parse HEAD` is authoritative for the current documentation commit; do not
 rewrite this handoff merely to embed its own commit hash.
 
 Current aggregate:
 
-- sources: 40 total, 6 usable, 34 incomplete, 0 inaccessible;
-- hypotheses: 45 total, 11 usable, 34 incomplete, 0 inaccessible;
-- suggestions: 459.
+- sources: 60 total, 20 usable, 39 incomplete, 1 inaccessible;
+- hypotheses: 67 total, 26 usable, 41 incomplete, 0 inaccessible;
+- suggestions: 1,101.
 
 ## Recent completed review
 
@@ -70,7 +75,7 @@ Current aggregate:
 PR `#11` was mergeable/clean with no review threads and was merged into the integration branch.
 The LUNA-101 completion target remains unmet.
 
-## Current batch scope
+## Most recent completed batch
 
 LUNA-101-03 admitted exactly 20 audited public full-text inputs, adding 20 source records
 (3 usable, 17 incomplete) and 23 source-linked hypotheses (6 usable, 17 incomplete). The trend
@@ -96,9 +101,33 @@ re-review. Independent validation passed with 72 tests, clean Ruff/format/diff c
 append-only deltas of 20 sources and 23 hypotheses, a byte-identical aggregate, and no canonical
 diff.
 
+## Most recent normalized batch
+
+LUNA-101-04 normalized exactly 20 collector-inspected packets at validator-fix base `8a981bc`: 20
+source records (14 usable, 5 incomplete, 1 inaccessible) and 22 hypotheses (15 usable, 7
+incomplete). The AER Halloween record is inaccessible because its complimentary full-text PDF was
+blocked by a Cloudflare challenge; no Sell-in-May rule was inferred. International seasonality and
+the index-weight event study remain incomplete. Aggregate reruns were byte-identical at SHA-256
+`50e02941abfe7ca2fc063a5490cde05a8a8333b5b5ce693d6fcfa1f5e4c38572`. A coordinator correction
+at `960806a` added only schema/validator leverage safety support. Normalization semantic correction
+`491997c` fixed merger exposure/sizing selection and finite-set status policy; Chinese J/K is
+incomplete. Final semantic correction `493d55b` and independent coordinator reruns passed with 79
+tests and clean Ruff/format/diff checks. No push, PR, merge, ranking, backtest, canonical promotion,
+Toss access, or orders occurred.
+
+## Current batch scope
+
+LUNA-101-04 starts from integration commit `dd20330` and permits at most 20 new unique candidates
+across two disjoint ten-candidate lanes. Candidate discovery prefers public rule-bearing full text
+with explicit entry, exit/rebalance, sizing, universe, and timing to improve usable yield, but the
+pool remains flat and source-neutral. Collectors transcribe evidence and ambiguities only; final
+status and variant decisions remain with the implementer and coordinator. The exact lane contract,
+packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`.
+
 ## Next action
 
-Verify PR `#12` checks, review threads, exact base/head, and mergeability before marking it ready.
+Verify PR `#13` checks and review state on the current head, then merge it to
+`integration/LUNA-101-academic-discovery` if it remains clean.
 
 ## Resume instruction
 

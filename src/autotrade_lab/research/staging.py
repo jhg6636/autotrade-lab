@@ -14,11 +14,12 @@ ROOT = Path(__file__).parents[3]
 SCHEMA_DIR = ROOT / "research" / "schema"
 KINDS = ("sources", "hypotheses", "inaccessible", "relations", "execution_audit")
 SCHEMAS = {
-    kind: SCHEMA_DIR / f"{kind[:-1] if kind != 'execution_audit' else kind}.schema.json"
-    for kind in KINDS
+    "sources": SCHEMA_DIR / "source_capture.schema.json",
+    "hypotheses": SCHEMA_DIR / "hypothesis_candidate.schema.json",
+    "inaccessible": SCHEMA_DIR / "inaccessible.schema.json",
+    "relations": SCHEMA_DIR / "relation.schema.json",
+    "execution_audit": SCHEMA_DIR / "execution_audit.schema.json",
 }
-SCHEMAS["sources"] = SCHEMA_DIR / "source_capture.schema.json"
-SCHEMAS["hypotheses"] = SCHEMA_DIR / "hypothesis_candidate.schema.json"
 
 
 class StagingValidationError(ValueError):
@@ -132,10 +133,11 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
                 and (
                     application["asset_direction"] != "long_only"
                     or application["target_exposure"]["minimum"] < 0
+                    or application["target_exposure"]["maximum"] > 1
                 )
             ):
                 raise StagingValidationError(
-                    f"{kind}:{line}:$.applications: Korean executable application must be long_only with nonnegative exposure"
+                    f"{kind}:{line}:$.applications: Korean executable application must be long_only with nonnegative, unlevered exposure"
                 )
         executable_kr = any(
             application["market"] in {"kr_equity", "kr_etf"}
