@@ -694,7 +694,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -717,10 +717,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -730,7 +726,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -754,7 +750,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -790,7 +786,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -818,7 +814,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -842,7 +838,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "entry_rule",
@@ -862,7 +858,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -886,7 +882,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -910,7 +906,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -934,7 +930,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "sizing_rule",
@@ -946,7 +942,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -970,7 +966,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -990,7 +986,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1014,7 +1010,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1042,7 +1038,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1070,7 +1066,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1102,7 +1098,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1142,7 +1138,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1170,7 +1166,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1202,7 +1198,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1230,7 +1226,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1266,7 +1262,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1298,7 +1294,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1330,7 +1326,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "sizing_rule",
@@ -1342,7 +1338,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1378,7 +1374,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "exit_rule",
@@ -1390,7 +1386,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "exit_rule",
@@ -1402,7 +1398,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1434,7 +1430,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "entry_rule",
@@ -1450,7 +1446,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "sizing_rule",
@@ -1462,7 +1458,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1494,7 +1490,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "entry_rule",
@@ -1514,7 +1510,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1546,7 +1542,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "entry_rule",
@@ -1562,7 +1558,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1594,7 +1590,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "signal_inputs",
@@ -1626,7 +1622,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1662,7 +1658,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1698,7 +1694,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1734,7 +1730,7 @@
     },
     {
       "action": "no_merge",
-      "left_id": "academic_hyp_bayes_fx_carry_mom_2025",
+      "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
           "field": "timeframes",
@@ -1789,10 +1785,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -1825,6 +1817,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "asset_direction",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -1850,10 +1846,6 @@
         },
         {
           "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -1886,10 +1878,6 @@
         },
         {
           "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -1945,10 +1933,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -1981,10 +1965,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2014,10 +1994,6 @@
         },
         {
           "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2065,10 +2041,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2098,10 +2070,6 @@
         },
         {
           "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2145,6 +2113,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "asset_direction",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2177,10 +2149,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2210,10 +2178,6 @@
         },
         {
           "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2253,10 +2217,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2290,10 +2250,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2333,6 +2289,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "asset_direction",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2369,10 +2329,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2402,10 +2358,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2445,10 +2397,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2478,10 +2426,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2525,10 +2469,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
@@ -2566,10 +2506,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2618,6 +2554,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2678,10 +2618,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2749,10 +2685,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -2802,10 +2734,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2861,10 +2789,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
@@ -2905,10 +2829,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
@@ -2942,10 +2862,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -2985,10 +2901,6 @@
           "reason": "normalized value differs"
         },
         {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
@@ -3022,10 +2934,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {
@@ -3066,10 +2974,6 @@
         },
         {
           "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
           "reason": "normalized value differs"
         },
         {

@@ -108,8 +108,9 @@ incomplete). The AER Halloween record is inaccessible because its complimentary 
 blocked by a Cloudflare challenge; no Sell-in-May rule was inferred. International seasonality and
 the index-weight event study remain incomplete. Aggregate reruns were byte-identical at SHA-256
 `add856dcc7e5a64f62618d14bf0ceba56ccb7b71938183fc845ceeefef685a9f`. A coordinator correction
-at `960806a` fixed context-only leverage semantics, merger exposure/sizing selection, and finite-set
-status policy; Chinese J/K is incomplete. No coordinator approval,
+at `960806a` added only schema/validator leverage safety support. Normalization semantic correction
+`491997c` fixed merger exposure/sizing selection and finite-set status policy; Chinese J/K is
+incomplete. No coordinator approval,
 push, PR, merge, ranking, backtest, canonical promotion, Toss access, or orders occurred.
 
 ## Current batch scope
@@ -123,8 +124,8 @@ packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`
 
 ## Next action
 
-Resume the LUNA-101-04 normalization correction under the repaired staging exposure contract;
-revalidate its exposure records and regenerate the deterministic aggregate before any PR action.
+Independently review LUNA-101-04 normalized records, source linkage, polarity/exposure, and generated
+relation suggestions before any PR action.
 
 ## Resume instruction
 
