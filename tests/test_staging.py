@@ -184,6 +184,20 @@ def test_malformed_korean_audit_is_rejected():
         load_jsonl(LUNA104 / "malformed.jsonl", "execution_audit")
 
 
+def test_inaccessible_jsonl_uses_the_inaccessible_schema(tmp_path):
+    record = {
+        "source_id": "synthetic_inaccessible_source",
+        "url": "https://example.org/inaccessible",
+        "reason": "The publisher blocked the attempted public access.",
+        "attempted_at": "2026-08-23",
+        "status": "inaccessible",
+    }
+    path = tmp_path / "inaccessible.jsonl"
+    path.write_text(json.dumps(record) + "\n")
+
+    assert load_jsonl(path, "inaccessible") == [record]
+
+
 def test_duplicate_and_dangling_references_are_rejected(tmp_path):
     source = {
         "source_id": "synthetic_source",
