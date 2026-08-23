@@ -32,6 +32,10 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
+- Pending independent review: the staging hypothesis validator now records context-only leveraged
+  exposures faithfully while continuing to reject Korean executable applications that are not
+  long-only, have negative minimum exposure, or exceed maximum exposure `1`. This isolated
+  correction contains no research-data normalization.
 
 The checked-out `git rev-parse HEAD` is authoritative for the current documentation commit; do not
 rewrite this handoff merely to embed its own commit hash.
@@ -117,7 +121,8 @@ packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`
 
 ## Next action
 
-Independently review LUNA-101-04 normalized records, source linkage, polarity/exposure, and generated relation suggestions before any PR action.
+Resume the LUNA-101-04 normalization correction under the repaired staging exposure contract;
+revalidate its exposure records and regenerate the deterministic aggregate before any PR action.
 
 ## Resume instruction
 

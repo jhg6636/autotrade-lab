@@ -133,10 +133,11 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
                 and (
                     application["asset_direction"] != "long_only"
                     or application["target_exposure"]["minimum"] < 0
+                    or application["target_exposure"]["maximum"] > 1
                 )
             ):
                 raise StagingValidationError(
-                    f"{kind}:{line}:$.applications: Korean executable application must be long_only with nonnegative exposure"
+                    f"{kind}:{line}:$.applications: Korean executable application must be long_only with nonnegative, unlevered exposure"
                 )
         executable_kr = any(
             application["market"] in {"kr_equity", "kr_etf"}

@@ -174,6 +174,47 @@ def test_korean_timeframe_uses_executable_application_not_top_level_scope(tmp_pa
         aggregate(tmp_path)
 
 
+@pytest.mark.parametrize("maximum", [1.5, 2, 5])
+def test_context_only_application_accepts_levered_target_exposure(maximum, tmp_path):
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["execution_scope"] = "context_only"
+    application = candidate["applications"][0]
+    application["execution_scope"] = "context_only"
+    application["target_exposure"] = {"minimum": 0, "maximum": maximum}
+    path = tmp_path / "hypotheses.jsonl"
+    path.write_text(json.dumps(candidate) + "\n")
+
+    assert load_jsonl(path, "hypotheses")[0]["applications"][0]["target_exposure"] == {
+        "minimum": 0,
+        "maximum": maximum,
+    }
+
+
+@pytest.mark.parametrize(
+    ("asset_direction", "minimum", "maximum"),
+    [
+        ("long_short", 0, 1),
+        ("long_only", -0.1, 1),
+        ("long_only", 0, 1.5),
+    ],
+)
+def test_korean_executable_application_rejects_short_negative_or_levered_exposure(
+    asset_direction, minimum, maximum, tmp_path
+):
+    candidate = json.loads((LUNA104 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["asset_direction"] = asset_direction
+    application = candidate["applications"][0]
+    application["asset_direction"] = asset_direction
+    application["target_exposure"] = {"minimum": minimum, "maximum": maximum}
+    path = tmp_path / "hypotheses.jsonl"
+    path.write_text(json.dumps(candidate) + "\n")
+
+    with pytest.raises(
+        StagingValidationError, match="long_only with nonnegative, unlevered exposure"
+    ):
+        load_jsonl(path, "hypotheses")
+
+
 def test_malformed_source_has_line_number_and_field_path():
     with pytest.raises(StagingValidationError, match=r"sources:1:\$\.accessed_at"):
         load_jsonl(LUNA101 / "malformed.jsonl", "sources")
