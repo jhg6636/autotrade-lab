@@ -27,6 +27,7 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Remote LUNA-101-03 batch branch/PR: PR `#12`, merged as integration commit `dd20330`
 - Previous batch PR: `#12`, merged as integration commit `dd20330`
+- Current batch PR: `#13`, open against `integration/LUNA-101-academic-discovery`
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through merged LUNA-101-03
 - Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
@@ -125,8 +126,8 @@ packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`
 
 ## Next action
 
-Push `agent/LUNA-101-04-academic-batch`, open a PR to
-`integration/LUNA-101-academic-discovery`, and verify remote checks before merge.
+Verify PR `#13` checks and review state on the current head, then merge it to
+`integration/LUNA-101-academic-discovery` if it remains clean.
 
 ## Resume instruction
 
