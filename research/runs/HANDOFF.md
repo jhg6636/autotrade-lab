@@ -4,15 +4,14 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-LUNA-201–203 is complete. Preserve the validated Gate B package and wait for the user's explicit
-decision before any market-data collection. The governing contract is
-`research/runs/LUNA-201-203.md`; the decision package is `research/runs/GATE-B.md`.
+Execute the user-approved bounded first-data capability probe and prepare Gate C under
+`research/runs/GATE-C.md`. Phase 1 is the 12-request public crypto sample. Toss Phase 2 stays paused
+until credentials are supplied through an approved secret mechanism.
 
 ## Repository state
 
-- Authoritative branch: `main`
-- Base: `main` at `48d9496`
-- Contract commit: `bf75897`
+- Working branch: `agent/GATE-C-capability-probe`
+- Gate C base: `main` at `b9c8d57`
 - Gate B PR: `#16`, merged as `96f3e14`
 - Canonical strategies/index modified: false
 - Market data collected: false
@@ -34,14 +33,17 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
   WebSocket are available. Historical retention, point-in-time completeness, fill semantics, and
   redistribution rights remain unresolved.
 - The proposed next sample is capped at 29 public/market-data requests, 10,600 candle rows, and
-  25 MB. It remains unauthorized until the user approves Gate B. Toss access additionally requires
-  credentials through an approved secret mechanism; account and order APIs remain forbidden.
+  25 MB. The user approved that bounded sample for Gate C on 2026-08-24. Toss access additionally
+  requires credentials through an approved secret mechanism; account and order APIs remain
+  forbidden.
 
-## Completed gate
+## Active completion condition
 
-- Gate B document and protocol correction passed coordinator review and repository checks.
-- Reviewed PR `#16` merged to `main` as `96f3e14`.
-- No data collection begins automatically.
+- Phase 1 attempts exactly the 12 allowlisted public requests at most once each and remains within
+  8,800 rows; combined Gate C remains within 29 requests, 10,600 rows, and 25 MB.
+- Raw responses, request manifest, deterministic normalized Parquet, and quality report pass review.
+- No credentials, private/account/order APIs, backtest, rank, canonical promotion, or trade occurs.
+- Toss Phase 2 remains paused unless the user separately supplies credentials.
 
 ## Validation evidence
 
@@ -55,12 +57,12 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 
 ## Next action
 
-Await explicit user approval or rejection of the bounded first-data sample in `GATE-B.md`; do not
-collect data automatically.
+Implement and test the allowlisted public-crypto collector and deterministic raw-to-Parquet
+normalizer before making any market-data request.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/LUNA-201-203.md`, and
-`research/runs/GATE-B.md`. Verify the branch and base before acting. Execute only the singular next
-action above. Recreate a new runtime goal only after the user chooses the next gate. Stop for
-explicit user approval before any market-data request or Toss credential use.
+Read `AGENTS.md`, this handoff, `research/runs/GATE-C.md`, `research/runs/GATE-B.md`, and
+`docs/INVESTOR_PROFILE.md`. Verify the branch and base before acting. Execute only the singular next
+action above. Stop before Toss access unless the user supplies credentials through an approved
+secret mechanism.
