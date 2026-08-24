@@ -13,7 +13,7 @@ decision package is `research/runs/GATE-B.md`.
 - Working branch: `agent/LUNA-201-203-gate-b`
 - Base: `main` at `48d9496`
 - Contract commit: `bf75897`
-- Current PR: none
+- Current PR: `#16`, open and mergeable/clean after coordinator review
 - Canonical strategies/index modified: false
 - Market data collected: false
 - Credentials/account/order APIs used: false
@@ -43,10 +43,19 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 - Reviewed PR is merged to `main` under the user's existing repository-history authority.
 - The runtime goal is marked complete only after merge; no data collection begins automatically.
 
+## Validation evidence
+
+- `.venv/bin/pytest -q`: 84 passed
+- Ruff check and format check: passed
+- `git diff --check`: passed
+- Canonical unknown-field audit, 35 usable/context-only audit, eight-cell/eight-state audit,
+  canonical isolation, and secret-pattern audit: passed
+- PR `#16`: correct `main` base and branch head, four expected files, mergeable/clean, GitGuardian
+  success, zero review comments, and no submitted reviews
+
 ## Next action
 
-Run the final diff, internal-consistency, test, lint, format, and secret/canonical-isolation checks;
-then open and review a PR to `main`.
+Merge reviewed PR `#16` into `main`, then verify the resulting remote main commit.
 
 ## Resume instruction
 
