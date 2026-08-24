@@ -23,11 +23,14 @@ Nothing here is treated as evidence of future profit before common-data validati
 - [Financial Services Commission stock-issuance API](https://www.data.go.kr/data/15043423/openapi.do)
 - [Financial Services Commission stock-dividend API](https://www.data.go.kr/data/15043284/openapi.do)
 - [Public Data Portal use policy and Public Nuri types](https://www.data.go.kr/ugs/selectPortalPolicyView.do)
+- [Public Nuri Type 2 general certificate](https://www.kogl.or.kr/info/licenseType2.do)
+- [Financial Services Commission mandatory-parameter notice](https://www.data.go.kr/en/bbs/ntc/selectNotice.do?originId=NOTICE_0000000004719)
 - [OpenDART introduction and API guides](https://opendart.fss.or.kr/intro/main.do)
 - [OpenDART terms](https://opendart.fss.or.kr/intro/terms.do)
 - [KIND delisting status](https://kind.krx.co.kr/investwarn/delcompany.do?method=searchDelCompanyMain)
 - [SEIBro ETF information](https://m.seibro.or.kr/cnts/etf/selectPublishInfo.do)
 - [KRX/KOSCOM contracted data products](https://openapi.krx.co.kr/contents/OPP/DATA/OPPDATA002.jsp)
+- [KRX Hanjin Shipping delisting disclosure](https://kind.krx.co.kr/external/2017/02/17/000655/20170217001623/68051.htm)
 
 ## Research
 

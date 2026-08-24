@@ -4,19 +4,18 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Gate E0 is complete: the repository now contains an official-source, rights-aware minimum data
-combination and a bounded Gate E1 feasibility plan for user review. Do not create keys, accept
-terms, purchase or collect API data, backtest, rank, optimize, promote canonical records, access
-accounts, or trade.
+Gate E1-PREP is complete. Present the exact tested 24-slot Korean daily-data collector packet for
+user review and wait for a separate explicit E1-DATA approval. Do not create a key, call a data API,
+backtest, rank, optimize, access an account, order, or trade.
 
-Completion evidence: `research/runs/GATE-E0.md` separates documented/conditional/unknown facts,
-decides each Korean market/timeframe track, names exact E1 budgets and stop conditions, passed
-adversarial review and repository validation, and leaves one user-authorized next action.
+Completion evidence: documentation hashes and rights classifications are reviewable; the request
+table is immutable and hash-addressed; endpoint, key, redirect, row, byte, page, schema, no-retry,
+and verifier tests pass; final adversarial review has no P1/P2; E1-DATA remains closed.
 
 ## Repository state
 
-- Current main: Gate E0 PR `#22`, merged as `a92c09b`
-- Working branch: `main`
+- Current main: Gate E0 handoff commit `6bf607a`
+- Working branch: `agent/GATE-E1-PREP`, based on main `6bf607a`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -116,6 +115,27 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - `research/runs/GATE-E0.md` proposes E1-PREP followed by a separately approved maximum 24-request,
   1,200-row, 5 MiB E1-DATA plan.
 
+## Gate E1-PREP status
+
+- Official pages and public DOCX guides for all four admitted publications were retrieved into a
+  temporary directory, fingerprinted, and not tracked or redistributed.
+- Exact allowed operations: listed instruments, stock prices, investment-security prices, issuance
+  V3 basic/history, and dividend V2.
+- Issuance V3 prose/notice mentions `isinCd`, while its Swagger/request table omits it. The plan
+  avoids the disputed parameter, always supplies `basDt`, and fails closed on runtime divergence.
+- Rights decision for private noncommercial research: temporary evidence, durable private raw
+  retention, internal noncommercial derivative/backtest use, and private derived-result retention
+  are `documented`. Public Nuri Type 2 attribution applies to issuance/dividend; commercial and
+  external use remain unauthorized.
+- `src/autotrade_lab/gate_e1_prep.py` defines 24 immutable slots, maximum 1,200 rows and 5 MiB, exact
+  allowlists, secret/redirect/stream/schema guards, no retries, and raw-evidence verification.
+- Request-plan SHA-256:
+  `ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0`.
+- No service key was created or read; no API data call, backtest, account access, order, or trade
+  occurred.
+- Final adversarial review resolved approval-hash base-URL coverage, encoded-key header retention,
+  and manifest/raw-set verification defects. No P1/P2 remains.
+
 ## Validation evidence
 
 - Gate E0 final adversarial review: no P1/P2 findings
@@ -126,6 +146,12 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - Gate E0 API/key/data calls, backtests, rankings, account access, and trades: none
 - Gate E0 PR `#22`: merged as `a92c09b`; correct `main` base, four intended files,
   GitGuardian success, clean/mergeable, and no review comments or submitted reviews
+- Gate E1-PREP focused tests: 14 passed
+- Gate E1-PREP full repository tests: 131 passed
+- Gate E1-PREP Ruff check/format, `git diff --check`, credential-pattern scan, and canonical
+  strategy/index isolation: passed
+- Gate E1-PREP public data calls, key creation/read, backtests, rankings, account access, orders,
+  and trades: none
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -140,9 +166,9 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Present the completed Gate E0 decision to the user. If and only if the user authorizes E1-PREP,
-fingerprint exact guides/conditions and implement the tested 24-slot collector packet without
-creating a key or calling a data API.
+Ask the user to review plan SHA-256
+`ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0` and explicitly approve or
+decline E1-DATA. Do not call any data API before that decision.
 
 ## Resume instruction
 
