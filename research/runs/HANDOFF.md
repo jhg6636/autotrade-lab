@@ -26,10 +26,10 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Last coordinator-reviewed research content: LUNA-101-05 through `995e3ac`
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: none; independently reviewed LUNA-101-05 is ready for PR creation
+- Current batch PR: `#14`, targeting the required integration branch and awaiting remote checks
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: independently reviewed LUNA-101-05 is ready to push; no PR or merge yet
+- Worktree: independently reviewed LUNA-101-05 is pushed; PR `#14` is open and unmerged
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -169,8 +169,8 @@ format, and diff checks.
 
 ## Next action
 
-Push `agent/LUNA-101-05-rule-implementation-batch` and open its reviewed batch PR to
-`integration/LUNA-101-academic-discovery`.
+Verify PR `#14` base/head, mergeability, checks, and review threads; merge it into
+`integration/LUNA-101-academic-discovery` only if all remain clean.
 
 ## Resume instruction
 
