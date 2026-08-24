@@ -4,15 +4,19 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Gate D2 is complete. Preserve its documented/observed/unknown boundary while preparing the next
-decision: how to obtain a survivorship-safe Korean historical universe and clarified data rights
-before Gate E. Do not call account/order APIs, backtest, rank, optimize, promote canonical records,
-or trade.
+Gate E0 is complete: the repository now contains an official-source, rights-aware minimum data
+combination and a bounded Gate E1 feasibility plan for user review. Do not create keys, accept
+terms, purchase or collect API data, backtest, rank, optimize, promote canonical records, access
+accounts, or trade.
+
+Completion evidence: `research/runs/GATE-E0.md` separates documented/conditional/unknown facts,
+decides each Korean market/timeframe track, names exact E1 budgets and stop conditions, passed
+adversarial review and repository validation, and leaves one user-authorized next action.
 
 ## Repository state
 
-- Working branch: `main`
 - Current main: Gate D2 PR `#21`, merged as `bd8ceb0`
+- Working branch: `agent/GATE-E0-source-resolution`, based on main `64e088f`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -94,7 +98,32 @@ Unknown:
 normalization do not establish point-in-time validity or data-use permission. The investor's desired
 high return does not weaken survival, bias, corporate-action, or licensing gates.
 
+## Gate E0 source-resolution decision
+
+- Direct KRX Open API is not the default durable archive: it is noncommercial-only, prohibits
+  third-party provision, and prohibits using received information after contract termination.
+- The Financial Services Commission Public Data Portal publications are the lowest-friction bounded
+  feasibility candidates. Listed-instrument and stock-price metadata display no license restriction;
+  issuance and dividend data are Public Nuri Type 2 (attribution, noncommercial only). Durable raw
+  storage and backtest rights stay unknown until detailed conditions are fingerprinted in E1-PREP.
+- Published time ranges are blank. Historical depth, delisted retention, correction semantics, and
+  ETF lifecycle completeness remain untested.
+- OpenDART supports identity and filing/correction evidence, with useful structured corporate-action
+  fields from 2015 for some event types. It cannot define the point-in-time universe or complete
+  adjusted-price factors.
+- Korean stock daily: conditional GO to documentation-only E1-PREP; no data call yet.
+- Korean ETF daily and Korean stock/ETF one-minute: remain NO-GO.
+- `research/runs/GATE-E0.md` proposes E1-PREP followed by a separately approved maximum 24-request,
+  1,200-row, 5 MiB E1-DATA plan.
+
 ## Validation evidence
+
+- Gate E0 final adversarial review: no P1/P2 findings
+- Gate E0 official-source evidence SHA-256:
+  `190949d88c00db72729781f5de3f9e928d3046dcc445fa88272928d073a99928`
+- Gate E0 full repository tests: 117 passed; Ruff check/format and `git diff --check`: passed
+- Gate E0 credential-pattern scan and canonical strategy/index isolation: passed
+- Gate E0 API/key/data calls, backtests, rankings, account access, and trades: none
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -109,9 +138,9 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Draft a bounded Gate E0 source-resolution plan for user review: evaluate official KRX/DART surfaces
-for historical listing lifecycle and corporate actions, and identify an applicable Toss data-use
-term or a substitute licensed research source. Do not collect additional data yet.
+Present the completed Gate E0 decision to the user. If and only if the user authorizes E1-PREP,
+fingerprint exact guides/conditions and implement the tested 24-slot collector packet without
+creating a key or calling a data API.
 
 ## Resume instruction
 
