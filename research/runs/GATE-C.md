@@ -78,8 +78,9 @@ successful capability probe makes no strategy profitable or executable by itself
 - 1,800 Toss candles normalized; combined Gate C totals are 27 requests and 10,600 candle rows.
 - Structural candle quality passed. Korean daily calendar gaps were not inferred without a
   point-in-time session calendar; intraday gap checks exclude cross-session boundaries.
-- Toss Parquet regeneration is byte-identical at SHA-256
-  `93e091692e181e80a55de02a7f0361dd33bf870262ba88184ddcfe2939966e38`.
+- Gate D confirmed timestamp-as-start semantics and corrected daily completion from an inferred
+  24-hour bound to unknown/null. The corrected Toss Parquet is byte-identical on regeneration at
+  SHA-256 `1069360f6694126fae5246c09969b30932c00d62b6d5b4c6914c095da475da25`.
 - Raw bodies and Parquet remain local/Git-ignored because redistribution rights are unresolved.
 - The collector now paces consecutive `/stocks/all` calls; the three failed calls remain preserved
   as capability evidence and were not retried.

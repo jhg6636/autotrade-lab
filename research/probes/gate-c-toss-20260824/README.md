@@ -15,6 +15,9 @@ plumbing, not evidence of strategy profitability or readiness to trade.
 - Combined Gate C: 27/29 market-data requests and 10,600/10,600 candle rows.
 - Structural candle checks: pass, with zero identity duplicates, invalid OHLC rows, non-finite
   numeric rows, negative volumes, off-grid timestamps, or same-session non-grid deltas.
+- Gate D correction: the canonical OpenAPI confirms `timestamp` is the interval start. The 800
+  one-minute rows have fixed one-minute completion bounds (8 were in progress at retrieval), while
+  all 1,000 daily rows retain null close/completion because candle-to-session scope is undocumented.
 
 The three failed stock-master calls were not retried because only two requests remained in the hard
 budget. The collector now paces consecutive `/stocks/all` calls by 1.1 seconds for future runs.
@@ -25,10 +28,10 @@ budget. The collector now paces consecutive `/stocks/all` calls by 1.1 seconds f
   SHA-256 `c9e4c92e473557c62baab6ec9c7b31e9060dfb62fb443a0892aabe673ad02a48`
 - `quality_report.json`: normalized coverage, quality findings, failed reference calls, and unresolved
   semantics/licensing statements; SHA-256
-  `235972cf89fce3fef2bbec9a07080a337b9660ea578829b2dc8982bae2be87ea`
+  `fae565a98dc02294a40ce8562c481e654044730d9adce799bb93c7e93f0993a4`
 - local `normalized/candles.parquet`: 1,800 rows; SHA-256
-  `93e091692e181e80a55de02a7f0361dd33bf870262ba88184ddcfe2939966e38`
+  `1069360f6694126fae5246c09969b30932c00d62b6d5b4c6914c095da475da25`
 
 Raw bodies and Parquet are intentionally Git-ignored. Authenticated access does not establish
-redistribution rights. Toss timestamp event semantics, historical retention, and point-in-time
-universe completeness remain unresolved and must be reviewed before backtesting.
+redistribution rights. Daily session completion, historical retention, and point-in-time universe
+completeness remain unresolved and must be reviewed before backtesting.

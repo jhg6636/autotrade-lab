@@ -26,6 +26,7 @@ from autotrade_lab.data_probe import (
     crypto_probe_requests,
     issue_toss_access_token,
     load_toss_client_credentials,
+    load_toss_normalized_rows,
     normalize_crypto,
     normalize_toss,
     toss_probe_requests,
@@ -331,10 +332,20 @@ def test_toss_normalization_is_byte_deterministic_and_reports_reference_results(
     second = build_toss_normalized_artifacts(toss_dir)
     assert first == second
     report = normalize_toss(toss_dir)
+    _, rows = load_toss_normalized_rows(toss_dir)
     assert report["normalized_rows"] == 9
     assert report["structural_quality_pass"] is True
     assert report["combined_attempted_requests"] == 27
     assert report["combined_candle_rows"] == 25
+    assert sum(item["unknown_completion_rows"] for item in report["datasets"]) == 5
+    assert report["unknown_completion_rows"] == 5
+    daily_rows = [item for item in rows if item["interval"] == "1d"]
+    minute_rows = [item for item in rows if item["interval"] == "1m"]
+    assert all(item["close_time"] is None and item["complete"] is None for item in daily_rows)
+    assert all(
+        item["close_time"] is not None and isinstance(item["complete"], bool)
+        for item in minute_rows
+    )
     assert len(report["reference_requests"]) == 6
     assert verify_toss(toss_dir)["parquet_sha256"] == report["parquet_sha256"]
 
