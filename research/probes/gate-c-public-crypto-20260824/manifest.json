@@ -1,0 +1,380 @@
+{
+  "created_at": "2026-08-24T04:10:42.753093Z",
+  "limits": {
+    "gate_c_max_artifact_bytes": 26214400,
+    "gate_c_max_requests": 29,
+    "gate_c_max_rows": 10600,
+    "phase_max_requests": 12,
+    "phase_max_rows": 8800
+  },
+  "observed": {
+    "attempted_requests": 12,
+    "raw_response_bytes": 1628753,
+    "rows": 8800,
+    "successful_requests": 12
+  },
+  "probe": "gate-c-public-crypto",
+  "requests": [
+    {
+      "attempt_ordinal": 1,
+      "base_url": "https://api.upbit.com/v1/candles/minutes/60",
+      "error": null,
+      "headers": {
+        "content-length": "71718",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:39 GMT",
+        "remaining-req": "group=candles; min=600; sec=9"
+      },
+      "instrument_type": "spot",
+      "interval": "1h",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "count": "200",
+        "market": "KRW-BTC"
+      },
+      "provider": "upbit",
+      "raw_path": "raw/01_upbit_spot_krw_btc_1h.json",
+      "request_id": "upbit_spot_krw_btc_1h",
+      "requested_at": "2026-08-24T04:10:39.814080Z",
+      "response_bytes": 71718,
+      "response_sha256": "8eb83df6fed492ae0f19721376c9fe1e82010c74e961c4ce9d03ab038d39e985",
+      "status": 200,
+      "symbol": "KRW-BTC",
+      "url": "https://api.upbit.com/v1/candles/minutes/60?market=KRW-BTC&count=200",
+      "venue": "upbit_kr"
+    },
+    {
+      "attempt_ordinal": 2,
+      "base_url": "https://api.upbit.com/v1/candles/days",
+      "error": null,
+      "headers": {
+        "content-length": "90285",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:40 GMT",
+        "remaining-req": "group=candles; min=600; sec=8"
+      },
+      "instrument_type": "spot",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "count": "200",
+        "market": "KRW-BTC"
+      },
+      "provider": "upbit",
+      "raw_path": "raw/02_upbit_spot_krw_btc_1d.json",
+      "request_id": "upbit_spot_krw_btc_1d",
+      "requested_at": "2026-08-24T04:10:40.012840Z",
+      "response_bytes": 90285,
+      "response_sha256": "74edf93567a7d40e5fd933ee1af16d84aaefb6983c4ada97e61752d4aa78176d",
+      "status": 200,
+      "symbol": "KRW-BTC",
+      "url": "https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=200",
+      "venue": "upbit_kr"
+    },
+    {
+      "attempt_ordinal": 3,
+      "base_url": "https://api.upbit.com/v1/candles/minutes/60",
+      "error": null,
+      "headers": {
+        "content-length": "70853",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:40 GMT",
+        "remaining-req": "group=candles; min=600; sec=7"
+      },
+      "instrument_type": "spot",
+      "interval": "1h",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "count": "200",
+        "market": "KRW-ETH"
+      },
+      "provider": "upbit",
+      "raw_path": "raw/03_upbit_spot_krw_eth_1h.json",
+      "request_id": "upbit_spot_krw_eth_1h",
+      "requested_at": "2026-08-24T04:10:40.131165Z",
+      "response_bytes": 70853,
+      "response_sha256": "4a39085e8044cd2803a15b5bfd160ec0778abd240ab3d67cfb18866132104781",
+      "status": 200,
+      "symbol": "KRW-ETH",
+      "url": "https://api.upbit.com/v1/candles/minutes/60?market=KRW-ETH&count=200",
+      "venue": "upbit_kr"
+    },
+    {
+      "attempt_ordinal": 4,
+      "base_url": "https://api.upbit.com/v1/candles/days",
+      "error": null,
+      "headers": {
+        "content-length": "88640",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:40 GMT",
+        "remaining-req": "group=candles; min=600; sec=6"
+      },
+      "instrument_type": "spot",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "count": "200",
+        "market": "KRW-ETH"
+      },
+      "provider": "upbit",
+      "raw_path": "raw/04_upbit_spot_krw_eth_1d.json",
+      "request_id": "upbit_spot_krw_eth_1d",
+      "requested_at": "2026-08-24T04:10:40.202141Z",
+      "response_bytes": 88640,
+      "response_sha256": "8bcb6a419c9515fe957d6edcd155c2239768b8a02e15f9000a092aeeeaa4d45b",
+      "status": 200,
+      "symbol": "KRW-ETH",
+      "url": "https://api.upbit.com/v1/candles/days?market=KRW-ETH&count=200",
+      "venue": "upbit_kr"
+    },
+    {
+      "attempt_ordinal": 5,
+      "base_url": "https://data-api.binance.vision/api/v3/klines",
+      "error": null,
+      "headers": {
+        "content-length": "178166",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:40 GMT",
+        "x-mbx-used-weight-1m": "2"
+      },
+      "instrument_type": "spot",
+      "interval": "1h",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1h",
+        "limit": "1000",
+        "symbol": "BTCUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/05_binance_spot_btcusdt_1h.json",
+      "request_id": "binance_spot_btcusdt_1h",
+      "requested_at": "2026-08-24T04:10:40.281039Z",
+      "response_bytes": 178166,
+      "response_sha256": "8dabd545f216854f9685905f6ce394eafa2eb0708b9b820293db34b3acf86f1a",
+      "status": 200,
+      "symbol": "BTCUSDT",
+      "url": "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=1000",
+      "venue": "binance_spot"
+    },
+    {
+      "attempt_ordinal": 6,
+      "base_url": "https://data-api.binance.vision/api/v3/klines",
+      "error": null,
+      "headers": {
+        "content-length": "187415",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:40 GMT",
+        "x-mbx-used-weight-1m": "4"
+      },
+      "instrument_type": "spot",
+      "interval": "1d",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1d",
+        "limit": "1000",
+        "symbol": "BTCUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/06_binance_spot_btcusdt_1d.json",
+      "request_id": "binance_spot_btcusdt_1d",
+      "requested_at": "2026-08-24T04:10:40.780528Z",
+      "response_bytes": 187415,
+      "response_sha256": "1fe8e00b53930f5035d26417e1701e6ffce9253ceb177a55a5bdcb3134f536b7",
+      "status": 200,
+      "symbol": "BTCUSDT",
+      "url": "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=1000",
+      "venue": "binance_spot"
+    },
+    {
+      "attempt_ordinal": 7,
+      "base_url": "https://data-api.binance.vision/api/v3/klines",
+      "error": null,
+      "headers": {
+        "content-length": "175559",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:41 GMT",
+        "x-mbx-used-weight-1m": "6"
+      },
+      "instrument_type": "spot",
+      "interval": "1h",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1h",
+        "limit": "1000",
+        "symbol": "ETHUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/07_binance_spot_ethusdt_1h.json",
+      "request_id": "binance_spot_ethusdt_1h",
+      "requested_at": "2026-08-24T04:10:41.203217Z",
+      "response_bytes": 175559,
+      "response_sha256": "a206668460111a287206a166fc82e478a50632d2dcd0ecd282b4dc8c536f3e47",
+      "status": 200,
+      "symbol": "ETHUSDT",
+      "url": "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=1000",
+      "venue": "binance_spot"
+    },
+    {
+      "attempt_ordinal": 8,
+      "base_url": "https://data-api.binance.vision/api/v3/klines",
+      "error": null,
+      "headers": {
+        "content-length": "184416",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 04:10:41 GMT",
+        "x-mbx-used-weight-1m": "8"
+      },
+      "instrument_type": "spot",
+      "interval": "1d",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1d",
+        "limit": "1000",
+        "symbol": "ETHUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/08_binance_spot_ethusdt_1d.json",
+      "request_id": "binance_spot_ethusdt_1d",
+      "requested_at": "2026-08-24T04:10:41.593221Z",
+      "response_bytes": 184416,
+      "response_sha256": "8a109e8644174247d195ea1c2f1193169a51e24ab9941cd21be21e5bd263be15",
+      "status": 200,
+      "symbol": "ETHUSDT",
+      "url": "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1d&limit=1000",
+      "venue": "binance_spot"
+    },
+    {
+      "attempt_ordinal": 9,
+      "base_url": "https://fapi.binance.com/fapi/v1/klines",
+      "error": null,
+      "headers": {
+        "content-length": "141709",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 04:10:42 GMT",
+        "x-mbx-used-weight-1m": "5",
+        "x-response-time": "0ms"
+      },
+      "instrument_type": "perpetual",
+      "interval": "1h",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1h",
+        "limit": "1000",
+        "symbol": "BTCUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/09_binance_perpetual_btcusdt_1h.json",
+      "request_id": "binance_perpetual_btcusdt_1h",
+      "requested_at": "2026-08-24T04:10:41.990876Z",
+      "response_bytes": 141709,
+      "response_sha256": "e67cd3e7cb62ba432594453e6abb76bcd629b62b59936fd6058fbf41ff71d3a1",
+      "status": 200,
+      "symbol": "BTCUSDT",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1h&limit=1000",
+      "venue": "binance_usdm"
+    },
+    {
+      "attempt_ordinal": 10,
+      "base_url": "https://fapi.binance.com/fapi/v1/klines",
+      "error": null,
+      "headers": {
+        "content-length": "150997",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 04:10:42 GMT",
+        "x-mbx-used-weight-1m": "10",
+        "x-response-time": "0ms"
+      },
+      "instrument_type": "perpetual",
+      "interval": "1d",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1d",
+        "limit": "1000",
+        "symbol": "BTCUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/10_binance_perpetual_btcusdt_1d.json",
+      "request_id": "binance_perpetual_btcusdt_1d",
+      "requested_at": "2026-08-24T04:10:42.272401Z",
+      "response_bytes": 150997,
+      "response_sha256": "b04965a080e757e10cae8446d1b3ae4dedd6b1abd82c512d70b847bc75bbd4e3",
+      "status": 200,
+      "symbol": "BTCUSDT",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1d&limit=1000",
+      "venue": "binance_usdm"
+    },
+    {
+      "attempt_ordinal": 11,
+      "base_url": "https://fapi.binance.com/fapi/v1/klines",
+      "error": null,
+      "headers": {
+        "content-length": "140564",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 04:10:42 GMT",
+        "x-mbx-used-weight-1m": "15",
+        "x-response-time": "1ms"
+      },
+      "instrument_type": "perpetual",
+      "interval": "1h",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1h",
+        "limit": "1000",
+        "symbol": "ETHUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/11_binance_perpetual_ethusdt_1h.json",
+      "request_id": "binance_perpetual_ethusdt_1h",
+      "requested_at": "2026-08-24T04:10:42.414244Z",
+      "response_bytes": 140564,
+      "response_sha256": "3f5e896e7c73b963feaefdacb2ed9b28925dc26ec5df211e76478aedacf5ca09",
+      "status": 200,
+      "symbol": "ETHUSDT",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=ETHUSDT&interval=1h&limit=1000",
+      "venue": "binance_usdm"
+    },
+    {
+      "attempt_ordinal": 12,
+      "base_url": "https://fapi.binance.com/fapi/v1/klines",
+      "error": null,
+      "headers": {
+        "content-length": "148431",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 04:10:42 GMT",
+        "x-mbx-used-weight-1m": "20",
+        "x-response-time": "0ms"
+      },
+      "instrument_type": "perpetual",
+      "interval": "1d",
+      "max_rows": 1000,
+      "observed_rows": 1000,
+      "params": {
+        "interval": "1d",
+        "limit": "1000",
+        "symbol": "ETHUSDT"
+      },
+      "provider": "binance",
+      "raw_path": "raw/12_binance_perpetual_ethusdt_1d.json",
+      "request_id": "binance_perpetual_ethusdt_1d",
+      "requested_at": "2026-08-24T04:10:42.510686Z",
+      "response_bytes": 148431,
+      "response_sha256": "b9f33952c42fefca923ab3b9514c45f5225203d22069d64d61e3ebd77e4961e7",
+      "status": 200,
+      "symbol": "ETHUSDT",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=ETHUSDT&interval=1d&limit=1000",
+      "venue": "binance_usdm"
+    }
+  ],
+  "schema_version": 1
+}

@@ -14,7 +14,7 @@ until credentials are supplied through an approved secret mechanism.
 - Gate C base: `main` at `b9c8d57`
 - Gate B PR: `#16`, merged as `96f3e14`
 - Canonical strategies/index modified: false
-- Market data collected: false
+- Market data collected: 12 approved public crypto requests, 8,800 candle rows, 1,963,244 local bytes
 - Credentials/account/order APIs used: false
 - Backtest/ranking/trading performed: false
 
@@ -45,6 +45,16 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 - No credentials, private/account/order APIs, backtest, rank, canonical promotion, or trade occurs.
 - Toss Phase 2 remains paused unless the user separately supplies credentials.
 
+## Gate C Phase 1 result
+
+- 12/12 allowlisted public requests succeeded without credentials or retries.
+- 8,800 rows normalized; 0 duplicates, internal gaps, invalid OHLC rows, non-finite rows, negative
+  volumes, or time-grid failures; 12 current in-progress candles were identified.
+- Parquet regeneration was byte-identical at SHA-256
+  `9a9d59f2dce69edce8d840309b079bb5b546dc665635b6d456ec0c6c4489fe10`.
+- Raw bodies and Parquet remain local/Git-ignored pending provider redistribution review. Manifest,
+  quality report, checksums, code, and tests are intended for the reviewed PR.
+
 ## Validation evidence
 
 - `.venv/bin/pytest -q`: 84 passed
@@ -57,8 +67,8 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 
 ## Next action
 
-Implement and test the allowlisted public-crypto collector and deterministic raw-to-Parquet
-normalizer before making any market-data request.
+Implement and test the exact Toss Phase 2 request plan without reading credentials or making a Toss
+request.
 
 ## Resume instruction
 

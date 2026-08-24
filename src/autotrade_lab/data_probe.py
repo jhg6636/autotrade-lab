@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -24,6 +25,8 @@ MAX_ROWS = 10_600
 MAX_ARTIFACT_BYTES = 25 * 1024 * 1024
 CRYPTO_REQUESTS = 12
 CRYPTO_MAX_ROWS = 8_800
+TOSS_REQUESTS = 15
+TOSS_MAX_ROWS = 1_800
 SCHEMA_VERSION = 1
 
 _SELECTED_HEADERS = {
@@ -32,6 +35,9 @@ _SELECTED_HEADERS = {
     "date",
     "remaining-req",
     "retry-after",
+    "x-ratelimit-limit",
+    "x-ratelimit-remaining",
+    "x-ratelimit-reset",
     "x-mbx-used-weight-1m",
     "x-response-time",
 }
@@ -114,6 +120,142 @@ def validate_crypto_plan(requests: tuple[ProbeRequest, ...]) -> None:
             raise ValueError(f"endpoint is not allowlisted: {item.base_url}")
         if parsed.username or parsed.password or parsed.fragment:
             raise ValueError("endpoint must not contain credentials or fragments")
+
+
+def toss_probe_requests(probe_date: str = "2026-08-24") -> tuple[ProbeRequest, ...]:
+    requests: list[ProbeRequest] = []
+    symbols = ("005930", "000660", "069500", "229200")
+    for symbol in symbols:
+        for interval in ("1d", "1m"):
+            requests.append(
+                ProbeRequest(
+                    request_id=f"toss_{symbol}_{interval}_adjusted",
+                    provider="toss",
+                    venue="toss_kr",
+                    instrument_type="kr_security",
+                    symbol=symbol,
+                    interval=interval,
+                    base_url="https://openapi.tossinvest.com/api/v1/candles",
+                    params=(
+                        ("symbol", symbol),
+                        ("interval", interval),
+                        ("count", "200"),
+                        ("adjusted", "true"),
+                    ),
+                    max_rows=200,
+                )
+            )
+    requests.append(
+        ProbeRequest(
+            request_id="toss_005930_1d_unadjusted",
+            provider="toss",
+            venue="toss_kr",
+            instrument_type="kr_security",
+            symbol="005930",
+            interval="1d",
+            base_url="https://openapi.tossinvest.com/api/v1/candles",
+            params=(
+                ("symbol", "005930"),
+                ("interval", "1d"),
+                ("count", "200"),
+                ("adjusted", "false"),
+            ),
+            max_rows=200,
+        )
+    )
+    for market in ("KOSPI", "KOSDAQ"):
+        for status in ("ACTIVE", "DELISTED"):
+            requests.append(
+                ProbeRequest(
+                    request_id=f"toss_stock_master_{market.lower()}_{status.lower()}",
+                    provider="toss",
+                    venue="toss_kr",
+                    instrument_type="reference",
+                    symbol=market,
+                    interval="snapshot",
+                    base_url="https://openapi.tossinvest.com/api/v1/stocks/all",
+                    params=(("market", market), ("status", status)),
+                    max_rows=0,
+                )
+            )
+    requests.extend(
+        (
+            ProbeRequest(
+                request_id="toss_selected_stock_details",
+                provider="toss",
+                venue="toss_kr",
+                instrument_type="reference",
+                symbol=",".join(symbols),
+                interval="snapshot",
+                base_url="https://openapi.tossinvest.com/api/v1/stocks",
+                params=(("symbols", ",".join(symbols)),),
+                max_rows=0,
+            ),
+            ProbeRequest(
+                request_id="toss_kr_market_calendar",
+                provider="toss",
+                venue="toss_kr",
+                instrument_type="reference",
+                symbol="KR",
+                interval="calendar",
+                base_url="https://openapi.tossinvest.com/api/v1/market-calendar/KR",
+                params=(("date", probe_date),),
+                max_rows=0,
+            ),
+        )
+    )
+    result = tuple(requests)
+    validate_toss_plan(result)
+    return result
+
+
+def validate_toss_plan(requests: tuple[ProbeRequest, ...]) -> None:
+    if len(requests) != TOSS_REQUESTS:
+        raise ValueError(f"Toss probe must contain exactly {TOSS_REQUESTS} requests")
+    if sum(item.max_rows for item in requests) != TOSS_MAX_ROWS:
+        raise ValueError("Toss candle row budget must be exactly 1,800")
+    if CRYPTO_REQUESTS + len(requests) > MAX_REQUESTS:
+        raise ValueError("combined Gate C request budget exceeded")
+    if CRYPTO_MAX_ROWS + sum(item.max_rows for item in requests) > MAX_ROWS:
+        raise ValueError("combined Gate C candle row budget exceeded")
+    if len({item.request_id for item in requests}) != len(requests):
+        raise ValueError("Toss request IDs must be unique")
+    allowed_paths = {
+        "/api/v1/candles",
+        "/api/v1/stocks/all",
+        "/api/v1/stocks",
+        "/api/v1/market-calendar/KR",
+    }
+    for item in requests:
+        parsed = urllib.parse.urlparse(item.base_url)
+        if (
+            parsed.scheme != "https"
+            or parsed.hostname != "openapi.tossinvest.com"
+            or parsed.path not in allowed_paths
+        ):
+            raise ValueError(f"Toss endpoint is not allowlisted: {item.base_url}")
+        if parsed.username or parsed.password or parsed.fragment:
+            raise ValueError("Toss endpoint must not contain credentials or fragments")
+
+
+def build_toss_http_requests(access_token: str) -> tuple[urllib.request.Request, ...]:
+    if not access_token or "\r" in access_token or "\n" in access_token:
+        raise ValueError("invalid Toss access token")
+    result = []
+    for item in toss_probe_requests():
+        request = urllib.request.Request(
+            item.url,
+            headers={
+                "Accept": "application/json",
+                "Authorization": f"Bearer {access_token}",
+                "User-Agent": "autotrade-lab-gate-c/1",
+            },
+            method="GET",
+        )
+        if request.get_header("X-tossinvest-account") is not None:
+            raise RuntimeError("account header is forbidden in the Toss capability probe")
+        result.append(request)
+    return tuple(result)
 
 
 class ResponseLike(Protocol):
@@ -263,6 +405,127 @@ def collect_crypto(
     return manifest
 
 
+def collect_toss(
+    output_dir: Path,
+    *,
+    access_token: str,
+    crypto_run_dir: Path,
+    transport: Transport | None = None,
+    now: Callable[[], datetime] = lambda: datetime.now(UTC),
+) -> dict[str, Any]:
+    """Collect the exact market-data-only Toss plan with a caller-supplied OAuth token."""
+
+    crypto_manifest = json.loads((crypto_run_dir / "manifest.json").read_bytes())
+    validate_manifest(crypto_manifest)
+    crypto_rows = crypto_manifest["observed"]["rows"]
+    crypto_attempts = crypto_manifest["observed"]["attempted_requests"]
+    requests = toss_probe_requests()
+    http_requests = build_toss_http_requests(access_token)
+    if crypto_attempts + len(requests) > MAX_REQUESTS:
+        raise RuntimeError("combined request budget would be exceeded")
+    transport = transport or public_transport()
+    output_dir.mkdir(parents=True, exist_ok=False)
+    manifest_items: list[dict[str, Any]] = []
+    raw_bytes = 0
+    candle_rows = 0
+
+    for ordinal, (item, request) in enumerate(zip(requests, http_requests, strict=True), start=1):
+        requested_at = now().isoformat().replace("+00:00", "Z")
+        record: dict[str, Any] = {
+            **asdict(item),
+            "params": dict(item.params),
+            "attempt_ordinal": ordinal,
+            "requested_at": requested_at,
+            "url": item.url,
+            "status": None,
+            "headers": {},
+            "raw_path": None,
+            "response_bytes": 0,
+            "response_sha256": None,
+            "observed_rows": 0,
+            "error": None,
+        }
+        body = b""
+        try:
+            with transport.open(request, timeout=30.0) as response:
+                body = response.read(MAX_ARTIFACT_BYTES + 1)
+                record["status"] = response.status
+                record["headers"] = _selected_headers(response.headers)
+        except urllib.error.HTTPError as error:
+            body = error.read(MAX_ARTIFACT_BYTES + 1)
+            record["status"] = error.code
+            record["headers"] = _selected_headers(error.headers)
+            record["error"] = f"HTTP {error.code}: {error.reason}"
+        except urllib.error.URLError as error:
+            record["error"] = f"network error: {error.reason}"
+
+        if len(body) > MAX_ARTIFACT_BYTES or raw_bytes + len(body) > MAX_ARTIFACT_BYTES:
+            raise RuntimeError("Toss artifact byte budget exceeded while reading response")
+        if body:
+            raw_path = Path("raw") / f"{ordinal:02d}_{item.request_id}.json"
+            _write_new(output_dir / raw_path, body)
+            record["raw_path"] = raw_path.as_posix()
+            record["response_bytes"] = len(body)
+            record["response_sha256"] = _sha256(body)
+            raw_bytes += len(body)
+            if record["status"] == 200:
+                try:
+                    payload = json.loads(body)
+                    result = payload["result"]
+                    if item.base_url.endswith("/candles"):
+                        rows = result["candles"]
+                        if not isinstance(rows, list):
+                            raise TypeError("result.candles is not a list")
+                        if len(rows) > item.max_rows:
+                            raise RuntimeError(f"{item.request_id} exceeded its row budget")
+                        record["observed_rows"] = len(rows)
+                        candle_rows += len(rows)
+                except (KeyError, TypeError, json.JSONDecodeError) as error:
+                    record["error"] = f"parse error: {error}"
+        manifest_items.append(record)
+
+    if crypto_rows + candle_rows > MAX_ROWS:
+        raise RuntimeError("combined Gate C candle row budget exceeded")
+    crypto_artifact_bytes = sum(
+        path.stat().st_size for path in crypto_run_dir.rglob("*") if path.is_file()
+    )
+    manifest = {
+        "schema_version": SCHEMA_VERSION,
+        "probe": "gate-c-toss-market-data",
+        "created_at": now().isoformat().replace("+00:00", "Z"),
+        "authorization": "caller-supplied OAuth bearer token; value not retained",
+        "limits": {
+            "gate_c_max_requests": MAX_REQUESTS,
+            "gate_c_max_rows": MAX_ROWS,
+            "gate_c_max_artifact_bytes": MAX_ARTIFACT_BYTES,
+            "phase_max_requests": TOSS_REQUESTS,
+            "phase_max_rows": TOSS_MAX_ROWS,
+        },
+        "prior_phase": {
+            "attempted_requests": crypto_attempts,
+            "rows": crypto_rows,
+            "artifact_bytes": crypto_artifact_bytes,
+            "manifest_sha256": _sha256((crypto_run_dir / "manifest.json").read_bytes()),
+        },
+        "observed": {
+            "attempted_requests": len(manifest_items),
+            "successful_requests": sum(
+                item["status"] == 200 and item["error"] is None for item in manifest_items
+            ),
+            "candle_rows": candle_rows,
+            "raw_response_bytes": raw_bytes,
+            "combined_attempted_requests": crypto_attempts + len(manifest_items),
+            "combined_candle_rows": crypto_rows + candle_rows,
+        },
+        "requests": manifest_items,
+    }
+    encoded = _canonical_json_bytes(manifest)
+    if crypto_artifact_bytes + raw_bytes + len(encoded) > MAX_ARTIFACT_BYTES:
+        raise RuntimeError("combined Gate C artifact byte budget exceeded")
+    _write_new(output_dir / "manifest.json", encoded)
+    return manifest
+
+
 def _interval_ms(interval: str) -> int:
     return {"1h": 3_600_000, "1d": 86_400_000}[interval]
 
@@ -277,6 +540,8 @@ def _upbit_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, An
     fetched_at = _iso_utc_ms(record["requested_at"])
     rows = []
     for item in payload:
+        if item.get("market") != record["symbol"]:
+            raise ValueError(f"Upbit market mismatch in {record['request_id']}")
         open_time = _iso_utc_ms(item["candle_date_time_utc"] + "Z")
         close_time = open_time + step - 1
         rows.append(
@@ -388,6 +653,8 @@ def load_normalized_rows(run_dir: Path) -> tuple[dict[str, Any], list[dict[str, 
         if _sha256(raw) != record["response_sha256"]:
             raise ValueError(f"raw checksum mismatch: {record['request_id']}")
         payload = json.loads(raw)
+        if not isinstance(payload, list) or len(payload) != record["observed_rows"]:
+            raise ValueError(f"raw row count mismatch: {record['request_id']}")
         if record["provider"] == "upbit":
             rows.extend(_upbit_rows(record, payload))
         elif record["provider"] == "binance":
@@ -479,6 +746,17 @@ def _quality_report(
         step = _interval_ms(group_key[-1])
         deltas = [right - left for left, right in pairwise(times)]
         missing = sum(max(math.floor(delta / step) - 1, 0) for delta in deltas)
+        numeric_fields = ("open", "high", "low", "close", "volume", "quote_volume")
+        nonfinite = sum(
+            any(not math.isfinite(item[field]) for field in numeric_fields) for item in items
+        )
+        invalid_ohlc = sum(
+            item["high"] < max(item["open"], item["close"])
+            or item["low"] > min(item["open"], item["close"])
+            or item["high"] < item["low"]
+            for item in items
+        )
+        negative_volume = sum(item["volume"] < 0 or item["quote_volume"] < 0 for item in items)
         datasets.append(
             {
                 "provider": group_key[0],
@@ -492,9 +770,21 @@ def _quality_report(
                 "duplicate_keys": len(items) - len(times),
                 "missing_intervals": missing,
                 "non_grid_deltas": sum(delta % step != 0 for delta in deltas),
+                "off_grid_open_times": sum(item["open_time"] % step != 0 for item in items),
+                "nonfinite_numeric_rows": nonfinite,
+                "invalid_ohlc_rows": invalid_ohlc,
+                "negative_volume_rows": negative_volume,
                 "incomplete_rows": sum(not item["complete"] for item in items),
             }
         )
+    structural_failures = duplicate_keys + sum(
+        dataset["non_grid_deltas"]
+        + dataset["off_grid_open_times"]
+        + dataset["nonfinite_numeric_rows"]
+        + dataset["invalid_ohlc_rows"]
+        + dataset["negative_volume_rows"]
+        for dataset in datasets
+    )
     return {
         "schema_version": SCHEMA_VERSION,
         "probe": manifest["probe"],
@@ -510,6 +800,7 @@ def _quality_report(
         ),
         "normalized_rows": len(rows),
         "duplicate_keys": duplicate_keys,
+        "structural_quality_pass": structural_failures == 0,
         "within_request_budget": len(manifest["requests"]) <= CRYPTO_REQUESTS,
         "within_row_budget": len(rows) <= CRYPTO_MAX_ROWS,
         "datasets": datasets,
@@ -563,6 +854,10 @@ def main() -> None:
     commands = parser.add_subparsers(dest="command", required=True)
     collect = commands.add_parser("collect-crypto")
     collect.add_argument("output_dir", type=Path)
+    collect_toss_parser = commands.add_parser("collect-toss")
+    collect_toss_parser.add_argument("output_dir", type=Path)
+    collect_toss_parser.add_argument("crypto_run_dir", type=Path)
+    collect_toss_parser.add_argument("--token-env", default="TOSS_ACCESS_TOKEN")
     normalize = commands.add_parser("normalize-crypto")
     normalize.add_argument("run_dir", type=Path)
     verify = commands.add_parser("verify-crypto")
@@ -570,6 +865,15 @@ def main() -> None:
     args = parser.parse_args()
     if args.command == "collect-crypto":
         result = collect_crypto(args.output_dir)
+    elif args.command == "collect-toss":
+        token = os.environ.pop(args.token_env, None)
+        if token is None:
+            raise SystemExit(f"required token environment variable is unset: {args.token_env}")
+        result = collect_toss(
+            args.output_dir,
+            access_token=token,
+            crypto_run_dir=args.crypto_run_dir,
+        )
     elif args.command == "normalize-crypto":
         result = normalize_crypto(args.run_dir)
     else:

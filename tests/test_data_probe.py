@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import urllib.parse
 import urllib.request
 from datetime import UTC, datetime
 from email.message import Message
@@ -11,11 +12,18 @@ import pytest
 from autotrade_lab.data_probe import (
     CRYPTO_MAX_ROWS,
     CRYPTO_REQUESTS,
+    MAX_REQUESTS,
+    MAX_ROWS,
+    TOSS_MAX_ROWS,
+    TOSS_REQUESTS,
     ProbeRequest,
     build_normalized_artifacts,
+    build_toss_http_requests,
     collect_crypto,
+    collect_toss,
     crypto_probe_requests,
     normalize_crypto,
+    toss_probe_requests,
     validate_crypto_plan,
     verify_crypto,
 )
@@ -47,9 +55,14 @@ class FakeTransport:
         assert timeout == 30
         self.requests.append(request)
         if "upbit.com" in request.full_url:
+            parsed = urllib.parse.urlparse(request.full_url)
+            market = urllib.parse.parse_qs(parsed.query)["market"][0]
+            previous_time = (
+                "2026-08-23T00:00:00" if parsed.path.endswith("/days") else "2026-08-23T23:00:00"
+            )
             body = [
                 {
-                    "market": "KRW-BTC",
+                    "market": market,
                     "candle_date_time_utc": "2026-08-24T00:00:00",
                     "opening_price": 100,
                     "high_price": 110,
@@ -59,8 +72,8 @@ class FakeTransport:
                     "candle_acc_trade_volume": 10,
                 },
                 {
-                    "market": "KRW-BTC",
-                    "candle_date_time_utc": "2026-08-23T23:00:00",
+                    "market": market,
+                    "candle_date_time_utc": previous_time,
                     "opening_price": 90,
                     "high_price": 105,
                     "low_price": 80,
@@ -86,6 +99,20 @@ class FakeTransport:
                     "0",
                 ]
             ]
+        return FakeResponse(json.dumps(body).encode())
+
+
+class FakeTossTransport:
+    def __init__(self):
+        self.requests: list[urllib.request.Request] = []
+
+    def open(self, request: urllib.request.Request, *, timeout: float) -> FakeResponse:
+        assert timeout == 30
+        self.requests.append(request)
+        if "/candles?" in request.full_url:
+            body = {"result": {"candles": [{"timestamp": "2026-08-24T09:00:00+09:00"}]}}
+        else:
+            body = {"result": []}
         return FakeResponse(json.dumps(body).encode())
 
 
@@ -122,6 +149,47 @@ def test_plan_rejects_non_allowlisted_endpoint() -> None:
         validate_crypto_plan(tuple(valid))
 
 
+def test_toss_plan_uses_only_market_data_and_fits_combined_budget() -> None:
+    requests = toss_probe_requests()
+    assert len(requests) == TOSS_REQUESTS
+    assert sum(item.max_rows for item in requests) == TOSS_MAX_ROWS
+    assert CRYPTO_REQUESTS + TOSS_REQUESTS <= MAX_REQUESTS
+    assert CRYPTO_MAX_ROWS + TOSS_MAX_ROWS == MAX_ROWS
+    assert sum(item.base_url.endswith("/candles") for item in requests) == 9
+    assert all("order" not in item.base_url for item in requests)
+    assert all("account" not in item.base_url for item in requests)
+    assert all("holding" not in item.base_url for item in requests)
+
+
+def test_toss_http_requests_use_bearer_but_never_account_header() -> None:
+    requests = build_toss_http_requests("test-token")
+    assert len(requests) == TOSS_REQUESTS
+    assert all(request.get_header("Authorization") == "Bearer test-token" for request in requests)
+    assert all(request.get_header("X-tossinvest-account") is None for request in requests)
+    with pytest.raises(ValueError, match="invalid Toss access token"):
+        build_toss_http_requests("bad\nheader")
+
+
+def test_toss_collection_is_bounded_and_does_not_persist_token(tmp_path: Path) -> None:
+    crypto_dir = tmp_path / "crypto"
+    collect_crypto(crypto_dir, transport=FakeTransport(), now=fixed_now)
+    toss_dir = tmp_path / "toss"
+    transport = FakeTossTransport()
+    manifest = collect_toss(
+        toss_dir,
+        access_token="test-token",
+        crypto_run_dir=crypto_dir,
+        transport=transport,
+        now=fixed_now,
+    )
+    assert manifest["observed"]["attempted_requests"] == TOSS_REQUESTS
+    assert manifest["observed"]["candle_rows"] == 9
+    assert manifest["observed"]["combined_attempted_requests"] == 27
+    assert len(transport.requests) == TOSS_REQUESTS
+    assert all(request.get_header("X-tossinvest-account") is None for request in transport.requests)
+    assert b"test-token" not in (toss_dir / "manifest.json").read_bytes()
+
+
 def test_collection_has_no_auth_and_is_bounded(tmp_path: Path) -> None:
     transport = FakeTransport()
     run_dir = tmp_path / "run"
@@ -147,6 +215,7 @@ def test_normalization_is_byte_deterministic(tmp_path: Path) -> None:
     assert report["attempted_requests"] == CRYPTO_REQUESTS
     assert report["duplicate_keys"] == 0
     assert report["normalized_rows"] == 16
+    assert report["structural_quality_pass"] is True
     assert verify_crypto(run_dir)["parquet_sha256"] == report["parquet_sha256"]
 
 
