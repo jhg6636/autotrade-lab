@@ -1,6 +1,6 @@
 # Active research handoff
 
-Last updated: 2026-08-21 KST
+Last updated: 2026-08-24 KST
 
 ## Active objective
 
@@ -21,16 +21,15 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-04-academic-batch`
-- Starting integration commit: `dd20330` (merge of reviewed LUNA-101-03 PR `#12`)
-- Last coordinator-reviewed research content: LUNA-101-03 through `e0fe32b`
+- Working branch: `agent/LUNA-101-05-rule-implementation-batch`
+- Starting integration commit: `5a7d7e7` (merge of reviewed LUNA-101-04 PR `#13`)
+- Last coordinator-reviewed research content: LUNA-101-05 through `995e3ac`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Remote LUNA-101-03 batch branch/PR: PR `#12`, merged as integration commit `dd20330`
-- Previous batch PR: `#12`, merged as integration commit `dd20330`
-- Current batch PR: `#13`, open against `integration/LUNA-101-academic-discovery`
+- Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
+- Current batch PR: `#14`, targeting the required integration branch and awaiting remote checks
 - Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through merged LUNA-101-03
-- Worktree: clean LUNA-101-04 batch branch initialized from reviewed integration
+- Umbrella PR body: synchronized through merged LUNA-101-04
+- Worktree: independently reviewed LUNA-101-05 is pushed; PR `#14` is open and unmerged
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -43,9 +42,9 @@ rewrite this handoff merely to embed its own commit hash.
 
 Current aggregate:
 
-- sources: 60 total, 20 usable, 39 incomplete, 1 inaccessible;
-- hypotheses: 67 total, 26 usable, 41 incomplete, 0 inaccessible;
-- suggestions: 1,101.
+- sources: 80 total, 26 usable, 53 incomplete, 1 inaccessible;
+- hypotheses: 95 total, 35 usable, 60 incomplete, 0 inaccessible;
+- suggestions: 2,282.
 
 ## Recent completed review
 
@@ -112,22 +111,66 @@ the index-weight event study remain incomplete. Aggregate reruns were byte-ident
 at `960806a` added only schema/validator leverage safety support. Normalization semantic correction
 `491997c` fixed merger exposure/sizing selection and finite-set status policy; Chinese J/K is
 incomplete. Final semantic correction `493d55b` and independent coordinator reruns passed with 79
-tests and clean Ruff/format/diff checks. No push, PR, merge, ranking, backtest, canonical promotion,
-Toss access, or orders occurred.
+tests and clean Ruff/format/diff checks. PR `#13` passed remote checks and merged into integration as
+`5a7d7e7`. No ranking, backtest, canonical promotion, Toss access, or orders occurred.
 
 ## Current batch scope
 
-LUNA-101-04 starts from integration commit `dd20330` and permits at most 20 new unique candidates
-across two disjoint ten-candidate lanes. Candidate discovery prefers public rule-bearing full text
-with explicit entry, exit/rebalance, sizing, universe, and timing to improve usable yield, but the
-pool remains flat and source-neutral. Collectors transcribe evidence and ambiguities only; final
-status and variant decisions remain with the implementer and coordinator. The exact lane contract,
-packet fields, checks, and stop conditions are in `research/runs/LUNA-101-04.md`.
+LUNA-101-05 starts from integration commit `5a7d7e7` and permits at most 20 new unique candidates
+across two disjoint ten-candidate lanes. One lane covers public replication or version-pinned
+research implementations; the other covers fixed-rule public academic artifacts. Selection may
+favor deterministic rule-bearing evidence to improve usable yield, but the pool remains flat and
+source-neutral. Collectors transcribe evidence and ambiguities only; final status and variant
+decisions remain with the implementer and coordinator. The exact contract is in
+`research/runs/LUNA-101-05.md`.
+
+## Current normalization correction
+
+The LUNA-101-05 normalization review found a truthful context-only exposure with no finite cap.
+The staging hypothesis schema and validator now represent an absent lower or upper exposure bound as
+JSON `null`: `minimum: null` means no finite lower bound and `maximum: null` means no finite upper
+bound. Every executable application still requires two finite numeric bounds; Korean executable
+applications remain long-only, nonnegative, and capped at `1`. Ordering is checked only when both
+bounds are finite. Regression coverage includes context-only long-only `{0, null}` and long-short
+`{null, null}` applications, executable-null rejection, finite reversed bounds, Korean leverage
+rejection, and aggregate/comparator preservation of distinct unbounded exposure profiles. This is
+staging-only support; canonical strategy schemas remain unchanged.
+
+## Superseded normalized batch snapshot
+
+The following initial LUNA-101-05 normalization counts were superseded by adversarial correction.
+It had normalized the two verified evidence packets with SHA-256 values
+`19429c7e1a10e7c21165b4d6c8d66332fbea701905d2b860d844d38edc6d5488` (replication) and
+`0185dcfdb1111a5bc01d78f179c74f28aa8e7705548bb9e655ec81cc5e30b938` (fixed rule). It appends
+exactly 20 unique source captures (8 usable, 12 incomplete) and 28 source-linked hypotheses
+(15 usable, 13 incomplete). All learned policies, generic frameworks, missing-sizing rules,
+unresolved parameters, and the performance-labelled BTC example remain incomplete. The pinned IMC
+code was independently checked as winner-minus-loser; the Baltas TSMOM/risk-parity record preserves
+source-specific provenance without claiming independent evidence weight. The aggregate reran
+byte-identically at SHA-256 `7c3f55280487aff496e093f582a2837abe9b4cbc5005d7221e2207fc5e417ddd` with
+`automatic_merge=false` and `canonical_records_modified=false`. Coordinator review remains required.
+
+## Corrected normalization state
+
+LUNA-101-05 adversarial correction retains exactly 20 appended sources (6 usable, 14 incomplete)
+and 28 appended hypotheses (9 usable, 19 incomplete). It marks Sepp European, JSE breakout, all BLL
+signal-return study records, and Ferretti HRP incomplete; IVP remains usable. Sepp American is bounded
+at `[-10,10]` by its literal direct-runner default. Sepp normalized-sign TSMOM and Baltas are usable
+only with context-only `{minimum: null, maximum: null}`, explicitly meaning source-stated uncapped
+symmetric volatility scaling rather than unknown sizing. Corrected aggregate reruns were byte-identical
+at SHA-256 `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9` with
+`automatic_merge=false` and `canonical_records_modified=false`.
+
+Independent coordinator review passed at `995e3ac`. It rechecked all 20 appended source records and
+28 appended hypotheses, null-bound context semantics, direction/polarity/exposure, exact append-only
+deltas, unique source and hypothesis IDs, unique source URLs, source references, deterministic report
+bytes, and canonical isolation. The complete repository suite passed with 84 tests plus clean Ruff,
+format, and diff checks.
 
 ## Next action
 
-Verify PR `#13` checks and review state on the current head, then merge it to
-`integration/LUNA-101-academic-discovery` if it remains clean.
+Verify PR `#14` base/head, mergeability, checks, and review threads; merge it into
+`integration/LUNA-101-academic-discovery` only if all remain clean.
 
 ## Resume instruction
 

@@ -193,9 +193,83 @@ def test_context_only_application_accepts_levered_target_exposure(maximum, tmp_p
 @pytest.mark.parametrize(
     ("asset_direction", "minimum", "maximum"),
     [
+        ("long_only", 0, None),
+        ("long_short", None, None),
+    ],
+)
+def test_context_only_application_accepts_unbounded_target_exposure(
+    asset_direction, minimum, maximum, tmp_path
+):
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["asset_direction"] = asset_direction
+    candidate["execution_scope"] = "context_only"
+    application = candidate["applications"][0]
+    application["asset_direction"] = asset_direction
+    application["execution_scope"] = "context_only"
+    application["target_exposure"] = {"minimum": minimum, "maximum": maximum}
+    path = tmp_path / "hypotheses.jsonl"
+    path.write_text(json.dumps(candidate) + "\n")
+
+    assert load_jsonl(path, "hypotheses")[0]["applications"][0]["target_exposure"] == {
+        "minimum": minimum,
+        "maximum": maximum,
+    }
+
+
+def test_executable_application_rejects_unbounded_target_exposure(tmp_path):
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["applications"][0]["target_exposure"] = {"minimum": None, "maximum": 1}
+    path = tmp_path / "hypotheses.jsonl"
+    path.write_text(json.dumps(candidate) + "\n")
+
+    with pytest.raises(
+        StagingValidationError, match="executable application target exposure bounds"
+    ):
+        load_jsonl(path, "hypotheses")
+
+
+def test_finite_reversed_target_exposure_is_rejected(tmp_path):
+    candidate = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["execution_scope"] = "context_only"
+    application = candidate["applications"][0]
+    application["execution_scope"] = "context_only"
+    application["target_exposure"] = {"minimum": 1, "maximum": -1}
+    path = tmp_path / "hypotheses.jsonl"
+    path.write_text(json.dumps(candidate) + "\n")
+
+    with pytest.raises(StagingValidationError, match="minimum exposure exceeds maximum"):
+        load_jsonl(path, "hypotheses")
+
+
+def test_aggregate_preserves_unbounded_target_exposure_profile_difference(tmp_path):
+    source = json.loads((LUNA101 / "sources.jsonl").read_text().splitlines()[0])
+    (tmp_path / "sources.jsonl").write_text(json.dumps(source) + "\n")
+    unbounded = json.loads((LUNA101 / "hypotheses.jsonl").read_text().splitlines()[0])
+    unbounded["execution_scope"] = "context_only"
+    unbounded_application = unbounded["applications"][0]
+    unbounded_application["execution_scope"] = "context_only"
+    unbounded_application["target_exposure"] = {"minimum": None, "maximum": None}
+    bounded = json.loads(json.dumps(unbounded))
+    bounded["hypothesis_id"] = "academic_candidate_bounded_exposure"
+    bounded["applications"][0]["target_exposure"] = {"minimum": -1, "maximum": 1}
+    (tmp_path / "hypotheses.jsonl").write_text(
+        "\n".join(json.dumps(item) for item in (unbounded, bounded)) + "\n"
+    )
+
+    report = aggregate(tmp_path)
+    assert report["counts"]["hypotheses"]["usable"] == 2
+    assert len(report["suggestions"]) == 1
+    assert report["suggestions"][0]["relation"] == "variant_of"
+    assert {reason["field"] for reason in report["suggestions"][0]["reasons"]} == {
+        "target_exposure_profile"
+    }
+
+
+@pytest.mark.parametrize(
+    ("asset_direction", "minimum", "maximum"),
+    [
         ("long_short", 0, 1),
         ("long_only", -0.1, 1),
-        ("long_only", 0, 1.5),
     ],
 )
 def test_korean_executable_application_rejects_short_negative_or_levered_exposure(
@@ -206,6 +280,18 @@ def test_korean_executable_application_rejects_short_negative_or_levered_exposur
     application = candidate["applications"][0]
     application["asset_direction"] = asset_direction
     application["target_exposure"] = {"minimum": minimum, "maximum": maximum}
+    path = tmp_path / "hypotheses.jsonl"
+    path.write_text(json.dumps(candidate) + "\n")
+
+    with pytest.raises(
+        StagingValidationError, match="long_only with nonnegative, unlevered exposure"
+    ):
+        load_jsonl(path, "hypotheses")
+
+
+def test_korean_executable_application_rejects_maximum_above_one(tmp_path):
+    candidate = json.loads((LUNA104 / "hypotheses.jsonl").read_text().splitlines()[0])
+    candidate["applications"][0]["target_exposure"] = {"minimum": 0, "maximum": 1.01}
     path = tmp_path / "hypotheses.jsonl"
     path.write_text(json.dumps(candidate) + "\n")
 
