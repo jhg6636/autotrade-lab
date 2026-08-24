@@ -33,7 +33,7 @@
         "market": {"enum": ["kr_equity", "kr_etf", "crypto_spot", "crypto_perp", "us_equity", "multi_asset"]},
         "asset_direction": {"enum": ["long_only", "long_short", "delta_neutral", "market_making", "directionless"]},
         "execution_scope": {"enum": ["executable", "context_only"]},
-        "target_exposure": {"type": "object", "additionalProperties": false, "required": ["minimum", "maximum"], "properties": {"minimum": {"type": "number", "minimum": -1, "maximum": 1}, "maximum": {"type": "number", "minimum": -1, "maximum": 1}}}
+        "target_exposure": {"type": "object", "additionalProperties": false, "required": ["minimum", "maximum"], "properties": {"minimum": {"type": ["number", "null"]}, "maximum": {"type": ["number", "null"]}}}
       }
     }
   }

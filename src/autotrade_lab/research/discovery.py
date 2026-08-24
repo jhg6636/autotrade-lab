@@ -89,6 +89,9 @@ def fingerprint(record: dict[str, Any]) -> dict[str, Any]:
 def _mechanism_identity(record: dict[str, Any]) -> str | None:
     """Recognize a small explicit template vocabulary; return None when unrecognized."""
     text = " ".join(_normalize(record.get(field, "")) for field in ("entry_rule", "exit_rule"))
+    if re.search(r"\b(?:tsmom|time[ -]?series momentum)\b|\bsgn\s*\(", text):
+        polarity = _tsmom_signal_polarity(_normalize(record.get("entry_rule", "")))
+        return f"time_series_momentum:{polarity}" if polarity is not None else None
     if re.search(r"\b(?:sma|moving average|moving-average)\b", text) and re.search(
         r"\bcross(?:es|over|ed|ing)?\b|crossover", text
     ):
@@ -158,6 +161,38 @@ def _mechanism_identity(record: dict[str, Any]) -> str | None:
     return None
 
 
+def _tsmom_signal_polarity(text: str) -> str | None:
+    """Return the uniform sign direction of a recognized TSMOM ``X=…sgn(…)`` rule.
+
+    Recognized terms use the explicit ``r[t-lookback,t]`` notation only. Lookback and
+    nonnegative-weight changes remain parameter variants, but either outer or inner sign reversal
+    changes the signal direction. Do not infer an identity for mixed or unsupported formulas.
+    """
+    assignment = re.search(r"\bx\s*=\s*", text)
+    if assignment is None:
+        return None
+    formula = re.sub(r"\s+", "", text[assignment.end() :])
+    return_sign = r"(?:(?:\d+(?:\.\d+)?|w|\(1-w\))\*?)?sgn\([+-]?r\[t-\d+,t\]\)"
+    term = rf"[+-]?{return_sign}"
+    match = re.match(rf"(?P<expression>{term}(?:[+-]{return_sign})*)", formula)
+    if match is None:
+        return None
+    remainder = formula[match.end() :]
+    if remainder and not re.match(r"(?:[.;:]|using|for|with|where)", remainder):
+        return None
+    signed_term = re.compile(
+        r"(?P<outer>[+-])?(?:(?:\d+(?:\.\d+)?|w|\(1-w\))\*?)?"
+        r"sgn\((?P<inner>[+-])?r\[t-\d+,t\]\)"
+    )
+    term_signs = []
+    for signed_match in signed_term.finditer(match.group("expression")):
+        outer, inner = signed_match.group("outer"), signed_match.group("inner")
+        term_signs.append("negative" if (outer == "-") != (inner == "-") else "positive")
+    if not term_signs or len(set(term_signs)) != 1:
+        return None
+    return term_signs[0]
+
+
 def _field_reasons(
     left: dict[str, Any], right: dict[str, Any], fields: tuple[str, ...]
 ) -> list[dict[str, Any]]:
@@ -207,9 +242,15 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
             ],
         }
     stable = ("markets", "timeframes", "signal_inputs")
+    tsmom_variant = (
+        left_fp["mechanism_identity"] is not None
+        and left_fp["mechanism_identity"] == right_fp["mechanism_identity"]
+        and left_fp["mechanism_identity"].startswith("time_series_momentum:")
+    )
     same_mechanism = (
         shared_family
-        and all(left_fp[field] == right_fp[field] for field in stable)
+        and all(left_fp[field] == right_fp[field] for field in ("markets", "timeframes"))
+        and (tsmom_variant or left_fp["signal_inputs"] == right_fp["signal_inputs"])
         and (
             left_fp["entry_rule"] == right_fp["entry_rule"]
             and left_fp["exit_rule"] == right_fp["exit_rule"]
@@ -228,7 +269,11 @@ def compare_records(left: dict[str, Any], right: dict[str, Any]) -> dict[str, An
             "reasons": _field_reasons(
                 left_fp,
                 right_fp,
-                tuple(field for field in FINGERPRINT_FIELDS if field not in stable),
+                tuple(
+                    field
+                    for field in FINGERPRINT_FIELDS
+                    if field not in (("markets", "timeframes") if tsmom_variant else stable)
+                ),
             ),
         }
     if shared_markets or shared_family:
