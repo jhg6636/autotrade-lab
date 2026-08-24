@@ -2,10 +2,10 @@
   "automatic_merge": false,
   "canonical_records_modified": false,
   "completion": {
-    "usable_hypotheses": 41,
+    "usable_hypotheses": 35,
     "usable_hypothesis_target": 30,
     "usable_source_target": 80,
-    "usable_sources": 28
+    "usable_sources": 26
   },
   "counts": {
     "execution_audit": {
@@ -17,10 +17,10 @@
     },
     "hypotheses": {
       "inaccessible": 0,
-      "incomplete": 54,
+      "incomplete": 60,
       "other": 0,
       "total": 95,
-      "usable": 41
+      "usable": 35
     },
     "inaccessible": {
       "inaccessible": 1,
@@ -38,10 +38,10 @@
     },
     "sources": {
       "inaccessible": 1,
-      "incomplete": 51,
+      "incomplete": 53,
       "other": 0,
       "total": 80,
-      "usable": 28
+      "usable": 26
     },
     "suggestions": 2282
   },
@@ -765,23 +765,11 @@
       "left_id": "academic_hyp_avellaneda_residual_2008",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -789,23 +777,11 @@
       "left_id": "academic_hyp_avellaneda_residual_2008",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -813,23 +789,11 @@
       "left_id": "academic_hyp_avellaneda_residual_2008",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -2043,6 +2007,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -2213,35 +2185,11 @@
       "left_id": "academic_hyp_bayes_fx_momentum_2025",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -2307,6 +2255,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -2335,6 +2291,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -2362,6 +2322,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -3745,6 +3713,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -3909,31 +3881,11 @@
       "left_id": "academic_hyp_boundary_vol_2025",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -3997,6 +3949,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
@@ -4050,6 +4006,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         },
         {
@@ -5255,6 +5215,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -5425,35 +5393,11 @@
       "left_id": "academic_hyp_china_contrarian_2015",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -5519,6 +5463,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -5547,6 +5499,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -5574,6 +5530,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -6057,6 +6021,10 @@
       "left_id": "academic_hyp_common_seasonality_2014",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -6069,6 +6037,10 @@
       "left_id": "academic_hyp_common_seasonality_2014",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -6080,6 +6052,10 @@
       "action": "no_merge",
       "left_id": "academic_hyp_common_seasonality_2014",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -7465,6 +7441,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -7633,31 +7613,11 @@
       "left_id": "academic_hyp_conditional_vol_2020",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -7733,6 +7693,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -7802,6 +7766,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         },
         {
@@ -8971,6 +8939,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -9141,31 +9117,11 @@
       "left_id": "academic_hyp_dmn_tsmom_2020",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -9223,6 +9179,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -9247,6 +9211,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -9270,6 +9238,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -10351,6 +10327,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -10521,35 +10505,11 @@
       "left_id": "academic_hyp_ecb_fx_carry_2021",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -10615,6 +10575,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -10643,6 +10611,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -10670,6 +10642,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -12819,6 +12799,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -13029,35 +13017,11 @@
       "left_id": "academic_hyp_german_lagcount_2021",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -13159,6 +13123,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -13187,6 +13159,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -13214,6 +13190,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -14271,6 +14255,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -14441,35 +14433,11 @@
       "left_id": "academic_hyp_german_seasonality_2021",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -14535,6 +14503,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -14563,6 +14539,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -14590,6 +14570,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -15623,6 +15611,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -15793,35 +15789,11 @@
       "left_id": "academic_hyp_international_seasonality_2018",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -15887,6 +15859,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -15915,6 +15895,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -15942,6 +15926,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -16536,6 +16528,10 @@
       "action": "no_merge",
       "left_id": "academic_hyp_kalman_taa_2022",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -17141,27 +17137,11 @@
       "left_id": "academic_hyp_khandani_factor_2008",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -17169,27 +17149,11 @@
       "left_id": "academic_hyp_khandani_factor_2008",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -17197,27 +17161,11 @@
       "left_id": "academic_hyp_khandani_factor_2008",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -18155,6 +18103,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -18325,35 +18281,11 @@
       "left_id": "academic_hyp_rfs_fx_carry_2024",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -18419,6 +18351,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -18447,6 +18387,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -18474,6 +18418,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -19403,6 +19355,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -19573,35 +19533,11 @@
       "left_id": "academic_hyp_rfs_fx_momentum_2024",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -19667,6 +19603,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -19695,6 +19639,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -19722,6 +19670,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -20317,35 +20273,11 @@
       "left_id": "academic_hyp_risk_arb_2001",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -20353,35 +20285,11 @@
       "left_id": "academic_hyp_risk_arb_2001",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -20389,35 +20297,11 @@
       "left_id": "academic_hyp_risk_arb_2001",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -21029,35 +20913,11 @@
       "left_id": "academic_hyp_smooth_vol_2022",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -21065,35 +20925,11 @@
       "left_id": "academic_hyp_smooth_vol_2022",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -21101,35 +20937,11 @@
       "left_id": "academic_hyp_smooth_vol_2022",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -22031,6 +21843,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -22201,35 +22021,11 @@
       "left_id": "academic_hyp_soton_g10_carry_2014",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -22295,6 +22091,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -22323,6 +22127,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -22350,6 +22158,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -22857,27 +22673,11 @@
       "left_id": "academic_hyp_stock_merger_arb_2001",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -22885,27 +22685,11 @@
       "left_id": "academic_hyp_stock_merger_arb_2001",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -22913,27 +22697,11 @@
       "left_id": "academic_hyp_stock_merger_arb_2001",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -23811,6 +23579,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -23989,35 +23765,11 @@
       "left_id": "academic_hyp_tomar_tsmom_100vol",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -24083,6 +23835,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -24111,6 +23871,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -24138,6 +23902,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -24637,31 +24409,11 @@
       "left_id": "academic_hyp_turn_month_2008",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -24669,31 +24421,11 @@
       "left_id": "academic_hyp_turn_month_2008",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -24701,31 +24433,11 @@
       "left_id": "academic_hyp_turn_month_2008",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -26059,6 +25771,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -26069,43 +25785,11 @@
       "left_id": "academic_hypothesis_century_trend_combo_2014",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -26113,43 +25797,11 @@
       "left_id": "academic_hypothesis_century_trend_combo_2014",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -26333,39 +25985,11 @@
       "left_id": "academic_hypothesis_century_trend_combo_2014",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -26439,6 +26063,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -26471,6 +26099,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -26502,6 +26134,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -27327,6 +26963,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -27337,43 +26977,11 @@
       "left_id": "academic_hypothesis_cn_futures_ema5_2017",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -27381,43 +26989,11 @@
       "left_id": "academic_hypothesis_cn_futures_ema5_2017",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -27597,39 +27173,11 @@
       "left_id": "academic_hypothesis_cn_futures_ema5_2017",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -27703,6 +27251,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -27735,6 +27287,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -27766,6 +27322,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -28717,47 +28277,11 @@
       "left_id": "academic_hypothesis_commodity_ma7_cash_2014",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -28765,47 +28289,11 @@
       "left_id": "academic_hypothesis_commodity_ma7_cash_2014",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -28969,31 +28457,11 @@
       "left_id": "academic_hypothesis_commodity_ma7_cash_2014",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -30163,6 +29631,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -30349,39 +29821,11 @@
       "left_id": "academic_hypothesis_currency_momentum_w16942",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -30455,6 +29899,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -30487,6 +29935,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -30518,6 +29970,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -31255,6 +30711,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -31429,35 +30889,11 @@
       "left_id": "academic_hypothesis_deep_rl_trading_191110107",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -31523,6 +30959,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -31551,6 +30991,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -31578,6 +31022,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -32465,31 +31913,11 @@
       "left_id": "academic_hypothesis_earn_announcement_premium_2007",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -32497,31 +31925,11 @@
       "left_id": "academic_hypothesis_earn_announcement_premium_2007",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -32529,31 +31937,11 @@
       "left_id": "academic_hypothesis_earn_announcement_premium_2007",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -32925,27 +32313,11 @@
       "left_id": "academic_hypothesis_earn_contrast_short_2017",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -32953,27 +32325,11 @@
       "left_id": "academic_hypothesis_earn_contrast_short_2017",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -32981,27 +32337,11 @@
       "left_id": "academic_hypothesis_earn_contrast_short_2017",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -33325,6 +32665,10 @@
       "left_id": "academic_hypothesis_earn_reversal_2014",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -33337,6 +32681,10 @@
       "left_id": "academic_hypothesis_earn_reversal_2014",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -33348,6 +32696,10 @@
       "action": "no_merge",
       "left_id": "academic_hypothesis_earn_reversal_2014",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -34011,6 +33363,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -34021,43 +33377,11 @@
       "left_id": "academic_hypothesis_ema_trend_n5_2014",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -34065,43 +33389,11 @@
       "left_id": "academic_hypothesis_ema_trend_n5_2014",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -34285,39 +33577,11 @@
       "left_id": "academic_hypothesis_ema_trend_n5_2014",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -34391,6 +33655,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -34423,6 +33691,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -34454,6 +33726,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -35109,6 +34385,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -35313,39 +34593,11 @@
       "left_id": "academic_hypothesis_futures_tsmom_d15_k1_2013",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -35417,6 +34669,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -35449,6 +34705,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -35478,6 +34738,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -36133,6 +35397,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -36349,43 +35617,11 @@
       "left_id": "academic_hypothesis_futures_tsmom_m12_k1_2013",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -36465,6 +35701,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -36501,6 +35741,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -36534,6 +35778,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -37171,6 +36419,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -37369,39 +36621,11 @@
       "left_id": "academic_hypothesis_futures_tsmom_w18_k1_2013",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -37475,6 +36699,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -37507,6 +36735,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -37538,6 +36770,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -37977,6 +37213,10 @@
       "left_id": "academic_hypothesis_fx_xsmom_1_1_2012",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -38621,47 +37861,11 @@
       "left_id": "academic_hypothesis_global_rp_ma10_cash_2012",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -38669,47 +37873,11 @@
       "left_id": "academic_hypothesis_global_rp_ma10_cash_2012",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -38877,31 +38045,11 @@
       "left_id": "academic_hypothesis_global_rp_ma10_cash_2012",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -41935,6 +41083,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -42121,39 +41273,11 @@
       "left_id": "academic_hypothesis_mr_cost_buffer_2011",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -42227,6 +41351,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -42259,6 +41387,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -42290,6 +41422,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -43169,6 +42305,10 @@
       "left_id": "academic_hypothesis_ou_double_stop_2014",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -43631,6 +42771,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -43817,39 +42961,11 @@
       "left_id": "academic_hypothesis_ou_energy_stop_leverage_2017",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -43923,6 +43039,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -43955,6 +43075,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -43986,6 +43110,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -44509,6 +43637,10 @@
       "left_id": "academic_hypothesis_pead_ere_2015",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -44521,6 +43653,10 @@
       "left_id": "academic_hypothesis_pead_ere_2015",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -44532,6 +43668,10 @@
       "action": "no_merge",
       "left_id": "academic_hypothesis_pead_ere_2015",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -44697,6 +43837,10 @@
       "left_id": "academic_hypothesis_pead_loss_profit_60d_2010",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -44709,6 +43853,10 @@
       "left_id": "academic_hypothesis_pead_loss_profit_60d_2010",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -44720,6 +43868,10 @@
       "action": "no_merge",
       "left_id": "academic_hypothesis_pead_loss_profit_60d_2010",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -45623,6 +44775,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -45797,35 +44953,11 @@
       "left_id": "academic_hypothesis_slow_momentum_reversion_210513727",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -45891,6 +45023,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -45919,6 +45055,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -45946,6 +45086,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -47377,6 +46521,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -47593,43 +46741,11 @@
       "left_id": "academic_hypothesis_tsmom_12m_1m_2012",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -47709,6 +46825,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -47745,6 +46865,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -47778,6 +46902,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -48101,6 +47229,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -48317,43 +47449,11 @@
       "left_id": "academic_hypothesis_tsmom_3m_1m_2012",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -48433,6 +47533,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -48469,6 +47573,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -48502,6 +47610,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -48781,6 +47893,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -48985,39 +48101,11 @@
       "left_id": "academic_hypothesis_tsmom_baseline_210513727",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -49089,6 +48177,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -49121,6 +48213,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -49150,6 +48246,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -49397,6 +48497,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -49601,39 +48705,11 @@
       "left_id": "academic_hypothesis_tsmom_intermediate_05_210513727",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -49705,6 +48781,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -49737,6 +48817,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -49766,6 +48850,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -49997,6 +49085,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -50201,39 +49293,11 @@
       "left_id": "academic_hypothesis_tsmom_intermediate_1_210513727",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "mechanism_identity",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -50305,6 +49369,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -50337,6 +49405,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "mechanism_identity",
           "reason": "normalized value differs"
         }
@@ -50366,6 +49438,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         },
         {
@@ -50731,6 +49807,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -50913,39 +49993,11 @@
       "left_id": "academic_hypothesis_volatility_managed_invvar_2016",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "execution_assumptions",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -51019,6 +50071,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -51051,6 +50107,10 @@
         {
           "field": "execution_assumptions",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -51082,6 +50142,10 @@
         },
         {
           "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -51219,6 +50283,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -51389,35 +50461,11 @@
       "left_id": "luna101_05_a3c_policy_context",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -51483,6 +50531,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -51511,6 +50567,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -51538,6 +50598,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -51657,27 +50725,11 @@
       "left_id": "luna101_05_anomaly_library_context",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -51685,27 +50737,11 @@
       "left_id": "luna101_05_anomaly_library_context",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -51713,27 +50749,11 @@
       "left_id": "luna101_05_anomaly_library_context",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -51941,6 +50961,10 @@
       "left_id": "luna101_05_arbitragelab_pair_context",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -52049,27 +51073,11 @@
       "left_id": "luna101_05_assaying_momentum_demo",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_fma"
     },
     {
@@ -52077,27 +51085,11 @@
       "left_id": "luna101_05_assaying_momentum_demo",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -52105,27 +51097,11 @@
       "left_id": "luna101_05_assaying_momentum_demo",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
@@ -52265,6 +51241,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -52298,6 +51278,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         },
         {
@@ -52337,6 +51321,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -52367,6 +51355,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -52377,35 +51373,11 @@
       "left_id": "luna101_05_baltas_tsmom_riskparity",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -52443,6 +51415,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -52470,6 +51450,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -52499,6 +51487,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -52526,6 +51522,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         }
       ],
@@ -52555,6 +51555,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -52582,6 +51590,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -52611,6 +51627,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -52621,19 +51645,11 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_trb"
     },
     {
@@ -52641,25 +51657,21 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
       "action": "no_merge",
       "left_id": "luna101_05_bll_fma",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -52673,6 +51685,10 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -52685,27 +51701,11 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_imc_pretom_wml"
     },
     {
@@ -52713,27 +51713,11 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jt_momentum_context"
     },
     {
@@ -52741,35 +51725,11 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_american_atr_trend"
     },
     {
@@ -52777,35 +51737,11 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_european_ewma_trend"
     },
     {
@@ -52813,39 +51749,11 @@
       "left_id": "luna101_05_bll_fma",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_stationary_ma"
     },
     {
@@ -52853,25 +51761,21 @@
       "left_id": "luna101_05_bll_trb",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_bll_vma"
     },
     {
       "action": "no_merge",
       "left_id": "luna101_05_bll_trb",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -52885,6 +51789,10 @@
       "left_id": "luna101_05_bll_trb",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -52896,6 +51804,10 @@
       "action": "no_merge",
       "left_id": "luna101_05_bll_trb",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -52909,27 +51821,11 @@
       "left_id": "luna101_05_bll_trb",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_imc_pretom_wml"
     },
     {
@@ -52937,39 +51833,11 @@
       "left_id": "luna101_05_bll_trb",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -52977,33 +51845,21 @@
       "left_id": "luna101_05_bll_trb",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jt_momentum_context"
     },
     {
       "action": "no_merge",
       "left_id": "luna101_05_bll_vma",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -53017,6 +51873,10 @@
       "left_id": "luna101_05_bll_vma",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -53029,27 +51889,11 @@
       "left_id": "luna101_05_bll_vma",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_imc_pretom_wml"
     },
     {
@@ -53057,27 +51901,11 @@
       "left_id": "luna101_05_bll_vma",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jt_momentum_context"
     },
     {
@@ -53085,35 +51913,11 @@
       "left_id": "luna101_05_bll_vma",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_american_atr_trend"
     },
     {
@@ -53121,35 +51925,11 @@
       "left_id": "luna101_05_bll_vma",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_european_ewma_trend"
     },
     {
@@ -53157,39 +51937,11 @@
       "left_id": "luna101_05_bll_vma",
       "reasons": [
         {
-          "field": "markets",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "application_execution_scope",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_stationary_ma"
     },
     {
@@ -53380,6 +52132,10 @@
       "action": "no_merge",
       "left_id": "luna101_05_chinese_index_rules_context",
       "reasons": [
+        {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
         {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
@@ -53573,6 +52329,10 @@
       "left_id": "luna101_05_donchian_context",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -53761,23 +52521,11 @@
       "left_id": "luna101_05_ferretti_hrp",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -53845,6 +52593,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -53906,6 +52658,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         },
         {
@@ -54093,23 +52849,11 @@
       "left_id": "luna101_05_ferretti_ivp",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -54177,6 +52921,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -54238,6 +52986,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         },
         {
@@ -54401,23 +53153,11 @@
       "left_id": "luna101_05_ferretti_netmod_context",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -54485,6 +53225,10 @@
           "reason": "normalized value differs"
         },
         {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
           "field": "asset_direction",
           "reason": "normalized value differs"
         },
@@ -54546,6 +53290,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
           "reason": "normalized value differs"
         },
         {
@@ -54673,35 +53421,11 @@
       "left_id": "luna101_05_globalfactors_context",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_jse_long_channel_breakout"
     },
     {
@@ -54767,6 +53491,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -54795,6 +53527,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -54822,6 +53558,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -54945,6 +53689,10 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
+          "field": "exit_rule",
+          "reason": "unknown or placeholder value prevents reliable comparison"
+        },
+        {
           "field": "sizing_rule",
           "reason": "unknown or placeholder value prevents reliable comparison"
         }
@@ -54957,31 +53705,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_rink_rules_context"
     },
     {
@@ -54989,31 +53717,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_american_atr_trend"
     },
     {
@@ -55021,31 +53729,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_european_ewma_trend"
     },
     {
@@ -55053,31 +53741,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_sepp_normalized_sign_tsmom"
     },
     {
@@ -55085,35 +53753,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_stationary_bollinger"
     },
     {
@@ -55121,35 +53765,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_stationary_kdj"
     },
     {
@@ -55157,35 +53777,11 @@
       "left_id": "luna101_05_jse_long_channel_breakout",
       "reasons": [
         {
-          "field": "timeframes",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "signal_inputs",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "entry_rule",
-          "reason": "normalized value differs"
-        },
-        {
           "field": "exit_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "sizing_rule",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "asset_direction",
-          "reason": "normalized value differs"
-        },
-        {
-          "field": "target_exposure_profile",
-          "reason": "normalized value differs"
+          "reason": "unknown or placeholder value prevents reliable comparison"
         }
       ],
-      "relation": "related_to",
+      "relation": "insufficient_information",
       "right_id": "luna101_05_stationary_ma"
     },
     {
@@ -55291,6 +53887,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55315,6 +53919,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55339,6 +53947,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55446,6 +54062,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -55471,6 +54095,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55499,6 +54131,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55526,6 +54166,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -55555,6 +54203,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55578,6 +54234,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -55607,6 +54271,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55635,6 +54303,10 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55662,6 +54334,10 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],
@@ -55691,6 +54367,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55719,6 +54403,14 @@
         {
           "field": "sizing_rule",
           "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
+          "reason": "normalized value differs"
         }
       ],
       "relation": "related_to",
@@ -55746,6 +54438,14 @@
         },
         {
           "field": "sizing_rule",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "execution_assumptions",
+          "reason": "normalized value differs"
+        },
+        {
+          "field": "target_exposure_profile",
           "reason": "normalized value differs"
         }
       ],

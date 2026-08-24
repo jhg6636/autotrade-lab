@@ -26,11 +26,10 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Last coordinator-reviewed research content: LUNA-101-04 through `f73180a`
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: none; LUNA-101-05 normalization correction is paused before coordinator review
+- Current batch PR: none; LUNA-101-05 normalization correction awaits coordinator review
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: one intentional, unstaged LUNA-101-05 source-only normalization correction is present;
-  preserve it and do not stage it with the validator fix
+- Worktree: LUNA-101-05 correction is normalized and awaits review; no PR or merge yet
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -43,8 +42,8 @@ rewrite this handoff merely to embed its own commit hash.
 
 Current aggregate:
 
-- sources: 80 total, 28 usable, 51 incomplete, 1 inaccessible;
-- hypotheses: 95 total, 41 usable, 54 incomplete, 0 inaccessible;
+- sources: 80 total, 26 usable, 53 incomplete, 1 inaccessible;
+- hypotheses: 95 total, 35 usable, 60 incomplete, 0 inaccessible;
 - suggestions: 2,282.
 
 ## Recent completed review
@@ -137,9 +136,10 @@ bounds are finite. Regression coverage includes context-only long-only `{0, null
 rejection, and aggregate/comparator preservation of distinct unbounded exposure profiles. This is
 staging-only support; canonical strategy schemas remain unchanged.
 
-## Prior normalized batch snapshot
+## Superseded normalized batch snapshot
 
-LUNA-101-05 normalized the two verified evidence packets with SHA-256 values
+The following initial LUNA-101-05 normalization counts were superseded by adversarial correction.
+It had normalized the two verified evidence packets with SHA-256 values
 `19429c7e1a10e7c21165b4d6c8d66332fbea701905d2b860d844d38edc6d5488` (replication) and
 `0185dcfdb1111a5bc01d78f179c74f28aa8e7705548bb9e655ec81cc5e30b938` (fixed rule). It appends
 exactly 20 unique source captures (8 usable, 12 incomplete) and 28 source-linked hypotheses
@@ -150,11 +150,22 @@ source-specific provenance without claiming independent evidence weight. The agg
 byte-identically at SHA-256 `7c3f55280487aff496e093f582a2837abe9b4cbc5005d7221e2207fc5e417ddd` with
 `automatic_merge=false` and `canonical_records_modified=false`. Coordinator review remains required.
 
+## Corrected normalization state
+
+LUNA-101-05 adversarial correction retains exactly 20 appended sources (6 usable, 14 incomplete)
+and 28 appended hypotheses (9 usable, 19 incomplete). It marks Sepp European, JSE breakout, all BLL
+signal-return study records, and Ferretti HRP incomplete; IVP remains usable. Sepp American is bounded
+at `[-10,10]` by its literal direct-runner default. Sepp normalized-sign TSMOM and Baltas are usable
+only with context-only `{minimum: null, maximum: null}`, explicitly meaning source-stated uncapped
+symmetric volatility scaling rather than unknown sizing. Corrected aggregate reruns were byte-identical
+at SHA-256 `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9` with
+`automatic_merge=false` and `canonical_records_modified=false`.
+
 ## Next action
 
-Resume the LUNA-101-05 normalization correction using the staging-only context-unbounded exposure
-representation, then regenerate and independently review the append-only aggregate before any PR
-decision.
+Independently review the corrected LUNA-101-05 source/hypothesis statuses, null-bound semantics,
+append-only delta, deterministic aggregate, and canonical isolation; then decide whether to open a
+batch PR to `integration/LUNA-101-academic-discovery`.
 
 ## Resume instruction
 
