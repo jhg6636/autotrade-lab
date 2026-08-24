@@ -15,8 +15,8 @@ adversarial review and repository validation, and leaves one user-authorized nex
 
 ## Repository state
 
-- Current main: Gate D2 PR `#21`, merged as `bd8ceb0`
-- Working branch: `agent/GATE-E0-source-resolution`, based on main `64e088f`
+- Current main: Gate E0 PR `#22`, merged as `a92c09b`
+- Working branch: `main`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -124,6 +124,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - Gate E0 full repository tests: 117 passed; Ruff check/format and `git diff --check`: passed
 - Gate E0 credential-pattern scan and canonical strategy/index isolation: passed
 - Gate E0 API/key/data calls, backtests, rankings, account access, and trades: none
+- Gate E0 PR `#22`: merged as `a92c09b`; correct `main` base, four intended files,
+  GitGuardian success, clean/mergeable, and no review comments or submitted reviews
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
