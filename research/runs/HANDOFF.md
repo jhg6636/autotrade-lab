@@ -152,8 +152,10 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   strategy/index isolation: passed
 - Gate E1-PREP public data calls, key creation/read, backtests, rankings, account access, orders,
   and trades: none
-- Gate E1-PREP PR `#23`: correct `main` base, six intended files, GitGuardian success,
+- Gate E1-PREP PR `#23`: correct `main` base, eight intended files, GitGuardian success,
   clean/mergeable, no review decision; not merged because main-branch merge requires user direction
+- `README.md` and `docs/ROADMAP.html` provide a derived milestone view; this handoff remains the
+  operational source of truth.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed

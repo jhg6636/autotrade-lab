@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>autotrade-lab milestone dashboard</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page: light-dark(#f7f8fa, #0d1117);
+      --surface: light-dark(#ffffff, #161b22);
+      --surface-muted: light-dark(#f1f3f5, #21262d);
+      --text: light-dark(#17202a, #f0f6fc);
+      --muted: light-dark(#5f6b76, #9da7b3);
+      --border: light-dark(#d7dde3, #30363d);
+      --done: light-dark(#2d6a4f, #56d364);
+      --done-bg: light-dark(#e5f6eb, #153923);
+      --partial: light-dark(#9a6700, #e3b341);
+      --partial-bg: light-dark(#fff5cc, #3b2e0a);
+      --current: light-dark(#1d4ed8, #58a6ff);
+      --current-bg: light-dark(#e8f0ff, #102a47);
+      --future: light-dark(#7a828b, #8b949e);
+      --future-bg: light-dark(#eff1f3, #20252b);
+      --blocked: light-dark(#b42318, #ff7b72);
+      --blocked-bg: light-dark(#ffebe9, #421b1b);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); }
+    main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 64px; }
+    a { color: var(--current); text-underline-offset: 3px; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.045em; line-height: 1.02; }
+    h2 { margin: 0 0 18px; font-size: 1.25rem; }
+    h3 { margin: 0; font-size: 1rem; line-height: 1.35; }
+    p { line-height: 1.6; }
+
+    .eyebrow { margin: 0 0 10px; color: var(--current); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .lede { max-width: 780px; margin: 18px 0 0; color: var(--muted); font-size: 1.05rem; }
+    .current-position {
+      margin: 28px 0 18px;
+      padding: 22px 24px;
+      border: 2px solid var(--current);
+      border-radius: 16px;
+      background: var(--current-bg);
+    }
+    .current-position strong { display: block; margin-bottom: 6px; font-size: 1.2rem; }
+    .current-position p { margin: 0; }
+    .meta { margin: 12px 0 36px; color: var(--muted); font-size: .86rem; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 14px 22px; margin: 0 0 28px; padding: 0; list-style: none; color: var(--muted); font-size: .85rem; }
+    .legend li { display: inline-flex; align-items: center; gap: 7px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--future); }
+    .dot.done { background: var(--done); }
+    .dot.partial { background: var(--partial); }
+    .dot.current { background: var(--current); }
+    .dot.blocked { background: var(--blocked); }
+
+    .roadmap { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+    .phase {
+      position: relative;
+      min-height: 225px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--future);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .phase:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      z-index: 2;
+      top: 46px;
+      right: -17px;
+      color: var(--muted);
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+    .phase:nth-child(5)::after { content: "↓"; top: auto; right: calc(50% - 7px); bottom: -21px; }
+    .phase.done { border-top-color: var(--done); }
+    .phase.partial { border-top-color: var(--partial); }
+    .phase.current { border: 2px solid var(--current); border-top-width: 5px; background: var(--current-bg); }
+    .phase.blocked { border-top-color: var(--blocked); }
+    .phase-number { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .status { display: inline-block; margin: 12px 0 14px; padding: 4px 8px; border-radius: 999px; font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .done .status { color: var(--done); background: var(--done-bg); }
+    .partial .status { color: var(--partial); background: var(--partial-bg); }
+    .current .status { color: var(--current); background: var(--surface); }
+    .future .status { color: var(--future); background: var(--future-bg); }
+    .blocked .status { color: var(--blocked); background: var(--blocked-bg); }
+    .phase ul { margin: 14px 0 0; padding-left: 18px; color: var(--muted); font-size: .83rem; line-height: 1.55; }
+
+    .section { margin-top: 48px; }
+    .lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .lane { padding: 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+    .lane p { margin: 8px 0 0; color: var(--muted); font-size: .88rem; }
+    .lane ol { margin: 18px 0 0; padding: 0; list-style: none; }
+    .lane li { position: relative; margin-left: 7px; padding: 0 0 18px 23px; border-left: 2px solid var(--border); color: var(--muted); font-size: .84rem; line-height: 1.45; }
+    .lane li:last-child { padding-bottom: 0; border-color: transparent; }
+    .lane li::before { content: ""; position: absolute; top: 2px; left: -7px; width: 12px; height: 12px; border-radius: 50%; background: var(--future); }
+    .lane li.done::before { background: var(--done); }
+    .lane li.partial::before { background: var(--partial); }
+    .lane li.current::before { background: var(--current); box-shadow: 0 0 0 4px var(--current-bg); }
+    .lane li strong { display: block; color: var(--text); }
+
+    .gate {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .gate p { margin: 6px 0 0; color: var(--muted); }
+    .gate-code { max-width: 370px; overflow-wrap: anywhere; color: var(--current); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .75rem; }
+    details { margin-top: 14px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+    summary { cursor: pointer; font-weight: 750; }
+    details p, details ul { color: var(--muted); font-size: .86rem; line-height: 1.55; }
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem; }
+
+    @media (max-width: 980px) {
+      .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .phase:not(:last-child)::after { display: none; }
+      .lanes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      main { width: min(100% - 22px, 1180px); padding-top: 26px; }
+      .roadmap { grid-template-columns: 1fr; }
+      .phase { min-height: auto; }
+      .gate { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">autotrade-lab · research roadmap</p>
+      <h1>From strategy ideas<br>to a guarded live pilot</h1>
+      <p class="lede">The laboratory is past its research foundation and provider-capability work, but it has not yet begun a survivorship-safe Korean historical backtest.</p>
+      <div class="current-position">
+        <strong>Current position: Gate E1-PREP complete</strong>
+        <p>The next boundary is a separately approved, fixed 24-request feasibility probe against official Korean daily stock-data sources. Passing that probe would qualify a data source; it would not prove a strategy profitable.</p>
+      </div>
+      <p class="meta">Status snapshot: 2026-08-24 KST · Exact active action lives in <a href="../research/runs/HANDOFF.md">HANDOFF.md</a></p>
+    </header>
+
+    <ul class="legend" aria-label="Status legend">
+      <li><span class="dot done"></span>Complete</li>
+      <li><span class="dot partial"></span>Partial</li>
+      <li><span class="dot current"></span>Current boundary</li>
+      <li><span class="dot blocked"></span>Closed by gate</li>
+      <li><span class="dot"></span>Not started</li>
+    </ul>
+
+    <section aria-labelledby="overall-roadmap">
+      <h2 id="overall-roadmap">Overall milestone path</h2>
+      <div class="roadmap">
+        <article class="phase done">
+          <span class="phase-number">Phase 1</span>
+          <span class="status">Complete</span>
+          <h3>Research foundation</h3>
+          <ul>
+            <li>Source-neutral strategy schema</li>
+            <li>Canonical catalog migration</li>
+            <li>Duplicate and variant mechanics</li>
+            <li>Long-only Korean guardrails</li>
+          </ul>
+        </article>
+
+        <article class="phase partial">
+          <span class="phase-number">Phase 2</span>
+          <span class="status">Partial</span>
+          <h3>Flat strategy discovery</h3>
+          <ul>
+            <li>Academic lane complete</li>
+            <li>Korean lane prepared, not collected</li>
+            <li>Practitioner, community, crypto-native lanes open</li>
+            <li>No source prestige ranking</li>
+          </ul>
+        </article>
+
+        <article class="phase done">
+          <span class="phase-number">Phase 3</span>
+          <span class="status">Complete</span>
+          <h3>Feasibility and contracts</h3>
+          <ul>
+            <li>Coverage and executability audit</li>
+            <li>Bounded crypto and Toss probes</li>
+            <li>Timestamp, pagination and adjustment checks</li>
+            <li>Broad Korean backtest: NO-GO</li>
+          </ul>
+        </article>
+
+        <article class="phase current">
+          <span class="phase-number">Phase 4</span>
+          <span class="status">Current</span>
+          <h3>Korean data qualification</h3>
+          <ul>
+            <li>Official alternative sources selected</li>
+            <li>Rights and guides fingerprinted</li>
+            <li>24-slot collector tested</li>
+            <li>E1-DATA awaiting explicit approval</li>
+          </ul>
+        </article>
+
+        <article class="phase future">
+          <span class="phase-number">Phase 5</span>
+          <span class="status">Not started</span>
+          <h3>Historical dataset and QA</h3>
+          <ul>
+            <li>Point-in-time universe</li>
+            <li>Raw OHLCV and lifecycle events</li>
+            <li>Corporate-action reconciliation</li>
+            <li>Completeness and correction audit</li>
+          </ul>
+        </article>
+
+        <article class="phase future">
+          <span class="phase-number">Phase 6</span>
+          <span class="status">Not started</span>
+          <h3>Backtest and robustness</h3>
+          <ul>
+            <li>Lag-safe fills and transaction costs</li>
+            <li>Walk-forward and holdout tests</li>
+            <li>Multiple-testing controls</li>
+            <li>Failed variants retained</li>
+          </ul>
+        </article>
+
+        <article class="phase future">
+          <span class="phase-number">Phase 7</span>
+          <span class="status">Not started</span>
+          <h3>Paper trading</h3>
+          <ul>
+            <li>Broker/data reconciliation</li>
+            <li>Order rounding and realistic fills</li>
+            <li>Risk limits and kill switch</li>
+            <li>No real capital</li>
+          </ul>
+        </article>
+
+        <article class="phase future">
+          <span class="phase-number">Phase 8</span>
+          <span class="status">Not started</span>
+          <h3>Small-capital live pilot</h3>
+          <ul>
+            <li>Separate explicit user authorization</li>
+            <li>Loss and drawdown caps fixed first</li>
+            <li>No leverage or Korean short selling</li>
+            <li>Automatic replenishment forbidden</li>
+          </ul>
+        </article>
+
+        <article class="phase future">
+          <span class="phase-number">Phase 9</span>
+          <span class="status">Not started</span>
+          <h3>Monitor and scale decision</h3>
+          <ul>
+            <li>Live-vs-model drift</li>
+            <li>Operational incident evidence</li>
+            <li>Periodic strategy invalidation</li>
+            <li>Scaling is never automatic</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="workstreams">
+      <h2 id="workstreams">What has actually moved</h2>
+      <div class="lanes">
+        <article class="lane">
+          <h3>Strategy research lane</h3>
+          <p>Ideas are collected without ranking until common data exists.</p>
+          <ol>
+            <li class="done"><strong>Schema, catalog, deduplication</strong>LUNA-001 through LUNA-003 completed and reviewed.</li>
+            <li class="done"><strong>Academic discovery</strong>LUNA-101 closed with deterministic coverage and source linkage.</li>
+            <li class="partial"><strong>Other discovery lanes</strong>Korean discovery is prepared; practitioner, community and crypto-native breadth remains open.</li>
+            <li><strong>Promotion and ranking</strong>Closed until common-data tests exist.</li>
+          </ol>
+        </article>
+
+        <article class="lane">
+          <h3>Data qualification lane</h3>
+          <p>Technical reachability and lawful, point-in-time research use are separate gates.</p>
+          <ol>
+            <li class="done"><strong>Bounded provider probes</strong>Crypto and Toss samples established observed behavior.</li>
+            <li class="done"><strong>Toss contract audit</strong>Useful daily history observed, but complete delisted universe and rights were not established.</li>
+            <li class="done"><strong>Official source resolution</strong>Financial Services Commission portal publications selected for the next bounded test.</li>
+            <li class="current"><strong>Gate E1-DATA decision</strong>Collector prep is complete; the actual official-source call has not run.</li>
+          </ol>
+        </article>
+
+        <article class="lane">
+          <h3>Execution safety lane</h3>
+          <p>The user persona allows high risk only inside a segregated, bounded experiment.</p>
+          <ol>
+            <li class="done"><strong>Broker and risk boundaries</strong>Account/order surfaces are separated and live trading defaults off.</li>
+            <li class="done"><strong>Korean constraints</strong>Listed-stock and ETF candidates are long-only; no short selling.</li>
+            <li><strong>Paper-trade acceptance</strong>Not started; requires a qualified dataset and surviving candidate.</li>
+            <li><strong>Live-capital authorization</strong>Not started; requires explicit capital, loss and drawdown limits.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="next-gate">
+      <h2 id="next-gate">Next decision gate</h2>
+      <div class="gate">
+        <div>
+          <h3>Approve or decline Gate E1-DATA</h3>
+          <p>At most 24 read-only requests, 1,200 rows, 5 MiB, and zero retries. No backtest, account access, order, or trade is included.</p>
+        </div>
+        <div class="gate-code">ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0</div>
+      </div>
+      <details>
+        <summary>If E1-DATA passes</summary>
+        <p>Review the observed history, delisted coverage, identifiers, pagination, corporate-action fields and rights. Only then define a bounded historical collection and QA plan.</p>
+      </details>
+      <details>
+        <summary>If E1-DATA fails or remains incomplete</summary>
+        <p>Keep broad Korean backtesting closed. Resolve the exact missing source or consider a separately reviewed paid/contracted source; do not substitute current constituents or infer corporate actions.</p>
+      </details>
+    </section>
+
+    <footer>
+      This page is a derived milestone view, not the operational source of truth. Update decisions in <a href="../research/runs/HANDOFF.md">research/runs/HANDOFF.md</a> first. Research software only; no strategy is assumed profitable.
+    </footer>
+  </main>
+</body>
+</html>

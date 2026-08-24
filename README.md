@@ -7,6 +7,37 @@ and live execution so a promising backtest cannot accidentally become a real ord
 > This is research software, not investment advice. No strategy is assumed profitable.
 > Live trading is disabled by default.
 
+## Project status
+
+**Current position:** Gate E1-PREP is complete. The project is waiting immediately before the
+first bounded feasibility call to the official Korean daily stock-data sources. No Korean
+historical backtest, paper trade, or live trade has started.
+
+```mermaid
+flowchart LR
+    A["Research foundation<br/>complete"] --> B["Flat discovery<br/>partial"]
+    B --> C["Feasibility & data contracts<br/>complete"]
+    C --> D["Korean source qualification<br/>E1-PREP complete"]
+    D --> E["E1-DATA bounded probe<br/>awaiting approval"]
+    E --> F["Historical dataset & QA<br/>not started"]
+    F --> G["Backtest & robustness<br/>not started"]
+    G --> H["Paper trading<br/>not started"]
+    H --> I["Small-capital live pilot<br/>not started"]
+
+    classDef done fill:#d8f3dc,stroke:#2d6a4f,color:#081c15;
+    classDef partial fill:#fff3bf,stroke:#b08900,color:#3d2f00;
+    classDef current fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:3px;
+    classDef future fill:#f3f4f6,stroke:#9ca3af,color:#374151;
+    class A,C done;
+    class B partial;
+    class D,E current;
+    class F,G,H,I future;
+```
+
+Open the [full milestone dashboard](docs/ROADMAP.html) for completed evidence, stop gates, and the
+remaining path. The [active handoff](research/runs/HANDOFF.md) remains the source of truth for the
+exact current action.
+
 ## Current scope
 
 - 35 strategy hypotheses catalogued across 13 families
