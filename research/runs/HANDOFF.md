@@ -26,10 +26,10 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Last coordinator-reviewed research content: LUNA-101-04 through `f73180a`
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: none; LUNA-101-05 collection initialized
+- Current batch PR: none; LUNA-101-05 normalized evidence awaits coordinator review
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: LUNA-101-05 batch branch initialized from reviewed integration
+- Worktree: LUNA-101-05 append-only normalization complete; no PR or merge yet
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -42,9 +42,9 @@ rewrite this handoff merely to embed its own commit hash.
 
 Current aggregate:
 
-- sources: 60 total, 20 usable, 39 incomplete, 1 inaccessible;
-- hypotheses: 67 total, 26 usable, 41 incomplete, 0 inaccessible;
-- suggestions: 1,101.
+- sources: 80 total, 28 usable, 51 incomplete, 1 inaccessible;
+- hypotheses: 95 total, 41 usable, 54 incomplete, 0 inaccessible;
+- suggestions: 2,282.
 
 ## Recent completed review
 
@@ -124,9 +124,24 @@ source-neutral. Collectors transcribe evidence and ambiguities only; final statu
 decisions remain with the implementer and coordinator. The exact contract is in
 `research/runs/LUNA-101-05.md`.
 
+## Current normalized batch
+
+LUNA-101-05 normalized the two verified evidence packets with SHA-256 values
+`19429c7e1a10e7c21165b4d6c8d66332fbea701905d2b860d844d38edc6d5488` (replication) and
+`0185dcfdb1111a5bc01d78f179c74f28aa8e7705548bb9e655ec81cc5e30b938` (fixed rule). It appends
+exactly 20 unique source captures (8 usable, 12 incomplete) and 28 source-linked hypotheses
+(15 usable, 13 incomplete). All learned policies, generic frameworks, missing-sizing rules,
+unresolved parameters, and the performance-labelled BTC example remain incomplete. The pinned IMC
+code was independently checked as winner-minus-loser; the Baltas TSMOM/risk-parity record preserves
+source-specific provenance without claiming independent evidence weight. The aggregate reran
+byte-identically at SHA-256 `7c3f55280487aff496e093f582a2837abe9b4cbc5005d7221e2207fc5e417ddd` with
+`automatic_merge=false` and `canonical_records_modified=false`. Coordinator review remains required.
+
 ## Next action
 
-Run the two bounded LUNA-101-05 evidence lanes defined in `research/runs/LUNA-101-05.md`.
+Independently review LUNA-101-05 source/hypothesis transcription, status boundaries,
+direction/polarity/exposure, append-only delta, deterministic aggregate, and canonical isolation;
+then decide on a batch PR to `integration/LUNA-101-academic-discovery`.
 
 ## Resume instruction
 
