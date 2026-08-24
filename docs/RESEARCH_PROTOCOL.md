@@ -49,5 +49,7 @@ judgment. Only after the first catalog freeze do data acquisition and batch eval
 
 For Korean-listed stocks and ETFs, all executable portfolios are long-only. Short-sale rules
 may be recorded as historical context but are not implementation candidates. Stock research is
-limited to daily and one-minute horizons. Ultra-low-latency strategies are out of scope because
-the Toss Securities Open API currently exposes REST rather than streaming execution interfaces.
+limited to daily and one-minute horizons. Ultra-low-latency strategies remain out of scope. The
+Toss Securities Open API now documents both REST and WebSocket interfaces, but that capability
+does not establish historical retention, deterministic fill semantics, or suitability for
+sub-minute execution.
