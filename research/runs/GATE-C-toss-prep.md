@@ -1,8 +1,10 @@
-# Gate C Phase 2 — Toss market-data-only preparation
+# Gate C Phase 2 — Toss market-data-only execution record
 
 ## Exact request plan
 
-The collector is implemented but has not read credentials or called Toss.
+The user confirmed the local mode-0600 credential file and allowed IP. The collector then executed
+this exact plan once. See `research/probes/gate-c-toss-20260824/README.md` for the result; do not run
+the command again as part of this Gate C review.
 
 - nine candle requests: four symbols × adjusted `1d`/`1m`, plus unadjusted Samsung Electronics
   `1d`; at most 1,800 candle rows;

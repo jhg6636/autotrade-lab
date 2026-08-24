@@ -1,8 +1,8 @@
 # Gate C — bounded first-data capability probe
 
-- Starting main commit: `b9c8d57448c29d9739551d813cf3e1be2b13620b`
-- Working branch: `agent/GATE-C-capability-probe`
-- Stage: Phase 1 merged; Toss Phase 2 collector verified and awaiting local credentials
+- Phase 2 base commit: `b790a2dc770f1b7eace8179e802b9430e4710c09`
+- Working branch: `agent/GATE-C-toss-probe`
+- Stage: Phase 1 merged; Phase 2 collected and normalized; final review pending
 
 ## Objective
 
@@ -34,11 +34,11 @@ is a capability result and is not bypassed by changing regions, mirrors, or inst
 
 ## Phase 2 — Toss sample
 
-Phase 2 remains paused until the user supplies Toss credentials through an approved secret
-mechanism. It may use only OAuth and public-equivalent market-data/stock-info/calendar endpoints
-defined in `research/runs/GATE-B.md`. Account, asset, holding, buying-power, commission, conditional
-order, and order endpoints are forbidden. The combined Phase 1 and Phase 2 totals must remain within
-the hard budget.
+Phase 2 used one OAuth issuance and exactly 15 public-equivalent market-data/stock-info/calendar
+requests defined in `research/runs/GATE-B.md`. Account, asset, holding, buying-power, commission,
+conditional-order, and order endpoints were not called. Nine candle calls and three reference calls
+succeeded; three consecutive stock-master calls returned `HTTP 429`. They were not retried because
+only two requests remained in the combined hard budget.
 
 ## Artifact contract
 
@@ -71,7 +71,20 @@ coordinator review, the report distinguishes observed facts from unknown retenti
 the reviewed PR is merged, and HANDOFF recommends whether broader collection should proceed. A
 successful capability probe makes no strategy profitable or executable by itself.
 
+## Phase 2 result
+
+- OAuth: success; client credentials and bearer token were not persisted.
+- 15 market-data requests attempted, 12 successful, 3 rate-limited; all 9 candle requests succeeded.
+- 1,800 Toss candles normalized; combined Gate C totals are 27 requests and 10,600 candle rows.
+- Structural candle quality passed. Korean daily calendar gaps were not inferred without a
+  point-in-time session calendar; intraday gap checks exclude cross-session boundaries.
+- Toss Parquet regeneration is byte-identical at SHA-256
+  `93e091692e181e80a55de02a7f0361dd33bf870262ba88184ddcfe2939966e38`.
+- Raw bodies and Parquet remain local/Git-ignored because redistribution rights are unresolved.
+- The collector now paces consecutive `/stocks/all` calls; the three failed calls remain preserved
+  as capability evidence and were not retried.
+
 ## Next action
 
-Wait for the user to confirm a local mode-0600 `.env.toss` and Toss allowed-IP registration; do not
-make a Toss request before both confirmations.
+Run the full repository validation and coordinator review. If clean, commit and open a reviewed PR.
+Do not spend the two remaining request slots, backtest, rank, promote, trade, or merge automatically.

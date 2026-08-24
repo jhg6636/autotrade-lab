@@ -11,6 +11,7 @@ import json
 import math
 import os
 import stat
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -20,6 +21,7 @@ from datetime import UTC, datetime
 from itertools import pairwise
 from pathlib import Path
 from typing import Any, Protocol, Self
+from zoneinfo import ZoneInfo
 
 MAX_REQUESTS = 29
 MAX_ROWS = 10_600
@@ -495,6 +497,7 @@ def collect_toss(
     transport: Transport | None = None,
     oauth_metadata: dict[str, Any] | None = None,
     now: Callable[[], datetime] = lambda: datetime.now(UTC),
+    wait: Callable[[float], None] = time.sleep,
 ) -> dict[str, Any]:
     """Collect the exact market-data-only Toss plan with a caller-supplied OAuth token."""
 
@@ -513,6 +516,10 @@ def collect_toss(
     candle_rows = 0
 
     for ordinal, (item, request) in enumerate(zip(requests, http_requests, strict=True), start=1):
+        if ordinal > 1 and item.base_url.endswith("/stocks/all"):
+            previous = requests[ordinal - 2]
+            if previous.base_url == item.base_url:
+                wait(1.1)
         requested_at = now().isoformat().replace("+00:00", "Z")
         record: dict[str, Any] = {
             **asdict(item),
@@ -617,12 +624,18 @@ def collect_toss(
 
 
 def _interval_ms(interval: str) -> int:
-    return {"1h": 3_600_000, "1d": 86_400_000}[interval]
+    return {"1m": 60_000, "1h": 3_600_000, "1d": 86_400_000}[interval]
+
+
+def _iso_ms(value: str) -> int:
+    parsed = datetime.fromisoformat(value)
+    if parsed.tzinfo is None:
+        raise ValueError("timestamp must include an explicit UTC offset")
+    return int(parsed.timestamp() * 1000)
 
 
 def _iso_utc_ms(value: str) -> int:
-    parsed = datetime.fromisoformat(value.removesuffix("Z") + "+00:00")
-    return int(parsed.timestamp() * 1000)
+    return _iso_ms(value.removesuffix("Z") + "+00:00")
 
 
 def _upbit_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, Any]]:
@@ -688,6 +701,43 @@ def _binance_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, 
     return rows
 
 
+def _toss_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, Any]]:
+    step = _interval_ms(record["interval"])
+    fetched_at = _iso_ms(record["requested_at"])
+    adjusted = record["params"].get("adjusted")
+    adjustment_state = {"true": "adjusted", "false": "unadjusted"}.get(adjusted)
+    if adjustment_state is None:
+        raise ValueError(f"missing Toss adjustment state: {record['request_id']}")
+    rows = []
+    for item in payload:
+        if not isinstance(item, dict):
+            raise TypeError(f"invalid Toss candle in {record['request_id']}")
+        open_time = _iso_ms(item["timestamp"])
+        close_time = open_time + step - 1
+        rows.append(
+            {
+                "provider": record["provider"],
+                "venue": record["venue"],
+                "instrument_type": record["instrument_type"],
+                "symbol": record["symbol"],
+                "interval": record["interval"],
+                "open_time": open_time,
+                "close_time": close_time,
+                "open": float(item["openPrice"]),
+                "high": float(item["highPrice"]),
+                "low": float(item["lowPrice"]),
+                "close": float(item["closePrice"]),
+                "volume": float(item["volume"]),
+                "quote_volume": None,
+                "trade_count": None,
+                "complete": close_time <= fetched_at,
+                "adjustment_state": adjustment_state,
+                "raw_sha256": record["response_sha256"],
+            }
+        )
+    return rows
+
+
 def validate_manifest(manifest: dict[str, Any]) -> None:
     expected = crypto_probe_requests()
     records = manifest.get("requests")
@@ -731,6 +781,55 @@ def validate_manifest(manifest: dict[str, Any]) -> None:
         raise ValueError("manifest observed summary is inconsistent")
 
 
+def validate_toss_manifest(manifest: dict[str, Any]) -> None:
+    expected = toss_probe_requests()
+    records = manifest.get("requests")
+    if manifest.get("schema_version") != SCHEMA_VERSION or manifest.get("probe") != (
+        "gate-c-toss-market-data"
+    ):
+        raise ValueError("unsupported Toss probe manifest")
+    if not isinstance(records, list) or len(records) != TOSS_REQUESTS:
+        raise ValueError("Toss manifest must contain exactly 15 request records")
+    candle_rows = 0
+    for ordinal, (record, item) in enumerate(zip(records, expected, strict=True), start=1):
+        expected_values = {
+            "request_id": item.request_id,
+            "provider": item.provider,
+            "venue": item.venue,
+            "instrument_type": item.instrument_type,
+            "symbol": item.symbol,
+            "interval": item.interval,
+            "base_url": item.base_url,
+            "params": dict(item.params),
+            "max_rows": item.max_rows,
+            "attempt_ordinal": ordinal,
+            "url": item.url,
+        }
+        if any(record.get(key) != value for key, value in expected_values.items()):
+            raise ValueError(f"Toss manifest request does not match allowlist: {item.request_id}")
+        expected_raw_path = f"raw/{ordinal:02d}_{item.request_id}.json"
+        if record.get("raw_path") not in {None, expected_raw_path}:
+            raise ValueError(f"unexpected Toss raw path: {record.get('raw_path')}")
+        row_count = record.get("observed_rows")
+        if not isinstance(row_count, int) or not 0 <= row_count <= item.max_rows:
+            raise ValueError(f"invalid Toss observed row count: {item.request_id}")
+        candle_rows += row_count
+    observed = manifest.get("observed", {})
+    prior = manifest.get("prior_phase", {})
+    if (
+        observed.get("attempted_requests") != TOSS_REQUESTS
+        or observed.get("candle_rows") != candle_rows
+        or observed.get("combined_attempted_requests")
+        != prior.get("attempted_requests", -TOSS_REQUESTS) + TOSS_REQUESTS
+        or observed.get("combined_candle_rows") != prior.get("rows", -candle_rows) + candle_rows
+    ):
+        raise ValueError("Toss manifest observed summary is inconsistent")
+    if observed["combined_attempted_requests"] > MAX_REQUESTS:
+        raise ValueError("Toss manifest exceeds combined request budget")
+    if observed["combined_candle_rows"] > MAX_ROWS:
+        raise ValueError("Toss manifest exceeds combined row budget")
+
+
 def load_normalized_rows(run_dir: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     manifest_bytes = (run_dir / "manifest.json").read_bytes()
     manifest = json.loads(manifest_bytes)
@@ -751,6 +850,40 @@ def load_normalized_rows(run_dir: Path) -> tuple[dict[str, Any], list[dict[str, 
             rows.extend(_binance_rows(record, payload))
         else:
             raise ValueError(f"unsupported provider: {record['provider']}")
+    key = lambda item: (
+        item["provider"],
+        item["venue"],
+        item["instrument_type"],
+        item["symbol"],
+        item["interval"],
+        item["open_time"],
+        item["adjustment_state"],
+    )
+    rows.sort(key=key)
+    return manifest, rows
+
+
+def load_toss_normalized_rows(run_dir: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    manifest = json.loads((run_dir / "manifest.json").read_bytes())
+    validate_toss_manifest(manifest)
+    rows: list[dict[str, Any]] = []
+    for record in manifest["requests"]:
+        if not record["raw_path"]:
+            if record["status"] == 200 and record["error"] is None:
+                raise ValueError(f"successful Toss request has no raw body: {record['request_id']}")
+            continue
+        raw = (run_dir / record["raw_path"]).read_bytes()
+        if _sha256(raw) != record["response_sha256"]:
+            raise ValueError(f"Toss raw checksum mismatch: {record['request_id']}")
+        if record["status"] != 200 or record["error"] is not None:
+            continue
+        payload = json.loads(raw)
+        if not record["base_url"].endswith("/candles"):
+            continue
+        candles = payload.get("result", {}).get("candles")
+        if not isinstance(candles, list) or len(candles) != record["observed_rows"]:
+            raise ValueError(f"Toss raw row count mismatch: {record['request_id']}")
+        rows.extend(_toss_rows(record, candles))
     key = lambda item: (
         item["provider"],
         item["venue"],
@@ -810,6 +943,7 @@ def _build_parquet(rows: list[dict[str, Any]]) -> tuple[bytes, str]:
 def _quality_report(
     manifest: dict[str, Any], rows: list[dict[str, Any]], parquet: bytes, pyarrow_version: str
 ) -> dict[str, Any]:
+    is_toss_probe = manifest["probe"] == "gate-c-toss-market-data"
     identity = lambda row: (
         row["provider"],
         row["venue"],
@@ -829,16 +963,43 @@ def _quality_report(
             row["symbol"],
             row["interval"],
         )
+        if is_toss_probe:
+            group_key += (row["adjustment_state"],)
         grouped.setdefault(group_key, []).append(row)
     datasets = []
     for group_key, items in sorted(grouped.items()):
         times = sorted({item["open_time"] for item in items})
-        step = _interval_ms(group_key[-1])
+        interval = group_key[4]
+        step = _interval_ms(interval)
         deltas = [right - left for left, right in pairwise(times)]
-        missing = sum(max(math.floor(delta / step) - 1, 0) for delta in deltas)
+        is_toss = group_key[0] == "toss"
+        if is_toss and interval == "1d":
+            # Korean equities do not trade on weekends and holidays. Gate C does not yet own a
+            # point-in-time session calendar, so fixed-day gaps must not be labelled missing bars.
+            missing: int | None = None
+            timing_deltas: list[int] = []
+            timing_scope = "calendar gaps not inferred without a point-in-time KR session calendar"
+        elif is_toss and interval == "1m":
+            seoul = ZoneInfo("Asia/Seoul")
+            timing_deltas = [
+                right - left
+                for left, right in pairwise(times)
+                if datetime.fromtimestamp(left / 1000, seoul).date()
+                == datetime.fromtimestamp(right / 1000, seoul).date()
+            ]
+            missing = sum(max(math.floor(delta / step) - 1, 0) for delta in timing_deltas)
+            timing_scope = "same-KR-calendar-date deltas only; session breaks excluded"
+        else:
+            timing_deltas = deltas
+            missing = sum(max(math.floor(delta / step) - 1, 0) for delta in timing_deltas)
+            timing_scope = "continuous fixed-interval market"
         numeric_fields = ("open", "high", "low", "close", "volume", "quote_volume")
         nonfinite = sum(
-            any(not math.isfinite(item[field]) for field in numeric_fields) for item in items
+            any(
+                item[field] is not None and not math.isfinite(item[field])
+                for field in numeric_fields
+            )
+            for item in items
         )
         invalid_ohlc = sum(
             item["high"] < max(item["open"], item["close"])
@@ -846,27 +1007,41 @@ def _quality_report(
             or item["high"] < item["low"]
             for item in items
         )
-        negative_volume = sum(item["volume"] < 0 or item["quote_volume"] < 0 for item in items)
-        datasets.append(
-            {
-                "provider": group_key[0],
-                "venue": group_key[1],
-                "instrument_type": group_key[2],
-                "symbol": group_key[3],
-                "interval": group_key[4],
-                "rows": len(items),
-                "first_open_time": datetime.fromtimestamp(times[0] / 1000, UTC).isoformat(),
-                "last_open_time": datetime.fromtimestamp(times[-1] / 1000, UTC).isoformat(),
-                "duplicate_keys": len(items) - len(times),
-                "missing_intervals": missing,
-                "non_grid_deltas": sum(delta % step != 0 for delta in deltas),
-                "off_grid_open_times": sum(item["open_time"] % step != 0 for item in items),
-                "nonfinite_numeric_rows": nonfinite,
-                "invalid_ohlc_rows": invalid_ohlc,
-                "negative_volume_rows": negative_volume,
-                "incomplete_rows": sum(not item["complete"] for item in items),
-            }
+        negative_volume = sum(
+            item["volume"] < 0 or (item["quote_volume"] is not None and item["quote_volume"] < 0)
+            for item in items
         )
+        if is_toss and interval == "1d":
+            seoul = ZoneInfo("Asia/Seoul")
+            off_grid = sum(
+                datetime.fromtimestamp(item["open_time"] / 1000, seoul).time()
+                != datetime.min.time()
+                for item in items
+            )
+        else:
+            off_grid = sum(item["open_time"] % step != 0 for item in items)
+        dataset = {
+            "provider": group_key[0],
+            "venue": group_key[1],
+            "instrument_type": group_key[2],
+            "symbol": group_key[3],
+            "interval": interval,
+            "rows": len(items),
+            "first_open_time": datetime.fromtimestamp(times[0] / 1000, UTC).isoformat(),
+            "last_open_time": datetime.fromtimestamp(times[-1] / 1000, UTC).isoformat(),
+            "duplicate_keys": len(items) - len(times),
+            "missing_intervals": missing,
+            "non_grid_deltas": sum(delta % step != 0 for delta in timing_deltas),
+            "off_grid_open_times": off_grid,
+            "nonfinite_numeric_rows": nonfinite,
+            "invalid_ohlc_rows": invalid_ohlc,
+            "negative_volume_rows": negative_volume,
+            "incomplete_rows": sum(not item["complete"] for item in items),
+        }
+        if is_toss_probe:
+            dataset["adjustment_state"] = group_key[5]
+            dataset["timing_scope"] = timing_scope
+        datasets.append(dataset)
     structural_failures = duplicate_keys + sum(
         dataset["non_grid_deltas"]
         + dataset["off_grid_open_times"]
@@ -891,8 +1066,9 @@ def _quality_report(
         "normalized_rows": len(rows),
         "duplicate_keys": duplicate_keys,
         "structural_quality_pass": structural_failures == 0,
-        "within_request_budget": len(manifest["requests"]) <= CRYPTO_REQUESTS,
-        "within_row_budget": len(rows) <= CRYPTO_MAX_ROWS,
+        "within_request_budget": len(manifest["requests"])
+        <= manifest["limits"]["phase_max_requests"],
+        "within_row_budget": len(rows) <= manifest["limits"]["phase_max_rows"],
         "datasets": datasets,
         "retention_statement": (
             "Coverage bounds describe only returned sample rows; deeper retention was not inferred."
@@ -904,12 +1080,61 @@ def _quality_report(
     }
 
 
+def _toss_reference_report(run_dir: Path, manifest: dict[str, Any]) -> list[dict[str, Any]]:
+    results = []
+    for record in manifest["requests"]:
+        if record["base_url"].endswith("/candles"):
+            continue
+        result_count = None
+        if record["status"] == 200 and record["error"] is None and record["raw_path"]:
+            raw = (run_dir / record["raw_path"]).read_bytes()
+            if _sha256(raw) != record["response_sha256"]:
+                raise ValueError(f"Toss raw checksum mismatch: {record['request_id']}")
+            result = json.loads(raw).get("result")
+            result_count = len(result) if isinstance(result, list) else 1
+        results.append(
+            {
+                "request_id": record["request_id"],
+                "status": record["status"],
+                "error": record["error"],
+                "result_count": result_count,
+            }
+        )
+    return results
+
+
 def build_normalized_artifacts(run_dir: Path) -> tuple[bytes, bytes]:
     manifest, rows = load_normalized_rows(run_dir)
     if len(rows) > CRYPTO_MAX_ROWS:
         raise RuntimeError("normalized rows exceed crypto phase budget")
     parquet, pyarrow_version = _build_parquet(rows)
     report = _quality_report(manifest, rows, parquet, pyarrow_version)
+    return parquet, _canonical_json_bytes(report)
+
+
+def build_toss_normalized_artifacts(run_dir: Path) -> tuple[bytes, bytes]:
+    manifest, rows = load_toss_normalized_rows(run_dir)
+    if len(rows) > TOSS_MAX_ROWS:
+        raise RuntimeError("normalized rows exceed Toss phase budget")
+    parquet, pyarrow_version = _build_parquet(rows)
+    report = _quality_report(manifest, rows, parquet, pyarrow_version)
+    report["reference_requests"] = _toss_reference_report(run_dir, manifest)
+    report["combined_attempted_requests"] = manifest["observed"]["combined_attempted_requests"]
+    report["combined_candle_rows"] = manifest["observed"]["combined_candle_rows"]
+    report["within_combined_request_budget"] = report["combined_attempted_requests"] <= MAX_REQUESTS
+    report["within_combined_row_budget"] = report["combined_candle_rows"] <= MAX_ROWS
+    report["timestamp_semantics_statement"] = (
+        "Toss candle timestamp is represented as the normalized interval open label for this "
+        "capability probe; exact exchange event-time semantics remain a documentation review item."
+    )
+    report["retention_statement"] = (
+        "Coverage bounds describe only returned sample rows; historical Toss retention and "
+        "point-in-time universe completeness were not inferred."
+    )
+    report["licensing_statement"] = (
+        "Authenticated market-data access does not establish redistribution rights; raw bodies "
+        "and Parquet remain local and Git-ignored pending provider-terms review."
+    )
     return parquet, _canonical_json_bytes(report)
 
 
@@ -937,6 +1162,36 @@ def verify_crypto(run_dir: Path) -> dict[str, Any]:
     return {"artifact_bytes": total, **json.loads(report)}
 
 
+def normalize_toss(run_dir: Path) -> dict[str, Any]:
+    parquet, report = build_toss_normalized_artifacts(run_dir)
+    normalized = run_dir / "normalized"
+    normalized.mkdir(exist_ok=False)
+    _write_new(normalized / "candles.parquet", parquet)
+    _write_new(run_dir / "quality_report.json", report)
+    total = sum(path.stat().st_size for path in run_dir.rglob("*") if path.is_file())
+    prior_bytes = json.loads((run_dir / "manifest.json").read_bytes())["prior_phase"][
+        "artifact_bytes"
+    ]
+    if prior_bytes + total > MAX_ARTIFACT_BYTES:
+        raise RuntimeError("combined Gate C normalized artifacts exceed byte budget")
+    return json.loads(report)
+
+
+def verify_toss(run_dir: Path) -> dict[str, Any]:
+    parquet, report = build_toss_normalized_artifacts(run_dir)
+    if (run_dir / "normalized/candles.parquet").read_bytes() != parquet:
+        raise ValueError("Toss Parquet is not byte-identical to raw normalization")
+    if (run_dir / "quality_report.json").read_bytes() != report:
+        raise ValueError("Toss quality report is not byte-identical to raw normalization")
+    total = sum(path.stat().st_size for path in run_dir.rglob("*") if path.is_file())
+    prior_bytes = json.loads((run_dir / "manifest.json").read_bytes())["prior_phase"][
+        "artifact_bytes"
+    ]
+    if prior_bytes + total > MAX_ARTIFACT_BYTES:
+        raise RuntimeError("verified combined Gate C artifacts exceed byte budget")
+    return {"artifact_bytes": total, **json.loads(report)}
+
+
 def main() -> None:
     import argparse
 
@@ -954,6 +1209,10 @@ def main() -> None:
     normalize.add_argument("run_dir", type=Path)
     verify = commands.add_parser("verify-crypto")
     verify.add_argument("run_dir", type=Path)
+    normalize_toss_parser = commands.add_parser("normalize-toss")
+    normalize_toss_parser.add_argument("run_dir", type=Path)
+    verify_toss_parser = commands.add_parser("verify-toss")
+    verify_toss_parser.add_argument("run_dir", type=Path)
     args = parser.parse_args()
     if args.command == "collect-crypto":
         result = collect_crypto(args.output_dir)
@@ -974,8 +1233,12 @@ def main() -> None:
         )
     elif args.command == "normalize-crypto":
         result = normalize_crypto(args.run_dir)
-    else:
+    elif args.command == "verify-crypto":
         result = verify_crypto(args.run_dir)
+    elif args.command == "normalize-toss":
+        result = normalize_toss(args.run_dir)
+    else:
+        result = verify_toss(args.run_dir)
     print(json.dumps(result, indent=2, sort_keys=True))
 
 

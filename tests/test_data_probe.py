@@ -20,15 +20,18 @@ from autotrade_lab.data_probe import (
     ProbeRequest,
     build_normalized_artifacts,
     build_toss_http_requests,
+    build_toss_normalized_artifacts,
     collect_crypto,
     collect_toss,
     crypto_probe_requests,
     issue_toss_access_token,
     load_toss_client_credentials,
     normalize_crypto,
+    normalize_toss,
     toss_probe_requests,
     validate_crypto_plan,
     verify_crypto,
+    verify_toss,
 )
 
 
@@ -113,7 +116,27 @@ class FakeTossTransport:
         assert timeout == 30
         self.requests.append(request)
         if "/candles?" in request.full_url:
-            body = {"result": {"candles": [{"timestamp": "2026-08-24T09:00:00+09:00"}]}}
+            interval = urllib.parse.parse_qs(urllib.parse.urlparse(request.full_url).query)[
+                "interval"
+            ][0]
+            timestamp = (
+                "2026-08-24T00:00:00+09:00" if interval == "1d" else "2026-08-24T09:00:00+09:00"
+            )
+            body = {
+                "result": {
+                    "candles": [
+                        {
+                            "timestamp": timestamp,
+                            "openPrice": "100",
+                            "highPrice": "110",
+                            "lowPrice": "90",
+                            "closePrice": "105",
+                            "volume": "10",
+                            "currency": "KRW",
+                        }
+                    ]
+                }
+            }
         else:
             body = {"result": []}
         return FakeResponse(json.dumps(body).encode())
@@ -226,17 +249,20 @@ def test_toss_collection_is_bounded_and_does_not_persist_token(tmp_path: Path) -
     collect_crypto(crypto_dir, transport=FakeTransport(), now=fixed_now)
     toss_dir = tmp_path / "toss"
     transport = FakeTossTransport()
+    waits: list[float] = []
     manifest = collect_toss(
         toss_dir,
         access_token="test-token",
         crypto_run_dir=crypto_dir,
         transport=transport,
         now=fixed_now,
+        wait=waits.append,
     )
     assert manifest["observed"]["attempted_requests"] == TOSS_REQUESTS
     assert manifest["observed"]["candle_rows"] == 9
     assert manifest["observed"]["combined_attempted_requests"] == 27
     assert len(transport.requests) == TOSS_REQUESTS
+    assert waits == [1.1, 1.1, 1.1]
     assert all(request.get_header("X-tossinvest-account") is None for request in transport.requests)
     assert b"test-token" not in (toss_dir / "manifest.json").read_bytes()
 
@@ -252,6 +278,7 @@ def test_toss_collection_refuses_echoed_token_before_persisting_body(tmp_path: P
             crypto_run_dir=crypto_dir,
             transport=EchoingTossTransport(),
             now=fixed_now,
+            wait=lambda _: None,
         )
     assert not list(toss_dir.rglob("*.json"))
 
@@ -283,6 +310,51 @@ def test_normalization_is_byte_deterministic(tmp_path: Path) -> None:
     assert report["normalized_rows"] == 16
     assert report["structural_quality_pass"] is True
     assert verify_crypto(run_dir)["parquet_sha256"] == report["parquet_sha256"]
+
+
+def test_toss_normalization_is_byte_deterministic_and_reports_reference_results(
+    tmp_path: Path,
+) -> None:
+    pytest.importorskip("pyarrow")
+    crypto_dir = tmp_path / "crypto"
+    collect_crypto(crypto_dir, transport=FakeTransport(), now=fixed_now)
+    toss_dir = tmp_path / "toss"
+    collect_toss(
+        toss_dir,
+        access_token="test-token",
+        crypto_run_dir=crypto_dir,
+        transport=FakeTossTransport(),
+        now=fixed_now,
+        wait=lambda _: None,
+    )
+    first = build_toss_normalized_artifacts(toss_dir)
+    second = build_toss_normalized_artifacts(toss_dir)
+    assert first == second
+    report = normalize_toss(toss_dir)
+    assert report["normalized_rows"] == 9
+    assert report["structural_quality_pass"] is True
+    assert report["combined_attempted_requests"] == 27
+    assert report["combined_candle_rows"] == 25
+    assert len(report["reference_requests"]) == 6
+    assert verify_toss(toss_dir)["parquet_sha256"] == report["parquet_sha256"]
+
+
+def test_toss_raw_checksum_tampering_fails(tmp_path: Path) -> None:
+    crypto_dir = tmp_path / "crypto"
+    collect_crypto(crypto_dir, transport=FakeTransport(), now=fixed_now)
+    toss_dir = tmp_path / "toss"
+    collect_toss(
+        toss_dir,
+        access_token="test-token",
+        crypto_run_dir=crypto_dir,
+        transport=FakeTossTransport(),
+        now=fixed_now,
+        wait=lambda _: None,
+    )
+    first_raw = min((toss_dir / "raw").glob("*.json"))
+    first_raw.write_bytes(b"{}")
+    with pytest.raises(ValueError, match="Toss raw checksum mismatch"):
+        build_toss_normalized_artifacts(toss_dir)
 
 
 def test_raw_checksum_tampering_fails(tmp_path: Path) -> None:

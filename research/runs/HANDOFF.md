@@ -4,9 +4,9 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Execute the user-approved bounded first-data capability probe and prepare Gate C under
-`research/runs/GATE-C.md`. Phase 1 is the 12-request public crypto sample. Toss Phase 2 stays paused
-until credentials are supplied through an approved secret mechanism.
+Complete coordinator review of the user-approved bounded first-data capability probe under
+`research/runs/GATE-C.md`. Both the public crypto and Toss market-data phases have been collected and
+normalized. This is a data-capability result, not a strategy result.
 
 ## Repository state
 
@@ -15,8 +15,10 @@ until credentials are supplied through an approved secret mechanism.
 - Gate B PR: `#16`, merged as `96f3e14`
 - Gate C Phase 1 PR: `#18`, merged as `b790a2d`
 - Canonical strategies/index modified: false
-- Market data collected: 12 approved public crypto requests, 8,800 candle rows, 1,963,244 local bytes
-- Credentials/account/order APIs used: false
+- Market data collected: 27 approved requests, 10,600 candle rows; 24 succeeded and 3 Toss
+  stock-master requests returned `HTTP 429`
+- Toss OAuth used: true; client credentials and bearer token persisted: false
+- Account/order APIs used: false
 - Backtest/ranking/trading performed: false
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
@@ -43,8 +45,10 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 - Phase 1 attempts exactly the 12 allowlisted public requests at most once each and remains within
   8,800 rows; combined Gate C remains within 29 requests, 10,600 rows, and 25 MB.
 - Raw responses, request manifest, deterministic normalized Parquet, and quality report pass review.
-- No credentials, private/account/order APIs, backtest, rank, canonical promotion, or trade occurs.
-- Toss Phase 2 remains paused unless the user separately supplies credentials.
+- No credential or bearer-token persistence, private/account/order API, backtest, rank, canonical
+  promotion, or trade occurs.
+- Toss Phase 2 attempted exactly 15 allowlisted requests once each; no further request is permitted
+  during coordinator review.
 
 ## Gate C Phase 1 result
 
@@ -56,13 +60,31 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 - Raw bodies and Parquet remain local/Git-ignored pending provider redistribution review. Manifest,
   quality report, checksums, code, and tests are intended for the reviewed PR.
 
+## Gate C Phase 2 result
+
+- The user confirmed the mode-0600 local credential file and allowed IP before access.
+- OAuth succeeded without persisting credentials or token. All 9 candle calls succeeded and
+  produced 1,800 rows; active KOSPI master, four-security details, and market calendar succeeded.
+- Three `/stocks/all` calls returned `HTTP 429` under the observed one-request/second limit. They were
+  preserved without retry because only two request slots remained. The collector now applies a
+  1.1-second interval between consecutive calls to that endpoint.
+- Combined totals are 27/29 requests and 10,600/10,600 rows. Toss local artifact size is 666,288
+  bytes; both phases remain below 25 MB.
+- Toss structural quality passes with zero identity duplicates, invalid OHLC rows, non-finite rows,
+  negative volumes, or grid failures under the documented Korean-market timing scope.
+- Toss deterministic Parquet SHA-256 is
+  `93e091692e181e80a55de02a7f0361dd33bf870262ba88184ddcfe2939966e38`.
+- Timestamp event semantics, historical retention, point-in-time universe completeness, and
+  redistribution rights remain unresolved. Raw bodies and Parquet remain local/Git-ignored.
+
 ## Validation evidence
 
-- `.venv/bin/pytest -q`: 98 passed
+- `.venv/bin/pytest -q`: 100 passed
 - Ruff check and format check: passed
 - `git diff --check`: passed
-- Crypto raw-to-Parquet byte identity, manifest/raw checksum enforcement, allowlist integrity,
-  row/request/storage budgets, structural OHLC/time-grid checks, and Toss token redaction: passed
+- Crypto and Toss raw-to-Parquet byte identity, manifest/raw checksum enforcement, allowlist
+  integrity, row/request/storage budgets, structural OHLC/time-grid checks, and Toss credential/token
+  redaction: passed
 - Canonical unknown-field audit, 35 usable/context-only audit, eight-cell/eight-state audit,
   canonical isolation, and secret-pattern audit: passed
 - PR `#16`: correct `main` base and branch head, four expected files, mergeable/clean, GitGuardian
@@ -70,12 +92,12 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 
 ## Next action
 
-Wait for the user to confirm a local mode-0600 `.env.toss` and Toss allowed-IP registration; do not
-make a Toss request before both confirmations.
+Run full validation and coordinator review of the Phase 2 code, tests, manifest, quality report, and
+documentation. If clean, commit and open a reviewed PR. Do not spend the two remaining request slots,
+backtest, rank, promote canonical records, trade, or merge automatically.
 
 ## Resume instruction
 
 Read `AGENTS.md`, this handoff, `research/runs/GATE-C.md`, `research/runs/GATE-B.md`, and
 `docs/INVESTOR_PROFILE.md`. Verify the branch and base before acting. Execute only the singular next
-action above. Stop before Toss access unless the user supplies credentials through an approved
-secret mechanism.
+action above. Do not make another network request during review.
