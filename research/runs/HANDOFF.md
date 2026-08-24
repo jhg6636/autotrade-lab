@@ -21,15 +21,15 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-05-rule-implementation-batch`
-- Starting integration commit: `5a7d7e7` (merge of reviewed LUNA-101-04 PR `#13`)
+- Working branch: `agent/LUNA-101-06-complete-rule-batch`
+- Starting integration commit: `ce392ba` (merge of reviewed LUNA-101-05 PR `#14`)
 - Last coordinator-reviewed research content: LUNA-101-05 through `995e3ac`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: `#14`, targeting the required integration branch and awaiting remote checks
+- Previous batch PR: `#14`, merged as integration commit `ce392ba`
+- Current batch PR: none; LUNA-101-06 collection is pending
 - Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: independently reviewed LUNA-101-05 is pushed; PR `#14` is open and unmerged
+- Umbrella PR body: synchronized through merged LUNA-101-05
+- Worktree: clean LUNA-101-06 planning branch at the merged integration base
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -169,8 +169,9 @@ format, and diff checks.
 
 ## Next action
 
-Verify PR `#14` base/head, mergeability, checks, and review threads; merge it into
-`integration/LUNA-101-academic-discovery` only if all remain clean.
+Dispatch the two bounded LUNA-101-06 collector lanes from `research/runs/LUNA-101-06.md` in
+parallel. Collectors may write only their `/tmp` evidence packets and must stop at ten inspected
+candidates per lane.
 
 ## Resume instruction
 
