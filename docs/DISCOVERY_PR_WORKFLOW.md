@@ -83,12 +83,14 @@ must never be merged automatically into `main`.
 
 ## Umbrella completion
 
-The LUNA-101 umbrella is ready for final Sol review at 80 usable sources and 30 usable distinct
-hypotheses or explicit variants. The LUNA-104 umbrella is ready at 80 usable sources and 30 usable
+The LUNA-101 umbrella is ready for final Sol review at 30 usable distinct hypotheses or explicit
+variants, complete usable-source linkage, and a local family/market/timeframe coverage audit. Its
+source total is descriptive rather than a quota, and documented sparse cells do not automatically
+start another batch. The LUNA-104 umbrella is ready at 80 usable sources and 30 usable
 hypotheses or variants with Korean metadata retained and the long-only execution audit passing.
 
-At completion, Sol verifies the full lane, unresolved ambiguities, deterministic reports, exact
-target counts, and main-branch mergeability. Only then may the Draft umbrella PR be marked ready
+At completion, Sol verifies the full lane, unresolved ambiguities, deterministic reports, applicable
+completion conditions, and main-branch mergeability. Only then may the Draft umbrella PR be marked ready
 and merged to `main`. Canonical promotion remains a separate post-discovery decision.
 
 ## Umbrella tracker template

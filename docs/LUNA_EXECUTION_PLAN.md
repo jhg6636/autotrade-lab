@@ -162,7 +162,10 @@ Search journal sites, NBER, SSRN, arXiv, Google Scholar citation trails, and rep
 Collect formulas, variants, negative results, and implementation details. Negative and positive
 papers create or enrich hypotheses equally.
 
-**Target:** at least 80 usable source records and 30 distinct/variant hypotheses.
+**Completion:** at least 30 usable distinct/variant hypotheses, every usable hypothesis linked to an
+existing usable source, and a local family/market/timeframe coverage audit. Source totals are reported
+as provenance breadth but are not a completion quota. Sparse cells are documented and do not
+automatically authorize more collection.
 
 ### LUNA-102: Books, practitioners, and institutional research
 

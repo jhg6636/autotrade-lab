@@ -4,16 +4,17 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Complete LUNA-101 academic/replication discovery through bounded reviewed batches until the lane
-contains at least 80 usable sources and 30 usable distinct hypotheses or explicit variants, or a
-documented system-wide blocker prevents further progress.
+Close LUNA-101 academic/replication discovery using the user-approved token-efficient gate: at least
+30 usable hypotheses, complete usable-source linkage, and a local family/market/timeframe coverage
+audit. Source count is descriptive rather than a quota.
 
 Collection stays flat and source-neutral. Do not rank, optimize, backtest, implement strategies,
 promote canonical records, call Toss, use credentials, or place orders during this goal.
 
 ## Completion condition
 
-- LUNA-101 reaches 80 usable sources and 30 usable hypotheses/variants.
+- LUNA-101 has at least 30 usable hypotheses/variants and every usable source reference resolves.
+- A local coverage audit documents family, market, timeframe, direction, and scope concentrations.
 - All batch findings are resolved and deterministic validation passes.
 - The integration tracker and umbrella PR agree with the collection aggregate.
 - Final Sol-level review approves readiness of the umbrella PR; canonical promotion remains a
@@ -21,15 +22,15 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-05-rule-implementation-batch`
-- Starting integration commit: `5a7d7e7` (merge of reviewed LUNA-101-04 PR `#13`)
+- Working branch: `agent/LUNA-101-coverage-closeout`
+- Starting integration commit: `ce392ba` (merge of reviewed LUNA-101-05 PR `#14`)
 - Last coordinator-reviewed research content: LUNA-101-05 through `995e3ac`
 - Required PR base: `integration/LUNA-101-academic-discovery`
-- Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: `#14`, targeting the required integration branch and awaiting remote checks
+- Previous batch PR: `#14`, merged as integration commit `ce392ba`
+- Current batch PR: none; local coverage closeout is in progress
 - Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: independently reviewed LUNA-101-05 is pushed; PR `#14` is open and unmerged
+- Umbrella PR body: synchronized through merged LUNA-101-05 counts; completion gate update pending
+- Worktree: coverage closeout documentation is under local review
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -45,6 +46,11 @@ Current aggregate:
 - sources: 80 total, 26 usable, 53 incomplete, 1 inaccessible;
 - hypotheses: 95 total, 35 usable, 60 incomplete, 0 inaccessible;
 - suggestions: 2,282.
+
+LUNA-101-06 was stopped before normalization review, commit, or PR after the user replaced the raw
+source quota with the coverage closeout gate. Its planning branch is not part of integration. Partial
+normalization is preserved only in local stash `aborted LUNA-101-06 partial normalization` and must
+not be resumed without an explicit gap-driven request.
 
 ## Recent completed review
 
@@ -169,15 +175,14 @@ format, and diff checks.
 
 ## Next action
 
-Verify PR `#14` base/head, mergeability, checks, and review threads; merge it into
-`integration/LUNA-101-academic-discovery` only if all remain clean.
+Validate the local coverage audit and updated completion contract, then open a small closeout PR to
+`integration/LUNA-101-academic-discovery`. Do not resume generic source collection.
 
 ## Resume instruction
 
 ```text
 Read AGENTS.md, docs/AGENT_WORKFLOW.md, research/runs/HANDOFF.md, and the linked research workflow.
-Recreate the active LUNA-101 goal. Keep the coordinator in the foreground, delegate bounded
-implementation to Terra and mechanical collection to Luna, and do not ask the user to switch
-models. Verify the recorded Git state, then execute only the handoff's Next action and preserve all
-stop conditions.
+Recreate the token-efficient LUNA-101 closeout goal. Keep the coordinator in the foreground and do
+not delegate or resume web collection unless the user explicitly names a coverage gap. Verify the
+recorded Git state, then execute only the handoff's Next action and preserve all stop conditions.
 ```
