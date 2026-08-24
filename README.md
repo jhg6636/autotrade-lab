@@ -7,22 +7,22 @@ and live execution so a promising backtest cannot accidentally become a real ord
 > This is research software, not investment advice. No strategy is assumed profitable.
 > Live trading is disabled by default.
 
-## Project status
+## 프로젝트 진행 상황
 
-**Current position:** Gate E1-PREP is complete. The project is waiting immediately before the
-first bounded feasibility call to the official Korean daily stock-data sources. No Korean
-historical backtest, paper trade, or live trade has started.
+**현재 위치:** Gate E1-PREP을 완료했습니다. 금융위원회 공공데이터포털의 국내 주식 일봉
+데이터에 대해 첫 번째 제한적 실현 가능성 검증을 실행하기 직전입니다. 국내 주식 과거
+백테스트, 모의투자, 실거래는 아직 시작하지 않았습니다.
 
 ```mermaid
 flowchart LR
-    A["Research foundation<br/>complete"] --> B["Flat discovery<br/>partial"]
-    B --> C["Feasibility & data contracts<br/>complete"]
-    C --> D["Korean source qualification<br/>E1-PREP complete"]
-    D --> E["E1-DATA bounded probe<br/>awaiting approval"]
-    E --> F["Historical dataset & QA<br/>not started"]
-    F --> G["Backtest & robustness<br/>not started"]
-    G --> H["Paper trading<br/>not started"]
-    H --> I["Small-capital live pilot<br/>not started"]
+    A["연구 기반<br/>완료"] --> B["평탄화 전략 조사<br/>일부 완료"]
+    B --> C["실행 가능성·데이터 계약<br/>완료"]
+    C --> D["국내 데이터 소스 검증<br/>E1-PREP 완료"]
+    D --> E["E1-DATA 제한 검증<br/>승인 대기"]
+    E --> F["과거 데이터셋·품질 검증<br/>미시작"]
+    F --> G["백테스트·강건성 검증<br/>미시작"]
+    G --> H["모의투자<br/>미시작"]
+    H --> I["소액 실거래 파일럿<br/>미시작"]
 
     classDef done fill:#d8f3dc,stroke:#2d6a4f,color:#081c15;
     classDef partial fill:#fff3bf,stroke:#b08900,color:#3d2f00;
@@ -34,9 +34,9 @@ flowchart LR
     class F,G,H,I future;
 ```
 
-Open the [full milestone dashboard](docs/ROADMAP.html) for completed evidence, stop gates, and the
-remaining path. The [active handoff](research/runs/HANDOFF.md) remains the source of truth for the
-exact current action.
+[전체 마일스톤 대시보드](docs/ROADMAP.html)에서 완료 근거, 중단 게이트, 앞으로 남은 단계를
+확인할 수 있습니다. 정확한 현재 작업은 [활성 핸드오프](research/runs/HANDOFF.md)를 기준으로
+판단합니다.
 
 ## Current scope
 
