@@ -116,6 +116,11 @@ class FakeTossTransport:
         return FakeResponse(json.dumps(body).encode())
 
 
+class EchoingTossTransport:
+    def open(self, request: urllib.request.Request, *, timeout: float) -> FakeResponse:
+        return FakeResponse(b'{"error":"test-token"}')
+
+
 def fixed_now() -> datetime:
     return datetime(2026, 8, 24, 2, tzinfo=UTC)
 
@@ -188,6 +193,21 @@ def test_toss_collection_is_bounded_and_does_not_persist_token(tmp_path: Path) -
     assert len(transport.requests) == TOSS_REQUESTS
     assert all(request.get_header("X-tossinvest-account") is None for request in transport.requests)
     assert b"test-token" not in (toss_dir / "manifest.json").read_bytes()
+
+
+def test_toss_collection_refuses_echoed_token_before_persisting_body(tmp_path: Path) -> None:
+    crypto_dir = tmp_path / "crypto"
+    collect_crypto(crypto_dir, transport=FakeTransport(), now=fixed_now)
+    toss_dir = tmp_path / "toss"
+    with pytest.raises(RuntimeError, match="echoed a credential"):
+        collect_toss(
+            toss_dir,
+            access_token="test-token",
+            crypto_run_dir=crypto_dir,
+            transport=EchoingTossTransport(),
+            now=fixed_now,
+        )
+    assert not list(toss_dir.rglob("*.json"))
 
 
 def test_collection_has_no_auth_and_is_bounded(tmp_path: Path) -> None:

@@ -290,6 +290,11 @@ def _sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def _reject_echoed_secret(body: bytes, *secrets: str) -> None:
+    if any(secret and secret.encode() in body for secret in secrets):
+        raise RuntimeError("response body echoed a credential; body was not persisted")
+
+
 def _selected_headers(headers: Any) -> dict[str, str]:
     return {
         key.lower(): value for key, value in headers.items() if key.lower() in _SELECTED_HEADERS
@@ -462,6 +467,7 @@ def collect_toss(
         if len(body) > MAX_ARTIFACT_BYTES or raw_bytes + len(body) > MAX_ARTIFACT_BYTES:
             raise RuntimeError("Toss artifact byte budget exceeded while reading response")
         if body:
+            _reject_echoed_secret(body, access_token)
             raw_path = Path("raw") / f"{ordinal:02d}_{item.request_id}.json"
             _write_new(output_dir / raw_path, body)
             record["raw_path"] = raw_path.as_posix()
