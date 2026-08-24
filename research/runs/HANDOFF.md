@@ -23,13 +23,13 @@ promote canonical records, call Toss, use credentials, or place orders during th
 
 - Working branch: `agent/LUNA-101-05-rule-implementation-batch`
 - Starting integration commit: `5a7d7e7` (merge of reviewed LUNA-101-04 PR `#13`)
-- Last coordinator-reviewed research content: LUNA-101-04 through `f73180a`
+- Last coordinator-reviewed research content: LUNA-101-05 through `995e3ac`
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: none; LUNA-101-05 normalization correction awaits coordinator review
+- Current batch PR: none; independently reviewed LUNA-101-05 is ready for PR creation
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: LUNA-101-05 correction is normalized and awaits review; no PR or merge yet
+- Worktree: independently reviewed LUNA-101-05 is ready to push; no PR or merge yet
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -161,11 +161,16 @@ symmetric volatility scaling rather than unknown sizing. Corrected aggregate rer
 at SHA-256 `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9` with
 `automatic_merge=false` and `canonical_records_modified=false`.
 
+Independent coordinator review passed at `995e3ac`. It rechecked all 20 appended source records and
+28 appended hypotheses, null-bound context semantics, direction/polarity/exposure, exact append-only
+deltas, unique source and hypothesis IDs, unique source URLs, source references, deterministic report
+bytes, and canonical isolation. The complete repository suite passed with 84 tests plus clean Ruff,
+format, and diff checks.
+
 ## Next action
 
-Independently review the corrected LUNA-101-05 source/hypothesis statuses, null-bound semantics,
-append-only delta, deterministic aggregate, and canonical isolation; then decide whether to open a
-batch PR to `integration/LUNA-101-academic-discovery`.
+Push `agent/LUNA-101-05-rule-implementation-batch` and open its reviewed batch PR to
+`integration/LUNA-101-academic-discovery`.
 
 ## Resume instruction
 

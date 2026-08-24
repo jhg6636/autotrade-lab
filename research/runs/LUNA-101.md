@@ -21,7 +21,7 @@
 | LUNA-101-02 | [#11 merged](https://github.com/jhg6636/autotrade-lab/pull/11) | 6 new source records / 9 hypotheses | 1 | 3 | Six public arXiv candidates appended; classical, w=0.5, and w=1 TSMOM rules are usable; five non-TSMOM candidates plus the learned CPD/DMN record remain incomplete |
 | LUNA-101-03 | [#12 merged](https://github.com/jhg6636/autotrade-lab/pull/12) | 20 admitted audited inputs / 23 hypotheses | 3 | 6 | Coordinator review and remote checks passed; six disclosed trend overflow leads are excluded from every record, count, and status decision |
 | LUNA-101-04 | [#13 merged](https://github.com/jhg6636/autotrade-lab/pull/13) | 20 audited inputs / 22 hypotheses | 14 | 15 | Independent coordinator review passed after exposure/status corrections; one inaccessible Halloween source retained without inferred rule |
-| LUNA-101-05 | pending coordinator review | 20 audited inputs / 28 hypotheses | 6 | 9 | Adversarial correction preserved uncapped context exposure only as explicit null bounds; learned/toolkit/underspecified and signal-study records remain incomplete |
+| LUNA-101-05 | reviewed; PR pending | 20 audited inputs / 28 hypotheses | 6 | 9 | Independent coordinator review passed after adversarial correction; uncapped context exposure is preserved only as explicit null bounds, while learned/toolkit/underspecified and signal-study records remain incomplete |
 
 ## Preserved blockers and ambiguities
 
@@ -49,5 +49,4 @@
 
 ## Next batch
 
-Coordinator-review the normalized LUNA-101-05 append-only evidence and validation outputs, then
-decide whether to open the batch PR to the integration branch.
+Push the independently reviewed LUNA-101-05 branch and open its batch PR to the integration branch.
