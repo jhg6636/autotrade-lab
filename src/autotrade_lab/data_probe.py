@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 import os
+import stat
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -258,6 +259,82 @@ def build_toss_http_requests(access_token: str) -> tuple[urllib.request.Request,
     return tuple(result)
 
 
+def load_toss_client_credentials(path: Path) -> tuple[str, str]:
+    if path.is_symlink() or not path.is_file():
+        raise ValueError("Toss credentials path must be a regular non-symlink file")
+    mode = stat.S_IMODE(path.stat().st_mode)
+    if mode & 0o077:
+        raise PermissionError("Toss credentials file must not be accessible by group or others")
+    values: dict[str, str] = {}
+    for line in path.read_text().splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if "=" not in stripped:
+            raise ValueError("invalid Toss credentials file line")
+        key, value = stripped.split("=", 1)
+        if key not in {"TOSS_CLIENT_ID", "TOSS_CLIENT_SECRET"} or key in values:
+            raise ValueError("unexpected or duplicate Toss credential key")
+        if not value or "\r" in value or "\n" in value:
+            raise ValueError("empty or invalid Toss credential value")
+        values[key] = value
+    if set(values) != {"TOSS_CLIENT_ID", "TOSS_CLIENT_SECRET"}:
+        raise ValueError("Toss credentials file must contain client ID and client secret")
+    return values["TOSS_CLIENT_ID"], values["TOSS_CLIENT_SECRET"]
+
+
+def issue_toss_access_token(
+    client_id: str,
+    client_secret: str,
+    *,
+    transport: Transport | None = None,
+) -> tuple[str, dict[str, Any]]:
+    if not client_id or not client_secret:
+        raise ValueError("Toss client credentials must be non-empty")
+    transport = transport or public_transport()
+    body = urllib.parse.urlencode(
+        {
+            "grant_type": "client_credentials",
+            "client_id": client_id,
+            "client_secret": client_secret,
+        }
+    ).encode()
+    request = urllib.request.Request(
+        "https://openapi.tossinvest.com/oauth2/token",
+        data=body,
+        headers={
+            "Accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "autotrade-lab-gate-c/1",
+        },
+        method="POST",
+    )
+    with transport.open(request, timeout=30.0) as response:
+        response_body = response.read(65_537)
+        if len(response_body) > 65_536:
+            raise RuntimeError("Toss OAuth response exceeded the safety bound")
+        _reject_echoed_secret(response_body, client_id, client_secret)
+        if response.status != 200:
+            raise RuntimeError(f"Toss OAuth failed with HTTP {response.status}")
+        payload = json.loads(response_body)
+    access_token = payload.get("access_token")
+    if not isinstance(access_token, str) or not access_token:
+        raise ValueError("Toss OAuth response did not contain an access token")
+    if payload.get("token_type") != "Bearer" or not isinstance(payload.get("expires_in"), int):
+        raise ValueError("Toss OAuth response metadata is invalid")
+    metadata = {
+        "attempted": True,
+        "status": 200,
+        "headers": _selected_headers(response.headers),
+        "response_bytes": len(response_body),
+        "token_type": "Bearer",
+        "expires_in": payload["expires_in"],
+        "credentials_persisted": False,
+        "token_persisted": False,
+    }
+    return access_token, metadata
+
+
 class ResponseLike(Protocol):
     headers: Any
     status: int
@@ -416,6 +493,7 @@ def collect_toss(
     access_token: str,
     crypto_run_dir: Path,
     transport: Transport | None = None,
+    oauth_metadata: dict[str, Any] | None = None,
     now: Callable[[], datetime] = lambda: datetime.now(UTC),
 ) -> dict[str, Any]:
     """Collect the exact market-data-only Toss plan with a caller-supplied OAuth token."""
@@ -500,6 +578,12 @@ def collect_toss(
         "probe": "gate-c-toss-market-data",
         "created_at": now().isoformat().replace("+00:00", "Z"),
         "authorization": "caller-supplied OAuth bearer token; value not retained",
+        "oauth": oauth_metadata
+        or {
+            "attempted": False,
+            "credentials_persisted": False,
+            "token_persisted": False,
+        },
         "limits": {
             "gate_c_max_requests": MAX_REQUESTS,
             "gate_c_max_rows": MAX_ROWS,
@@ -863,7 +947,9 @@ def main() -> None:
     collect_toss_parser = commands.add_parser("collect-toss")
     collect_toss_parser.add_argument("output_dir", type=Path)
     collect_toss_parser.add_argument("crypto_run_dir", type=Path)
-    collect_toss_parser.add_argument("--token-env", default="TOSS_ACCESS_TOKEN")
+    secret_source = collect_toss_parser.add_mutually_exclusive_group(required=True)
+    secret_source.add_argument("--credentials-file", type=Path)
+    secret_source.add_argument("--token-env")
     normalize = commands.add_parser("normalize-crypto")
     normalize.add_argument("run_dir", type=Path)
     verify = commands.add_parser("verify-crypto")
@@ -872,13 +958,19 @@ def main() -> None:
     if args.command == "collect-crypto":
         result = collect_crypto(args.output_dir)
     elif args.command == "collect-toss":
-        token = os.environ.pop(args.token_env, None)
-        if token is None:
-            raise SystemExit(f"required token environment variable is unset: {args.token_env}")
+        oauth_metadata = None
+        if args.credentials_file is not None:
+            client_id, client_secret = load_toss_client_credentials(args.credentials_file)
+            token, oauth_metadata = issue_toss_access_token(client_id, client_secret)
+        else:
+            token = os.environ.pop(args.token_env, None)
+            if token is None:
+                raise SystemExit(f"required token environment variable is unset: {args.token_env}")
         result = collect_toss(
             args.output_dir,
             access_token=token,
             crypto_run_dir=args.crypto_run_dir,
+            oauth_metadata=oauth_metadata,
         )
     elif args.command == "normalize-crypto":
         result = normalize_crypto(args.run_dir)

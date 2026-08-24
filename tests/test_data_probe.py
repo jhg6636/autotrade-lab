@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import urllib.parse
 import urllib.request
 from datetime import UTC, datetime
@@ -22,6 +23,8 @@ from autotrade_lab.data_probe import (
     collect_crypto,
     collect_toss,
     crypto_probe_requests,
+    issue_toss_access_token,
+    load_toss_client_credentials,
     normalize_crypto,
     toss_probe_requests,
     validate_crypto_plan,
@@ -121,6 +124,16 @@ class EchoingTossTransport:
         return FakeResponse(b'{"error":"test-token"}')
 
 
+class FakeOAuthTransport:
+    def __init__(self):
+        self.request: urllib.request.Request | None = None
+
+    def open(self, request: urllib.request.Request, *, timeout: float) -> FakeResponse:
+        self.request = request
+        body = {"access_token": "issued-token", "token_type": "Bearer", "expires_in": 3600}
+        return FakeResponse(json.dumps(body).encode())
+
+
 def fixed_now() -> datetime:
     return datetime(2026, 8, 24, 2, tzinfo=UTC)
 
@@ -173,6 +186,39 @@ def test_toss_http_requests_use_bearer_but_never_account_header() -> None:
     assert all(request.get_header("X-tossinvest-account") is None for request in requests)
     with pytest.raises(ValueError, match="invalid Toss access token"):
         build_toss_http_requests("bad\nheader")
+
+
+def test_toss_credentials_file_requires_private_mode_and_exact_keys(tmp_path: Path) -> None:
+    path = tmp_path / ".env.toss"
+    path.write_text("TOSS_CLIENT_ID=id\nTOSS_CLIENT_SECRET=secret=value\n")
+    os.chmod(path, 0o600)
+    assert load_toss_client_credentials(path) == ("id", "secret=value")
+    os.chmod(path, 0o644)
+    with pytest.raises(PermissionError, match="group or others"):
+        load_toss_client_credentials(path)
+    os.chmod(path, 0o600)
+    link = tmp_path / "credentials-link"
+    link.symlink_to(path)
+    with pytest.raises(ValueError, match="non-symlink"):
+        load_toss_client_credentials(link)
+
+
+def test_toss_oauth_token_is_returned_but_not_in_metadata() -> None:
+    transport = FakeOAuthTransport()
+    token, metadata = issue_toss_access_token("client-id", "client-secret", transport=transport)
+    assert token == "issued-token"
+    assert "issued-token" not in json.dumps(metadata)
+    assert metadata["credentials_persisted"] is False
+    assert metadata["token_persisted"] is False
+    assert transport.request is not None
+    assert transport.request.method == "POST"
+    assert transport.request.full_url == "https://openapi.tossinvest.com/oauth2/token"
+    assert transport.request.get_header("Authorization") is None
+
+
+def test_toss_oauth_refuses_echoed_client_secret() -> None:
+    with pytest.raises(RuntimeError, match="echoed a credential"):
+        issue_toss_access_token("client-id", "test-token", transport=EchoingTossTransport())
 
 
 def test_toss_collection_is_bounded_and_does_not_persist_token(tmp_path: Path) -> None:
