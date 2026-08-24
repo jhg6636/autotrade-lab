@@ -4,16 +4,16 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Complete the LUNA-201–203 execution coverage audit and deliver the user-reviewed Gate B package
-before any market-data collection. The governing contract is `research/runs/LUNA-201-203.md`; the
-decision package is `research/runs/GATE-B.md`.
+LUNA-201–203 is complete. Preserve the validated Gate B package and wait for the user's explicit
+decision before any market-data collection. The governing contract is
+`research/runs/LUNA-201-203.md`; the decision package is `research/runs/GATE-B.md`.
 
 ## Repository state
 
-- Working branch: `agent/LUNA-201-203-gate-b`
+- Authoritative branch: `main`
 - Base: `main` at `48d9496`
 - Contract commit: `bf75897`
-- Current PR: `#16`, open and mergeable/clean after coordinator review
+- Gate B PR: `#16`, merged as `96f3e14`
 - Canonical strategies/index modified: false
 - Market data collected: false
 - Credentials/account/order APIs used: false
@@ -37,11 +37,11 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
   25 MB. It remains unauthorized until the user approves Gate B. Toss access additionally requires
   credentials through an approved secret mechanism; account and order APIs remain forbidden.
 
-## Completion condition
+## Completed gate
 
-- Gate B document and protocol correction pass coordinator review and repository checks.
-- Reviewed PR is merged to `main` under the user's existing repository-history authority.
-- The runtime goal is marked complete only after merge; no data collection begins automatically.
+- Gate B document and protocol correction passed coordinator review and repository checks.
+- Reviewed PR `#16` merged to `main` as `96f3e14`.
+- No data collection begins automatically.
 
 ## Validation evidence
 
@@ -51,14 +51,16 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 - Canonical unknown-field audit, 35 usable/context-only audit, eight-cell/eight-state audit,
   canonical isolation, and secret-pattern audit: passed
 - PR `#16`: correct `main` base and branch head, four expected files, mergeable/clean, GitGuardian
-  success, zero review comments, and no submitted reviews
+  success, zero review comments, no submitted reviews, and verified merged state
 
 ## Next action
 
-Merge reviewed PR `#16` into `main`, then verify the resulting remote main commit.
+Await explicit user approval or rejection of the bounded first-data sample in `GATE-B.md`; do not
+collect data automatically.
 
 ## Resume instruction
 
 Read `AGENTS.md`, this handoff, `research/runs/LUNA-201-203.md`, and
 `research/runs/GATE-B.md`. Verify the branch and base before acting. Execute only the singular next
-action above. Stop for explicit user approval before any market-data request or Toss credential use.
+action above. Recreate a new runtime goal only after the user chooses the next gate. Stop for
+explicit user approval before any market-data request or Toss credential use.
