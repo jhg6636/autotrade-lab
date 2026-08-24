@@ -4,20 +4,19 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Complete the documentation-first Gate D under `research/runs/GATE-D.md`. Convert only documented
-provider facts into fail-closed market-data contracts, preserve observed and unknown states, and
-decide whether broad collection or Gate E backtesting is safe. Do not call market/account/order APIs,
-backtest, rank, optimize, promote canonical records, or trade.
+Record and review the user-authorized Gate D2 bounded Toss market-data observation. Preserve the
+boundary between documented, observed, and unknown facts and decide whether Gate E changes. Do not
+call account/order APIs, backtest, rank, optimize, promote canonical records, or trade.
 
 ## Repository state
 
-- Working branch: `agent/GATE-D-data-contract`
-- Base: merged Gate C on `main` at `b83dfc7`
+- Working branch: `agent/GATE-D2-observed-probe`
+- Base: merged Gate D on `origin/main` at `d419aec`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
-- Gate D PR: `#20`, reviewed at head `abd95be`; clean/mergeable before the final handoff update
+- Gate D PR: `#20`, merged as `d419aec`
 - Canonical strategies/index modified: false
-- Gate D market-data/OAuth/account/order requests: zero
-- Gate D credentials read: false
+- Gate D2 market-data requests: 12/12 succeeded; OAuth exchange: one
+- Gate D2 credentials read locally: true; credential/token values retained in artifacts: false
 - Backtest/ranking/trading performed: false
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
@@ -74,35 +73,41 @@ Unknown:
 - `gate_e_blockers()` returns five stable blockers for the unresolved categories above.
 - The Toss normalizer uses documented one-minute bounds and preserves daily close/completion as null.
 
+## Gate D2 observed result
+
+- Exactly 12 market-data calls, 800 candle rows, 649,329 raw bytes, no retries.
+- `1m` and `1d` two-page cursor observations were descending with zero cross-page duplicates.
+- Targeted `005930` daily access returned 200 rows back to 2017-07-14.
+- At the 2018 split breakpoint, pre-split adjusted prices/volumes changed by exact factors 1/50 and
+  50; post-split adjusted and unadjusted values matched.
+- Historical KR calendar lookup for 2018-05-04 succeeded.
+- Current active masters returned KOSPI 2,476 and KOSDAQ 1,825 records. Both `DELISTED` calls returned
+  empty arrays, so the API did not provide a historical-universe sample.
+- Manifest SHA-256:
+  `ab5d48f3ce930238cc3c96e671b5963a15823efdd98484d40afcf830442fde52`.
+
 ## Gate E decision
 
 **NO-GO** for broad historical collection and strategy backtesting. Reachability and structural
 normalization do not establish point-in-time validity or data-use permission. The investor's desired
 high return does not weaken survival, bias, corporate-action, or licensing gates.
 
-## Conditional Gate D2 plan
-
-`research/runs/GATE-D.md` contains an unapproved maximum 12-request, 800-row, 5 MB follow-up sample.
-It may be proposed only after official support clarifies data rights and narrows the other unknowns.
-Unused Gate C requests are not carried forward. Exact symbols/event/date/requests and secret handling
-require separate user approval.
-
 ## Validation evidence
 
-- Full repository tests: 114 passed
+- Full repository tests: 117 passed
 - Ruff check and format check: passed
 - `git diff --check`: passed
 - Documentation-source fingerprints and Gate C raw-to-Parquet regeneration: passed
 - Corrected Toss normalization reran byte-identically; existing crypto normalization still verifies
 - Credential-pattern scan and canonical isolation: passed
+- Gate D2 manifest-to-local-raw checksum/byte/count verification: passed
 - PR `#20`: correct `main` base, 10 intended files, GitGuardian success, clean/mergeable, no review
   comments or submitted reviews before the final handoff update
 
 ## Next action
 
-Merge reviewed PR `#20`. After merge, wait for the user to provide a dated official Toss support
-answer to the questions in `research/runs/GATE-D.md`. Do not execute Gate D2 or contact support on the
-user's behalf.
+Review the Gate D2 diff and evidence, run the full repository checks, and merge only if the tracked
+manifest contains no credentials and the five documented-contract blockers remain fail-closed.
 
 ## Resume instruction
 

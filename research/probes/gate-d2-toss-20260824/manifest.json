@@ -1,0 +1,346 @@
+{
+  "authorization": "client credentials used locally; credentials and bearer token not retained",
+  "created_at": "2026-08-24T06:55:03.261520Z",
+  "evidence_status": "observed",
+  "limits": {
+    "artifact_bytes": 5242880,
+    "candle_rows": 800,
+    "market_data_requests": 12,
+    "retries": 0
+  },
+  "oauth": {
+    "attempted": true,
+    "credentials_persisted": false,
+    "expires_in": 86399,
+    "headers": {
+      "content-length": "894",
+      "content-type": "application/json;charset=UTF-8",
+      "date": "Mon, 24 Aug 2026 06:54:57 GMT",
+      "x-ratelimit-limit": "5",
+      "x-ratelimit-remaining": "4",
+      "x-ratelimit-reset": "1"
+    },
+    "response_bytes": 894,
+    "status": 200,
+    "token_persisted": false,
+    "token_type": "Bearer"
+  },
+  "observed": {
+    "attempted_requests": 12,
+    "candle_rows": 800,
+    "raw_response_bytes": 649329,
+    "successful_requests": 12
+  },
+  "preselected": {
+    "calendar_date": "2018-05-04",
+    "corporate_action": "Samsung Electronics 50-for-1 split; trading resumed 2018-05-04",
+    "corporate_action_before": "2018-05-10T00:00:00+09:00",
+    "corporate_action_symbol": "005930",
+    "pagination_symbol": "005930"
+  },
+  "probe": "gate-d2-toss-observed-contract",
+  "requests": [
+    {
+      "attempt_ordinal": 1,
+      "error": null,
+      "headers": {
+        "content-length": "16406",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:58 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "19",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 100,
+      "params": {
+        "adjusted": "true",
+        "count": "100",
+        "interval": "1m",
+        "symbol": "005930"
+      },
+      "path": "/api/v1/candles",
+      "raw_path": "raw/01_pagination_1m_page_1.json",
+      "request_id": "pagination_1m_page_1",
+      "requested_at": "2026-08-24T06:54:57.861545Z",
+      "response_bytes": 16406,
+      "response_sha256": "43167837ed4fd42505aff67d901548c4513f81761be896c365d5dc1f7990a67a",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 2,
+      "error": null,
+      "headers": {
+        "content-length": "16491",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:58 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "18",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 100,
+      "params": {
+        "adjusted": "true",
+        "before": "2026-08-24T14:15:00.000+09:00",
+        "count": "100",
+        "interval": "1m",
+        "symbol": "005930"
+      },
+      "path": "/api/v1/candles",
+      "raw_path": "raw/02_pagination_1m_page_2.json",
+      "request_id": "pagination_1m_page_2",
+      "requested_at": "2026-08-24T06:54:58.006382Z",
+      "response_bytes": 16491,
+      "response_sha256": "3f99bf18e7f48e92e8fcd5dc4147c726ffd7479bf58078ff4d651be8048a6a9a",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 3,
+      "error": null,
+      "headers": {
+        "content-length": "16771",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:58 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "17",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 100,
+      "params": {
+        "adjusted": "true",
+        "count": "100",
+        "interval": "1d",
+        "symbol": "005930"
+      },
+      "path": "/api/v1/candles",
+      "raw_path": "raw/03_pagination_1d_page_1.json",
+      "request_id": "pagination_1d_page_1",
+      "requested_at": "2026-08-24T06:54:58.173447Z",
+      "response_bytes": 16771,
+      "response_sha256": "fc3c7efa9ad35f608354b221dff0f979a9795c380d5eaaee7a29f3c253ce21ee",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 4,
+      "error": null,
+      "headers": {
+        "content-length": "16738",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:58 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "16",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 100,
+      "params": {
+        "adjusted": "true",
+        "before": "2026-03-27T00:00:00.000+09:00",
+        "count": "100",
+        "interval": "1d",
+        "symbol": "005930"
+      },
+      "path": "/api/v1/candles",
+      "raw_path": "raw/04_pagination_1d_page_2.json",
+      "request_id": "pagination_1d_page_2",
+      "requested_at": "2026-08-24T06:54:58.326255Z",
+      "response_bytes": 16738,
+      "response_sha256": "45f0dada3847f20d1d30763a0370b0de882e7c6bc004a503558ab08878581c73",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 5,
+      "error": null,
+      "headers": {
+        "content-length": "32579",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:58 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "15",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "before": "2018-05-10T00:00:00+09:00",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "005930"
+      },
+      "path": "/api/v1/candles",
+      "raw_path": "raw/05_corporate_action_adjusted.json",
+      "request_id": "corporate_action_adjusted",
+      "requested_at": "2026-08-24T06:54:58.468929Z",
+      "response_bytes": 32579,
+      "response_sha256": "4e4d623eeebeb435bb72fc2380f92ded105eb93347c14dab9c1ce9819bc1e61e",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 6,
+      "error": null,
+      "headers": {
+        "content-length": "33830",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:58 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "14",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 200,
+      "params": {
+        "adjusted": "false",
+        "before": "2018-05-10T00:00:00+09:00",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "005930"
+      },
+      "path": "/api/v1/candles",
+      "raw_path": "raw/06_corporate_action_unadjusted.json",
+      "request_id": "corporate_action_unadjusted",
+      "requested_at": "2026-08-24T06:54:58.626876Z",
+      "response_bytes": 33830,
+      "response_sha256": "15ee13618ecd66a1dce0e2cac004453ffc013983d3530abe560a08bf2a6111cc",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 7,
+      "error": null,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:54:59 GMT",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 0,
+      "params": {
+        "market": "KOSPI",
+        "status": "ACTIVE"
+      },
+      "path": "/api/v1/stocks/all",
+      "raw_path": "raw/07_master_kospi_active.json",
+      "request_id": "master_kospi_active",
+      "requested_at": "2026-08-24T06:54:58.749559Z",
+      "response_bytes": 306178,
+      "response_sha256": "281184e10a6923ee2f8989e067193f94691e838728617de2629c6ae501f0369d",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 8,
+      "error": null,
+      "headers": {
+        "content-length": "13",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:55:00 GMT",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 0,
+      "params": {
+        "market": "KOSPI",
+        "status": "DELISTED"
+      },
+      "path": "/api/v1/stocks/all",
+      "raw_path": "raw/08_master_kospi_delisted.json",
+      "request_id": "master_kospi_delisted",
+      "requested_at": "2026-08-24T06:55:00.270212Z",
+      "response_bytes": 13,
+      "response_sha256": "63c49671e4c0faf619ee397c992e45e4c411dce55a4ef9410067b01fc9c93a0f",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 9,
+      "error": null,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:55:01 GMT",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 0,
+      "params": {
+        "market": "KOSDAQ",
+        "status": "ACTIVE"
+      },
+      "path": "/api/v1/stocks/all",
+      "raw_path": "raw/09_master_kosdaq_active.json",
+      "request_id": "master_kosdaq_active",
+      "requested_at": "2026-08-24T06:55:01.529652Z",
+      "response_bytes": 208242,
+      "response_sha256": "b088e6f7b16b85eefb49bc1d89f09585443e7d368103dcbaa7e279ba92a94055",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 10,
+      "error": null,
+      "headers": {
+        "content-length": "13",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:55:03 GMT",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 0,
+      "params": {
+        "market": "KOSDAQ",
+        "status": "DELISTED"
+      },
+      "path": "/api/v1/stocks/all",
+      "raw_path": "raw/10_master_kosdaq_delisted.json",
+      "request_id": "master_kosdaq_delisted",
+      "requested_at": "2026-08-24T06:55:02.847263Z",
+      "response_bytes": 13,
+      "response_sha256": "63c49671e4c0faf619ee397c992e45e4c411dce55a4ef9410067b01fc9c93a0f",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 11,
+      "error": null,
+      "headers": {
+        "content-length": "427",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:55:03 GMT",
+        "x-ratelimit-limit": "5",
+        "x-ratelimit-remaining": "4",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 0,
+      "params": {
+        "symbols": "005930"
+      },
+      "path": "/api/v1/stocks",
+      "raw_path": "raw/11_selected_stock_details.json",
+      "request_id": "selected_stock_details",
+      "requested_at": "2026-08-24T06:55:03.048639Z",
+      "response_bytes": 427,
+      "response_sha256": "ce4accfa3fea5b684471797f75853982195ef33b078ef13c6daaad4c7b274daf",
+      "status": 200
+    },
+    {
+      "attempt_ordinal": 12,
+      "error": null,
+      "headers": {
+        "content-length": "1641",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 06:55:03 GMT",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "2",
+        "x-ratelimit-reset": "1"
+      },
+      "observed_candle_rows": 0,
+      "params": {
+        "date": "2018-05-04"
+      },
+      "path": "/api/v1/market-calendar/KR",
+      "raw_path": "raw/12_historical_market_calendar.json",
+      "request_id": "historical_market_calendar",
+      "requested_at": "2026-08-24T06:55:03.139340Z",
+      "response_bytes": 1641,
+      "response_sha256": "7f1215297a4f8d3dddfa0a13c21486ec3f3c0104bed20161b90b5eedd6be4f9c",
+      "status": 200
+    }
+  ],
+  "schema_version": 1,
+  "selected_delisted_symbol": null
+}
