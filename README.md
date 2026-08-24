@@ -9,29 +9,32 @@ and live execution so a promising backtest cannot accidentally become a real ord
 
 ## 프로젝트 진행 상황
 
-**현재 위치:** Gate E1-PREP을 완료했습니다. 금융위원회 공공데이터포털의 국내 주식 일봉
-데이터에 대해 첫 번째 제한적 실현 가능성 검증을 실행하기 직전입니다. 국내 주식 과거
-백테스트, 모의투자, 실거래는 아직 시작하지 않았습니다.
+**현재 위치:** 공통 연구 기반 위에서 국내주식/ETF와 코인을 병렬로 검증하고 있습니다.
+국내 트랙은 Gate E1-PREP을 완료하고 공식 일봉 데이터의 제한 검증 승인을 기다립니다.
+코인 트랙은 Gate C의 제한적 캔들 수집을 완료했지만 생애주기·이용권·펀딩·거래비용
+검증이 남았습니다. 어느 트랙도 본격 백테스트, 모의투자, 실거래를 시작하지 않았습니다.
 
 ```mermaid
 flowchart LR
-    A["연구 기반<br/>완료"] --> B["평탄화 전략 조사<br/>일부 완료"]
-    B --> C["실행 가능성·데이터 계약<br/>완료"]
-    C --> D["국내 데이터 소스 검증<br/>E1-PREP 완료"]
-    D --> E["E1-DATA 제한 검증<br/>승인 대기"]
-    E --> F["과거 데이터셋·품질 검증<br/>미시작"]
-    F --> G["백테스트·강건성 검증<br/>미시작"]
-    G --> H["모의투자<br/>미시작"]
-    H --> I["소액 실거래 파일럿<br/>미시작"]
+    A["공통 연구 기반<br/>완료"] --> B["평탄화 전략 조사<br/>일부 완료"]
+    B --> K["국내주식·ETF<br/>E1-DATA 승인 대기"]
+    B --> C["코인 현물·무기한선물<br/>제한 검증 일부 완료"]
+    K --> KD["국내 과거 데이터셋<br/>미시작"]
+    C --> CD["코인 과거 데이터셋<br/>미시작"]
+    KD --> V["공통 백테스트·강건성 검증<br/>미시작"]
+    CD --> V
+    V --> P["시장별 모의투자<br/>미시작"]
+    P --> L["소액 실거래 파일럿<br/>미시작"]
 
     classDef done fill:#d8f3dc,stroke:#2d6a4f,color:#081c15;
     classDef partial fill:#fff3bf,stroke:#b08900,color:#3d2f00;
     classDef current fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:3px;
     classDef future fill:#f3f4f6,stroke:#9ca3af,color:#374151;
-    class A,C done;
+    class A done;
     class B partial;
-    class D,E current;
-    class F,G,H,I future;
+    class C partial;
+    class K current;
+    class KD,CD,V,P,L future;
 ```
 
 [전체 마일스톤 대시보드](docs/ROADMAP.html)에서 완료 근거, 중단 게이트, 앞으로 남은 단계를
