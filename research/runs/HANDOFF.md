@@ -13,6 +13,7 @@ until credentials are supplied through an approved secret mechanism.
 - Working branch: `agent/GATE-C-capability-probe`
 - Gate C base: `main` at `b9c8d57`
 - Gate B PR: `#16`, merged as `96f3e14`
+- Gate C Phase 1 PR: `#18`, review in progress
 - Canonical strategies/index modified: false
 - Market data collected: 12 approved public crypto requests, 8,800 candle rows, 1,963,244 local bytes
 - Credentials/account/order APIs used: false
@@ -57,7 +58,7 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 
 ## Validation evidence
 
-- `.venv/bin/pytest -q`: 94 passed
+- `.venv/bin/pytest -q`: 95 passed
 - Ruff check and format check: passed
 - `git diff --check`: passed
 - Crypto raw-to-Parquet byte identity, manifest/raw checksum enforcement, allowlist integrity,
