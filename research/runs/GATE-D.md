@@ -62,7 +62,7 @@ universe completeness, pace from current response-header limits, and expose stab
 Gate E. Unknown retention, historical-universe completeness, corporate-action methodology, daily
 completion scope, or redistribution permission is sufficient to prevent a point-in-time backtest.
 
-## Support questions
+## Questions not answered by successful API calls
 
 1. What guaranteed lookback or retention applies separately to `1m` and `1d` candles?
 2. Which KR sessions and venues are aggregated into each interval, and when is a daily candle final?
@@ -75,28 +75,37 @@ completion scope, or redistribution permission is sufficient to prevent a point-
    commercial-use, and exchange/vendor restrictions apply?
 6. Are there quotas or throttles beyond the documented client × API-group TPS and runtime headers?
 
-The user must send these questions through an official support channel. This repository must record
-the answer and its effective date before treating it as a contract fact.
+Questions 1–4 and 6 can be narrowed through bounded observations, but a successful response cannot
+turn current behavior into a provider guarantee. Question 5 is a permission question and cannot be
+answered from API behavior at all. A dated official answer or applicable published term is required
+before any answer is treated as a documented contract fact.
 
-## Conditional minimal follow-up probe — not authorized
+## Gate D2 bounded follow-up observation — completed
 
-Only after the storage terms permit local evidence and support answers narrow the unknowns, propose
-a new Gate D2 budget for user review: at most 12 market-data requests, 800 candle rows, and 5 MB.
+The user authorized direct observation on 2026-08-24 after declining credential rotation and asking
+that empirically testable gaps be checked by API. The executed budget was at most 12 market-data
+requests, 800 candle rows, and 5 MB:
 
-- four candle calls: two-page `1m` and `1d` pagination boundary checks on one security;
-- two daily candle calls: adjusted/unadjusted comparison around one externally documented corporate
-  action selected before collection;
+- four candle calls: two-page `1m` and `1d` pagination boundary checks on `005930`;
+- two daily candle calls: adjusted/unadjusted comparison around the preselected 2018 Samsung
+  Electronics 50-for-1 split breakpoint;
 - four paced universe calls: KOSPI/KOSDAQ × ACTIVE/DELISTED;
-- one batched stock-detail call for selected active/delisted symbols;
-- one KR calendar call for the preselected event date.
+- one batched stock-detail call for active `005930` plus the lexicographically first returned
+  delisted symbol, if any;
+- one KR calendar call for `2018-05-04`.
 
-Each request is attempted once. `/stocks/all` calls are separated according to the latest response
-header with safety margin. No previous unused budget is carried forward. D2 remains prohibited until
-the user separately approves its exact symbols, event, date, request table, and secret mechanism.
+All 12 calls succeeded without retry and returned 800 candles in 649,329 raw bytes. Pagination was
+strictly descending with no cross-page duplicates. Targeted daily access reached 2017-07-14. Around
+the split breakpoint, the pre-split adjusted series divided prices by 50 and multiplied volume by 50;
+post-split values matched. Historical calendar lookup succeeded. KOSPI/KOSDAQ active masters returned
+2,476/1,825 records, but both delisted masters returned empty arrays, so no delisted detail could be
+requested. See `research/probes/gate-d2-toss-20260824/README.md` and its tracked manifest. Raw bodies
+remain local and Git-ignored.
 
 ## Gate E decision
 
-Current decision: **NO-GO** for broad collection and strategy backtesting. Reachability, start-time
-semantics, basic pagination, and structural normalization are established, but the five blockers in
-the required contract are not. The small-capital/high-upside persona does not justify weakening
-point-in-time, corporate-action, or licensing controls.
+Current decision: **NO-GO** for broad point-in-time collection and strategy backtesting. Gate D2
+confirmed useful current behavior and old daily access for one symbol, but did not turn those
+observations into retention guarantees. Empty delisted masters make a survivorship-safe universe
+unavailable from this surface, and daily scope, complete adjustment methodology, and data rights
+remain unresolved. The small-capital/high-upside persona does not justify weakening those controls.
