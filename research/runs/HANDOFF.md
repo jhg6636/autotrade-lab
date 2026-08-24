@@ -14,6 +14,7 @@ backtest, rank, optimize, promote canonical records, or trade.
 - Working branch: `agent/GATE-D-data-contract`
 - Base: merged Gate C on `main` at `b83dfc7`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
+- Gate D PR: `#20`, reviewed at head `abd95be`; clean/mergeable before the final handoff update
 - Canonical strategies/index modified: false
 - Gate D market-data/OAuth/account/order requests: zero
 - Gate D credentials read: false
@@ -94,11 +95,14 @@ require separate user approval.
 - Documentation-source fingerprints and Gate C raw-to-Parquet regeneration: passed
 - Corrected Toss normalization reran byte-identically; existing crypto normalization still verifies
 - Credential-pattern scan and canonical isolation: passed
+- PR `#20`: correct `main` base, 10 intended files, GitGuardian success, clean/mergeable, no review
+  comments or submitted reviews before the final handoff update
 
 ## Next action
 
-Commit the reviewed Gate D package and open a PR against `main`. Do not execute Gate D2 or contact
-support on the user's behalf.
+Merge reviewed PR `#20`. After merge, wait for the user to provide a dated official Toss support
+answer to the questions in `research/runs/GATE-D.md`. Do not execute Gate D2 or contact support on the
+user's behalf.
 
 ## Resume instruction
 
