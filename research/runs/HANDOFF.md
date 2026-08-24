@@ -14,6 +14,8 @@ call account/order APIs, backtest, rank, optimize, promote canonical records, or
 - Base: merged Gate D on `origin/main` at `d419aec`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
+- Gate D2 local commit: `0c91c23`; push/PR blocked because all configured GitHub CLI tokens
+  are invalid and the fallback `github-warp` SSH key authenticates as non-owner `tldtyd508`
 - Canonical strategies/index modified: false
 - Gate D2 market-data requests: 12/12 succeeded; OAuth exchange: one
 - Gate D2 credentials read locally: true; credential/token values retained in artifacts: false
@@ -106,8 +108,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review the Gate D2 diff and evidence, run the full repository checks, and merge only if the tracked
-manifest contains no credentials and the five documented-contract blockers remain fail-closed.
+Reauthenticate GitHub as repository owner `jhg6636`, then push local commit `0c91c23`, open its PR,
+and merge only if GitGuardian and repository checks pass.
 
 ## Resume instruction
 
