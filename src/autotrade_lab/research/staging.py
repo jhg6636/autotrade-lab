@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -60,6 +61,11 @@ def _contains_unknown(value: Any) -> bool:
     return False
 
 
+def _is_finite_number(value: Any) -> bool:
+    """Return whether an exposure endpoint is a finite JSON number."""
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
 def _status_counts(records: list[dict[str, Any]]) -> dict[str, int]:
     counts = {"total": len(records), "usable": 0, "incomplete": 0, "inaccessible": 0, "other": 0}
     for record in records:
@@ -107,13 +113,25 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
             raise StagingValidationError(
                 f"{kind}:{line}:$.applications: markets must match markets"
             )
-        if any(
-            application["target_exposure"]["minimum"] > application["target_exposure"]["maximum"]
-            for application in record["applications"]
-        ):
-            raise StagingValidationError(
-                f"{kind}:{line}:$.applications: minimum exposure exceeds maximum"
-            )
+        for application in record["applications"]:
+            exposure = application["target_exposure"]
+            minimum, maximum = exposure["minimum"], exposure["maximum"]
+            if any(
+                value is not None and not _is_finite_number(value) for value in (minimum, maximum)
+            ):
+                raise StagingValidationError(
+                    f"{kind}:{line}:$.applications: target exposure bounds must be finite numbers or null"
+                )
+            if application["execution_scope"] == "executable" and not all(
+                _is_finite_number(value) for value in (minimum, maximum)
+            ):
+                raise StagingValidationError(
+                    f"{kind}:{line}:$.applications: executable application target exposure bounds must be finite numbers"
+                )
+            if _is_finite_number(minimum) and _is_finite_number(maximum) and minimum > maximum:
+                raise StagingValidationError(
+                    f"{kind}:{line}:$.applications: minimum exposure exceeds maximum"
+                )
         directions = {application["asset_direction"] for application in record["applications"]}
         expected_direction = directions.pop() if len(directions) == 1 else "mixed"
         if record["asset_direction"] != expected_direction:
@@ -127,14 +145,12 @@ def validate_record(kind: str, record: dict[str, Any], line: int = 1) -> dict[st
                 f"{kind}:{line}:$.execution_scope: must summarize applications as {expected_scope!r}"
             )
         for application in record["applications"]:
+            minimum = application["target_exposure"]["minimum"]
+            maximum = application["target_exposure"]["maximum"]
             if (
                 application["market"] in {"kr_equity", "kr_etf"}
                 and application["execution_scope"] == "executable"
-                and (
-                    application["asset_direction"] != "long_only"
-                    or application["target_exposure"]["minimum"] < 0
-                    or application["target_exposure"]["maximum"] > 1
-                )
+                and (application["asset_direction"] != "long_only" or minimum < 0 or maximum > 1)
             ):
                 raise StagingValidationError(
                     f"{kind}:{line}:$.applications: Korean executable application must be long_only with nonnegative, unlevered exposure"

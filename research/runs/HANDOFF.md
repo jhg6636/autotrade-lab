@@ -26,10 +26,11 @@ promote canonical records, call Toss, use credentials, or place orders during th
 - Last coordinator-reviewed research content: LUNA-101-04 through `f73180a`
 - Required PR base: `integration/LUNA-101-academic-discovery`
 - Previous batch PR: `#13`, merged as integration commit `5a7d7e7`
-- Current batch PR: none; LUNA-101-05 normalized evidence awaits coordinator review
+- Current batch PR: none; LUNA-101-05 normalization correction is paused before coordinator review
 - Umbrella PR: `#8` targeting `main`
 - Umbrella PR body: synchronized through merged LUNA-101-04
-- Worktree: LUNA-101-05 append-only normalization complete; no PR or merge yet
+- Worktree: one intentional, unstaged LUNA-101-05 source-only normalization correction is present;
+  preserve it and do not stage it with the validator fix
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -124,7 +125,19 @@ source-neutral. Collectors transcribe evidence and ambiguities only; final statu
 decisions remain with the implementer and coordinator. The exact contract is in
 `research/runs/LUNA-101-05.md`.
 
-## Current normalized batch
+## Current normalization correction
+
+The LUNA-101-05 normalization review found a truthful context-only exposure with no finite cap.
+The staging hypothesis schema and validator now represent an absent lower or upper exposure bound as
+JSON `null`: `minimum: null` means no finite lower bound and `maximum: null` means no finite upper
+bound. Every executable application still requires two finite numeric bounds; Korean executable
+applications remain long-only, nonnegative, and capped at `1`. Ordering is checked only when both
+bounds are finite. Regression coverage includes context-only long-only `{0, null}` and long-short
+`{null, null}` applications, executable-null rejection, finite reversed bounds, Korean leverage
+rejection, and aggregate/comparator preservation of distinct unbounded exposure profiles. This is
+staging-only support; canonical strategy schemas remain unchanged.
+
+## Prior normalized batch snapshot
 
 LUNA-101-05 normalized the two verified evidence packets with SHA-256 values
 `19429c7e1a10e7c21165b4d6c8d66332fbea701905d2b860d844d38edc6d5488` (replication) and
@@ -139,9 +152,9 @@ byte-identically at SHA-256 `7c3f55280487aff496e093f582a2837abe9b4cbc5005d7221e2
 
 ## Next action
 
-Independently review LUNA-101-05 source/hypothesis transcription, status boundaries,
-direction/polarity/exposure, append-only delta, deterministic aggregate, and canonical isolation;
-then decide on a batch PR to `integration/LUNA-101-academic-discovery`.
+Resume the LUNA-101-05 normalization correction using the staging-only context-unbounded exposure
+representation, then regenerate and independently review the append-only aggregate before any PR
+decision.
 
 ## Resume instruction
 
