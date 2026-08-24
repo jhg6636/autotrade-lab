@@ -2,6 +2,9 @@
 
 Date: 2026-08-24 KST
 
+Status: the user approved the bounded first-data sample for Gate C on 2026-08-24. Approval is
+limited to the request, row, storage, endpoint, and safety bounds below.
+
 ## Decision summary
 
 Do **not** start bulk market-data collection or backtesting yet. None of the eight target cells has
@@ -125,8 +128,9 @@ interval, open_time, adjustment_state)` and conflicting duplicates must stop nor
 
 ## Proposed bounded first-data sample
 
-This is a **proposal, not authorization**. It combines the future LUNA-301 Toss capability probe and
-LUNA-303 crypto public-data probe; it does not authorize LUNA-302 universe history or any backtest.
+This sample was approved for Gate C within the stated bounds. It combines the future LUNA-301 Toss
+capability probe and LUNA-303 crypto public-data probe; it does not authorize LUNA-302 universe
+history or any backtest.
 
 ### Scope
 

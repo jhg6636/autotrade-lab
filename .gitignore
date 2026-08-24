@@ -9,6 +9,8 @@ __pycache__/
 dist/
 data/raw/
 data/cache/
+research/probes/**/raw/
+research/probes/**/normalized/*.parquet
 artifacts/
 logs/
 secrets/
