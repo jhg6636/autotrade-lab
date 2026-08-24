@@ -57,9 +57,11 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 
 ## Validation evidence
 
-- `.venv/bin/pytest -q`: 84 passed
+- `.venv/bin/pytest -q`: 94 passed
 - Ruff check and format check: passed
 - `git diff --check`: passed
+- Crypto raw-to-Parquet byte identity, manifest/raw checksum enforcement, allowlist integrity,
+  row/request/storage budgets, structural OHLC/time-grid checks, and Toss token redaction: passed
 - Canonical unknown-field audit, 35 usable/context-only audit, eight-cell/eight-state audit,
   canonical isolation, and secret-pattern audit: passed
 - PR `#16`: correct `main` base and branch head, four expected files, mergeable/clean, GitGuardian
@@ -67,8 +69,7 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 
 ## Next action
 
-Implement and test the exact Toss Phase 2 request plan without reading credentials or making a Toss
-request.
+Open and independently review the Phase 1 plus Toss dry-run PR; do not make a Toss request.
 
 ## Resume instruction
 

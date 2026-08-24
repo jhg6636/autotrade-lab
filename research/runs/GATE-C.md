@@ -2,7 +2,7 @@
 
 - Starting main commit: `b9c8d57448c29d9739551d813cf3e1be2b13620b`
 - Working branch: `agent/GATE-C-capability-probe`
-- Stage: Phase 1 collected and verified; Toss Phase 2 preparation pending
+- Stage: Phase 1 verified and Toss Phase 2 dry-run prepared; review PR pending
 
 ## Objective
 
@@ -73,5 +73,4 @@ successful capability probe makes no strategy profitable or executable by itself
 
 ## Next action
 
-Implement and test the exact Toss Phase 2 request plan without reading credentials or making a Toss
-request.
+Open and independently review the Phase 1 plus Toss dry-run PR; do not make a Toss request.
