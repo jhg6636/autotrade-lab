@@ -4,18 +4,18 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Record and review the user-authorized Gate D2 bounded Toss market-data observation. Preserve the
-boundary between documented, observed, and unknown facts and decide whether Gate E changes. Do not
-call account/order APIs, backtest, rank, optimize, promote canonical records, or trade.
+Gate D2 is complete. Preserve its documented/observed/unknown boundary while preparing the next
+decision: how to obtain a survivorship-safe Korean historical universe and clarified data rights
+before Gate E. Do not call account/order APIs, backtest, rank, optimize, promote canonical records,
+or trade.
 
 ## Repository state
 
-- Working branch: `agent/GATE-D2-observed-probe`
-- Base: merged Gate D on `origin/main` at `d419aec`
+- Working branch: `main`
+- Current main: Gate D2 PR `#21`, merged as `bd8ceb0`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
-- Gate D2 local commit: `0c91c23`; push/PR blocked because all configured GitHub CLI tokens
-  are invalid and the fallback `github-warp` SSH key authenticates as non-owner `tldtyd508`
+- Gate D2 implementation/evidence commit: `0c91c23`
 - Canonical strategies/index modified: false
 - Gate D2 market-data requests: 12/12 succeeded; OAuth exchange: one
 - Gate D2 credentials read locally: true; credential/token values retained in artifacts: false
@@ -105,11 +105,13 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - Gate D2 manifest-to-local-raw checksum/byte/count verification: passed
 - PR `#20`: correct `main` base, 10 intended files, GitGuardian success, clean/mergeable, no review
   comments or submitted reviews before the final handoff update
+- PR `#21`: merged as `bd8ceb0`; GitGuardian success, clean/mergeable, six intended files
 
 ## Next action
 
-Reauthenticate GitHub as repository owner `jhg6636`, then push local commit `0c91c23`, open its PR,
-and merge only if GitGuardian and repository checks pass.
+Draft a bounded Gate E0 source-resolution plan for user review: evaluate official KRX/DART surfaces
+for historical listing lifecycle and corporate actions, and identify an applicable Toss data-use
+term or a substitute licensed research source. Do not collect additional data yet.
 
 ## Resume instruction
 
