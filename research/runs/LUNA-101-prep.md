@@ -12,10 +12,12 @@ is allowed.
 Starting commit: `396356f` (`origin/main`, latest known remote main at preparation time).
 Finished commit: `19f49d5`.
 
-## Collection target
+## Collection completion
 
-- At least 80 usable source records.
 - At least 30 distinct hypotheses or explicit parameter/execution variants.
+- Every usable hypothesis links to at least one existing usable source record.
+- A local family/market/timeframe coverage audit records concentrations and sparse cells.
+- Source totals remain descriptive provenance breadth, not a quota.
 - Positive, negative, and replication results enter the same flat pool.
 - Source type is provenance only; it must never become a priority, confidence, authority, or
   evidence score.
@@ -49,7 +51,7 @@ Every source capture must include:
 
 Do not reconstruct a rule from a title, abstract, chart, or claimed result. If the rule cannot
 be converted into a falsifiable hypothesis, keep it as `incomplete` in the work log and do not
-count it toward the 80 usable sources or 30 hypotheses target.
+count it toward hypothesis completion.
 
 ## Hypothesis and variant policy
 
@@ -92,14 +94,15 @@ canonical data.
 - [ ] All claims labelled as unverified text claims; no measured result is imported.
 - [ ] Every hypothesis links to one or more source IDs and has field-level ambiguity notes.
 - [ ] Duplicate/variant/related dry-run report generated with reasons.
-- [ ] Counts reach 80 usable sources and 30 hypotheses/variants, or a blocker report explains the
-  shortfall.
+- [ ] At least 30 hypotheses/variants are usable, all usable source references resolve to usable
+  source records, and the local coverage audit documents concentrations and sparse cells.
 - [ ] Schema validation, pytest, Ruff, and diff checks pass.
 - [ ] Stop at Gate B input preparation; do not backtest or rank.
 
 ## Acceptance and blockers
 
-Acceptance requires the targets, source fields, relation report, and validation checks above.
+Acceptance requires the hypothesis/linkage/coverage conditions, source fields, relation report, and
+validation checks above. A source count alone is never an acceptance gate.
 Paywalled or inaccessible details remain explicitly inaccessible and do not stop the whole run.
 The smallest next action is to record that source and continue; only a system-wide validator,
 storage, authorization, or collection-runner blocker stops the task. Never bypass access controls
