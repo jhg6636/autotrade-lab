@@ -7,7 +7,7 @@
       "adjustment_state": "adjusted",
       "duplicate_keys": 0,
       "first_open_time": "2025-10-29T15:00:00+00:00",
-      "incomplete_rows": 1,
+      "incomplete_rows": 0,
       "instrument_type": "kr_security",
       "interval": "1d",
       "invalid_ohlc_rows": 0,
@@ -21,6 +21,7 @@
       "rows": 200,
       "symbol": "000660",
       "timing_scope": "calendar gaps not inferred without a point-in-time KR session calendar",
+      "unknown_completion_rows": 200,
       "venue": "toss_kr"
     },
     {
@@ -41,13 +42,14 @@
       "rows": 200,
       "symbol": "000660",
       "timing_scope": "same-KR-calendar-date deltas only; session breaks excluded",
+      "unknown_completion_rows": 0,
       "venue": "toss_kr"
     },
     {
       "adjustment_state": "adjusted",
       "duplicate_keys": 0,
       "first_open_time": "2025-10-29T15:00:00+00:00",
-      "incomplete_rows": 1,
+      "incomplete_rows": 0,
       "instrument_type": "kr_security",
       "interval": "1d",
       "invalid_ohlc_rows": 0,
@@ -61,13 +63,14 @@
       "rows": 200,
       "symbol": "005930",
       "timing_scope": "calendar gaps not inferred without a point-in-time KR session calendar",
+      "unknown_completion_rows": 200,
       "venue": "toss_kr"
     },
     {
       "adjustment_state": "unadjusted",
       "duplicate_keys": 0,
       "first_open_time": "2025-10-29T15:00:00+00:00",
-      "incomplete_rows": 1,
+      "incomplete_rows": 0,
       "instrument_type": "kr_security",
       "interval": "1d",
       "invalid_ohlc_rows": 0,
@@ -81,6 +84,7 @@
       "rows": 200,
       "symbol": "005930",
       "timing_scope": "calendar gaps not inferred without a point-in-time KR session calendar",
+      "unknown_completion_rows": 200,
       "venue": "toss_kr"
     },
     {
@@ -101,13 +105,14 @@
       "rows": 200,
       "symbol": "005930",
       "timing_scope": "same-KR-calendar-date deltas only; session breaks excluded",
+      "unknown_completion_rows": 0,
       "venue": "toss_kr"
     },
     {
       "adjustment_state": "adjusted",
       "duplicate_keys": 0,
       "first_open_time": "2025-10-29T15:00:00+00:00",
-      "incomplete_rows": 1,
+      "incomplete_rows": 0,
       "instrument_type": "kr_security",
       "interval": "1d",
       "invalid_ohlc_rows": 0,
@@ -121,6 +126,7 @@
       "rows": 200,
       "symbol": "069500",
       "timing_scope": "calendar gaps not inferred without a point-in-time KR session calendar",
+      "unknown_completion_rows": 200,
       "venue": "toss_kr"
     },
     {
@@ -141,13 +147,14 @@
       "rows": 200,
       "symbol": "069500",
       "timing_scope": "same-KR-calendar-date deltas only; session breaks excluded",
+      "unknown_completion_rows": 0,
       "venue": "toss_kr"
     },
     {
       "adjustment_state": "adjusted",
       "duplicate_keys": 0,
       "first_open_time": "2025-10-29T15:00:00+00:00",
-      "incomplete_rows": 1,
+      "incomplete_rows": 0,
       "instrument_type": "kr_security",
       "interval": "1d",
       "invalid_ohlc_rows": 0,
@@ -161,6 +168,7 @@
       "rows": 200,
       "symbol": "229200",
       "timing_scope": "calendar gaps not inferred without a point-in-time KR session calendar",
+      "unknown_completion_rows": 200,
       "venue": "toss_kr"
     },
     {
@@ -181,6 +189,7 @@
       "rows": 200,
       "symbol": "229200",
       "timing_scope": "same-KR-calendar-date deltas only; session breaks excluded",
+      "unknown_completion_rows": 0,
       "venue": "toss_kr"
     }
   ],
@@ -188,7 +197,7 @@
   "failed_requests": 3,
   "licensing_statement": "Authenticated market-data access does not establish redistribution rights; raw bodies and Parquet remain local and Git-ignored pending provider-terms review.",
   "normalized_rows": 1800,
-  "parquet_sha256": "93e091692e181e80a55de02a7f0361dd33bf870262ba88184ddcfe2939966e38",
+  "parquet_sha256": "1069360f6694126fae5246c09969b30932c00d62b6d5b4c6914c095da475da25",
   "probe": "gate-c-toss-market-data",
   "pyarrow_version": "23.0.1",
   "reference_requests": [
@@ -234,7 +243,8 @@
   "source_manifest_sha256": "c9e4c92e473557c62baab6ec9c7b31e9060dfb62fb443a0892aabe673ad02a48",
   "structural_quality_pass": true,
   "successful_requests": 12,
-  "timestamp_semantics_statement": "Toss candle timestamp is represented as the normalized interval open label for this capability probe; exact exchange event-time semantics remain a documentation review item.",
+  "timestamp_semantics_statement": "The canonical Toss OpenAPI defines candle timestamp as interval open. One-minute close and completion follow fixed one-minute bounds; daily close/completion remain null because the candle-to-KRX/NXT session scope is not documented.",
+  "unknown_completion_rows": 1000,
   "within_combined_request_budget": true,
   "within_combined_row_budget": true,
   "within_request_budget": true,

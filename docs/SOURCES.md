@@ -7,6 +7,8 @@ Nothing here is treated as evidence of future profit before common-data validati
 
 - [Toss Securities Open API](https://home.tossinvest.com/ko/open-api)
 - [Toss Securities developer guide](https://developers.tossinvest.com/docs)
+- [Toss Securities canonical OpenAPI JSON](https://openapi.tossinvest.com/openapi-docs/latest/openapi.json)
+- [Toss Securities agent documentation index](https://developers.tossinvest.com/llms.txt)
 - [Upbit rate limits](https://global-docs.upbit.com/reference/rate-limits)
 - [Binance developer documentation](https://developers.binance.com/en/docs/introduction)
 - [CCXT manual](https://github.com/ccxt/ccxt/wiki/manual)

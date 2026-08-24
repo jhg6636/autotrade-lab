@@ -23,6 +23,13 @@ from pathlib import Path
 from typing import Any, Protocol, Self
 from zoneinfo import ZoneInfo
 
+from autotrade_lab.market_data_contract import (
+    TOSS_KR_DATA_CONTRACT,
+    CandleInterval,
+    TimestampMeaning,
+    derive_one_minute_bounds,
+)
+
 MAX_REQUESTS = 29
 MAX_ROWS = 10_600
 MAX_ARTIFACT_BYTES = 25 * 1024 * 1024
@@ -702,8 +709,7 @@ def _binance_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, 
 
 
 def _toss_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, Any]]:
-    step = _interval_ms(record["interval"])
-    fetched_at = _iso_ms(record["requested_at"])
+    fetched_at = datetime.fromisoformat(record["requested_at"])
     adjusted = record["params"].get("adjusted")
     adjustment_state = {"true": "adjusted", "false": "unadjusted"}.get(adjusted)
     if adjustment_state is None:
@@ -712,8 +718,21 @@ def _toss_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, Any
     for item in payload:
         if not isinstance(item, dict):
             raise TypeError(f"invalid Toss candle in {record['request_id']}")
-        open_time = _iso_ms(item["timestamp"])
-        close_time = open_time + step - 1
+        timestamp = datetime.fromisoformat(item["timestamp"])
+        open_time = int(timestamp.timestamp() * 1000)
+        if record["interval"] == CandleInterval.ONE_MINUTE.value:
+            _, close_exclusive = derive_one_minute_bounds(
+                timestamp, TOSS_KR_DATA_CONTRACT.timestamp.meaning
+            )
+            close_time: int | None = int(close_exclusive.timestamp() * 1000) - 1
+            complete: bool | None = close_exclusive <= fetched_at
+        elif record["interval"] == CandleInterval.ONE_DAY.value:
+            if TOSS_KR_DATA_CONTRACT.timestamp.meaning is not TimestampMeaning.INTERVAL_OPEN:
+                raise ValueError("Toss daily timestamp meaning is not documented")
+            close_time = None
+            complete = None
+        else:
+            raise ValueError(f"unsupported Toss candle interval: {record['interval']}")
         rows.append(
             {
                 "provider": record["provider"],
@@ -730,7 +749,7 @@ def _toss_rows(record: dict[str, Any], payload: list[Any]) -> list[dict[str, Any
                 "volume": float(item["volume"]),
                 "quote_volume": None,
                 "trade_count": None,
-                "complete": close_time <= fetched_at,
+                "complete": complete,
                 "adjustment_state": adjustment_state,
                 "raw_sha256": record["response_sha256"],
             }
@@ -1020,7 +1039,7 @@ def _quality_report(
             )
         else:
             off_grid = sum(item["open_time"] % step != 0 for item in items)
-        dataset = {
+        dataset: dict[str, Any] = {
             "provider": group_key[0],
             "venue": group_key[1],
             "instrument_type": group_key[2],
@@ -1036,11 +1055,12 @@ def _quality_report(
             "nonfinite_numeric_rows": nonfinite,
             "invalid_ohlc_rows": invalid_ohlc,
             "negative_volume_rows": negative_volume,
-            "incomplete_rows": sum(not item["complete"] for item in items),
+            "incomplete_rows": sum(item["complete"] is False for item in items),
         }
         if is_toss_probe:
             dataset["adjustment_state"] = group_key[5]
             dataset["timing_scope"] = timing_scope
+            dataset["unknown_completion_rows"] = sum(item["complete"] is None for item in items)
         datasets.append(dataset)
     structural_failures = duplicate_keys + sum(
         dataset["non_grid_deltas"]
@@ -1121,11 +1141,13 @@ def build_toss_normalized_artifacts(run_dir: Path) -> tuple[bytes, bytes]:
     report["reference_requests"] = _toss_reference_report(run_dir, manifest)
     report["combined_attempted_requests"] = manifest["observed"]["combined_attempted_requests"]
     report["combined_candle_rows"] = manifest["observed"]["combined_candle_rows"]
+    report["unknown_completion_rows"] = sum(row["complete"] is None for row in rows)
     report["within_combined_request_budget"] = report["combined_attempted_requests"] <= MAX_REQUESTS
     report["within_combined_row_budget"] = report["combined_candle_rows"] <= MAX_ROWS
     report["timestamp_semantics_statement"] = (
-        "Toss candle timestamp is represented as the normalized interval open label for this "
-        "capability probe; exact exchange event-time semantics remain a documentation review item."
+        "The canonical Toss OpenAPI defines candle timestamp as interval open. One-minute close "
+        "and completion follow fixed one-minute bounds; daily close/completion remain null because "
+        "the candle-to-KRX/NXT session scope is not documented."
     )
     report["retention_statement"] = (
         "Coverage bounds describe only returned sample rows; historical Toss retention and "
