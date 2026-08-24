@@ -1,0 +1,529 @@
+{
+  "authorization": "caller-supplied OAuth bearer token; value not retained",
+  "created_at": "2026-08-24T05:42:51.757775Z",
+  "limits": {
+    "gate_c_max_artifact_bytes": 26214400,
+    "gate_c_max_requests": 29,
+    "gate_c_max_rows": 10600,
+    "phase_max_requests": 15,
+    "phase_max_rows": 1800
+  },
+  "oauth": {
+    "attempted": true,
+    "credentials_persisted": false,
+    "expires_in": 86399,
+    "headers": {
+      "content-length": "894",
+      "content-type": "application/json;charset=UTF-8",
+      "date": "Mon, 24 Aug 2026 05:42:49 GMT",
+      "x-ratelimit-limit": "5",
+      "x-ratelimit-remaining": "4",
+      "x-ratelimit-reset": "1"
+    },
+    "response_bytes": 894,
+    "status": 200,
+    "token_persisted": false,
+    "token_type": "Bearer"
+  },
+  "observed": {
+    "attempted_requests": 15,
+    "candle_rows": 1800,
+    "combined_attempted_requests": 27,
+    "combined_candle_rows": 10600,
+    "raw_response_bytes": 607560,
+    "successful_requests": 12
+  },
+  "prior_phase": {
+    "artifact_bytes": 1963244,
+    "attempted_requests": 12,
+    "manifest_sha256": "7ae502ba69a0305a72fa88d4c4e5d2572ed55c7032ac9ba5a116b204517dbbc7",
+    "rows": 8800
+  },
+  "probe": "gate-c-toss-market-data",
+  "requests": [
+    {
+      "attempt_ordinal": 1,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "33440",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:49 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "19",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "005930"
+      },
+      "provider": "toss",
+      "raw_path": "raw/01_toss_005930_1d_adjusted.json",
+      "request_id": "toss_005930_1d_adjusted",
+      "requested_at": "2026-08-24T05:42:49.471707Z",
+      "response_bytes": 33440,
+      "response_sha256": "8d2a35fb8b545b30d7e0cee020cc2b8af3b9369cd279fe6de3e9b094ddbd4359",
+      "status": 200,
+      "symbol": "005930",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=005930&interval=1d&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 2,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "32914",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:49 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "18",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1m",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1m",
+        "symbol": "005930"
+      },
+      "provider": "toss",
+      "raw_path": "raw/02_toss_005930_1m_adjusted.json",
+      "request_id": "toss_005930_1m_adjusted",
+      "requested_at": "2026-08-24T05:42:49.612862Z",
+      "response_bytes": 32914,
+      "response_sha256": "017e36a34a8e047df346a6b60ea71a3deac25284e8cee4cc98d2fdb4e7986ca1",
+      "status": 200,
+      "symbol": "005930",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=005930&interval=1m&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 3,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "33716",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:49 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "17",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "000660"
+      },
+      "provider": "toss",
+      "raw_path": "raw/03_toss_000660_1d_adjusted.json",
+      "request_id": "toss_000660_1d_adjusted",
+      "requested_at": "2026-08-24T05:42:49.746050Z",
+      "response_bytes": 33716,
+      "response_sha256": "e9259433f5a268953c05bcc6638426d29024737216fb152e67ba447f2051d0e6",
+      "status": 200,
+      "symbol": "000660",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=000660&interval=1d&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 4,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "33539",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:50 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "16",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1m",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1m",
+        "symbol": "000660"
+      },
+      "provider": "toss",
+      "raw_path": "raw/04_toss_000660_1m_adjusted.json",
+      "request_id": "toss_000660_1m_adjusted",
+      "requested_at": "2026-08-24T05:42:49.850971Z",
+      "response_bytes": 33539,
+      "response_sha256": "3d0c1fff3e8db9a2864af971219ec24c4600f0a2b11324f6be9eee064158335f",
+      "status": 200,
+      "symbol": "000660",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=000660&interval=1m&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 5,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "32947",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:50 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "19",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "069500"
+      },
+      "provider": "toss",
+      "raw_path": "raw/05_toss_069500_1d_adjusted.json",
+      "request_id": "toss_069500_1d_adjusted",
+      "requested_at": "2026-08-24T05:42:50.038168Z",
+      "response_bytes": 32947,
+      "response_sha256": "7b56eed533a1573b0fab1791538876a8d9fd90c3bd311789f277d647524bc094",
+      "status": 200,
+      "symbol": "069500",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=069500&interval=1d&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 6,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "32865",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:50 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "18",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1m",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1m",
+        "symbol": "069500"
+      },
+      "provider": "toss",
+      "raw_path": "raw/06_toss_069500_1m_adjusted.json",
+      "request_id": "toss_069500_1m_adjusted",
+      "requested_at": "2026-08-24T05:42:50.271712Z",
+      "response_bytes": 32865,
+      "response_sha256": "ef3347afc7f82a23814b01f2b32e52718c958c105ff46181e349793d878fe172",
+      "status": 200,
+      "symbol": "069500",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=069500&interval=1m&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 7,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "32649",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:50 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "17",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "229200"
+      },
+      "provider": "toss",
+      "raw_path": "raw/07_toss_229200_1d_adjusted.json",
+      "request_id": "toss_229200_1d_adjusted",
+      "requested_at": "2026-08-24T05:42:50.399214Z",
+      "response_bytes": 32649,
+      "response_sha256": "ddd940af6cc1fb6aaa37e48c79836991b3b58bb3717c6224f5f54e4bdfb5442a",
+      "status": 200,
+      "symbol": "229200",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=229200&interval=1d&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 8,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "32084",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:50 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "16",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1m",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "true",
+        "count": "200",
+        "interval": "1m",
+        "symbol": "229200"
+      },
+      "provider": "toss",
+      "raw_path": "raw/08_toss_229200_1m_adjusted.json",
+      "request_id": "toss_229200_1m_adjusted",
+      "requested_at": "2026-08-24T05:42:50.652446Z",
+      "response_bytes": 32084,
+      "response_sha256": "8db3040def063fd7308b6446b630afd43a347312c129abbca80436f3823575e3",
+      "status": 200,
+      "symbol": "229200",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=229200&interval=1m&count=200&adjusted=true",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 9,
+      "base_url": "https://openapi.tossinvest.com/api/v1/candles",
+      "error": null,
+      "headers": {
+        "content-length": "33440",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:50 GMT",
+        "x-ratelimit-limit": "20",
+        "x-ratelimit-remaining": "15",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "kr_security",
+      "interval": "1d",
+      "max_rows": 200,
+      "observed_rows": 200,
+      "params": {
+        "adjusted": "false",
+        "count": "200",
+        "interval": "1d",
+        "symbol": "005930"
+      },
+      "provider": "toss",
+      "raw_path": "raw/09_toss_005930_1d_unadjusted.json",
+      "request_id": "toss_005930_1d_unadjusted",
+      "requested_at": "2026-08-24T05:42:50.799113Z",
+      "response_bytes": 33440,
+      "response_sha256": "1e2bc362bc5a72ebcca2d9618efb9eecc8b9f6500c156e9310f7c7390a98e46a",
+      "status": 200,
+      "symbol": "005930",
+      "url": "https://openapi.tossinvest.com/api/v1/candles?symbol=005930&interval=1d&count=200&adjusted=false",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 10,
+      "base_url": "https://openapi.tossinvest.com/api/v1/stocks/all",
+      "error": null,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:51 GMT",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "reference",
+      "interval": "snapshot",
+      "max_rows": 0,
+      "observed_rows": 0,
+      "params": {
+        "market": "KOSPI",
+        "status": "ACTIVE"
+      },
+      "provider": "toss",
+      "raw_path": "raw/10_toss_stock_master_kospi_active.json",
+      "request_id": "toss_stock_master_kospi_active",
+      "requested_at": "2026-08-24T05:42:50.936294Z",
+      "response_bytes": 306178,
+      "response_sha256": "281184e10a6923ee2f8989e067193f94691e838728617de2629c6ae501f0369d",
+      "status": 200,
+      "symbol": "KOSPI",
+      "url": "https://openapi.tossinvest.com/api/v1/stocks/all?market=KOSPI&status=ACTIVE",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 11,
+      "base_url": "https://openapi.tossinvest.com/api/v1/stocks/all",
+      "error": "HTTP 429: Too Many Requests",
+      "headers": {
+        "content-length": "159",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 05:42:51 GMT",
+        "retry-after": "1",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "reference",
+      "interval": "snapshot",
+      "max_rows": 0,
+      "observed_rows": 0,
+      "params": {
+        "market": "KOSPI",
+        "status": "DELISTED"
+      },
+      "provider": "toss",
+      "raw_path": "raw/11_toss_stock_master_kospi_delisted.json",
+      "request_id": "toss_stock_master_kospi_delisted",
+      "requested_at": "2026-08-24T05:42:51.213546Z",
+      "response_bytes": 159,
+      "response_sha256": "6ea2ff14ae8e4249bb4f4c858006f1ec0d24553c652f1d1de58c19b39369057f",
+      "status": 429,
+      "symbol": "KOSPI",
+      "url": "https://openapi.tossinvest.com/api/v1/stocks/all?market=KOSPI&status=DELISTED",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 12,
+      "base_url": "https://openapi.tossinvest.com/api/v1/stocks/all",
+      "error": "HTTP 429: Too Many Requests",
+      "headers": {
+        "content-length": "159",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 05:42:51 GMT",
+        "retry-after": "1",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "reference",
+      "interval": "snapshot",
+      "max_rows": 0,
+      "observed_rows": 0,
+      "params": {
+        "market": "KOSDAQ",
+        "status": "ACTIVE"
+      },
+      "provider": "toss",
+      "raw_path": "raw/12_toss_stock_master_kosdaq_active.json",
+      "request_id": "toss_stock_master_kosdaq_active",
+      "requested_at": "2026-08-24T05:42:51.295855Z",
+      "response_bytes": 159,
+      "response_sha256": "5232cbd579d493c59e1e1c2151658a40062c2b783a630624d5ff7556920d121b",
+      "status": 429,
+      "symbol": "KOSDAQ",
+      "url": "https://openapi.tossinvest.com/api/v1/stocks/all?market=KOSDAQ&status=ACTIVE",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 13,
+      "base_url": "https://openapi.tossinvest.com/api/v1/stocks/all",
+      "error": "HTTP 429: Too Many Requests",
+      "headers": {
+        "content-length": "159",
+        "content-type": "application/json",
+        "date": "Mon, 24 Aug 2026 05:42:51 GMT",
+        "retry-after": "1",
+        "x-ratelimit-limit": "1",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "reference",
+      "interval": "snapshot",
+      "max_rows": 0,
+      "observed_rows": 0,
+      "params": {
+        "market": "KOSDAQ",
+        "status": "DELISTED"
+      },
+      "provider": "toss",
+      "raw_path": "raw/13_toss_stock_master_kosdaq_delisted.json",
+      "request_id": "toss_stock_master_kosdaq_delisted",
+      "requested_at": "2026-08-24T05:42:51.386748Z",
+      "response_bytes": 159,
+      "response_sha256": "ac7bb3d1b8ddbeb1eb568e5efc9ba5a503ad13027e0b15e87150ead4f7b4f7c1",
+      "status": 429,
+      "symbol": "KOSDAQ",
+      "url": "https://openapi.tossinvest.com/api/v1/stocks/all?market=KOSDAQ&status=DELISTED",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 14,
+      "base_url": "https://openapi.tossinvest.com/api/v1/stocks",
+      "error": null,
+      "headers": {
+        "content-length": "1670",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:51 GMT",
+        "x-ratelimit-limit": "5",
+        "x-ratelimit-remaining": "4",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "reference",
+      "interval": "snapshot",
+      "max_rows": 0,
+      "observed_rows": 0,
+      "params": {
+        "symbols": "005930,000660,069500,229200"
+      },
+      "provider": "toss",
+      "raw_path": "raw/14_toss_selected_stock_details.json",
+      "request_id": "toss_selected_stock_details",
+      "requested_at": "2026-08-24T05:42:51.473740Z",
+      "response_bytes": 1670,
+      "response_sha256": "ccea5bafb35df6bce859a188740685d7f55c89738f763cdf4ff6a50f0a8f6da1",
+      "status": 200,
+      "symbol": "005930,000660,069500,229200",
+      "url": "https://openapi.tossinvest.com/api/v1/stocks?symbols=005930%2C000660%2C069500%2C229200",
+      "venue": "toss_kr"
+    },
+    {
+      "attempt_ordinal": 15,
+      "base_url": "https://openapi.tossinvest.com/api/v1/market-calendar/KR",
+      "error": null,
+      "headers": {
+        "content-length": "1641",
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Mon, 24 Aug 2026 05:42:51 GMT",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "2",
+        "x-ratelimit-reset": "1"
+      },
+      "instrument_type": "reference",
+      "interval": "calendar",
+      "max_rows": 0,
+      "observed_rows": 0,
+      "params": {
+        "date": "2026-08-24"
+      },
+      "provider": "toss",
+      "raw_path": "raw/15_toss_kr_market_calendar.json",
+      "request_id": "toss_kr_market_calendar",
+      "requested_at": "2026-08-24T05:42:51.567611Z",
+      "response_bytes": 1641,
+      "response_sha256": "4a42476407c5d4b2f41f2920d8a782f5d4be394bfa2b040f9f6146e5addb99a2",
+      "status": 200,
+      "symbol": "KR",
+      "url": "https://openapi.tossinvest.com/api/v1/market-calendar/KR?date=2026-08-24",
+      "venue": "toss_kr"
+    }
+  ],
+  "schema_version": 1
+}
