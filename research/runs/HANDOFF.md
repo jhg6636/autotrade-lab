@@ -4,33 +4,29 @@ Last updated: 2026-08-24 KST
 
 ## Active objective
 
-Close LUNA-101 academic/replication discovery using the user-approved token-efficient gate: at least
-30 usable hypotheses, complete usable-source linkage, and a local family/market/timeframe coverage
-audit. Source count is descriptive rather than a quota.
+Complete the execution-focused LUNA-201–203 coverage audit and Gate B readiness package under the
+bounded local-first contract in `research/runs/LUNA-201-203.md`.
 
 Collection stays flat and source-neutral. Do not rank, optimize, backtest, implement strategies,
 promote canonical records, call Toss, use credentials, or place orders during this goal.
 
 ## Completion condition
 
-- LUNA-101 has at least 30 usable hypotheses/variants and every usable source reference resolves.
-- A local coverage audit documents family, market, timeframe, direction, and scope concentrations.
-- All batch findings are resolved and deterministic validation passes.
-- The integration tracker and umbrella PR agree with the collection aggregate.
-- Final Sol-level review approves readiness of the umbrella PR; canonical promotion remains a
-  separate decision.
+- All eight execution cells have reviewed coverage and feasibility states.
+- Every retained candidate has exact rule, data, provider, point-in-time, timezone, retention, and
+  licensing metadata or a preserved ambiguity.
+- The Gate B package includes storage/API estimates and one bounded first-data-batch proposal.
+- Validation and independent review pass; no data collection, backtest, ranking, credential, order,
+  or canonical promotion occurs.
 
 ## Current repository state
 
-- Working branch: `agent/LUNA-101-coverage-closeout`
-- Starting integration commit: `ce392ba` (merge of reviewed LUNA-101-05 PR `#14`)
-- Last coordinator-reviewed research content: LUNA-101-05 through `995e3ac`
-- Required PR base: `integration/LUNA-101-academic-discovery`
-- Previous batch PR: `#14`, merged as integration commit `ce392ba`
-- Current batch PR: none; local coverage closeout is in progress
-- Umbrella PR: `#8` targeting `main`
-- Umbrella PR body: synchronized through merged LUNA-101-05 counts; completion gate update pending
-- Worktree: coverage closeout documentation is under local review
+- Working branch: `agent/LUNA-201-203-gate-b`
+- Starting main commit: `48d9496` (merged LUNA-101 umbrella PR `#8`)
+- Last completed discovery: LUNA-101 coverage closeout on `main`
+- Required PR base: `main`
+- Current PR: none; LUNA-201–203 execution contract is pending commit
+- Worktree: local crosswalk complete; bounded evidence collection not started
 - Canonical strategy/index modified: false
 - Automatic relation merge: false
 - Coordinator review passed after `493d55b`: the staging validator records context-only leverage
@@ -175,14 +171,15 @@ format, and diff checks.
 
 ## Next action
 
-Validate the local coverage audit and updated completion contract, then open a small closeout PR to
-`integration/LUNA-101-academic-discovery`. Do not resume generic source collection.
+Collect the two bounded `/tmp` evidence packets in parallel under
+`research/runs/LUNA-201-203.md`. Do not edit repository evidence records or exceed the packet caps.
 
 ## Resume instruction
 
 ```text
 Read AGENTS.md, docs/AGENT_WORKFLOW.md, research/runs/HANDOFF.md, and the linked research workflow.
-Recreate the token-efficient LUNA-101 closeout goal. Keep the coordinator in the foreground and do
-not delegate or resume web collection unless the user explicitly names a coverage gap. Verify the
-recorded Git state, then execute only the handoff's Next action and preserve all stop conditions.
+Recreate the execution-focused Gate B goal. Keep the coordinator in the foreground, use only the
+bounded local-first/gap-driven work in `research/runs/LUNA-201-203.md`, and independently review any
+delegated packet. Verify Git state, execute only the HANDOFF Next action, and preserve every stop
+condition.
 ```
