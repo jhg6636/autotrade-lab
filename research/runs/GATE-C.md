@@ -2,7 +2,7 @@
 
 - Phase 2 base commit: `b790a2dc770f1b7eace8179e802b9430e4710c09`
 - Working branch: `agent/GATE-C-toss-probe`
-- Stage: Phase 1 merged; Phase 2 collected and normalized; final review pending
+- Stage: Phase 1 merged; Phase 2 collected, normalized, and reviewed in PR `#19`
 
 ## Objective
 
@@ -86,5 +86,6 @@ successful capability probe makes no strategy profitable or executable by itself
 
 ## Next action
 
-Run the full repository validation and coordinator review. If clean, commit and open a reviewed PR.
-Do not spend the two remaining request slots, backtest, rank, promote, trade, or merge automatically.
+Merge reviewed PR `#19`. Then plan a documentation-first Gate D that resolves Toss timestamp meaning,
+historical retention, point-in-time universe support, and redistribution terms before authorizing any
+broader collection. Do not spend the two remaining request slots, backtest, rank, promote, or trade.

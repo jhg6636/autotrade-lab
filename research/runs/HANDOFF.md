@@ -90,11 +90,26 @@ SHA-256 is `f5f7213dc5a1abcb4b240eff748ed898b69145a16876327b9d82f2744e115fe9`.
 - PR `#16`: correct `main` base and branch head, four expected files, mergeable/clean, GitGuardian
   success, zero review comments, no submitted reviews, and verified merged state
 
+## Broader-collection recommendation
+
+Do not begin broad historical collection or backtesting yet. Gate C proves that the selected public
+crypto and Toss candle surfaces are reachable and structurally normalizable within a bounded sample,
+but it does not establish that the resulting history is point-in-time safe or legally redistributable.
+The next gate should first resolve, from provider documentation or support, these four items:
+
+1. whether Toss candle `timestamp` denotes interval open, close, or another event time;
+2. maximum historical retention and pagination behavior for `1m` and `1d` candles;
+3. whether historical listed/delisted membership can reconstruct a point-in-time Korean universe;
+4. storage, derived-data, and redistribution permissions for raw and normalized records.
+
+After those answers are recorded, authorize a new, separately budgeted sample with endpoint-aware
+pacing. The current two unused request slots are not carried forward as permission. No strategy
+backtest should start from this capability sample.
+
 ## Next action
 
-Run full validation and coordinator review of the Phase 2 code, tests, manifest, quality report, and
-documentation. If clean, commit and open a reviewed PR. Do not spend the two remaining request slots,
-backtest, rank, promote canonical records, trade, or merge automatically.
+Merge reviewed PR `#19`, then prepare the documentation-first Gate D described above. Do not spend
+the two remaining request slots, backtest, rank, promote canonical records, or trade.
 
 ## Resume instruction
 
