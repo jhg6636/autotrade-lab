@@ -14,6 +14,8 @@ separately approved plan. Do not backtest, rank, optimize, access an account, or
 
 - Current main: Gate E1-PREP merge commit `1dfc2c7`
 - Working branch: `agent/GATE-E1-DATA`, based on main `1dfc2c7`
+- Gate E1-DATA closeout commit: `39b3bfb`; local only because the configured `jhg6636` GitHub
+  credential is invalid and the authenticated SSH identity is a different account
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -174,10 +176,10 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Prepare a new minimal connectivity-recovery packet that uses a fresh output directory and approval
-hash, distinguishes local/network reachability from provider HTTP/schema outcomes, and permits no
-more than one read-only diagnostic request before stopping for review. Do not rerun Gate E1-DATA's
-approved command or reuse its empty output directory.
+Re-authenticate GitHub CLI as repository owner `jhg6636`, then push local commit `39b3bfb`, review
+the exact four-file documentation diff, and create/merge the Gate E1-DATA closeout PR. After that,
+prepare a new minimal connectivity-recovery packet with a fresh output directory and approval hash;
+do not rerun Gate E1-DATA's approved command or reuse its empty output directory.
 
 ## Resume instruction
 
