@@ -1,21 +1,22 @@
 # Active research handoff
 
-Last updated: 2026-08-24 KST
+Last updated: 2026-08-26 KST
 
 ## Active objective
 
-Gate E1-PREP is complete. Present the exact tested 24-slot Korean daily-data collector packet for
-user review and wait for a separate explicit E1-DATA approval. Do not create a key, call a data API,
-backtest, rank, optimize, access an account, order, or trade.
+Execute the user-approved Gate E1-DATA packet exactly once after the user locally supplies the
+decoded Public Data Portal service key in a mode-`0600` `.env.public-data` file. The fixed plan is
+at most 24 read-only requests, 1,200 rows, 5 MiB, and zero retries. Do not backtest, rank, optimize,
+access an account, order, or trade.
 
-Completion evidence: documentation hashes and rights classifications are reviewable; the request
-table is immutable and hash-addressed; endpoint, key, redirect, row, byte, page, schema, no-retry,
-and verifier tests pass; final adversarial review has no P1/P2; E1-DATA remains closed.
+Completion requires the local manifest/raw verifier to pass, observed results and a Korean
+historical-data GO/NO-GO decision to be documented, repository checks to pass, and the next
+consequential action to remain separately gated.
 
 ## Repository state
 
-- Current main: Gate E0 handoff commit `6bf607a`
-- Working branch: `agent/GATE-E1-PREP`, based on main `6bf607a`
+- Current main: Gate E1-PREP merge commit `1dfc2c7`
+- Working branch: `agent/GATE-E1-DATA`, based on main `1dfc2c7`
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -152,8 +153,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   strategy/index isolation: passed
 - Gate E1-PREP public data calls, key creation/read, backtests, rankings, account access, orders,
   and trades: none
-- Gate E1-PREP PR `#23`: correct `main` base, eight intended files, GitGuardian success,
-  clean/mergeable, no review decision; not merged because main-branch merge requires user direction
+- Gate E1-PREP PR `#23`: merged as `1dfc2c7`; correct `main` base, eight intended files,
+  GitGuardian success
 - `README.md` and `docs/ROADMAP.html` provide a derived milestone view; this handoff remains the
   operational source of truth.
 
@@ -170,9 +171,10 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Ask the user to review plan SHA-256
-`ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0` and explicitly approve or
-decline E1-DATA. Do not call any data API before that decision.
+Wait for the user to apply for the four admitted Public Data Portal APIs and create a private
+mode-`0600` `.env.public-data` containing exactly `PUBLIC_DATA_SERVICE_KEY_DECODED=...`. Then verify
+the key file without printing it and execute only plan SHA-256
+`ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0` once.
 
 ## Resume instruction
 
