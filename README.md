@@ -7,6 +7,40 @@ and live execution so a promising backtest cannot accidentally become a real ord
 > This is research software, not investment advice. No strategy is assumed profitable.
 > Live trading is disabled by default.
 
+## 프로젝트 진행 상황
+
+**현재 위치:** 공통 연구 기반 위에서 국내주식/ETF와 코인을 병렬로 검증하고 있습니다.
+국내 트랙은 Gate E1-PREP을 완료하고 공식 일봉 데이터의 제한 검증 승인을 기다립니다.
+코인 트랙은 Gate C의 제한적 캔들 수집을 완료했지만 생애주기·이용권·펀딩·거래비용
+검증이 남았습니다. 어느 트랙도 본격 백테스트, 모의투자, 실거래를 시작하지 않았습니다.
+
+```mermaid
+flowchart LR
+    A["공통 연구 기반<br/>완료"] --> B["평탄화 전략 조사<br/>일부 완료"]
+    B --> K["국내주식·ETF<br/>E1-DATA 승인 대기"]
+    B --> C["코인 현물·무기한선물<br/>제한 검증 일부 완료"]
+    K --> KD["국내 과거 데이터셋<br/>미시작"]
+    C --> CD["코인 과거 데이터셋<br/>미시작"]
+    KD --> V["공통 백테스트·강건성 검증<br/>미시작"]
+    CD --> V
+    V --> P["시장별 모의투자<br/>미시작"]
+    P --> L["소액 실거래 파일럿<br/>미시작"]
+
+    classDef done fill:#d8f3dc,stroke:#2d6a4f,color:#081c15;
+    classDef partial fill:#fff3bf,stroke:#b08900,color:#3d2f00;
+    classDef current fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:3px;
+    classDef future fill:#f3f4f6,stroke:#9ca3af,color:#374151;
+    class A done;
+    class B partial;
+    class C partial;
+    class K current;
+    class KD,CD,V,P,L future;
+```
+
+[전체 마일스톤 대시보드](docs/ROADMAP.html)에서 완료 근거, 중단 게이트, 앞으로 남은 단계를
+확인할 수 있습니다. 정확한 현재 작업은 [활성 핸드오프](research/runs/HANDOFF.md)를 기준으로
+판단합니다.
+
 ## Current scope
 
 - 35 strategy hypotheses catalogued across 13 families
