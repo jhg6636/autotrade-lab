@@ -4,14 +4,11 @@ Last updated: 2026-08-26 KST
 
 ## Active objective
 
-Execute the user-approved Gate E1-DATA packet exactly once after the user locally supplies the
-decoded Public Data Portal service key in a mode-`0600` `.env.public-data` file. The fixed plan is
-at most 24 read-only requests, 1,200 rows, 5 MiB, and zero retries. Do not backtest, rank, optimize,
-access an account, order, or trade.
-
-Completion requires the local manifest/raw verifier to pass, observed results and a Korean
-historical-data GO/NO-GO decision to be documented, repository checks to pass, and the next
-consequential action to remain separately gated.
+Close the failed Gate E1-DATA execution faithfully. The user supplied a private decoded Public Data
+Portal service key and all four admitted APIs were approved. The exact zero-retry packet was run
+once, stopped on the first slot's redacted transport failure, and must not be rerun. Document the
+failed evidence boundary, preserve the historical-data NO-GO, and keep any recovery under a new,
+separately approved plan. Do not backtest, rank, optimize, access an account, order, or trade.
 
 ## Repository state
 
@@ -24,6 +21,8 @@ consequential action to remain separately gated.
 - Gate D2 market-data requests: 12/12 succeeded; OAuth exchange: one
 - Gate D2 credentials read locally: true; credential/token values retained in artifacts: false
 - Backtest/ranking/trading performed: false
+- Gate E1-DATA local slot attempts: 1/24; confirmed HTTP responses: 0; retries: 0
+- Gate E1-DATA retained raw files/rows/bytes: 0/0/0; manifest created: false
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
 inaccessible), 95 hypotheses (35 usable, 60 incomplete), and 2,282 suggestions. Its deterministic
@@ -132,8 +131,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   allowlists, secret/redirect/stream/schema guards, no retries, and raw-evidence verification.
 - Request-plan SHA-256:
   `ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0`.
-- No service key was created or read; no API data call, backtest, account access, order, or trade
-  occurred.
+- The later E1-DATA run loaded the private service key without printing or persisting it in tracked
+  artifacts. All four admitted API applications were approved in the portal.
 - Final adversarial review resolved approval-hash base-URL coverage, encoded-key header retention,
   and manifest/raw-set verification defects. No P1/P2 remains.
 
@@ -158,7 +157,9 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - `README.md` and `docs/ROADMAP.html` provide a derived milestone view; this handoff remains the
   operational source of truth.
 - `research/runs/GATE-E1-DATA.md` pins the approved execution command, preflight, observation matrix,
-  and no-retry stop rule; no market-data request has been attempted on the E1-DATA branch.
+  and no-retry stop rule. Its singular execution stopped on the first slot with a redacted transport
+  failure; no response body or manifest was retained and no retry occurred.
+- Gate E1-DATA closeout: 131 tests passed; Ruff check/format and `git diff --check` passed.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -173,12 +174,13 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Wait for the user to apply for the four admitted Public Data Portal APIs and create a private
-mode-`0600` `.env.public-data` containing exactly `PUBLIC_DATA_SERVICE_KEY_DECODED=...`. Then verify
-the key file without printing it and execute only plan SHA-256
-`ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0` once.
+Prepare a new minimal connectivity-recovery packet that uses a fresh output directory and approval
+hash, distinguishes local/network reachability from provider HTTP/schema outcomes, and permits no
+more than one read-only diagnostic request before stopping for review. Do not rerun Gate E1-DATA's
+approved command or reuse its empty output directory.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-D.md`, `research/runs/GATE-C.md`, and
-`docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the singular next action above.
+Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`,
+`research/runs/GATE-C.md`, and `docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the
+singular next action above.

@@ -5,7 +5,7 @@
 - User approval: 2026-08-26 KST
 - Plan SHA-256:
   `ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0`
-- Stage: approved; waiting for local Public Data Portal key
+- Stage: executed once; stopped on first-slot transport failure
 
 ## Fixed boundary
 
@@ -25,9 +25,11 @@ containing the URL. The file and raw bodies remain Git-ignored.
 - [x] E1-DATA branch created from that merge.
 - [x] Runtime request-plan hash matches the approved SHA-256.
 - [x] `.env.public-data` is covered by `.gitignore`.
-- [ ] User applied for all four admitted APIs.
-- [ ] Mode-`0600` `.env.public-data` exists and passes `load_public_data_service_key()`.
-- [ ] Output directory `research/probes/gate-e1-korean-daily-20260826` does not exist.
+- [x] User applied for all four admitted APIs; the portal showed all four as approved.
+- [x] Mode-`0600` `.env.public-data` existed and passed `load_public_data_service_key()` without
+  printing the credential.
+- [x] Output directory `research/probes/gate-e1-korean-daily-20260826` did not exist before the
+  singular execution.
 
 ## Singular execution
 
@@ -59,20 +61,40 @@ PY
 Do not rerun this command after any request is attempted. A failure is an E1 observation and stop
 condition, not authorization to retry.
 
+## Execution result
+
+The singular command was executed at 2026-08-26 16:15 KST. The first approved slot,
+`listing_2009_boundary`, reached the transport open step and failed with the collector's redacted
+`network or transport failure; stop without retry` condition. The collector stopped immediately.
+It did not retain a response body or create a manifest, and no further slot was attempted.
+
+- local slot attempts: 1 of 24;
+- confirmed HTTP responses: 0;
+- retained raw files, rows, and response bytes: 0;
+- retries: 0;
+- output state: an empty local `raw/` directory only;
+- credential material retained in artifacts or logs: false;
+- whether the failed connection reached the provider: not observed.
+
+The failure cannot be treated as evidence about provider history, schema, pagination, or data
+quality. It is an operational Gate failure. The approved plan forbids rerunning the command after an
+attempt, so any recovery must use a separately reviewed and approved plan rather than silently
+retrying this run.
+
 ## Required post-call evidence
 
 | Dimension | Required observation | Status |
 | --- | --- | --- |
-| Manifest integrity | canonical manifest reproduces local raw checksums, bytes, rows, order, plan, and limits | `pending` |
-| Historical boundary | listing and stock-price presence/absence for 2009-12-31 and 2010-01-04 | `pending` |
-| Pagination | stable metadata and no duplicate identity across each preselected page pair | `pending` |
-| KOSDAQ identity | explicit returned identity for short code `196170` | `pending` |
-| ETF daily | explicit KODEX 200 ISIN/security identity at the old and probe dates | `pending` |
-| Samsung split | pre/post-split raw OHLCV plus issuance fields, without inferred adjustment semantics | `pending` |
-| Delisted stock | Hanjin Shipping price and issuance records joined by returned stable identifiers, with `lstgAbolDt=20170307` | `pending` |
-| Dividends | returned record/payment dates and share class joined through returned identifiers | `pending` |
-| Provider behavior | safe quota headers, exact row/byte totals, and any no-retry error | `pending` |
-| Unobserved semantics | halts, corrections, code changes, and withdrawals remain `not_observed` unless directly present | `pending` |
+| Manifest integrity | canonical manifest reproduces local raw checksums, bytes, rows, order, plan, and limits | `failed`: no response or manifest |
+| Historical boundary | listing and stock-price presence/absence for 2009-12-31 and 2010-01-04 | `not_observed` |
+| Pagination | stable metadata and no duplicate identity across each preselected page pair | `not_observed` |
+| KOSDAQ identity | explicit returned identity for short code `196170` | `not_observed` |
+| ETF daily | explicit KODEX 200 ISIN/security identity at the old and probe dates | `not_observed` |
+| Samsung split | pre/post-split raw OHLCV plus issuance fields, without inferred adjustment semantics | `not_observed` |
+| Delisted stock | Hanjin Shipping price and issuance records joined by returned stable identifiers, with `lstgAbolDt=20170307` | `not_observed` |
+| Dividends | returned record/payment dates and share class joined through returned identifiers | `not_observed` |
+| Provider behavior | safe quota headers, exact row/byte totals, and any no-retry error | `failed`: redacted transport stop; no headers |
+| Unobserved semantics | halts, corrections, code changes, and withdrawals remain `not_observed` unless directly present | `not_observed` |
 
 ## Required decisions
 
@@ -81,7 +103,12 @@ Assign Korean stock daily and Korean ETF daily separately as `feasible_for_E2`, 
 identity/date, duplicate pagination, a missing fixed delisted sample, absent explicit ETF identity,
 schema/authentication/429 errors, or a failed raw verifier prevents an unconditional GO.
 
-## Current stop record
+## Decision and stop record
 
-No market-data request has been attempted. The only missing preflight condition is a user-supplied
-decoded Public Data Portal key after utilization approval for the four admitted APIs.
+- Korean stock daily: `failed` for Gate E1-DATA; broad historical collection remains NO-GO.
+- Korean ETF daily: `failed` for Gate E1-DATA; broad historical collection remains NO-GO.
+
+This decision reflects missing evidence, not a judgment that the official publications are
+intrinsically unusable. The stop condition is the first-slot transport failure under a zero-retry
+plan. The next consequential action is to design a new, minimal connectivity-recovery packet with a
+new approval hash; do not reuse this run directory or rerun the approved command.
