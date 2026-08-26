@@ -157,6 +157,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   GitGuardian success
 - `README.md` and `docs/ROADMAP.html` provide a derived milestone view; this handoff remains the
   operational source of truth.
+- `research/runs/GATE-E1-DATA.md` pins the approved execution command, preflight, observation matrix,
+  and no-retry stop rule; no market-data request has been attempted on the E1-DATA branch.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
