@@ -5,7 +5,8 @@
 - Preparation date: 2026-08-27 KST
 - Plan SHA-256:
   `1740ba05109d918f4ccbcf72bca361749c8e1607dc91a0ca4db4476c347f5279`
-- Stage: prepared; awaiting separate user approval; no request attempted
+- User approval: 2026-08-27 KST
+- Stage: executed once; stopped for review with `schema_error`
 
 ## Why this is a new packet
 
@@ -67,6 +68,28 @@ Do not rerun the command after the single attempt. Stop for review regardless of
 establishes only connectivity plus the returned one-row schema; it does not authorize the remaining
 Gate E1-DATA slots or change the stock/ETF historical-data NO-GO by itself.
 
+## Execution result
+
+The approved command was executed once on 2026-08-27 KST from the fresh result branch and output
+directory. The provider returned HTTP 200 with JSON content type and safe quota headers, so DNS,
+TLS, and basic HTTP reachability were established. The body did not satisfy the pinned normal-data
+schema and the packet recorded `schema_error` without retaining that body.
+
+- attempts: 1 of 1;
+- retries: 0;
+- HTTP status: 200;
+- declared response bytes: 142;
+- safe quota observation: limit 10,000; remaining 9,999;
+- outcome: `schema_error`;
+- retained raw files, rows, and body bytes: 0/0/0;
+- canonical result: `research/probes/gate-e1-connectivity-recovery-20260827/result.json`;
+- credential, live URL, exception text, account access, order, or trade retained/performed: false.
+
+This outcome proves connectivity only. It does not establish successful authentication, the exact
+error/result code, the response envelope, historical coverage, or row semantics. The packet
+deliberately discarded schema-failure bodies, so the exact mismatch cannot be reconstructed without
+a new plan. No additional request is authorized by this result.
+
 ## Completion conditions
 
 - exact plan hash matches the runtime packet before output creation;
@@ -75,6 +98,9 @@ Gate E1-DATA slots or change the stock/ETF historical-data NO-GO by itself.
 - no secret, live URL, exception text, or account/order data is retained;
 - outcome is classified without overstating provider guarantees;
 - coordinator reviews the result before proposing any further request.
+
+All completion conditions were met for this one-attempt packet. The result is not a Gate E1-DATA
+pass and does not reopen broad collection.
 
 ## Stop conditions
 

@@ -4,17 +4,20 @@ Last updated: 2026-08-27 KST
 
 ## Active objective
 
-Prepare, review, and obtain separate user approval for a one-request Gate E1 connectivity-recovery
-packet. The failed 24-slot command remains closed and must not be rerun. The new packet may only
-distinguish transport reachability from provider HTTP/schema outcomes and must stop after one
-read-only request. Do not backtest, rank, optimize, access an account, order, or trade.
+Close and review the approved one-request Gate E1 connectivity-recovery result. The request reached
+the provider with HTTP 200 but ended as `schema_error`; no body was retained and no retry occurred.
+Preserve connectivity as observed while authentication, the exact provider result/envelope, and
+historical-data suitability remain unobserved. Do not backtest, rank, optimize, access an account,
+order, or trade.
 
 ## Repository state
 
-- Current main: Gate E1-DATA closeout merge commit `9916b5f`
-- Working branch: `agent/GATE-E1-CONNECTIVITY-RECOVERY`, based on main `9916b5f`
+- Current main: Gate E1 connectivity-recovery preparation merge commit `6d94ee8`
+- Working branch: `agent/GATE-E1-CONNECTIVITY-RESULT`, based on main `6d94ee8`
 - Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
+- Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
+- Gate E1 connectivity-recovery result PR: `#26`, open for final result review
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -24,7 +27,8 @@ read-only request. Do not backtest, rank, optimize, access an account, order, or
 - Backtest/ranking/trading performed: false
 - Gate E1-DATA local slot attempts: 1/24; confirmed HTTP responses: 0; retries: 0
 - Gate E1-DATA retained raw files/rows/bytes: 0/0/0; manifest created: false
-- Gate E1 connectivity-recovery requests: 0/1; plan prepared, not approved or executed
+- Gate E1 connectivity-recovery requests: 1/1; HTTP 200, `schema_error`, retries 0
+- Gate E1 connectivity-recovery retained raw files/rows/body bytes: 0/0/0
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
 inaccessible), 95 hypotheses (35 usable, 60 incomplete), and 2,282 suggestions. Its deterministic
@@ -165,6 +169,9 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - Gate E1 connectivity-recovery preparation: 19 focused and 136 full tests passed; Ruff
   check/format and `git diff --check` passed; runtime plan hash pinned; no public-data request
   attempted.
+- Gate E1 connectivity-recovery result: canonical verifier and credential-variant scan passed; 136
+  full tests, Ruff check/format, and `git diff --check` passed after the single HTTP 200
+  `schema_error`; no retry occurred.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -179,10 +186,10 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review and approve or reject Gate E1 connectivity-recovery plan SHA-256
-`1740ba05109d918f4ccbcf72bca361749c8e1607dc91a0ca4db4476c347f5279`. If approved, execute its
-single request once from the fresh output directory, verify `result.json`, and stop for review. Do
-not rerun Gate E1-DATA's approved command or reuse its empty output directory.
+Review and merge result PR `#26`. Then prepare a documentation-first, separately approved diagnostic
+that can identify the provider result code/envelope without retaining credential material. Do not
+rerun either completed packet, reuse their output directories, or make another public-data request
+before a new hash is reviewed and approved.
 
 ## Resume instruction
 
