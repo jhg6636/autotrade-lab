@@ -1,20 +1,19 @@
 # Active research handoff
 
-Last updated: 2026-08-26 KST
+Last updated: 2026-08-27 KST
 
 ## Active objective
 
-Close the failed Gate E1-DATA execution faithfully. The user supplied a private decoded Public Data
-Portal service key and all four admitted APIs were approved. The exact zero-retry packet was run
-once, stopped on the first slot's redacted transport failure, and must not be rerun. Document the
-failed evidence boundary, preserve the historical-data NO-GO, and keep any recovery under a new,
-separately approved plan. Do not backtest, rank, optimize, access an account, order, or trade.
+Prepare, review, and obtain separate user approval for a one-request Gate E1 connectivity-recovery
+packet. The failed 24-slot command remains closed and must not be rerun. The new packet may only
+distinguish transport reachability from provider HTTP/schema outcomes and must stop after one
+read-only request. Do not backtest, rank, optimize, access an account, order, or trade.
 
 ## Repository state
 
-- Current main: Gate E1-PREP merge commit `1dfc2c7`
-- Working branch: `agent/GATE-E1-DATA`, based on main `1dfc2c7`
-- Gate E1-DATA closeout PR: `#24`, open, mergeable, four intended documentation files, and
+- Current main: Gate E1-DATA closeout merge commit `9916b5f`
+- Working branch: `agent/GATE-E1-CONNECTIVITY-RECOVERY`, based on main `9916b5f`
+- Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
@@ -25,6 +24,7 @@ separately approved plan. Do not backtest, rank, optimize, access an account, or
 - Backtest/ranking/trading performed: false
 - Gate E1-DATA local slot attempts: 1/24; confirmed HTTP responses: 0; retries: 0
 - Gate E1-DATA retained raw files/rows/bytes: 0/0/0; manifest created: false
+- Gate E1 connectivity-recovery requests: 0/1; plan prepared, not approved or executed
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
 inaccessible), 95 hypotheses (35 usable, 60 incomplete), and 2,282 suggestions. Its deterministic
@@ -162,6 +162,9 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   and no-retry stop rule. Its singular execution stopped on the first slot with a redacted transport
   failure; no response body or manifest was retained and no retry occurred.
 - Gate E1-DATA closeout: 131 tests passed; Ruff check/format and `git diff --check` passed.
+- Gate E1 connectivity-recovery preparation: 19 focused and 136 full tests passed; Ruff
+  check/format and `git diff --check` passed; runtime plan hash pinned; no public-data request
+  attempted.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -176,12 +179,13 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Merge the reviewed Gate E1-DATA closeout PR `#24`. After that, prepare a new minimal
-connectivity-recovery packet with a fresh output directory and approval hash; do not rerun Gate
-E1-DATA's approved command or reuse its empty output directory.
+Review and approve or reject Gate E1 connectivity-recovery plan SHA-256
+`1740ba05109d918f4ccbcf72bca361749c8e1607dc91a0ca4db4476c347f5279`. If approved, execute its
+single request once from the fresh output directory, verify `result.json`, and stop for review. Do
+not rerun Gate E1-DATA's approved command or reuse its empty output directory.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`,
-`research/runs/GATE-C.md`, and `docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the
-singular next action above.
+Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-CONNECTIVITY-RECOVERY.md`,
+`research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`, `research/runs/GATE-C.md`, and
+`docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the singular next action above.
