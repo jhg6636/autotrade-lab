@@ -1,21 +1,21 @@
 # Active research handoff
 
-Last updated: 2026-08-24 KST
+Last updated: 2026-08-26 KST
 
 ## Active objective
 
-Gate E1-PREP is complete. Present the exact tested 24-slot Korean daily-data collector packet for
-user review and wait for a separate explicit E1-DATA approval. Do not create a key, call a data API,
-backtest, rank, optimize, access an account, order, or trade.
-
-Completion evidence: documentation hashes and rights classifications are reviewable; the request
-table is immutable and hash-addressed; endpoint, key, redirect, row, byte, page, schema, no-retry,
-and verifier tests pass; final adversarial review has no P1/P2; E1-DATA remains closed.
+Close the failed Gate E1-DATA execution faithfully. The user supplied a private decoded Public Data
+Portal service key and all four admitted APIs were approved. The exact zero-retry packet was run
+once, stopped on the first slot's redacted transport failure, and must not be rerun. Document the
+failed evidence boundary, preserve the historical-data NO-GO, and keep any recovery under a new,
+separately approved plan. Do not backtest, rank, optimize, access an account, order, or trade.
 
 ## Repository state
 
-- Current main: Gate E0 handoff commit `6bf607a`
-- Working branch: `agent/GATE-E1-PREP`, based on main `6bf607a`
+- Current main: Gate E1-PREP merge commit `1dfc2c7`
+- Working branch: `agent/GATE-E1-DATA`, based on main `1dfc2c7`
+- Gate E1-DATA closeout PR: `#24`, open, mergeable, four intended documentation files, and
+  GitGuardian successful
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -23,6 +23,8 @@ and verifier tests pass; final adversarial review has no P1/P2; E1-DATA remains 
 - Gate D2 market-data requests: 12/12 succeeded; OAuth exchange: one
 - Gate D2 credentials read locally: true; credential/token values retained in artifacts: false
 - Backtest/ranking/trading performed: false
+- Gate E1-DATA local slot attempts: 1/24; confirmed HTTP responses: 0; retries: 0
+- Gate E1-DATA retained raw files/rows/bytes: 0/0/0; manifest created: false
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
 inaccessible), 95 hypotheses (35 usable, 60 incomplete), and 2,282 suggestions. Its deterministic
@@ -131,8 +133,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   allowlists, secret/redirect/stream/schema guards, no retries, and raw-evidence verification.
 - Request-plan SHA-256:
   `ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0`.
-- No service key was created or read; no API data call, backtest, account access, order, or trade
-  occurred.
+- The later E1-DATA run loaded the private service key without printing or persisting it in tracked
+  artifacts. All four admitted API applications were approved in the portal.
 - Final adversarial review resolved approval-hash base-URL coverage, encoded-key header retention,
   and manifest/raw-set verification defects. No P1/P2 remains.
 
@@ -152,10 +154,14 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   strategy/index isolation: passed
 - Gate E1-PREP public data calls, key creation/read, backtests, rankings, account access, orders,
   and trades: none
-- Gate E1-PREP PR `#23`: correct `main` base, eight intended files, GitGuardian success,
-  clean/mergeable, no review decision; not merged because main-branch merge requires user direction
+- Gate E1-PREP PR `#23`: merged as `1dfc2c7`; correct `main` base, eight intended files,
+  GitGuardian success
 - `README.md` and `docs/ROADMAP.html` provide a derived milestone view; this handoff remains the
   operational source of truth.
+- `research/runs/GATE-E1-DATA.md` pins the approved execution command, preflight, observation matrix,
+  and no-retry stop rule. Its singular execution stopped on the first slot with a redacted transport
+  failure; no response body or manifest was retained and no retry occurred.
+- Gate E1-DATA closeout: 131 tests passed; Ruff check/format and `git diff --check` passed.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -170,11 +176,12 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Ask the user to review plan SHA-256
-`ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0` and explicitly approve or
-decline E1-DATA. Do not call any data API before that decision.
+Merge the reviewed Gate E1-DATA closeout PR `#24`. After that, prepare a new minimal
+connectivity-recovery packet with a fresh output directory and approval hash; do not rerun Gate
+E1-DATA's approved command or reuse its empty output directory.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-D.md`, `research/runs/GATE-C.md`, and
-`docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the singular next action above.
+Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`,
+`research/runs/GATE-C.md`, and `docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the
+singular next action above.

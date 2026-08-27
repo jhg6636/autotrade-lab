@@ -94,6 +94,7 @@
     .track-step.done { border-left-color: var(--done); }
     .track-step.partial { border-left-color: var(--partial); }
     .track-step.current { border-left-color: var(--current); background: var(--current-bg); }
+    .track-step.blocked { border-left-color: var(--blocked); background: var(--blocked-bg); }
     .track-step strong { display: block; margin-bottom: 4px; }
     .track-step span { color: var(--muted); font-size: .83rem; line-height: 1.45; }
 
@@ -108,6 +109,7 @@
     .lane li.done::before { background: var(--done); }
     .lane li.partial::before { background: var(--partial); }
     .lane li.current::before { background: var(--current); box-shadow: 0 0 0 4px var(--current-bg); }
+    .lane li.blocked::before { background: var(--blocked); }
     .lane li strong { display: block; color: var(--text); }
 
     .gate {
@@ -147,10 +149,10 @@
       <h1>전략 아이디어에서<br>통제된 실거래 파일럿까지</h1>
       <p class="lede">공통 연구 기반 위에서 국내주식·ETF와 코인 현물·무기한선물 트랙을 병렬로 검증합니다. 두 트랙 모두 아직 본격 백테스트에 진입하지 않았습니다.</p>
       <div class="current-position">
-        <strong>현재 위치: 국내 E1-DATA 승인 대기 · 코인 데이터 적격성 보완 필요</strong>
-        <p>국내 트랙은 공식 일봉 데이터 대상 24회 고정 요청 직전입니다. 코인 트랙은 제한적 캔들 수집을 완료했지만 종목 생애주기, 이용권, 펀딩·거래비용 검증이 남았습니다. 어느 결과도 전략 수익성을 입증하지 않습니다.</p>
+        <strong>현재 위치: 국내 E1-DATA 연결 실패 · 코인 데이터 적격성 보완 필요</strong>
+        <p>국내 트랙은 승인된 첫 요청에서 응답 없이 전송 계층 오류로 중단됐으며 재시도하지 않았습니다. 코인 트랙은 제한적 캔들 수집을 완료했지만 종목 생애주기, 이용권, 펀딩·거래비용 검증이 남았습니다. 어느 결과도 전략 수익성을 입증하지 않습니다.</p>
       </div>
-      <p class="meta">상태 기준: 2026-08-24 KST · 정확한 현재 작업은 <a href="../research/runs/HANDOFF.md">HANDOFF.md</a>에서 관리합니다.</p>
+      <p class="meta">상태 기준: 2026-08-26 KST · 정확한 현재 작업은 <a href="../research/runs/HANDOFF.md">HANDOFF.md</a>에서 관리합니다.</p>
     </header>
 
     <ul class="legend" aria-label="상태 범례">
@@ -205,9 +207,9 @@
               <strong>Gate E0·E1-PREP — 공식 대체 소스 준비 완료</strong>
               <span>금융위 상장종목·시세·발행·배당 API와 24슬롯 수집기를 고정했습니다.</span>
             </div>
-            <div class="track-step current">
-              <strong>Gate E1-DATA — 사용자 승인 대기</strong>
-              <span>최대 24회·1,200행·5 MiB의 읽기 전용 검증이며 아직 호출하지 않았습니다.</span>
+            <div class="track-step blocked">
+              <strong>Gate E1-DATA — 첫 연결에서 중단</strong>
+              <span>승인된 첫 슬롯이 응답 없이 실패했고, 재시도 0회 조건에 따라 나머지 23개 슬롯을 실행하지 않았습니다.</span>
             </div>
             <div class="track-step">
               <strong>국내 과거 데이터셋·품질 검증 — 미시작</strong>
@@ -315,7 +317,7 @@
             <li class="done"><strong>토스 제한 검증</strong>과거 일봉과 수정주가 동작을 확인했습니다.</li>
             <li class="done"><strong>토스 데이터 계약 감사</strong>유용한 과거 일봉은 확인했지만 전체 상폐 유니버스와 이용 권리는 확정하지 못했습니다.</li>
             <li class="done"><strong>공식 소스 선정</strong>금융위원회 공공데이터포털 자료를 다음 제한 검증 대상으로 선정했습니다.</li>
-            <li class="current"><strong>Gate E1-DATA 결정</strong>수집기 준비는 끝났고 실제 공식 데이터 호출은 아직 실행하지 않았습니다.</li>
+            <li class="blocked"><strong>Gate E1-DATA 중단</strong>첫 연결이 응답 없이 실패해 데이터 적격성을 관찰하지 못했고 광범위 수집은 계속 닫혀 있습니다.</li>
           </ol>
         </article>
 
@@ -347,10 +349,10 @@
       <h2 id="next-gate">다음 의사결정 게이트</h2>
       <div class="gate">
         <div>
-          <h3>Gate E1-DATA 승인 또는 거절</h3>
-          <p>읽기 전용 요청 최대 24회, 1,200행, 5 MiB, 재시도 0회입니다. 백테스트·계좌 접근·주문·거래는 포함하지 않습니다.</p>
+          <h3>Gate E1 연결 복구 계획 승인 또는 중단 유지</h3>
+          <p>기존 24슬롯 계획은 첫 연결 실패로 종료했습니다. 다음 계획은 새 승인 해시와 출력 경로를 사용하고, 읽기 전용 진단 요청 1회 뒤 다시 검토해야 합니다.</p>
         </div>
-        <div class="gate-code">ae802b8d4245a153af5abea3e2875049ee086e6556541ff3f8f1a5d2677198f0</div>
+        <div class="gate-code">새 계획 해시 필요 · 기존 실행 해시는 재사용 금지</div>
       </div>
       <details>
         <summary>E1-DATA를 통과하면</summary>
