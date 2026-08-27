@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import socket
 import urllib.error
 import urllib.parse
 from collections import Counter
@@ -18,11 +19,15 @@ from autotrade_lab.gate_e1_prep import (
     MAX_ROWS,
     MAX_SLOT_BYTES,
     GateE1Stop,
+    collect_gate_e1_connectivity_recovery,
     collect_gate_e1_data,
+    gate_e1_connectivity_recovery_plan,
+    gate_e1_connectivity_recovery_sha256,
     gate_e1_plan_sha256,
     gate_e1_request_plan,
     load_public_data_service_key,
     validate_gate_e1_plan,
+    verify_gate_e1_connectivity_recovery,
     verify_gate_e1_data,
 )
 
@@ -422,3 +427,100 @@ def test_verifier_rejects_manifest_metadata_outcome_limits_and_extra_raw(tmp_pat
     (run_dir / "raw" / "unexpected.json").write_text("{}")
     with pytest.raises(ValueError, match="raw-file set"):
         verify_gate_e1_data(run_dir)
+
+
+def test_connectivity_recovery_plan_is_fresh_single_and_bounded() -> None:
+    slot = gate_e1_connectivity_recovery_plan()
+    assert slot.request_id == "connectivity_listing_2010_boundary"
+    assert slot.filters == (("basDt", "20100104"),)
+    assert slot.page_no == 1
+    assert slot.max_rows == 1
+    assert slot.max_response_bytes == 65_536
+    assert gate_e1_connectivity_recovery_sha256() == (
+        "1740ba05109d918f4ccbcf72bca361749c8e1607dc91a0ca4db4476c347f5279"
+    )
+    assert gate_e1_connectivity_recovery_sha256() != gate_e1_plan_sha256()
+
+
+def test_connectivity_recovery_records_dns_failure_without_secret(tmp_path: Path) -> None:
+    class DnsFailureTransport:
+        def __init__(self):
+            self.requests = []
+
+        def open(self, request, *, timeout: float):
+            self.requests.append(request)
+            raise urllib.error.URLError(socket.gaierror("name lookup failed"))
+
+    transport = DnsFailureTransport()
+    run_dir = tmp_path / "recovery"
+    report = collect_gate_e1_connectivity_recovery(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_connectivity_recovery_sha256(),
+        transport=transport,
+        now=lambda: datetime(2026, 8, 27, tzinfo=UTC),
+    )
+    assert len(transport.requests) == 1
+    assert report["result"]["outcome"] == "transport_error"
+    assert report["result"]["transport_category"] == "dns"
+    assert not list((run_dir / "raw").iterdir())
+    persisted = (run_dir / "result.json").read_bytes()
+    assert b"decoded/test+key" not in persisted
+    assert b"serviceKey" not in persisted
+    assert verify_gate_e1_connectivity_recovery(run_dir) == report["result"]
+
+
+def test_connectivity_recovery_success_is_verifiable_and_single_request(tmp_path: Path) -> None:
+    transport = FakeTransport()
+    run_dir = tmp_path / "recovery"
+    report = collect_gate_e1_connectivity_recovery(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_connectivity_recovery_sha256(),
+        transport=transport,
+        now=lambda: datetime(2026, 8, 27, tzinfo=UTC),
+    )
+    assert len(transport.requests) == 1
+    assert report["result"]["outcome"] == "success"
+    assert report["result"]["observed_rows"] == 1
+    assert len(list((run_dir / "raw").iterdir())) == 1
+    assert verify_gate_e1_connectivity_recovery(run_dir) == report["result"]
+
+
+def test_connectivity_recovery_distinguishes_http_error_and_rejects_tamper(
+    tmp_path: Path,
+) -> None:
+    class HttpFailureTransport:
+        def open(self, request, *, timeout: float):
+            headers = Message()
+            headers["Content-Type"] = "application/json"
+            raise urllib.error.HTTPError(request.full_url, 401, "unauthorized", headers, None)
+
+    run_dir = tmp_path / "recovery"
+    report = collect_gate_e1_connectivity_recovery(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_connectivity_recovery_sha256(),
+        transport=HttpFailureTransport(),
+        now=lambda: datetime(2026, 8, 27, tzinfo=UTC),
+    )
+    assert report["result"]["outcome"] == "http_error"
+    assert report["result"]["http_status"] == 401
+    assert report["result"]["transport_category"] is None
+    assert verify_gate_e1_connectivity_recovery(run_dir) == report["result"]
+
+    report["result"]["unexpected"] = True
+    _write_manifest(run_dir / "result.json", report)
+    with pytest.raises(ValueError, match="invalid connectivity-recovery result"):
+        verify_gate_e1_connectivity_recovery(run_dir)
+
+
+def test_connectivity_recovery_requires_fresh_approval_hash(tmp_path: Path) -> None:
+    with pytest.raises(PermissionError, match="explicitly approved"):
+        collect_gate_e1_connectivity_recovery(
+            tmp_path / "recovery",
+            decoded_service_key="decoded/test+key",
+            approved_plan_sha256=gate_e1_plan_sha256(),
+            transport=FakeTransport(),
+        )
+    assert not (tmp_path / "recovery").exists()

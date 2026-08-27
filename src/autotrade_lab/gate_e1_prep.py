@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import socket
+import ssl
 import stat
 import urllib.error
 import urllib.parse
@@ -23,6 +25,7 @@ MAX_REQUESTS = 24
 MAX_ROWS = 1_200
 MAX_RAW_BYTES = 5 * 1024 * 1024
 MAX_SLOT_BYTES = 218_000
+RECOVERY_MAX_RAW_BYTES = 65_536
 ROWS_PER_REQUEST = 50
 HTTP_TIMEOUT_SECONDS = 30.0
 PROBE_DATE = "20260821"
@@ -513,6 +516,310 @@ def _selected_headers(headers: Message) -> dict[str, str]:
     return {
         key.lower(): value for key, value in headers.items() if key.lower() in _SELECTED_HEADERS
     }
+
+
+def gate_e1_connectivity_recovery_plan() -> RequestSlot:
+    """Return the single fresh slot for a separately approved connectivity recovery."""
+
+    slot = RequestSlot(
+        request_id="connectivity_listing_2010_boundary",
+        service="listed_instruments",
+        base_url=LISTED_BASE,
+        operation="/getItemInfo",
+        page_no=1,
+        filters=(("basDt", "20100104"),),
+        max_rows=1,
+        max_response_bytes=RECOVERY_MAX_RAW_BYTES,
+    )
+    parsed = urllib.parse.urlparse(f"{slot.base_url}{slot.operation}")
+    if (
+        parsed.scheme != "https"
+        or (parsed.hostname, parsed.path) not in _ALLOWED_OPERATIONS
+        or len(slot.filters) != 1
+        or slot.filters[0] != ("basDt", "20100104")
+        or slot.page_no != 1
+        or slot.max_rows != 1
+        or slot.max_response_bytes != RECOVERY_MAX_RAW_BYTES
+    ):
+        raise ValueError("invalid Gate E1 connectivity-recovery plan")
+    return slot
+
+
+def gate_e1_connectivity_recovery_sha256(slot: RequestSlot | None = None) -> str:
+    slot = slot or gate_e1_connectivity_recovery_plan()
+    packet = {
+        "limits": {
+            "requests": 1,
+            "rows": 1,
+            "raw_bytes": RECOVERY_MAX_RAW_BYTES,
+            "retries": 0,
+        },
+        "probe": "gate-e1-connectivity-recovery",
+        "request": slot.safe_record,
+    }
+    return hashlib.sha256(_canonical_json_bytes(packet)).hexdigest()
+
+
+def _transport_category(error: BaseException) -> str:
+    reason = error.reason if isinstance(error, urllib.error.URLError) else error
+    if isinstance(reason, socket.gaierror):
+        return "dns"
+    if isinstance(reason, (TimeoutError, socket.timeout)):
+        return "timeout"
+    if isinstance(reason, ssl.SSLError):
+        return "tls"
+    return "transport"
+
+
+def collect_gate_e1_connectivity_recovery(
+    output_dir: Path,
+    *,
+    decoded_service_key: str,
+    approved_plan_sha256: str,
+    transport: Transport | None = None,
+    now=lambda: datetime.now(UTC),
+) -> dict[str, Any]:
+    """Attempt one fresh read-only slot and retain a redacted result even on failure."""
+
+    slot = gate_e1_connectivity_recovery_plan()
+    plan_sha256 = gate_e1_connectivity_recovery_sha256(slot)
+    if approved_plan_sha256 != plan_sha256:
+        raise PermissionError("connectivity-recovery plan has not been explicitly approved")
+    _validate_service_key(decoded_service_key)
+    output_dir.mkdir(parents=True, exist_ok=False)
+    raw_dir = output_dir / "raw"
+    raw_dir.mkdir()
+    transport = transport or _PublicTransport()
+    request = slot.request(decoded_service_key)
+    result: dict[str, Any]
+    try:
+        with transport.open(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
+            _validate_final_url(request, response)
+            if response.status != 200:
+                result = {
+                    "attempt_ordinal": 1,
+                    "headers": _selected_headers(response.headers),
+                    "http_status": response.status,
+                    "observed_rows": 0,
+                    "outcome": "http_error",
+                    "raw_path": None,
+                    "response_bytes": 0,
+                    "response_sha256": None,
+                    "transport_category": None,
+                }
+            elif response.headers.get_content_type() != "application/json":
+                result = {
+                    "attempt_ordinal": 1,
+                    "headers": _selected_headers(response.headers),
+                    "http_status": 200,
+                    "observed_rows": 0,
+                    "outcome": "schema_error",
+                    "raw_path": None,
+                    "response_bytes": 0,
+                    "response_sha256": None,
+                    "transport_category": None,
+                }
+            else:
+                body = _read_bounded(
+                    response,
+                    slot_limit=slot.max_response_bytes,
+                    remaining=RECOVERY_MAX_RAW_BYTES,
+                )
+                if any(secret in body for secret in _secret_variants(decoded_service_key)):
+                    raise GateE1Stop("provider echoed the service key; response was not retained")
+                try:
+                    payload = json.loads(body)
+                    rows = _response_items(payload, slot)
+                except (json.JSONDecodeError, GateE1Stop):
+                    result = {
+                        "attempt_ordinal": 1,
+                        "headers": _selected_headers(response.headers),
+                        "http_status": 200,
+                        "observed_rows": 0,
+                        "outcome": "schema_error",
+                        "raw_path": None,
+                        "response_bytes": 0,
+                        "response_sha256": None,
+                        "transport_category": None,
+                    }
+                else:
+                    raw_path = Path("raw") / "01_connectivity_listing_2010_boundary.json"
+                    _write_new(output_dir / raw_path, body)
+                    result = {
+                        "attempt_ordinal": 1,
+                        "headers": _selected_headers(response.headers),
+                        "http_status": 200,
+                        "observed_rows": len(rows),
+                        "outcome": "success",
+                        "raw_path": raw_path.as_posix(),
+                        "response_bytes": len(body),
+                        "response_sha256": hashlib.sha256(body).hexdigest(),
+                        "transport_category": None,
+                    }
+    except urllib.error.HTTPError as error:
+        result = {
+            "attempt_ordinal": 1,
+            "headers": _selected_headers(error.headers or Message()),
+            "http_status": error.code,
+            "observed_rows": 0,
+            "outcome": "http_error",
+            "raw_path": None,
+            "response_bytes": 0,
+            "response_sha256": None,
+            "transport_category": None,
+        }
+        error.close()
+    except (urllib.error.URLError, OSError) as error:
+        result = {
+            "attempt_ordinal": 1,
+            "headers": {},
+            "http_status": None,
+            "observed_rows": 0,
+            "outcome": "transport_error",
+            "raw_path": None,
+            "response_bytes": 0,
+            "response_sha256": None,
+            "transport_category": _transport_category(error),
+        }
+    report = {
+        "created_at": now().astimezone(UTC).isoformat().replace("+00:00", "Z"),
+        "evidence_status": "observed",
+        "limits": {
+            "requests": 1,
+            "rows": 1,
+            "raw_bytes": RECOVERY_MAX_RAW_BYTES,
+            "retries": 0,
+        },
+        "plan_sha256": plan_sha256,
+        "probe": "gate-e1-connectivity-recovery",
+        "request": slot.safe_record,
+        "result": result,
+        "schema_version": 1,
+    }
+    encoded = _canonical_json_bytes(report)
+    if any(secret in encoded for secret in _secret_variants(decoded_service_key)) or (
+        b"serviceKey" in encoded
+    ):
+        raise GateE1Stop("service key material reached the recovery-report boundary")
+    _write_new(output_dir / "result.json", encoded)
+    return report
+
+
+def verify_gate_e1_connectivity_recovery(run_dir: Path) -> dict[str, Any]:
+    """Verify the canonical one-attempt recovery report and optional successful raw body."""
+
+    report_path = run_dir / "result.json"
+    encoded = report_path.read_bytes()
+    report = json.loads(encoded)
+    if encoded != _canonical_json_bytes(report):
+        raise ValueError("connectivity-recovery report is not canonical JSON")
+    slot = gate_e1_connectivity_recovery_plan()
+    created_at = report.get("created_at")
+    expected_report_keys = {
+        "created_at",
+        "evidence_status",
+        "limits",
+        "plan_sha256",
+        "probe",
+        "request",
+        "result",
+        "schema_version",
+    }
+    try:
+        parsed_created_at = datetime.fromisoformat(created_at)
+    except (TypeError, ValueError) as error:
+        raise ValueError("invalid connectivity-recovery timestamp") from error
+    if (
+        set(report) != expected_report_keys
+        or not created_at.endswith("Z")
+        or parsed_created_at.tzinfo != UTC
+        or report.get("schema_version") != 1
+        or report.get("probe") != "gate-e1-connectivity-recovery"
+        or report.get("evidence_status") != "observed"
+        or report.get("plan_sha256") != gate_e1_connectivity_recovery_sha256(slot)
+        or report.get("request") != slot.safe_record
+        or report.get("limits")
+        != {"requests": 1, "rows": 1, "raw_bytes": RECOVERY_MAX_RAW_BYTES, "retries": 0}
+    ):
+        raise ValueError("invalid connectivity-recovery report")
+    result = report.get("result")
+    expected_result_keys = {
+        "attempt_ordinal",
+        "headers",
+        "http_status",
+        "observed_rows",
+        "outcome",
+        "raw_path",
+        "response_bytes",
+        "response_sha256",
+        "transport_category",
+    }
+    if (
+        not isinstance(result, dict)
+        or set(result) != expected_result_keys
+        or result.get("attempt_ordinal") != 1
+        or result.get("outcome") not in {"success", "http_error", "schema_error", "transport_error"}
+    ):
+        raise ValueError("invalid connectivity-recovery result")
+    headers = result.get("headers")
+    if (
+        not isinstance(headers, dict)
+        or any(not isinstance(key, str) or key not in _SELECTED_HEADERS for key in headers)
+        or any(not isinstance(value, str) for value in headers.values())
+    ):
+        raise ValueError("invalid connectivity-recovery headers")
+    raw_dir = run_dir / "raw"
+    if raw_dir.is_symlink() or not raw_dir.is_dir():
+        raise ValueError("invalid connectivity-recovery raw directory")
+    raw_entries = sorted(raw_dir.iterdir())
+    if any(path.is_symlink() or not path.is_file() for path in raw_entries):
+        raise ValueError("invalid connectivity-recovery raw entry")
+    if result.get("outcome") == "success":
+        if (
+            result.get("http_status") != 200
+            or result.get("transport_category") is not None
+            or not isinstance(result.get("observed_rows"), int)
+            or not 0 <= result["observed_rows"] <= 1
+        ):
+            raise ValueError("invalid successful connectivity-recovery result")
+        expected_path = Path("raw") / "01_connectivity_listing_2010_boundary.json"
+        if result.get("raw_path") != expected_path.as_posix() or raw_entries != [
+            run_dir / expected_path
+        ]:
+            raise ValueError("connectivity-recovery raw-file set mismatch")
+        body = (run_dir / expected_path).read_bytes()
+        rows = _response_items(json.loads(body), slot)
+        if (
+            len(body) != result.get("response_bytes")
+            or hashlib.sha256(body).hexdigest() != result.get("response_sha256")
+            or len(rows) != result.get("observed_rows")
+        ):
+            raise ValueError("connectivity-recovery raw evidence mismatch")
+    else:
+        if (
+            raw_entries
+            or result.get("raw_path") is not None
+            or result.get("response_bytes") != 0
+            or result.get("response_sha256") is not None
+            or result.get("observed_rows") != 0
+        ):
+            raise ValueError("failed connectivity recovery retained invalid evidence")
+        if result.get("outcome") == "transport_error":
+            if result.get("http_status") is not None or result.get("transport_category") not in {
+                "dns",
+                "timeout",
+                "tls",
+                "transport",
+            }:
+                raise ValueError("invalid connectivity-recovery transport result")
+        elif (
+            result.get("transport_category") is not None
+            or not isinstance(result.get("http_status"), int)
+            or result.get("http_status") < 100
+            or result.get("http_status") > 599
+        ):
+            raise ValueError("invalid connectivity-recovery provider result")
+    return result
 
 
 def collect_gate_e1_data(
