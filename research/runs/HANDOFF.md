@@ -16,6 +16,8 @@ order, or trade.
 - Working branch: `agent/GATE-E1-CONNECTIVITY-RESULT`, based on main `6d94ee8`
 - Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
+- Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
+- Gate E1 connectivity-recovery result PR: `#26`, open for final result review
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -184,7 +186,7 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review the `schema_error` result and prepare a documentation-first, separately approved diagnostic
+Review and merge result PR `#26`. Then prepare a documentation-first, separately approved diagnostic
 that can identify the provider result code/envelope without retaining credential material. Do not
 rerun either completed packet, reuse their output directories, or make another public-data request
 before a new hash is reviewed and approved.
