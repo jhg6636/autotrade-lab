@@ -4,22 +4,22 @@ Last updated: 2026-08-28 KST
 
 ## Active objective
 
-Prepare, review, and seek exact-hash approval for one Gate E1 schema-diagnostic request. Official
-Swagger and DOCX evidence confirms top-level `header`/`body` for JSON, so the parser remains strict.
-The new diagnostic can distinguish a provider result code from a documented-schema mismatch without
-retaining provider messages or failed raw bodies. Do not execute it before exact-hash approval, and
-do not backtest, rank, optimize, access an account, order, or trade.
+Record and review the completed Gate E1 schema-diagnostic result. The one approved request returned
+HTTP 200, provider code `00`, matching paging, an empty item list, and a runtime `response` wrapper
+that differs from the official top-level JSON Swagger. No retry or raw-body retention occurred.
+Review an observation-backed parser change without making another data request. Do not backtest,
+rank, optimize, access an account, order, or trade.
 
 ## Repository state
 
-- Current main: Gate E1 connectivity-recovery result merge commit `d34057f`
-- Working branch: `agent/GATE-E1-SCHEMA-PREP`, based on main `d34057f`
+- Current main: Gate E1 schema-diagnostic preparation merge commit `4657094`
+- Working branch: `agent/GATE-E1-SCHEMA-RESULT`, based on main `4657094`
 - Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
 - Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
 - Gate E1 connectivity-recovery result PR: `#26`, merged as `d34057f`
-- Gate E1 schema-diagnostic preparation PR: `#27`, open, mergeable, GitGuardian successful; no
-  public-data request
+- Gate E1 schema-diagnostic preparation PR: `#27`, merged as `4657094`; GitGuardian successful
+- Gate E1 schema-diagnostic result PR: `#28`, open, mergeable, GitGuardian successful
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -31,7 +31,8 @@ do not backtest, rank, optimize, access an account, order, or trade.
 - Gate E1-DATA retained raw files/rows/bytes: 0/0/0; manifest created: false
 - Gate E1 connectivity-recovery requests: 1/1; HTTP 200, `schema_error`, retries 0
 - Gate E1 connectivity-recovery retained raw files/rows/body bytes: 0/0/0
-- Gate E1 schema-diagnostic requests: 0/1; retries: 0; plan hash
+- Gate E1 schema-diagnostic requests: 1/1; HTTP 200, provider code `00`, `schema_error`; retries: 0;
+  runtime `response_wrapped`, paging `matches`, items `item_list`, rows/raw files: 0/0; plan hash
   `f70bf4dc56edbbc280ccba08e9a1cfa571f5795c3fda48c44a04822d0545f167`
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
@@ -181,6 +182,11 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   provider/schema diagnostics, failed-body fingerprinting, secret-echo rejection, and canonical
   verification are implemented. Focused tests: 28 passed; full repository tests: 145 passed; Ruff
   check/format and `git diff --check`: passed. Public-data requests: 0.
+- Gate E1 schema-diagnostic result: the exact approved hash executed once from merged `main`; the
+  canonical verifier passed. HTTP 200, provider code `00`, matching paging, empty item list, and a
+  runtime `response` wrapper were observed. The failed raw body and provider message were not
+  retained; credential-variant scan passed; retries, account access, backtests, orders, and trades:
+  0.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -195,10 +201,9 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review the Gate E1 schema-diagnostic preparation and present plan SHA-256
-`f70bf4dc56edbbc280ccba08e9a1cfa571f5795c3fda48c44a04822d0545f167` for explicit user approval.
-Do not execute the request as part of preparation, rerun either completed packet, or reuse an old
-output directory.
+Review and merge the schema-diagnostic result record. Then prepare an observation-backed parser
+change that accepts the runtime `response` wrapper while retaining provider-code, paging, item,
+row-budget, secret, and raw-evidence guards. Do not make another public-data request in either step.
 
 ## Resume instruction
 
