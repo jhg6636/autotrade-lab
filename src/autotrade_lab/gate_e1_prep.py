@@ -822,6 +822,470 @@ def verify_gate_e1_connectivity_recovery(run_dir: Path) -> dict[str, Any]:
     return result
 
 
+def gate_e1_schema_diagnostic_plan() -> RequestSlot:
+    """Return the fresh one-request plan for diagnosing the prior schema failure."""
+
+    slot = RequestSlot(
+        request_id="schema_listing_2010_boundary",
+        service="listed_instruments",
+        base_url=LISTED_BASE,
+        operation="/getItemInfo",
+        page_no=1,
+        filters=(("basDt", "20100104"),),
+        max_rows=1,
+        max_response_bytes=RECOVERY_MAX_RAW_BYTES,
+    )
+    parsed = urllib.parse.urlparse(f"{slot.base_url}{slot.operation}")
+    if (
+        parsed.scheme != "https"
+        or (parsed.hostname, parsed.path) not in _ALLOWED_OPERATIONS
+        or slot.filters != (("basDt", "20100104"),)
+        or slot.page_no != 1
+        or slot.max_rows != 1
+        or slot.max_response_bytes != RECOVERY_MAX_RAW_BYTES
+    ):
+        raise ValueError("invalid Gate E1 schema-diagnostic plan")
+    return slot
+
+
+def gate_e1_schema_diagnostic_sha256(slot: RequestSlot | None = None) -> str:
+    """Fingerprint the exact schema-diagnostic packet requiring fresh approval."""
+
+    slot = slot or gate_e1_schema_diagnostic_plan()
+    packet = {
+        "limits": {
+            "requests": 1,
+            "rows": 1,
+            "raw_bytes": RECOVERY_MAX_RAW_BYTES,
+            "retries": 0,
+        },
+        "probe": "gate-e1-schema-diagnostic",
+        "request": slot.safe_record,
+    }
+    return hashlib.sha256(_canonical_json_bytes(packet)).hexdigest()
+
+
+def _fixed_response_diagnostic(payload: Any, slot: RequestSlot) -> dict[str, Any]:
+    """Describe only fixed, non-provider-controlled response-shape categories."""
+
+    diagnostic: dict[str, Any] = {
+        "envelope": "non_object",
+        "items_shape": "unavailable",
+        "paging": "unavailable",
+        "provider_result_code": None,
+    }
+    if not isinstance(payload, dict):
+        return diagnostic
+
+    if isinstance(payload.get("header"), dict) and isinstance(payload.get("body"), dict):
+        diagnostic["envelope"] = "documented_top_level"
+        header = payload["header"]
+        body = payload["body"]
+    elif isinstance(payload.get("response"), dict):
+        diagnostic["envelope"] = "response_wrapped"
+        response = payload["response"]
+        header = response.get("header")
+        body = response.get("body")
+    else:
+        diagnostic["envelope"] = "other_object"
+        header = payload.get("header")
+        body = payload.get("body")
+
+    if isinstance(header, dict):
+        code = header.get("resultCode")
+        if isinstance(code, str) and len(code) == 2 and code.isascii() and code.isdigit():
+            diagnostic["provider_result_code"] = code
+
+    if not isinstance(body, dict):
+        return diagnostic
+
+    diagnostic["paging"] = (
+        "matches"
+        if str(body.get("pageNo")) == str(slot.page_no)
+        and str(body.get("numOfRows")) == str(slot.max_rows)
+        else "mismatch"
+    )
+    if "items" not in body:
+        diagnostic["items_shape"] = "absent"
+    else:
+        items = body["items"]
+        if items is None:
+            diagnostic["items_shape"] = "null"
+        elif items == "":
+            diagnostic["items_shape"] = "empty_string"
+        elif items == {}:
+            diagnostic["items_shape"] = "empty_object"
+        elif isinstance(items, dict) and isinstance(items.get("item"), dict):
+            diagnostic["items_shape"] = "single_item"
+        elif isinstance(items, dict) and isinstance(items.get("item"), list):
+            diagnostic["items_shape"] = "item_list"
+        else:
+            diagnostic["items_shape"] = "other"
+    return diagnostic
+
+
+def _schema_diagnostic_failure(
+    *,
+    headers: Message,
+    http_status: int,
+    body: bytes | None,
+    diagnostic_category: str,
+    response_diagnostic: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    return {
+        "attempt_ordinal": 1,
+        "diagnostic_category": diagnostic_category,
+        "headers": _selected_headers(headers),
+        "http_status": http_status,
+        "observed_rows": 0,
+        "outcome": "provider_error"
+        if diagnostic_category == "provider_result_code"
+        else "schema_error",
+        "raw_path": None,
+        "response_bytes": len(body) if body is not None else 0,
+        "response_diagnostic": response_diagnostic,
+        "response_sha256": hashlib.sha256(body).hexdigest() if body is not None else None,
+        "transport_category": None,
+    }
+
+
+def collect_gate_e1_schema_diagnostic(
+    output_dir: Path,
+    *,
+    decoded_service_key: str,
+    approved_plan_sha256: str,
+    transport: Transport | None = None,
+    now=lambda: datetime.now(UTC),
+) -> dict[str, Any]:
+    """Attempt one read-only request and retain only fixed diagnostics on failure."""
+
+    slot = gate_e1_schema_diagnostic_plan()
+    plan_sha256 = gate_e1_schema_diagnostic_sha256(slot)
+    if approved_plan_sha256 != plan_sha256:
+        raise PermissionError("schema-diagnostic plan has not been explicitly approved")
+    _validate_service_key(decoded_service_key)
+    output_dir.mkdir(parents=True, exist_ok=False)
+    raw_dir = output_dir / "raw"
+    raw_dir.mkdir()
+    transport = transport or _PublicTransport()
+    request = slot.request(decoded_service_key)
+    result: dict[str, Any]
+    try:
+        with transport.open(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
+            _validate_final_url(request, response)
+            if response.status != 200:
+                result = {
+                    "attempt_ordinal": 1,
+                    "diagnostic_category": "http_status",
+                    "headers": _selected_headers(response.headers),
+                    "http_status": response.status,
+                    "observed_rows": 0,
+                    "outcome": "http_error",
+                    "raw_path": None,
+                    "response_bytes": 0,
+                    "response_diagnostic": None,
+                    "response_sha256": None,
+                    "transport_category": None,
+                }
+            elif response.headers.get_content_type() != "application/json":
+                result = _schema_diagnostic_failure(
+                    headers=response.headers,
+                    http_status=200,
+                    body=None,
+                    diagnostic_category="content_type",
+                )
+            else:
+                body = _read_bounded(
+                    response,
+                    slot_limit=slot.max_response_bytes,
+                    remaining=RECOVERY_MAX_RAW_BYTES,
+                )
+                if any(secret in body for secret in _secret_variants(decoded_service_key)):
+                    raise GateE1Stop("provider echoed the service key; response was not retained")
+                try:
+                    payload = json.loads(body)
+                except json.JSONDecodeError:
+                    result = _schema_diagnostic_failure(
+                        headers=response.headers,
+                        http_status=200,
+                        body=body,
+                        diagnostic_category="invalid_json",
+                    )
+                else:
+                    diagnostic = _fixed_response_diagnostic(payload, slot)
+                    try:
+                        rows = _response_items(payload, slot)
+                    except GateE1Stop:
+                        result = _schema_diagnostic_failure(
+                            headers=response.headers,
+                            http_status=200,
+                            body=body,
+                            diagnostic_category=(
+                                "provider_result_code"
+                                if diagnostic["provider_result_code"] not in {None, "00"}
+                                else "documented_schema_mismatch"
+                            ),
+                            response_diagnostic=diagnostic,
+                        )
+                    else:
+                        raw_path = Path("raw") / "01_schema_listing_2010_boundary.json"
+                        _write_new(output_dir / raw_path, body)
+                        result = {
+                            "attempt_ordinal": 1,
+                            "diagnostic_category": None,
+                            "headers": _selected_headers(response.headers),
+                            "http_status": 200,
+                            "observed_rows": len(rows),
+                            "outcome": "success",
+                            "raw_path": raw_path.as_posix(),
+                            "response_bytes": len(body),
+                            "response_diagnostic": diagnostic,
+                            "response_sha256": hashlib.sha256(body).hexdigest(),
+                            "transport_category": None,
+                        }
+    except urllib.error.HTTPError as error:
+        result = {
+            "attempt_ordinal": 1,
+            "diagnostic_category": "http_status",
+            "headers": _selected_headers(error.headers or Message()),
+            "http_status": error.code,
+            "observed_rows": 0,
+            "outcome": "http_error",
+            "raw_path": None,
+            "response_bytes": 0,
+            "response_diagnostic": None,
+            "response_sha256": None,
+            "transport_category": None,
+        }
+        error.close()
+    except (urllib.error.URLError, OSError) as error:
+        result = {
+            "attempt_ordinal": 1,
+            "diagnostic_category": "transport",
+            "headers": {},
+            "http_status": None,
+            "observed_rows": 0,
+            "outcome": "transport_error",
+            "raw_path": None,
+            "response_bytes": 0,
+            "response_diagnostic": None,
+            "response_sha256": None,
+            "transport_category": _transport_category(error),
+        }
+    report = {
+        "created_at": now().astimezone(UTC).isoformat().replace("+00:00", "Z"),
+        "evidence_status": "observed",
+        "limits": {
+            "requests": 1,
+            "rows": 1,
+            "raw_bytes": RECOVERY_MAX_RAW_BYTES,
+            "retries": 0,
+        },
+        "plan_sha256": plan_sha256,
+        "probe": "gate-e1-schema-diagnostic",
+        "request": slot.safe_record,
+        "result": result,
+        "schema_version": 1,
+    }
+    encoded = _canonical_json_bytes(report)
+    if any(secret in encoded for secret in _secret_variants(decoded_service_key)) or (
+        b"serviceKey" in encoded
+    ):
+        raise GateE1Stop("service key material reached the schema-diagnostic report boundary")
+    _write_new(output_dir / "result.json", encoded)
+    return report
+
+
+def verify_gate_e1_schema_diagnostic(run_dir: Path) -> dict[str, Any]:
+    """Verify the canonical schema-diagnostic report and optional successful raw body."""
+
+    encoded = (run_dir / "result.json").read_bytes()
+    report = json.loads(encoded)
+    if encoded != _canonical_json_bytes(report):
+        raise ValueError("schema-diagnostic report is not canonical JSON")
+    slot = gate_e1_schema_diagnostic_plan()
+    expected_report_keys = {
+        "created_at",
+        "evidence_status",
+        "limits",
+        "plan_sha256",
+        "probe",
+        "request",
+        "result",
+        "schema_version",
+    }
+    try:
+        created_at = report["created_at"]
+        parsed_created_at = datetime.fromisoformat(created_at)
+    except (KeyError, TypeError, ValueError) as error:
+        raise ValueError("invalid schema-diagnostic timestamp") from error
+    if (
+        set(report) != expected_report_keys
+        or not created_at.endswith("Z")
+        or parsed_created_at.tzinfo != UTC
+        or report.get("schema_version") != 1
+        or report.get("probe") != "gate-e1-schema-diagnostic"
+        or report.get("evidence_status") != "observed"
+        or report.get("plan_sha256") != gate_e1_schema_diagnostic_sha256(slot)
+        or report.get("request") != slot.safe_record
+        or report.get("limits")
+        != {"requests": 1, "rows": 1, "raw_bytes": RECOVERY_MAX_RAW_BYTES, "retries": 0}
+    ):
+        raise ValueError("invalid schema-diagnostic report")
+
+    result = report.get("result")
+    expected_result_keys = {
+        "attempt_ordinal",
+        "diagnostic_category",
+        "headers",
+        "http_status",
+        "observed_rows",
+        "outcome",
+        "raw_path",
+        "response_bytes",
+        "response_diagnostic",
+        "response_sha256",
+        "transport_category",
+    }
+    if (
+        not isinstance(result, dict)
+        or set(result) != expected_result_keys
+        or result.get("attempt_ordinal") != 1
+        or result.get("outcome")
+        not in {"success", "http_error", "provider_error", "schema_error", "transport_error"}
+    ):
+        raise ValueError("invalid schema-diagnostic result")
+    headers = result.get("headers")
+    if (
+        not isinstance(headers, dict)
+        or any(not isinstance(key, str) or key not in _SELECTED_HEADERS for key in headers)
+        or any(not isinstance(value, str) for value in headers.values())
+    ):
+        raise ValueError("invalid schema-diagnostic headers")
+    raw_dir = run_dir / "raw"
+    if raw_dir.is_symlink() or not raw_dir.is_dir():
+        raise ValueError("invalid schema-diagnostic raw directory")
+    raw_entries = sorted(raw_dir.iterdir())
+    if any(path.is_symlink() or not path.is_file() for path in raw_entries):
+        raise ValueError("invalid schema-diagnostic raw entry")
+
+    diagnostic = result.get("response_diagnostic")
+    if diagnostic is not None and (
+        not isinstance(diagnostic, dict)
+        or set(diagnostic) != {"envelope", "items_shape", "paging", "provider_result_code"}
+        or diagnostic.get("envelope")
+        not in {"documented_top_level", "response_wrapped", "other_object", "non_object"}
+        or diagnostic.get("items_shape")
+        not in {
+            "absent",
+            "empty_object",
+            "empty_string",
+            "item_list",
+            "null",
+            "other",
+            "single_item",
+            "unavailable",
+        }
+        or diagnostic.get("paging") not in {"matches", "mismatch", "unavailable"}
+        or (
+            diagnostic.get("provider_result_code") is not None
+            and (
+                not isinstance(diagnostic["provider_result_code"], str)
+                or len(diagnostic["provider_result_code"]) != 2
+                or not diagnostic["provider_result_code"].isascii()
+                or not diagnostic["provider_result_code"].isdigit()
+            )
+        )
+    ):
+        raise ValueError("invalid fixed response diagnostic")
+
+    if result.get("outcome") == "success":
+        expected_path = Path("raw") / "01_schema_listing_2010_boundary.json"
+        if (
+            result.get("diagnostic_category") is not None
+            or result.get("http_status") != 200
+            or result.get("transport_category") is not None
+            or not isinstance(result.get("observed_rows"), int)
+            or not 0 <= result["observed_rows"] <= 1
+            or diagnostic is None
+            or result.get("raw_path") != expected_path.as_posix()
+            or raw_entries != [run_dir / expected_path]
+        ):
+            raise ValueError("invalid successful schema-diagnostic result")
+        body = (run_dir / expected_path).read_bytes()
+        rows = _response_items(json.loads(body), slot)
+        if (
+            len(body) != result.get("response_bytes")
+            or hashlib.sha256(body).hexdigest() != result.get("response_sha256")
+            or len(rows) != result.get("observed_rows")
+            or _fixed_response_diagnostic(json.loads(body), slot) != diagnostic
+        ):
+            raise ValueError("schema-diagnostic raw evidence mismatch")
+    else:
+        if raw_entries or result.get("raw_path") is not None or result.get("observed_rows") != 0:
+            raise ValueError("failed schema diagnostic retained invalid raw evidence")
+        outcome = result["outcome"]
+        category = result.get("diagnostic_category")
+        if outcome in {"schema_error", "provider_error"}:
+            if (
+                result.get("http_status") != 200
+                or result.get("transport_category") is not None
+                or category
+                not in {
+                    "content_type",
+                    "documented_schema_mismatch",
+                    "invalid_json",
+                    "provider_result_code",
+                }
+                or (category == "content_type" and diagnostic is not None)
+                or (category == "documented_schema_mismatch" and diagnostic is None)
+                or (category == "provider_result_code" and outcome != "provider_error")
+                or (
+                    category == "provider_result_code"
+                    and (
+                        diagnostic is None or diagnostic.get("provider_result_code") in {None, "00"}
+                    )
+                )
+                or (category != "provider_result_code" and outcome == "provider_error")
+            ):
+                raise ValueError("invalid failed schema-diagnostic classification")
+        elif outcome == "http_error":
+            if (
+                category != "http_status"
+                or diagnostic is not None
+                or result.get("transport_category") is not None
+                or not isinstance(result.get("http_status"), int)
+                or not 100 <= result["http_status"] <= 599
+            ):
+                raise ValueError("invalid schema-diagnostic HTTP result")
+        elif outcome == "transport_error" and (
+            category != "transport"
+            or diagnostic is not None
+            or result.get("http_status") is not None
+            or result.get("transport_category") not in {"dns", "timeout", "tls", "transport"}
+        ):
+            raise ValueError("invalid schema-diagnostic transport result")
+        body_was_read = category in {
+            "documented_schema_mismatch",
+            "invalid_json",
+            "provider_result_code",
+        }
+        if body_was_read:
+            if (
+                not isinstance(result.get("response_bytes"), int)
+                or not 0 <= result["response_bytes"] <= RECOVERY_MAX_RAW_BYTES
+                or not isinstance(result.get("response_sha256"), str)
+                or len(result["response_sha256"]) != 64
+                or any(
+                    character not in "0123456789abcdef" for character in result["response_sha256"]
+                )
+            ):
+                raise ValueError("invalid schema-diagnostic fingerprint")
+        elif result.get("response_bytes") != 0 or result.get("response_sha256") is not None:
+            raise ValueError("invalid empty schema-diagnostic fingerprint")
+    return result
+
+
 def collect_gate_e1_data(
     output_dir: Path,
     *,

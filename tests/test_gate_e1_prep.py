@@ -21,14 +21,18 @@ from autotrade_lab.gate_e1_prep import (
     GateE1Stop,
     collect_gate_e1_connectivity_recovery,
     collect_gate_e1_data,
+    collect_gate_e1_schema_diagnostic,
     gate_e1_connectivity_recovery_plan,
     gate_e1_connectivity_recovery_sha256,
     gate_e1_plan_sha256,
     gate_e1_request_plan,
+    gate_e1_schema_diagnostic_plan,
+    gate_e1_schema_diagnostic_sha256,
     load_public_data_service_key,
     validate_gate_e1_plan,
     verify_gate_e1_connectivity_recovery,
     verify_gate_e1_data,
+    verify_gate_e1_schema_diagnostic,
 )
 
 
@@ -524,3 +528,209 @@ def test_connectivity_recovery_requires_fresh_approval_hash(tmp_path: Path) -> N
             transport=FakeTransport(),
         )
     assert not (tmp_path / "recovery").exists()
+
+
+def test_schema_diagnostic_plan_is_fresh_single_and_bounded() -> None:
+    slot = gate_e1_schema_diagnostic_plan()
+    assert slot.request_id == "schema_listing_2010_boundary"
+    assert slot.filters == (("basDt", "20100104"),)
+    assert slot.page_no == 1
+    assert slot.max_rows == 1
+    assert slot.max_response_bytes == 65_536
+    assert gate_e1_schema_diagnostic_sha256() == (
+        "f70bf4dc56edbbc280ccba08e9a1cfa571f5795c3fda48c44a04822d0545f167"
+    )
+    assert gate_e1_schema_diagnostic_sha256() not in {
+        gate_e1_plan_sha256(),
+        gate_e1_connectivity_recovery_sha256(),
+    }
+
+
+def test_schema_diagnostic_success_retains_verifiable_documented_json(tmp_path: Path) -> None:
+    transport = FakeTransport()
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+        now=lambda: datetime(2026, 8, 28, tzinfo=UTC),
+    )
+    assert len(transport.requests) == 1
+    assert report["result"]["outcome"] == "success"
+    assert report["result"]["response_diagnostic"] == {
+        "envelope": "documented_top_level",
+        "items_shape": "item_list",
+        "paging": "matches",
+        "provider_result_code": "00",
+    }
+    assert verify_gate_e1_schema_diagnostic(run_dir) == report["result"]
+
+
+def test_schema_diagnostic_fingerprints_empty_object_without_retaining_body(
+    tmp_path: Path,
+) -> None:
+    body = json.dumps(
+        {
+            "header": {"resultCode": "00", "resultMsg": "NORMAL SERVICE."},
+            "body": {
+                "numOfRows": 1,
+                "pageNo": 1,
+                "totalCount": 0,
+                "items": {},
+            },
+        }
+    ).encode()
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
+    assert result["outcome"] == "schema_error"
+    assert result["diagnostic_category"] == "documented_schema_mismatch"
+    assert result["response_bytes"] == len(body)
+    assert result["response_sha256"] is not None
+    assert result["response_diagnostic"]["items_shape"] == "empty_object"
+    assert not list((run_dir / "raw").iterdir())
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+
+def test_schema_diagnostic_separates_provider_result_code_from_schema_error(
+    tmp_path: Path,
+) -> None:
+    body = json.dumps(
+        {
+            "header": {
+                "resultCode": "30",
+                "resultMsg": "provider-controlled text must not be retained",
+            },
+            "body": {},
+        }
+    ).encode()
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
+    assert result["outcome"] == "provider_error"
+    assert result["diagnostic_category"] == "provider_result_code"
+    assert result["response_diagnostic"]["provider_result_code"] == "30"
+    persisted = (run_dir / "result.json").read_bytes()
+    assert b"provider-controlled" not in persisted
+    assert b"resultMsg" not in persisted
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+
+def test_schema_diagnostic_records_wrapped_shape_but_does_not_accept_it(tmp_path: Path) -> None:
+    documented = json.loads(_payload(1, 1, []))
+    body = json.dumps({"response": documented}).encode()
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
+    assert result["outcome"] == "schema_error"
+    assert result["response_diagnostic"]["envelope"] == "response_wrapped"
+    assert not list((run_dir / "raw").iterdir())
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+
+def test_schema_diagnostic_invalid_json_and_tamper_are_safe(tmp_path: Path) -> None:
+    body = b"not-json"
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
+    assert result["outcome"] == "schema_error"
+    assert result["diagnostic_category"] == "invalid_json"
+    assert result["response_diagnostic"] is None
+    assert result["response_bytes"] == len(body)
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+    report["result"]["response_bytes"] = 65_537
+    _write_manifest(run_dir / "result.json", report)
+    with pytest.raises(ValueError, match="fingerprint"):
+        verify_gate_e1_schema_diagnostic(run_dir)
+
+
+def test_schema_diagnostic_empty_invalid_json_has_a_body_fingerprint(tmp_path: Path) -> None:
+    body = b""
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
+    assert result["diagnostic_category"] == "invalid_json"
+    assert result["response_bytes"] == 0
+    assert result["response_sha256"] == (
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    )
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+
+def test_schema_diagnostic_requires_fresh_approval_before_output(tmp_path: Path) -> None:
+    run_dir = tmp_path / "schema"
+    with pytest.raises(PermissionError, match="explicitly approved"):
+        collect_gate_e1_schema_diagnostic(
+            run_dir,
+            decoded_service_key="decoded/test+key",
+            approved_plan_sha256=gate_e1_connectivity_recovery_sha256(),
+            transport=FakeTransport(),
+        )
+    assert not run_dir.exists()
+
+
+def test_schema_diagnostic_transport_and_secret_echo_remain_redacted(tmp_path: Path) -> None:
+    class TimeoutTransport:
+        def open(self, request, *, timeout: float):
+            raise urllib.error.URLError(TimeoutError("provider timeout"))
+
+    transport_run = tmp_path / "transport"
+    report = collect_gate_e1_schema_diagnostic(
+        transport_run,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=TimeoutTransport(),
+    )
+    assert report["result"]["outcome"] == "transport_error"
+    assert report["result"]["transport_category"] == "timeout"
+    persisted = (transport_run / "result.json").read_bytes()
+    assert b"provider timeout" not in persisted
+    assert b"decoded/test+key" not in persisted
+    assert b"serviceKey" not in persisted
+    assert verify_gate_e1_schema_diagnostic(transport_run) == report["result"]
+
+    echo = OneResponseTransport(
+        lambda request: FakeResponse(b'{"error":"decoded/test+key"}', url=request.full_url)
+    )
+    echo_run = tmp_path / "echo"
+    with pytest.raises(GateE1Stop, match="echoed"):
+        collect_gate_e1_schema_diagnostic(
+            echo_run,
+            decoded_service_key="decoded/test+key",
+            approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+            transport=echo,
+        )
+    assert not (echo_run / "result.json").exists()
+    assert not list((echo_run / "raw").iterdir())
