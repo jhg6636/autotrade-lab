@@ -4,22 +4,23 @@ Last updated: 2026-08-28 KST
 
 ## Active objective
 
-Record and review the completed Gate E1 schema-diagnostic result. The one approved request returned
-HTTP 200, provider code `00`, matching paging, an empty item list, and a runtime `response` wrapper
-that differs from the official top-level JSON Swagger. No retry or raw-body retention occurred.
-Review an observation-backed parser change without making another data request. Do not backtest,
-rank, optimize, access an account, order, or trade.
+Implement and review the observation-backed Gate E1 runtime-envelope parser change without making
+another data request. Accept the official top-level JSON and the observed sole `response` wrapper,
+while rejecting ambiguous dual envelopes and preserving every provider, paging, item, row, secret,
+byte, and raw-evidence guard. Do not backtest, rank, optimize, access an account, order, or trade.
 
 ## Repository state
 
-- Current main: Gate E1 schema-diagnostic preparation merge commit `4657094`
-- Working branch: `agent/GATE-E1-SCHEMA-RESULT`, based on main `4657094`
+- Current main: Gate E1 schema-diagnostic result merge commit `50cff2a`
+- Working branch: `agent/GATE-E1-RUNTIME-ENVELOPE`, based on main `50cff2a`
 - Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
 - Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
 - Gate E1 connectivity-recovery result PR: `#26`, merged as `d34057f`
 - Gate E1 schema-diagnostic preparation PR: `#27`, merged as `4657094`; GitGuardian successful
-- Gate E1 schema-diagnostic result PR: `#28`, open, mergeable, GitGuardian successful
+- Gate E1 schema-diagnostic result PR: `#28`, merged as `50cff2a`; GitGuardian successful
+- Gate E1 runtime-envelope parser PR: `#29`, open, mergeable, GitGuardian successful; public-data
+  requests: 0
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -187,6 +188,11 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   runtime `response` wrapper were observed. The failed raw body and provider message were not
   retained; credential-variant scan passed; retries, account access, backtests, orders, and trades:
   0.
+- Gate E1 runtime-envelope parser: documented and observed success paths plus ambiguous/malformed
+  rejection are covered. Focused tests: 31 passed; full repository tests: 148 passed; Ruff
+  check/format and `git diff --check`: passed. The original 24-slot plan hash is unchanged, the
+  historical diagnostic result still verifies, canonical strategy/source files are unchanged, and
+  public-data requests: 0.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -201,13 +207,14 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review and merge the schema-diagnostic result record. Then prepare an observation-backed parser
-change that accepts the runtime `response` wrapper while retaining provider-code, paging, item,
-row-budget, secret, and raw-evidence guards. Do not make another public-data request in either step.
+Review the runtime-envelope parser diff and open a preparation PR. After it is merged, design a new,
+separately approved limited data packet with a fresh hash and output directory. Do not make another
+public-data request as part of parser work or reuse a completed plan.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-SCHEMA-DIAGNOSTIC.md`,
+Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-RUNTIME-ENVELOPE.md`,
+`research/runs/GATE-E1-SCHEMA-DIAGNOSTIC.md`,
 `research/runs/GATE-E1-CONNECTIVITY-RECOVERY.md`,
 `research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`, `research/runs/GATE-C.md`, and
 `docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the singular next action above.

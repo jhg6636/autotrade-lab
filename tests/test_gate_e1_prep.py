@@ -218,6 +218,26 @@ def test_collection_uses_all_slots_once_and_never_persists_key(tmp_path: Path) -
     assert verify_gate_e1_data(run_dir) == manifest["observed"]
 
 
+def test_collection_and_verifier_accept_observed_runtime_wrapper(tmp_path: Path) -> None:
+    class WrappedTransport(FakeTransport):
+        def open(self, request, *, timeout: float) -> FakeResponse:
+            documented = super().open(request, timeout=timeout)
+            body = json.dumps({"response": json.loads(documented.body)}).encode()
+            return FakeResponse(body, url=request.full_url, content_length=len(body))
+
+    transport = WrappedTransport()
+    run_dir = tmp_path / "wrapped"
+    manifest = collect_gate_e1_data(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_plan_sha256(),
+        transport=transport,
+    )
+    assert len(transport.requests) == MAX_REQUESTS
+    assert manifest["observed"]["rows"] == MAX_REQUESTS
+    assert verify_gate_e1_data(run_dir) == manifest["observed"]
+
+
 def test_collection_rejects_url_encoded_key_in_selected_header(tmp_path: Path) -> None:
     class HeaderEchoTransport(FakeTransport):
         def open(self, request, *, timeout: float) -> FakeResponse:
@@ -629,7 +649,7 @@ def test_schema_diagnostic_separates_provider_result_code_from_schema_error(
     assert verify_gate_e1_schema_diagnostic(run_dir) == result
 
 
-def test_schema_diagnostic_records_wrapped_shape_but_does_not_accept_it(tmp_path: Path) -> None:
+def test_schema_diagnostic_accepts_observed_wrapped_shape(tmp_path: Path) -> None:
     documented = json.loads(_payload(1, 1, []))
     body = json.dumps({"response": documented}).encode()
     transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
@@ -641,7 +661,45 @@ def test_schema_diagnostic_records_wrapped_shape_but_does_not_accept_it(tmp_path
         transport=transport,
     )
     result = report["result"]
+    assert result["outcome"] == "success"
+    assert result["response_diagnostic"]["envelope"] == "response_wrapped"
+    assert len(list((run_dir / "raw").iterdir())) == 1
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+
+def test_schema_diagnostic_rejects_ambiguous_dual_envelope(tmp_path: Path) -> None:
+    documented = json.loads(_payload(1, 1, []))
+    body = json.dumps({**documented, "response": documented}).encode()
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
     assert result["outcome"] == "schema_error"
+    assert result["diagnostic_category"] == "documented_schema_mismatch"
+    assert result["response_diagnostic"]["envelope"] == "ambiguous"
+    assert not list((run_dir / "raw").iterdir())
+    assert verify_gate_e1_schema_diagnostic(run_dir) == result
+
+
+def test_schema_diagnostic_rejects_runtime_wrapper_with_sibling_key(tmp_path: Path) -> None:
+    documented = json.loads(_payload(1, 1, []))
+    body = json.dumps({"response": documented, "unexpected": True}).encode()
+    transport = OneResponseTransport(lambda request: FakeResponse(body, url=request.full_url))
+    run_dir = tmp_path / "schema"
+    report = collect_gate_e1_schema_diagnostic(
+        run_dir,
+        decoded_service_key="decoded/test+key",
+        approved_plan_sha256=gate_e1_schema_diagnostic_sha256(),
+        transport=transport,
+    )
+    result = report["result"]
+    assert result["outcome"] == "schema_error"
+    assert result["diagnostic_category"] == "documented_schema_mismatch"
     assert result["response_diagnostic"]["envelope"] == "response_wrapped"
     assert not list((run_dir / "raw").iterdir())
     assert verify_gate_e1_schema_diagnostic(run_dir) == result
