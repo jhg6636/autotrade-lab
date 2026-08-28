@@ -472,8 +472,18 @@ def _validate_final_url(request: urllib.request.Request, response: ResponseLike)
 def _response_items(payload: Any, slot: RequestSlot) -> list[dict[str, Any]]:
     if not isinstance(payload, dict):
         raise GateE1Stop("response is not a JSON object")
-    header = payload.get("header")
-    body = payload.get("body")
+    has_documented_fields = "header" in payload or "body" in payload
+    has_runtime_wrapper = "response" in payload
+    if has_documented_fields and has_runtime_wrapper:
+        raise GateE1Stop("provider response has ambiguous documented and runtime envelopes")
+    if has_runtime_wrapper:
+        if set(payload) != {"response"} or not isinstance(payload["response"], dict):
+            raise GateE1Stop("provider runtime response envelope is invalid")
+        envelope = payload["response"]
+    else:
+        envelope = payload
+    header = envelope.get("header")
+    body = envelope.get("body")
     if (
         not isinstance(header, dict)
         or header.get("resultCode") != "00"
@@ -877,7 +887,13 @@ def _fixed_response_diagnostic(payload: Any, slot: RequestSlot) -> dict[str, Any
     if not isinstance(payload, dict):
         return diagnostic
 
-    if isinstance(payload.get("header"), dict) and isinstance(payload.get("body"), dict):
+    has_documented_fields = "header" in payload or "body" in payload
+    has_runtime_wrapper = "response" in payload
+    if has_documented_fields and has_runtime_wrapper:
+        diagnostic["envelope"] = "ambiguous"
+        header = None
+        body = None
+    elif isinstance(payload.get("header"), dict) and isinstance(payload.get("body"), dict):
         diagnostic["envelope"] = "documented_top_level"
         header = payload["header"]
         body = payload["body"]
@@ -1174,7 +1190,13 @@ def verify_gate_e1_schema_diagnostic(run_dir: Path) -> dict[str, Any]:
         not isinstance(diagnostic, dict)
         or set(diagnostic) != {"envelope", "items_shape", "paging", "provider_result_code"}
         or diagnostic.get("envelope")
-        not in {"documented_top_level", "response_wrapped", "other_object", "non_object"}
+        not in {
+            "ambiguous",
+            "documented_top_level",
+            "response_wrapped",
+            "other_object",
+            "non_object",
+        }
         or diagnostic.get("items_shape")
         not in {
             "absent",
