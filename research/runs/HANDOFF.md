@@ -1,23 +1,25 @@
 # Active research handoff
 
-Last updated: 2026-08-27 KST
+Last updated: 2026-08-28 KST
 
 ## Active objective
 
-Close and review the approved one-request Gate E1 connectivity-recovery result. The request reached
-the provider with HTTP 200 but ended as `schema_error`; no body was retained and no retry occurred.
-Preserve connectivity as observed while authentication, the exact provider result/envelope, and
-historical-data suitability remain unobserved. Do not backtest, rank, optimize, access an account,
-order, or trade.
+Prepare, review, and seek exact-hash approval for one Gate E1 schema-diagnostic request. Official
+Swagger and DOCX evidence confirms top-level `header`/`body` for JSON, so the parser remains strict.
+The new diagnostic can distinguish a provider result code from a documented-schema mismatch without
+retaining provider messages or failed raw bodies. Do not execute it before exact-hash approval, and
+do not backtest, rank, optimize, access an account, order, or trade.
 
 ## Repository state
 
-- Current main: Gate E1 connectivity-recovery preparation merge commit `6d94ee8`
-- Working branch: `agent/GATE-E1-CONNECTIVITY-RESULT`, based on main `6d94ee8`
+- Current main: Gate E1 connectivity-recovery result merge commit `d34057f`
+- Working branch: `agent/GATE-E1-SCHEMA-PREP`, based on main `d34057f`
 - Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
 - Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
-- Gate E1 connectivity-recovery result PR: `#26`, open for final result review
+- Gate E1 connectivity-recovery result PR: `#26`, merged as `d34057f`
+- Gate E1 schema-diagnostic preparation PR: `#27`, open, mergeable, GitGuardian successful; no
+  public-data request
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -29,6 +31,8 @@ order, or trade.
 - Gate E1-DATA retained raw files/rows/bytes: 0/0/0; manifest created: false
 - Gate E1 connectivity-recovery requests: 1/1; HTTP 200, `schema_error`, retries 0
 - Gate E1 connectivity-recovery retained raw files/rows/body bytes: 0/0/0
+- Gate E1 schema-diagnostic requests: 0/1; retries: 0; plan hash
+  `f70bf4dc56edbbc280ccba08e9a1cfa571f5795c3fda48c44a04822d0545f167`
 
 The last completed discovery aggregate remains 80 sources (26 usable, 53 incomplete, 1
 inaccessible), 95 hypotheses (35 usable, 60 incomplete), and 2,282 suggestions. Its deterministic
@@ -172,6 +176,11 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 - Gate E1 connectivity-recovery result: canonical verifier and credential-variant scan passed; 136
   full tests, Ruff check/format, and `git diff --check` passed after the single HTTP 200
   `schema_error`; no retry occurred.
+- Gate E1 schema-diagnostic preparation: official portal Swagger and attached DOCX reviewed without
+  a market-data request; JSON top-level `header`/`body` retained as the strict schema. Fixed-category
+  provider/schema diagnostics, failed-body fingerprinting, secret-echo rejection, and canonical
+  verification are implemented. Focused tests: 28 passed; full repository tests: 145 passed; Ruff
+  check/format and `git diff --check`: passed. Public-data requests: 0.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -186,13 +195,14 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review and merge result PR `#26`. Then prepare a documentation-first, separately approved diagnostic
-that can identify the provider result code/envelope without retaining credential material. Do not
-rerun either completed packet, reuse their output directories, or make another public-data request
-before a new hash is reviewed and approved.
+Review the Gate E1 schema-diagnostic preparation and present plan SHA-256
+`f70bf4dc56edbbc280ccba08e9a1cfa571f5795c3fda48c44a04822d0545f167` for explicit user approval.
+Do not execute the request as part of preparation, rerun either completed packet, or reuse an old
+output directory.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-CONNECTIVITY-RECOVERY.md`,
+Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-SCHEMA-DIAGNOSTIC.md`,
+`research/runs/GATE-E1-CONNECTIVITY-RECOVERY.md`,
 `research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`, `research/runs/GATE-C.md`, and
 `docs/INVESTOR_PROFILE.md`. Verify branch/base and execute only the singular next action above.

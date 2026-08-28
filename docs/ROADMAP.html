@@ -207,9 +207,9 @@
               <strong>Gate E0·E1-PREP — 공식 대체 소스 준비 완료</strong>
               <span>금융위 상장종목·시세·발행·배당 API와 24슬롯 수집기를 고정했습니다.</span>
             </div>
-            <div class="track-step blocked">
-              <strong>Gate E1-DATA — HTTP 연결 확인 · 스키마 미확인</strong>
-              <span>복구 요청은 HTTP 200에 도달했지만 `schema_error`로 끝났고, 재시도 없이 원인 검토 단계로 전환했습니다.</span>
+            <div class="track-step partial">
+              <strong>Gate E1-DATA — 1회 스키마 진단 승인 대기</strong>
+              <span>공식 JSON 구조를 재확인하고 제공자 코드와 구조 오류를 안전하게 구분하는 새 단일 요청을 준비했습니다.</span>
             </div>
             <div class="track-step">
               <strong>국내 과거 데이터셋·품질 검증 — 미시작</strong>
@@ -317,7 +317,7 @@
             <li class="done"><strong>토스 제한 검증</strong>과거 일봉과 수정주가 동작을 확인했습니다.</li>
             <li class="done"><strong>토스 데이터 계약 감사</strong>유용한 과거 일봉은 확인했지만 전체 상폐 유니버스와 이용 권리는 확정하지 못했습니다.</li>
             <li class="done"><strong>공식 소스 선정</strong>금융위원회 공공데이터포털 자료를 다음 제한 검증 대상으로 선정했습니다.</li>
-            <li class="blocked"><strong>Gate E1-DATA 중단</strong>첫 연결이 응답 없이 실패해 데이터 적격성을 관찰하지 못했고 광범위 수집은 계속 닫혀 있습니다.</li>
+            <li class="partial"><strong>Gate E1 스키마 진단 준비</strong>HTTP 연결은 확인했고 공식 JSON 명세 기반의 새 1회 진단은 정확한 해시 승인을 기다립니다. 광범위 수집은 계속 닫혀 있습니다.</li>
           </ol>
         </article>
 
@@ -349,10 +349,10 @@
       <h2 id="next-gate">다음 의사결정 게이트</h2>
       <div class="gate">
         <div>
-          <h3>Gate E1 응답 스키마 원인 분리 또는 중단 유지</h3>
-          <p>연결성은 확인됐지만 인증 결과·응답 래퍼·오류 코드는 구분하지 못했습니다. 문서 검토 후 새 해시를 승인하기 전에는 추가 요청하지 않습니다.</p>
+          <h3>Gate E1 단일 스키마 진단 승인</h3>
+          <p>공식 JSON은 최상위 `header`·`body` 구조임을 재확인했습니다. 제공자 결과 코드와 구조 불일치를 구분하는 1회 요청은 정확한 새 해시 승인 전까지 실행하지 않습니다.</p>
         </div>
-        <div class="gate-code">실행 완료 · HTTP 200 · schema_error · 재시도 0</div>
+        <div class="gate-code">준비 완료 · 요청 0/1 · 재시도 0 · 해시 승인 대기</div>
       </div>
       <details>
         <summary>E1-DATA를 통과하면</summary>
