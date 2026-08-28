@@ -5,8 +5,8 @@
 - Preparation date: 2026-08-28 KST
 - Plan SHA-256:
   `f70bf4dc56edbbc280ccba08e9a1cfa571f5795c3fda48c44a04822d0545f167`
-- User approval: not yet granted for this exact hash
-- Stage: prepared and locally tested; not executed
+- User approval: granted 2026-08-28 KST
+- Stage: executed once; stopped for review with documented/runtime JSON divergence
 
 ## Why another packet is necessary
 
@@ -81,6 +81,34 @@ PY
 Do not rerun after the single attempt. Stop for review regardless of outcome. Even a successful row
 establishes only the listed-instrument endpoint's one-request schema; it does not authorize the
 remaining Gate E1-DATA slots or reopen broad historical collection.
+
+## Execution result
+
+The approved command was executed exactly once on 2026-08-28 KST from merged `main` commit
+`4657094`. It returned HTTP 200 and JSON with provider result code `00`. Paging matched the approved
+request and `items.item` was an empty list, but the runtime JSON placed the documented `header` and
+`body` inside a top-level `response` object. The strict documented parser therefore correctly
+stopped with `schema_error` and retained no raw body.
+
+- attempts: 1/1;
+- retries: 0;
+- HTTP status: 200;
+- provider result code: `00`;
+- diagnostic: `documented_schema_mismatch`;
+- runtime envelope/items/paging: `response_wrapped` / `item_list` / `matches`;
+- observed rows: 0;
+- response bytes: 142;
+- response SHA-256:
+  `661ec92a32a8c54f05f3286335aee6a57076867696a4d1c0e7ad41df6ee989f4`;
+- safe quota observation: limit 10,000; remaining 9,999;
+- raw files: 0;
+- canonical result: `research/probes/gate-e1-schema-diagnostic-20260828/result.json`;
+- provider message, credential, live URL, account/order data, backtest, order, or trade retained or
+  performed: false.
+
+This is direct evidence of a documentation/runtime envelope divergence for this request, not an
+authentication failure. It is not yet evidence that every admitted Financial Services Commission
+endpoint uses the same wrapper. The packet is complete and must not be rerun.
 
 ## Completion conditions
 
