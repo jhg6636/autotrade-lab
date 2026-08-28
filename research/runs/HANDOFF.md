@@ -19,7 +19,7 @@ byte, and raw-evidence guard. Do not backtest, rank, optimize, access an account
 - Gate E1 connectivity-recovery result PR: `#26`, merged as `d34057f`
 - Gate E1 schema-diagnostic preparation PR: `#27`, merged as `4657094`; GitGuardian successful
 - Gate E1 schema-diagnostic result PR: `#28`, merged as `50cff2a`; GitGuardian successful
-- Gate E1 runtime-envelope parser: local implementation and review in progress; public-data
+- Gate E1 runtime-envelope parser PR: `#29`, open, mergeable, GitGuardian successful; public-data
   requests: 0
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
