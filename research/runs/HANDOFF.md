@@ -18,7 +18,8 @@ do not backtest, rank, optimize, access an account, order, or trade.
   GitGuardian successful
 - Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
 - Gate E1 connectivity-recovery result PR: `#26`, merged as `d34057f`
-- Gate E1 schema-diagnostic preparation: local implementation and review in progress; no request
+- Gate E1 schema-diagnostic preparation PR: `#27`, open, mergeable, GitGuardian successful; no
+  public-data request
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
