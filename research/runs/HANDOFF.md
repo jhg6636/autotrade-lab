@@ -2,6 +2,14 @@
 
 Last updated: 2026-09-11 KST
 
+## Latest result (2026-09-11)
+
+Preparation PR #30 merged as `b4b4705`. Singular E1 execution stopped on request 9 with
+`semantic_ohlcv`: 101 rows, 17,499 retained raw bytes, 31,391 bytes read, zero retries.
+Canonical evidence verification passed. Stock and ETF daily remain **NO-GO**.
+See `GATE-E1-ELIGIBILITY-RESULT.md`. Result branch: `agent/GATE-E1-ELIGIBILITY-RESULT`.
+The preparation state below is historical and superseded by this result.
+
 ## Active objective
 
 Complete the goal-authorized Gate E1 Korean daily-data eligibility closeout. Review and merge the
@@ -213,9 +221,8 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Finish adversarial review of the Gate E1 eligibility preparation, open and merge its PR, then create
-a fresh result branch from the merge commit. Verify `.env.public-data` is private and the exact
-output is absent, execute packet hash `605df1d...25b6` once, and never retry after an attempt.
+Close the result PR and return NO-GO to the user. A new diagnostic or crypto track needs the next
+research choice. Never rerun this packet or reuse unused slots.
 
 ## Resume instruction
 
