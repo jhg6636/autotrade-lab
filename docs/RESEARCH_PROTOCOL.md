@@ -43,6 +43,12 @@ Source type may help interpret a result but never substitutes for the result.
 
 ## Research queue
 
+The user-approved 2026-09-11 small-account track in `SMALL_ACCOUNT_RESEARCH.md` supersedes the
+breadth-first queue below for that bounded experiment. Researcher-defined executable assumptions
+may be frozen as original adaptations without falsely attributing them to source authors.
+Feasibility prioritization may precede data collection; performance ranking still requires a
+suitable dataset. Do not resume broad discovery quotas as a prerequisite for the first comparison.
+
 Discovery proceeds in parallel across source formats and strategy families. Collection should
 favor breadth before backtesting: capture the rule faithfully, record variants, and defer
 judgment. Only after the first catalog freeze do data acquisition and batch evaluation begin.

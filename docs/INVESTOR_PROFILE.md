@@ -23,9 +23,23 @@ interprets the objective as: seek asymmetric upside only after bounding the amou
   drawdown, tail loss, liquidation distance, venue failure, and kill-switch behavior.
 - No strategy may silently assume that the user will replenish losses.
 
-## Decisions required before backtesting or paper trading
+## User-confirmed research baseline — 2026-09-11
 
-The user must later set explicit values for:
+The user has approximately USD 30 available and accepts a loss of up to 50% per method.
+Interpret USD 30 as the total available experimental capital, not USD 30 per concurrent method.
+Each independent simulation may start with USD 30; these are alternative worlds, not simultaneous
+funded accounts. A method allocated USD 10 has a USD 5 baseline loss budget; full allocation has
+a USD 15 budget. No automatic replenishment or reset after a stop is allowed.
+
+The user delegated evaluation-period selection and approved research scenarios for capital, loss
+budget, and duration. These inputs are no longer blockers to offline research. Use
+`SMALL_ACCOUNT_RESEARCH.md` for the predefined comparison grid and validation conditions.
+Loss budget is measured from initial allocated capital, separately from peak drawdown. A threshold
+triggers an exit at the next executable price and is not a guaranteed realized-loss ceiling.
+
+## Decisions still required before funded deployment
+
+Before funded deployment, confirm:
 
 1. initial experiment capital;
 2. maximum total loss in currency and as a fraction of that capital;
@@ -33,5 +47,6 @@ The user must later set explicit values for:
 4. whether any leverage is ever permitted and its absolute cap;
 5. minimum evaluation horizon before abandoning or changing a rule.
 
-Until those values are supplied, this profile influences safety and feasibility only. It does not
-authorize ranking, backtesting, paper trading, live trading, or an implied return promise.
+Research scenarios do not authorize funded deployment. Aggregate account loss across concurrent
+or sequential methods remains a separate deployment decision. Initial research uses unlevered,
+long-only exposure; acceptable loss does not imply permission to borrow or use leverage.

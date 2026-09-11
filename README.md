@@ -9,6 +9,11 @@ and live execution so a promising backtest cannot accidentally become a real ord
 
 ## 프로젝트 진행 상황
 
+**새 연구 방향:** $30 기준으로 방법별 20%·35%·50% 손실 한도와 자금·기간 시나리오를
+비교합니다. [소액 계좌 연구 계획](docs/SMALL_ACCOUNT_RESEARCH.md)에 후보 규칙, 주문 제약,
+평가 기준과 다음 작업을 고정했습니다. 아래 데이터 트랙 설명은 기존 기반의 진행 기록이며,
+현재 작업 우선순위는 [활성 핸드오프](research/runs/HANDOFF.md)를 따릅니다.
+
 **현재 위치:** 공통 연구 기반 위에서 국내주식/ETF와 코인을 병렬로 검증하고 있습니다.
 국내 트랙은 실제 JSON의 `response` 래퍼와 공식 Swagger 구조를 모두 엄격하게 지원하고,
 공식 응답 필드·24개 요청·실패 manifest·보수적 적격성 판정을 새 실행 패킷으로 고정했습니다.
