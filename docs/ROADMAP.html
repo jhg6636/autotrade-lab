@@ -208,8 +208,8 @@
               <span>금융위 상장종목·시세·발행·배당 API와 24슬롯 수집기를 고정했습니다.</span>
             </div>
             <div class="track-step partial">
-              <strong>Gate E1-DATA — 실제 JSON 래퍼 지원</strong>
-              <span>정상 코드 `00`으로 관찰된 `response` 래퍼와 공식 최상위 구조를 모두 엄격하게 처리하도록 구현했습니다.</span>
+              <strong>Gate E1 적격성 패킷 — 준비·검토 중</strong>
+              <span>공식 필드와 두 JSON 구조, 24회 한도, 실패 manifest, 보수적 GO/NO-GO 규칙을 새 해시로 고정했습니다. 실제 호출은 아직 0회입니다.</span>
             </div>
             <div class="track-step">
               <strong>국내 과거 데이터셋·품질 검증 — 미시작</strong>
@@ -317,7 +317,7 @@
             <li class="done"><strong>토스 제한 검증</strong>과거 일봉과 수정주가 동작을 확인했습니다.</li>
             <li class="done"><strong>토스 데이터 계약 감사</strong>유용한 과거 일봉은 확인했지만 전체 상폐 유니버스와 이용 권리는 확정하지 못했습니다.</li>
             <li class="done"><strong>공식 소스 선정</strong>금융위원회 공공데이터포털 자료를 다음 제한 검증 대상으로 선정했습니다.</li>
-            <li class="partial"><strong>Gate E1 런타임 구조 반영</strong>공식 구조와 실제 `response` 래퍼를 모두 지원하되 모호한 이중 구조는 거부합니다. 새 수집 해시 승인 전까지 광범위 수집은 계속 닫혀 있습니다.</li>
+            <li class="partial"><strong>Gate E1 적격성 실행 준비</strong>공식 구조와 실제 `response` 래퍼, 정확한 응답 필드, 실패 manifest와 결정론적 판정을 고정했습니다. 준비 PR 병합 후 승인된 단일 24슬롯 실행만 남았습니다.</li>
           </ol>
         </article>
 
@@ -349,10 +349,10 @@
       <h2 id="next-gate">다음 의사결정 게이트</h2>
       <div class="gate">
         <div>
-          <h3>Gate E1 새 수집 계획 검토</h3>
-          <p>관찰된 `response` 래퍼는 엄격한 파서와 테스트에 반영했습니다. 완료된 요청을 재사용하지 않고 새 범위·출력·해시를 가진 제한 수집 계획을 검토합니다.</p>
+          <h3>Gate E1 적격성 패킷 검토·단일 실행</h3>
+          <p>새 범위·출력·해시와 24개 요청, 공식 필드 계약, 실패 증거, 보수적 판정 규칙을 구현했습니다. 검토·병합 후 한 번만 실행하고 재시도하지 않습니다.</p>
         </div>
-        <div class="gate-code">파서 반영 완료 · 추가 요청 0 · 새 해시 필요</div>
+        <div class="gate-code">패킷 구현 완료 · 실제 호출 0/24 · 준비 PR 검토 중</div>
       </div>
       <details>
         <summary>E1-DATA를 통과하면</summary>
