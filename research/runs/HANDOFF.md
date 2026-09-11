@@ -1,26 +1,27 @@
 # Active research handoff
 
-Last updated: 2026-08-28 KST
+Last updated: 2026-09-11 KST
 
 ## Active objective
 
-Implement and review the observation-backed Gate E1 runtime-envelope parser change without making
-another data request. Accept the official top-level JSON and the observed sole `response` wrapper,
-while rejecting ambiguous dual envelopes and preserving every provider, paging, item, row, secret,
-byte, and raw-evidence guard. Do not backtest, rank, optimize, access an account, order, or trade.
+Complete the goal-authorized Gate E1 Korean daily-data eligibility closeout. Review and merge the
+fresh 24-slot execution packet, run it exactly once from the merge commit with zero retries, verify
+the terminal evidence, and record a conservative GO/NO-GO. Do not backtest, rank, optimize, access
+an account, order, short, paper trade, or live trade.
 
 ## Repository state
 
-- Current main: Gate E1 schema-diagnostic result merge commit `50cff2a`
-- Working branch: `agent/GATE-E1-RUNTIME-ENVELOPE`, based on main `50cff2a`
+- Current main: Gate E1 runtime-envelope merge commit `ff7ca321adbb86258aa326ceacf94196edc114bc`
+- Working branch: `agent/GATE-E1-DATA-V2-PREP`, based on main `ff7ca32`
 - Gate E1-DATA closeout PR: `#24`, merged as `9916b5f`; four intended documentation files and
   GitGuardian successful
 - Gate E1 connectivity-recovery preparation PR: `#25`, merged as `6d94ee8`
 - Gate E1 connectivity-recovery result PR: `#26`, merged as `d34057f`
 - Gate E1 schema-diagnostic preparation PR: `#27`, merged as `4657094`; GitGuardian successful
 - Gate E1 schema-diagnostic result PR: `#28`, merged as `50cff2a`; GitGuardian successful
-- Gate E1 runtime-envelope parser PR: `#29`, open, mergeable, GitGuardian successful; public-data
-  requests: 0
+- Gate E1 runtime-envelope parser PR: `#29`, merged as `ff7ca32`; public-data requests: 0
+- Gate E1 eligibility packet: implementation complete locally; packet SHA-256
+  `605df1d560b33116823f91033df324876a671cdec51ceb794630009452dd25b6`; actual calls: 0/24
 - Gate C Phase 2 PR: `#19`, merged as `b83dfc7`
 - Gate D PR: `#20`, merged as `d419aec`
 - Gate D2 implementation/evidence commit: `0c91c23`
@@ -193,6 +194,11 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
   check/format and `git diff --check`: passed. The original 24-slot plan hash is unchanged, the
   historical diagnostic result still verifies, canonical strategy/source files are unchanged, and
   public-data requests: 0.
+- Gate E1 eligibility preparation: all six official operation field sets, two admitted envelopes,
+  semantic filters, two page-pair checks, terminal partial manifests, raw-set verification, and
+  deterministic stock/ETF/KODEX 200 eligibility are covered. Focused tests: 28 passed; full
+  repository tests: 176 passed; Ruff check/format and `git diff --check`: passed. Public-data
+  requests: 0.
 
 - Full repository tests: 117 passed
 - Ruff check and format check: passed
@@ -207,13 +213,14 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Review the runtime-envelope parser diff and open a preparation PR. After it is merged, design a new,
-separately approved limited data packet with a fresh hash and output directory. Do not make another
-public-data request as part of parser work or reuse a completed plan.
+Finish adversarial review of the Gate E1 eligibility preparation, open and merge its PR, then create
+a fresh result branch from the merge commit. Verify `.env.public-data` is private and the exact
+output is absent, execute packet hash `605df1d...25b6` once, and never retry after an attempt.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-RUNTIME-ENVELOPE.md`,
+Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-ELIGIBILITY-PREP.md`,
+`research/runs/GATE-E1-FIELD-CONTRACT.md`, `research/runs/GATE-E1-RUNTIME-ENVELOPE.md`,
 `research/runs/GATE-E1-SCHEMA-DIAGNOSTIC.md`,
 `research/runs/GATE-E1-CONNECTIVITY-RECOVERY.md`,
 `research/runs/GATE-E1-DATA.md`, `research/runs/GATE-D.md`, `research/runs/GATE-C.md`, and
