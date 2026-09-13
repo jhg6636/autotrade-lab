@@ -1,6 +1,6 @@
 # Active research handoff
 
-Last updated: 2026-09-11 KST
+Last updated: 2026-09-14 KST
 
 ## Latest result (2026-09-11)
 
@@ -12,10 +12,21 @@ The preparation state below is historical and superseded by this result.
 
 ## Active objective
 
-Complete the goal-authorized Gate E1 Korean daily-data eligibility closeout. Review and merge the
-fresh 24-slot execution packet, run it exactly once from the merge commit with zero retries, verify
-the terminal evidence, and record a conservative GO/NO-GO. Do not backtest, rank, optimize, access
-an account, order, short, paper trade, or live trade.
+Implement the user-approved small-account research direction in docs/SMALL_ACCOUNT_RESEARCH.md:
+USD 30 baseline, up to 50% loss per method, alternative capital/loss/duration research scenarios.
+Completion means a reproducible comparison of executable methods, or an evidenced feasibility
+rejection. Begin with SMALL-001. Research planning is approved; data quality and collection gates
+still apply. No funded trading is authorized.
+
+## Current transition
+
+- Base: main 75352a9 (result PR #31 merged with user approval on 2026-09-14).
+- Working branch: agent/SMALL-ACCOUNT-research-plan.
+- PR #31 is merged: 9/24 requests, semantic_ohlcv stop,
+  101 retained rows, zero retries, offline evidence verification reported passed; stock/ETF NO-GO.
+- Do not rerun the E1 packet. Preserve PR #31 evidence when reconciling its documentation changes.
+- The older repository state and validation sections below are historical evidence, not commands
+  or the current active branch. Actual main/PR state must be fetched on resume.
 
 ## Repository state
 
@@ -221,12 +232,15 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 ## Next action
 
-Close the result PR and return NO-GO to the user. A new diagnostic or crypto track needs the next
-research choice. Never rerun this packet or reuse unused slots.
+Execute SMALL-001: produce the dated official-source feasibility table and bounded dataset proposal
+defined in docs/SMALL_ACCOUNT_RESEARCH.md. Do not automatically return to the Korean E1 diagnostic.
+Never rerun the E1 packet or reuse unused slots.
 
 ## Resume instruction
 
-Read `AGENTS.md`, this handoff, `research/runs/GATE-E1-ELIGIBILITY-PREP.md`,
+Read `AGENTS.md`, this handoff, `docs/SMALL_ACCOUNT_RESEARCH.md`, `docs/INVESTOR_PROFILE.md`,
+and `docs/RESEARCH_PROTOCOL.md` first. The following are historical E1 references, not an execution
+instruction: `research/runs/GATE-E1-ELIGIBILITY-PREP.md`,
 `research/runs/GATE-E1-FIELD-CONTRACT.md`, `research/runs/GATE-E1-RUNTIME-ENVELOPE.md`,
 `research/runs/GATE-E1-SCHEMA-DIAGNOSTIC.md`,
 `research/runs/GATE-E1-CONNECTIVITY-RECOVERY.md`,
