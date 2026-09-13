@@ -10,15 +10,15 @@ and live execution so a promising backtest cannot accidentally become a real ord
 ## 프로젝트 진행 상황
 
 **현재 위치:** 공통 연구 기반 위에서 국내주식/ETF와 코인을 병렬로 검증하고 있습니다.
-국내 트랙은 실제 JSON의 `response` 래퍼와 공식 Swagger 구조를 모두 엄격하게 지원하고,
-공식 응답 필드·24개 요청·실패 manifest·보수적 적격성 판정을 새 실행 패킷으로 고정했습니다.
+국내 E1은 9번째 요청에서 가격 검증 실패로 중단했습니다. 101행의 보존 증거 검증은
+통과했지만 국내주식·ETF 백테스트는 NO-GO입니다. [결과 보고서](research/runs/GATE-E1-ELIGIBILITY-RESULT.md)
 코인 트랙은 Gate C의 제한적 캔들 수집을 완료했지만 생애주기·이용권·펀딩·거래비용
 검증이 남았습니다. 어느 트랙도 본격 백테스트, 모의투자, 실거래를 시작하지 않았습니다.
 
 ```mermaid
 flowchart LR
     A["공통 연구 기반<br/>완료"] --> B["평탄화 전략 조사<br/>일부 완료"]
-    B --> K["국내주식·ETF<br/>Gate E1 실행 패킷 검토 중"]
+    B --> K["국내주식·ETF<br/>Gate E1 종료 · NO-GO"]
     B --> C["코인 현물·무기한선물<br/>제한 검증 일부 완료"]
     K --> KD["국내 과거 데이터셋<br/>미시작"]
     C --> CD["코인 과거 데이터셋<br/>미시작"]
