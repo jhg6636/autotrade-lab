@@ -208,8 +208,8 @@
               <span>금융위 상장종목·시세·발행·배당 API와 24슬롯 수집기를 고정했습니다.</span>
             </div>
             <div class="track-step partial">
-              <strong>Gate E1 적격성 패킷 — 준비·검토 중</strong>
-              <span>공식 필드와 두 JSON 구조, 24회 한도, 실패 manifest, 보수적 GO/NO-GO 규칙을 새 해시로 고정했습니다. 실제 호출은 아직 0회입니다.</span>
+              <strong>Gate E1 종료 — NO-GO</strong>
+              <span>9번째 요청에서 가격 검증 실패로 중단했습니다. 보존 101행과 실패 manifest 검증은 통과했습니다.</span>
             </div>
             <div class="track-step">
               <strong>국내 과거 데이터셋·품질 검증 — 미시작</strong>
@@ -349,10 +349,10 @@
       <h2 id="next-gate">다음 의사결정 게이트</h2>
       <div class="gate">
         <div>
-          <h3>Gate E1 적격성 패킷 검토·단일 실행</h3>
-          <p>새 범위·출력·해시와 24개 요청, 공식 필드 계약, 실패 증거, 보수적 판정 규칙을 구현했습니다. 검토·병합 후 한 번만 실행하고 재시도하지 않습니다.</p>
+          <h3>Gate E1 종료 — 다음 연구 선택</h3>
+          <p>가격 의미를 진단하는 새 제한 패킷 또는 코인 적격성 트랙 중 다음 작업을 선택합니다. 재시도는 하지 않았습니다.</p>
         </div>
-        <div class="gate-code">패킷 구현 완료 · 실제 호출 0/24 · 준비 PR 검토 중</div>
+        <div class="gate-code">E1 종료 · 9/24회 · 101행 · NO-GO</div>
       </div>
       <details>
         <summary>E1-DATA를 통과하면</summary>

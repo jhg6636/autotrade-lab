@@ -1,6 +1,14 @@
 # Active research handoff
 
-Last updated: 2026-09-11 KST
+Last updated: 2026-09-14 KST
+
+## Latest result (2026-09-11)
+
+Preparation PR #30 merged as `b4b4705`. Singular E1 execution stopped on request 9 with
+`semantic_ohlcv`: 101 rows, 17,499 retained raw bytes, 31,391 bytes read, zero retries.
+Canonical evidence verification passed. Stock and ETF daily remain **NO-GO**.
+See `GATE-E1-ELIGIBILITY-RESULT.md`. Result branch: `agent/GATE-E1-ELIGIBILITY-RESULT`.
+The preparation state below is historical and superseded by this result.
 
 ## Active objective
 
@@ -12,9 +20,9 @@ still apply. No funded trading is authorized.
 
 ## Current transition
 
-- Base: main b4b4705 (preparation PR #30 merged).
+- Base: main 75352a9 (result PR #31 merged with user approval on 2026-09-14).
 - Working branch: agent/SMALL-ACCOUNT-research-plan.
-- PR #31 remains a separate result PR at review time: 9/24 requests, semantic_ohlcv stop,
+- PR #31 is merged: 9/24 requests, semantic_ohlcv stop,
   101 retained rows, zero retries, offline evidence verification reported passed; stock/ETF NO-GO.
 - Do not rerun the E1 packet. Preserve PR #31 evidence when reconciling its documentation changes.
 - The older repository state and validation sections below are historical evidence, not commands
@@ -226,6 +234,7 @@ high return does not weaken survival, bias, corporate-action, or licensing gates
 
 Execute SMALL-001: produce the dated official-source feasibility table and bounded dataset proposal
 defined in docs/SMALL_ACCOUNT_RESEARCH.md. Do not automatically return to the Korean E1 diagnostic.
+Never rerun the E1 packet or reuse unused slots.
 
 ## Resume instruction
 
